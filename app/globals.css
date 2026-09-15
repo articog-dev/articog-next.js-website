@@ -122,6 +122,11 @@
     letter-spacing: var(--text-h1--letter-spacing);
   }
 
+  .hero-heading {
+    font-size: clamp(2.25rem, calc(1.125rem + 3.3vw), 3.75rem) !important;
+    line-height: 1.04 !important;
+  }
+
   .type-h2 {
     font-family: var(--font-display);
     font-size: var(--text-h2);

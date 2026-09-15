@@ -113,9 +113,7 @@ export function Hero({ content }: HeroProps) {
           </p>
 
           {/* Headline */}
-          <h1
-            className="type-h1 text-white"
-          >
+          <h1 className="hero-heading type-h1 text-white">
             {lines.map((line, i) => (
               <span key={i} className="block">
                 {line}
@@ -123,7 +121,7 @@ export function Hero({ content }: HeroProps) {
             ))}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-[46rem] text-base leading-relaxed text-white/70 sm:text-lg">
             {content.body}
           </p>
 
