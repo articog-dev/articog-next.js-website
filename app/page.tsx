@@ -113,8 +113,8 @@ export default function HomePage() {
       <Capabilities capabilities={homepage.capabilities} />
       <HomeVisualShowcase />
       <Pipeline steps={homepage.pipeline} />
-      <CaseStudies caseStudies={homepage.caseStudies} />
       <Comparison rows={homepage.comparison} />
+      <CaseStudies caseStudies={homepage.caseStudies} />
       <FinalCTA content={homepage.cta} />
     </div>
   );
