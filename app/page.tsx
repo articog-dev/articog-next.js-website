@@ -12,6 +12,7 @@ import {
   Pipeline,
   Capabilities,
   Comparison,
+  CaseStudies,
   FinalCTA,
   HomeVisualShowcase,
   
@@ -96,7 +97,6 @@ const webPageSchema = {
 
 export default function HomePage() {
   const homepage = siteContent;
-  const showSelectedWork = false;
 
   return (
     <div className="overflow-x-clip">
@@ -111,9 +111,9 @@ export default function HomePage() {
 
       <Hero content={homepage.hero} stats={homepage.proofStats} />
       <Capabilities capabilities={homepage.capabilities} />
-      {showSelectedWork ? <HomeVisualShowcase /> : null}
-      
+      <HomeVisualShowcase />
       <Pipeline steps={homepage.pipeline} />
+      <CaseStudies caseStudies={homepage.caseStudies} />
       <Comparison rows={homepage.comparison} />
       <FinalCTA content={homepage.cta} />
     </div>
