@@ -1,7 +1,6 @@
 import { Link } from "@/components/ui/Link";
 import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
-import { AiSummary } from "@/components/sections/AiSummary";
 
 const border = "rgba(255,255,255,0.08)";
 
@@ -167,7 +166,6 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <AiSummary />
         <div
           className="mt-20 grid gap-6 pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
           style={{ borderTop: `1px solid ${border}` }}

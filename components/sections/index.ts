@@ -6,5 +6,4 @@ export { Comparison } from "./Comparison";
 export { CaseStudies } from "./CaseStudies";
 export { FinalCTA } from "./FinalCTA";
 export { HomeVisualShowcase } from "./HomeVisualShowcase";
-export { AiSummary } from "./AiSummary";
 
