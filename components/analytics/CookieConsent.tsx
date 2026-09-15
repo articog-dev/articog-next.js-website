@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import { Link } from "@/components/ui/Link";
 import { saveCookieConsent, readCookieConsentSnapshot, subscribeCookieConsent, type CookieConsent } from "@/lib/cookie-consent";
 
 export function CookieConsent() {
@@ -69,9 +68,9 @@ export function CookieConsent() {
           </div>
         )}
 
-        <Link href="/legal/cookie-policy" className="mt-4 inline-block text-xs text-white/55 underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-          Cookie Policy
-        </Link>
+        <a href="/privacy-policy" className="mt-4 inline-block text-xs text-white/55 underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+          Privacy Policy
+        </a>
       </section>
     </div>
   );
