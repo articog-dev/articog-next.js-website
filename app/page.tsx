@@ -14,7 +14,6 @@ import {
   Comparison,
   FinalCTA,
   HomeVisualShowcase,
-  AiSummary,
   
 } from "@/components/sections";
 
@@ -116,7 +115,6 @@ export default function HomePage() {
       
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
-      <AiSummary />
       <FinalCTA content={homepage.cta} />
     </div>
   );

@@ -19,9 +19,9 @@ export function CookieConsent() {
   };
 
   return (
-    <div className="fixed inset-x-4 bottom-4 z-[1200] sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md">
+    <div className="fixed inset-x-4 bottom-4 z-[1200] sm:inset-x-auto sm:bottom-6 sm:left-auto sm:right-6 sm:w-[380px] sm:max-w-[calc(100vw-3rem)]">
       <section
-        className="rounded-2xl border border-white/15 bg-[#111]/95 p-6 text-white shadow-2xl backdrop-blur-xl"
+        className="rounded-2xl border border-white/15 bg-[#111]/95 p-5 text-white shadow-2xl backdrop-blur-xl"
         role="dialog"
         aria-modal="false"
         aria-labelledby="cookie-settings-title"
