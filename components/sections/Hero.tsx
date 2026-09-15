@@ -143,9 +143,6 @@ export function Hero({ content }: HeroProps) {
             ) : null}
           </div>
 
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-            Human-directed. AI-native.
-          </p>
         </div>
       </div>
     </section>
