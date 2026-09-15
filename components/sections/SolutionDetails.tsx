@@ -36,16 +36,16 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
       items: [
         { title: "Paid Social Scale", description: "High volume production, iterative testing, platform optimization, and regular creative refreshes." },
         { title: "Dynamic Creative", description: "Modular creative layers and audience driven variants optimized for Meta, TikTok, and YouTube." },
-        { title: "UGC Style Content", description: "Creator style aesthetics, production without a shoot, rapid trend response, and conversion focused hooks." },
+        { title: "Creator-Style Content", description: "Creator-style aesthetics, production without a shoot, rapid trend response, and conversion-focused hooks." },
       ],
     },
     {
       title: "Workflow & Automation",
       description: "Production systems designed to connect high volume creative with existing marketing workflows.",
       items: [
-        { title: "Creative Automation", description: "API first workflows, mass variation, and rule based branding for repeatable production." },
+        { title: "Creative Workflow", description: "API-first workflows, variation, and rule-based branding for repeatable production." },
         { title: "Workflow Integration", description: "DAM and product feed integrations can connect brief to delivery production to existing systems." },
-        { title: "Rapid Iteration", description: "Performance signals guide visual iteration and data led optimization across the testing matrix." },
+        { title: "Rapid Iteration", description: "Review feedback guides visual iteration across the testing matrix." },
       ],
     },
   ],
@@ -82,7 +82,7 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
   ],
   overflow: [
     {
-      title: "Agency White-Label Capacity",
+      title: "Creative Team Extension",
       description: "Confidential production support that extends agency capacity while remaining invisible to the end client.",
       items: [
         { title: "Confidentiality", description: "NDA-backed collaboration and confidential handling of agency and client materials." },

@@ -220,7 +220,7 @@ export const blogPosts: BlogEntry[] = [
     slug: "these-actors-dont-exist-this-entire-ad-was-made-with-ai",
     title: "These Actors Don’t Exist. This Entire Ad Was Made With AI | Articog",
     excerpt:
-      "An Articog AI native production showcasing how an entire ad can be created using AI generated actors and creative production workflows.",
+      "An Articog AI-native production showcasing how an ad can be created using AI-generated actors and creative production workflows.",
     publishedAt: "2026-09-01",
     featuredImage:
       "https://img.youtube.com/vi/l5pReVGFVqs/hqdefault.jpg",

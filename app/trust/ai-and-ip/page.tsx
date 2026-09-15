@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/trust/ai-and-ip" },
-  title: "AI & Intellectual Property Articog",
+  title: "AI & Intellectual Property | Articog",
   description: "How Articog handles AI tool use, ownership, and client intellectual property.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -13,13 +13,13 @@ export default function AIIPPage() {
   const policies = [
     {
       title: "Ownership of Delivered Assets",
-      desc: "Clients receive full ownership rights to final delivered creative upon completion of payment. You own the results of our collaboration, enabling you to use them across any channel or campaign without additional licensing fees.",
-      note: "Note: This is a general policy; final terms are defined in your specific service agreement.",
+      desc: "The final delivered creative is generally owned by the client for the purposes set out in the relevant project agreement. Final rights, licensing, and ownership terms are governed by the signed engagement terms between the parties.",
+      note: "Final terms are defined in the applicable service agreement.",
       icon: ShieldCheck,
     },
     {
       title: "Our Use of AI Tools",
-      desc: "We use a sophisticated, multi model AI pipeline calibrated to your unique brand. Our process is transparent and designed to augment human creativity, not replace the strategic direction that makes your brand unique.",
+      desc: "We use AI tools to accelerate ideation, production, and iteration while keeping human review and creative direction at the center of the work. We do not treat AI as a substitute for client strategy or brand judgment.",
       icon: Scale,
     },
     {

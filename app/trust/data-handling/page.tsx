@@ -14,32 +14,32 @@ export default function DataHandlingPage() {
     {
       title: "Storage & Security",
       icon: <Database className="w-5 h-5 text-white/40" />,
-      description: "All client materials and project assets are stored in secure, encrypted environments for the duration of the engagement. We implement strict access controls to ensure only authorized team members can access project data.",
+      description: "Client materials and project assets are handled in the tools agreed for each engagement. Access and sharing practices can be documented during onboarding.",
     },
     {
       title: "Retention Policy",
       icon: <HardDrive className="w-5 h-5 text-white/40" />,
-      description: "Retention periods are defined per engagement. We do not keep client materials indefinitely without a clear business reason. Standard retention policies are discussed and finalized during onboarding.",
+      description: "Retention periods depend on the engagement and applicable requirements. The expected retention schedule can be discussed and documented during onboarding.",
     },
     {
-      title: "AI Training Policy",
       icon: <Shield className="w-5 h-5 text-white/40" />,
-      description: "We maintain a clear policy regarding AI training: client-provided proprietary materials are not used to train foundation models without explicit, written consent. Your brand's intellectual property remains yours.",
+      title: "AI Tool Use",
+      description: "Client-provided materials are handled according to the agreed project terms and the applicable policies of the tools used for delivery. Specific permissions and restrictions can be documented during onboarding.",
     },
     {
       title: "Vendor & Sub-Processing",
       icon: <RefreshCw className="w-5 h-5 text-white/40" />,
-      description: "Any third-party tools or sub-processors used in our production pipeline are vetted for rigorous data handling and security standards to ensure your data remains protected at every stage.",
+      description: "Third-party tools used in a production workflow can be reviewed as part of project scoping and vendor due diligence. Specific tools and data flows depend on the engagement.",
     },
     {
       title: "Data Deletion",
       icon: <Trash2 className="w-5 h-5 text-white/40" />,
-      description: "Upon project completion and delivery, client materials can be deleted from our active production environments on request, subject to any necessary backup or legal requirements.",
+      description: "Deletion requests can be discussed after delivery. Timing and scope depend on the tools involved, applicable requirements, and any agreed retention terms.",
     },
     {
       title: "Backups & Continuity",
       icon: <FileText className="w-5 h-5 text-white/40" />,
-      description: "We maintain regular backups of delivered work to ensure project continuity and prevent data loss, ensuring your final assets are available when you need them.",
+      description: "Project continuity and backup arrangements can be discussed during onboarding based on the agreed delivery and storage workflow.",
     },
   ];
 

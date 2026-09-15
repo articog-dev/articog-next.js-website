@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
-import { trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
+import { trackContactSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import {
   ArrowRight,
   Mail,
@@ -32,6 +32,7 @@ export default function ContactPage() {
     };
 
     trackFormSubmit("contact");
+    trackContactSubmit();
 
     try {
       const response = await fetch("/api/contact", {
@@ -273,7 +274,7 @@ export default function ContactPage() {
                 </span>
               </a>
 
-              <p className="font-sans text-xs text-white/30">
+              <p className="font-sans text-xs text-muted-safe">
                 We typically respond within 1 business day.
               </p>
             </div>

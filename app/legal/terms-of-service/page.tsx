@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/legal/terms-of-service" },
-  title: "Terms of Service Articog",
+  title: "Terms of Service | Articog",
   description: "The terms and conditions governing your use of Articog's website and services.",
 };
 import { Container, Section, Heading } from "@/components/ui";
@@ -17,7 +17,7 @@ export default function TermsOfServicePage() {
     {
       title: "Description of Services",
       content:
-        "This website describes Articog's AI powered creative production services, including video production, ad creative, social content, product visuals, and related creative strategy. Specific client engagements are governed by separate service agreements executed between Articog and the client.",
+        "This website describes Articog's AI-powered creative production services, including video production, ad creative, social content, product visuals, and related creative strategy. Specific client engagements are governed by separate service agreements executed between Articog and the client.",
     },
     {
       title: "Intellectual Property",

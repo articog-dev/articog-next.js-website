@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Product Visual Content Articog",
-  description: "On brand product visuals at scale. Product photography, campaign posters, and print ready assets delivered in days.",
+  title: "Product Visual Content | Articog",
+  description: "On-brand product visuals at scale. Product photography, campaign posters, and print-ready assets delivered in days.",
   alternates: { canonical: "https://articog.com/work/product-visuals" },
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -34,24 +34,24 @@ export default function ProductVisualsPage() {
             <div className="space-y-8">
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold tracking-widest text-white/40 uppercase">Beauty / UGC / Social Content</span>
+                  <span className="text-xs font-bold tracking-widest text-muted-safe uppercase">Beauty / Creator-Style Social Content</span>
                 </div>
                 <h2 className="type-h2 mb-4 text-white">
-                  Full campaign live 72 hours from brief
+                  Launch-ready campaign imagery with a structured, fast-turn production workflow
                 </h2>
                 <p className="type-body-lg text-white/60">
-                  How a breakout DTC beauty brand leveraged Articog to go from initial concept to a multi-platform launch in just three days.
+                  How a modern beauty brand can move from concept to a multi-platform campaign system through a more efficient visual production process.
                 </p>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white/5 rounded-xl border border-white/10">
                 <div>
-                  <div className="text-4xl font-display font-bold text-white mb-1">72h</div>
-                  <div className="text-sm font-sans text-white/40 uppercase tracking-wider font-bold">Brief to launch</div>
+                  <div className="text-4xl font-display font-bold text-white mb-1">Fast</div>
+                  <div className="text-sm font-sans text-white/40 uppercase tracking-wider font-bold">Turnaround model</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-display font-bold text-white mb-1">100%</div>
-                  <div className="text-sm font-sans text-white/40 uppercase tracking-wider font-bold">Brand Fidelity</div>
+                  <div className="text-4xl font-display font-bold text-white mb-1">Brand</div>
+                  <div className="text-sm font-sans text-muted-safe uppercase tracking-wider font-bold">Consistency focus</div>
                 </div>
               </div>
             </div>
@@ -71,10 +71,10 @@ export default function ProductVisualsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Product Photography", desc: "Studio quality product shots with perfect lighting and composition." },
+              { title: "Product Visualization", desc: "Product visuals developed with a defined lighting and composition direction." },
               { title: "Campaign Posters", desc: "High impact visual statements for digital and physical placements." },
               { title: "Digital Banners", desc: "Optimized display assets for web, mobile, and social platforms." },
-              { title: "Print Ready Assets", desc: "High resolution files ready for any physical production needs." }
+              { title: "Print-Ready Assets", desc: "High-resolution files ready for any physical production needs." }
             ].map((item) => (
               <div key={item.title} className="p-8 rounded-2xl bg-white/5 border border-white/10">
                 <h3 className="type-h4 text-white mb-3">{item.title}</h3>

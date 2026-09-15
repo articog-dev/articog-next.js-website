@@ -6,20 +6,16 @@ import type { SiteContent } from "@/types";
 
 export const siteContent: SiteContent = {
   hero: {
-    eyebrow: "AI Native Film & Creative Production",
-    headline: "Your creative engine, accelerated by AI.",
+    eyebrow: "AI NATIVE FILM & PRODUCTION",
+    headline: "High-quality campaign creative.\nProduced at AI speed.",
+    body: "Articog helps marketing teams produce brand films, paid ads, product visuals and social creative through human-directed AI production workflows — without traditional production bottlenecks.",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
-    secondaryCtaLabel: "See How It Works",
-    secondaryCtaHref: "/#pipeline",
+    secondaryCtaLabel: "View Work",
+    secondaryCtaHref: "/work",
   },
 
-  proofStats: [
-    { value: "24h", label: "Brief to first output" },
-    { value: "10×", label: "Creative volume" },
-    { value: "90%", label: "Cost Reduction" },
-    { value: "72h", label: "Campaign delivery" },
-  ],
+  proofStats: [],
 
   problems: [
     {
@@ -48,28 +44,28 @@ export const siteContent: SiteContent = {
       title: "Brief",
       description:
         "Share your goal and references. We set direction first.",
-      tag: "Day 1",
+      tag: "Typical workflow",
     },
     {
       step: 2,
       title: "Generate",
       description:
-        "Our AI pipeline calibrated to the brand produces first outputs within hours.",
-      tag: "Day 1 2",
+        "Our production team uses brand references and AI workflows to create a curated first round for review.",
+      tag: "Typical workflow",
     },
     {
       step: 3,
       title: "Refine",
       description:
-        "Review a curated selection. We refine it through fast feedback cycles.",
-      tag: "Day 2 3",
+        "Review a curated selection. We refine it from your feedback in fast, low-overhead cycles.",
+      tag: "Typical workflow",
     },
     {
       step: 4,
       title: "Deliver",
       description:
-        "Receive assets ready for production, versioned for every platform.",
-      tag: "Day 3 4",
+        "Receive launch-ready masters and platform versions, organized for your campaign.",
+      tag: "Typical workflow",
     },
   ],
 
@@ -87,56 +83,56 @@ export const siteContent: SiteContent = {
       icon: "book-open",
     },
     {
-      title: "Commercials and Advertisements",
+      title: "Commercials & Paid Ads",
       useCase: "TV, pre-roll, OOH, performance video ads",
-      outcome: "Ads ready for broadcast delivered without a production crew",
+      outcome: "Campaign-ready creative delivered without a traditional production crew",
       icon: "monitor",
     },
     {
-      title: "AI Posters and Visual Content",
+      title: "Campaign Visuals & Product Imagery",
       useCase: "Campaign posters, banners, OOH creative, assets ready for print",
-      outcome: "On brand visuals at any scale with consistent brand fidelity",
+      outcome: "On-brand visuals at any scale with consistent brand fidelity",
       icon: "image",
     },
     {
       title: "Audio Ads",
       useCase: "Podcast, radio, streaming audio, brand voice production",
-      outcome: "Studio quality audio creative in hours, not weeks",
+      outcome: "Audio creative delivered with a clear production brief and finishing workflow",
       icon: "mic",
     },
     {
-      title: "AI UGC and Social Content",
+      title: "Creator-Style Social Content",
       useCase: "Instagram, TikTok, YouTube Shorts, organic feeds",
-      outcome: "Platform native content that performs without influencer budgets",
+      outcome: "Platform-native content built for the right channels and campaign rhythm",
       icon: "trending-up",
     },
     {
-      title: "ML Ad Creations",
+      title: "Performance Creative Variants",
       useCase: "Paid social, display, search creative testing",
-      outcome: "Hundreds of on brand variants, continuously optimised on performance signals",
+      outcome: "Iterative campaign variants designed for testing and optimization",
       icon: "zap",
     },
     {
-      title: "Creative Automations",
+      title: "Creative Workflow Automation",
       useCase: "Workflow integration from brief to delivery",
-      outcome: "80% fewer manual production steps. Plugs into your existing stack.",
+      outcome: "A structured production workflow that keeps review cycles efficient and organized.",
       icon: "cpu",
     },
   ],
 
   comparison: [
     {
-      attribute: "First output",
-      agency: "2 to 4 weeks",
-      inhouse: "1 to 2 weeks",
-      articog: "Under 24 hours",
+      attribute: "Production approach",
+      agency: "Traditional production",
+      inhouse: "Internal workflow",
+      articog: "AI-native workflow",
       articogHighlight: true,
     },
     {
-      attribute: "Campaign delivery",
-      agency: "4 to 8 weeks",
-      inhouse: "3 to 6 weeks",
-      articog: "3 to 5 days",
+      attribute: "Delivery model",
+      agency: "Multi-stage production",
+      inhouse: "Internal production",
+      articog: "Streamlined production workflow",
       articogHighlight: true,
     },
     {
@@ -150,7 +146,7 @@ export const siteContent: SiteContent = {
       attribute: "Volume flexibility",
       agency: "Limited by team size",
       inhouse: "Capped by headcount",
-      articog: "Unlimited",
+      articog: "Scales with demand",
       articogHighlight: true,
     },
     {
@@ -164,37 +160,12 @@ export const siteContent: SiteContent = {
       attribute: "Iteration speed",
       agency: "Slow revision cycles",
       inhouse: "Moderate",
-      articog: "Hours, not days",
+      articog: "Reduced production bottlenecks",
       articogHighlight: true,
     },
   ],
 
-  caseStudies: [
-    {
-      client: "E-Commerce Brand",
-      industry: "Retail",
-      outcome: "10× creative output with zero headcount increase",
-      metric: "10×",
-      metricLabel: "Output volume",
-      tags: ["AI Video", "Ad Creations"],
-    },
-    {
-      client: "DTC Beauty Brand",
-      industry: "Beauty",
-      outcome: "Full campaign live 72 hours from brief",
-      metric: "72h",
-      metricLabel: "Brief to launch",
-      tags: ["UGC", "Social Content"],
-    },
-    {
-      client: "SaaS Startup",
-      industry: "Technology",
-      outcome: "3.2× ROAS lift on paid social in 60 days",
-      metric: "3.2×",
-      metricLabel: "ROAS improvement",
-      tags: ["ML Creations", "Paid Social"],
-    },
-  ],
+  caseStudies: [],
 
   testimonials: [],
 

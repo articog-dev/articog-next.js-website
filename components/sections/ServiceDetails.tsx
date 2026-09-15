@@ -53,7 +53,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
         { title: "SaaS & Explainers", description: "Accurate UI representation, motion graphics, professional voiceover, and long-form plus paid/social cuts." },
         { title: "Training & Onboarding", description: "High-quality training modules and onboarding videos produced at scale." },
         { title: "Internal Announcements", description: "Engaging video announcements and professional executive messages for town halls and strategic updates." },
-        { title: "Secure Delivery", description: "Enterprise-grade security and confidentiality for internal assets." },
+        { title: "Confidential Delivery", description: "Confidential handling and delivery practices can be agreed for internal assets." },
       ],
     },
     {
@@ -88,8 +88,8 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
       ],
     },
     {
-      title: "UGC Style Ads",
-      description: "Creator style ad content with the high engagement feel of UGC and the reliability of an AI powered production engine.",
+      title: "Creator-Style Ad Content",
+      description: "Creator-style ad content with the familiar feel of social creative and the reliability of a human-directed, AI-powered production engine.",
       items: [
         { title: "Native Scripts & Hooks", description: "Platform tailored scripts and thumb stopping hooks designed to blend into the feed." },
         { title: "Testing Variants", description: "Multiple visual and audio variants provided for each concept." },
@@ -101,11 +101,11 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   social: [
     {
       title: "Monthly Social Content",
-      description: "A predictable stream of on brand social content delivered around your calendar and campaign priorities.",
+      description: "A predictable stream of on-brand social content delivered around your calendar and campaign priorities.",
       items: [
         { title: "Calendar Tailored Posts", description: "Posts and graphics planned around your content calendar and priorities." },
         { title: "Consistent Brand Voice", description: "Every asset matches your brand voice and visual identity." },
-        { title: "Platform Specific Formatting", description: "Content formatted for the exact specifications and style of each channel." },
+        { title: "Platform-Specific Formatting", description: "Content formatted for the exact specifications and style of each channel." },
       ],
     },
     {
@@ -119,11 +119,11 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
     },
     {
       title: "Short Form Video",
-      description: "Fast paced, native content for high engagement on vertical platforms.",
+      description: "Fast-paced, native content for high engagement on vertical platforms.",
       items: [
         { title: "Reels & TikTok Series", description: "Always on Instagram, TikTok, and YouTube Shorts production." },
-        { title: "Captions & Cutdowns", description: "Platform native edits, captions, and campaign cutdowns built for sound off viewing." },
-        { title: "Series Consistency", description: "A repeatable visual and editorial system that keeps recurring content on brand." },
+        { title: "Captions & Cutdowns", description: "Platform-native edits, captions, and campaign cutdowns built for sound-off viewing." },
+        { title: "Series Consistency", description: "A repeatable visual and editorial system that keeps recurring content on-brand." },
       ],
     },
   ],
@@ -132,24 +132,24 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
       title: "AI Product Photography",
       description: "Photorealistic product shots without a physical studio shoot, built from your actual product assets.",
       items: [
-        { title: "Ecommerce Listings", description: "Clean, consistent catalog imagery for Shopify, Amazon, and your own store." },
-        { title: "Lifestyle Shots", description: "Products placed in on brand interiors and outdoor environments." },
+        { title: "E-commerce Listings", description: "Clean, consistent catalog imagery for Shopify, Amazon, and your own store." },
+        { title: "Lifestyle Shots", description: "Products placed in on-brand interiors and outdoor environments." },
         { title: "Seasonal Campaigns", description: "Fast-turnaround visuals for seasonal and promotional moments." },
         { title: "Product Fidelity", description: "Texture, color, form, and labeling represented accurately in every shot." },
       ],
     },
     {
       title: "Custom Image Libraries",
-      description: "Large, consistent libraries of on brand product images delivered in organized batches.",
+      description: "Large, consistent libraries of on-brand product images delivered in organized batches.",
       items: [
         { title: "Style System", description: "A defined visual style applied consistently across the library." },
-        { title: "Consistency at Scale", description: "Hundreds of images with consistent light, shadow, and color." },
+        { title: "Consistent Visual Systems", description: "Product and campaign images developed with consistent light, shadow, and color direction." },
         { title: "Usage Rights & Governance", description: "Clear rights and a documented production process across the library." },
         { title: "Batch Delivery", description: "Bulk delivery ready for catalog or CMS use with consistent metadata and naming." },
       ],
     },
     {
-      title: "Ecommerce Visuals",
+      title: "E-commerce Visuals",
       description: "Product visuals built for online selling across your site and marketplaces.",
       items: [
         { title: "PDP-Safe Output", description: "Clean backgrounds, accurate representation, and technical fidelity for product detail pages." },
@@ -194,11 +194,11 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   "post-production": [
     {
       title: "Video Editing",
-      description: "Turn raw footage into polished, on brand final cuts for modern attention spans and platform requirements.",
+      description: "Turn raw footage into polished, on-brand final cuts for modern attention spans and platform requirements.",
       items: [
         { title: "Editorial Assembly", description: "Structure raw footage into a compelling, high-retention narrative cut." },
         { title: "Multiple Versions", description: "Cutdowns and alternate lengths for different platform requirements." },
-        { title: "Captions & Graphics", description: "Accurate captions, titles, lower thirds, and on brand motion graphics." },
+        { title: "Captions & Graphics", description: "Accurate captions, titles, lower thirds, and on-brand motion graphics." },
       ],
     },
     {
@@ -243,7 +243,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
     },
     {
       title: "Audio Ads",
-      description: "Studio quality audio ads for radio, podcasts, and streaming services.",
+      description: "Audio ads for radio, podcasts, and streaming services, finished to agreed delivery specifications.",
       items: [
         { title: "Standard Lengths", description: "Professionally produced 15s, 30s, and 60s cuts for radio and digital streaming." },
         { title: "Scriptwriting & Professional Voice", description: "Copy refined to the brand voice and delivered with usage rights cleared." },

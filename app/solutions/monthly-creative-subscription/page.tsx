@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/solutions/monthly-creative-subscription" },
-  title: "Monthly Creative Subscription Articog",
+  title: "Monthly Creative Subscription | Articog",
   description: "Steady, predictable creative delivered every month. Video, social, and visuals without the overhead of a full in-house team or agency retainer.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";

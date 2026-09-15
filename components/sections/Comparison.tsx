@@ -52,7 +52,31 @@ export function Comparison({ rows }: ComparisonProps) {
         {/* Heading removed from comparison section to avoid duplication with hero */}
 
 
-        <div className="rounded-2xl overflow-hidden border border-white/[0.08]">
+        <div className="space-y-4 md:hidden">
+          {rows.map((row) => (
+            <article key={row.attribute} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{row.attribute}</h3>
+              <div className="space-y-3">
+                <div className="rounded-xl border border-[#6633EE]/20 bg-[#6633EE]/[0.06] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#9b7cff]">Articog</p>
+                  <p className="mt-1 text-sm text-white">{row.articog}</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-xl border border-white/[0.08] p-3">
+                    <p className="text-xs uppercase tracking-wider text-white/45">Traditional</p>
+                    <p className="mt-1 text-white/65">{row.agency}</p>
+                  </div>
+                  <div className="rounded-xl border border-white/[0.08] p-3">
+                    <p className="text-xs uppercase tracking-wider text-white/45">In-house</p>
+                    <p className="mt-1 text-white/65">{row.inhouse}</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="hidden overflow-hidden rounded-2xl border border-white/[0.08] md:block">
           {/* Scroll wrapper for mobile */}
           <div className="overflow-x-auto">
             <div style={{ minWidth: "600px" }}>
@@ -105,7 +129,7 @@ export function Comparison({ rows }: ComparisonProps) {
         </div>
 
         <p className="mt-5 text-center font-sans text-xs text-muted-safe">
-          Based on Articog client engagements.
+          Engagement fit depends on scope, formats, and delivery requirements.
         </p>
       </Container>
     </Section>

@@ -50,7 +50,7 @@ const projects: PortfolioProject[] = [
   {
     title: "Creative Visual 05",
     category: "Social Creative",
-    description: "Platform native motion concepts designed to feel premium while remaining instantly readable.",
+    description: "Platform-native motion concepts designed to feel premium while remaining instantly readable.",
     number: "05",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_081708_9bf57f26-425b-47f7-b199-bad796e7f256.png",
     alt: "Articog creative visual study 05",

@@ -15,6 +15,14 @@ type EventName =
   | "form_submit"
   | "form_success"
   | "form_error"
+  | "calendly_open"
+  | "calendly_event_scheduled"
+  | "demo_form_start"
+  | "demo_form_submit"
+  | "contact_submit"
+  | "work_view"
+  | "pricing_view"
+  | "trust_view"
   | "section_view";
 
 interface TrackEvent {
@@ -68,4 +76,28 @@ export function trackFormSuccess(formName: string): void {
 
 export function trackFormError(formName: string, reason: string): void {
   track({ name: "form_error", properties: { form: formName, reason } });
+}
+
+export function trackCalendlyOpen(): void {
+  track({ name: "calendly_open" });
+}
+
+export function trackCalendlyEventScheduled(): void {
+  track({ name: "calendly_event_scheduled" });
+}
+
+export function trackDemoFormStart(): void {
+  track({ name: "demo_form_start" });
+}
+
+export function trackDemoFormSubmit(): void {
+  track({ name: "demo_form_submit" });
+}
+
+export function trackContactSubmit(): void {
+  track({ name: "contact_submit" });
+}
+
+export function trackContentView(name: "work_view" | "pricing_view" | "trust_view"): void {
+  track({ name });
 }

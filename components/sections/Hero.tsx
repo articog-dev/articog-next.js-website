@@ -1,6 +1,7 @@
 "use client";
 
 import type { HeroContent, ProofStat } from "@/types";
+import { ArrowRight } from "lucide-react";
 import { useLayoutEffect, useRef } from "react";
 
 interface HeroProps {
@@ -15,6 +16,12 @@ export function Hero({ content }: HeroProps) {
   useLayoutEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      video.pause();
+      return;
+    }
 
     video.muted = true;
     video.defaultMuted = true;
@@ -115,6 +122,32 @@ export function Hero({ content }: HeroProps) {
               </span>
             ))}
           </h1>
+
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+            {content.body}
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href={content.ctaHref}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              {content.ctaLabel}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+            {content.secondaryCtaHref && content.secondaryCtaLabel ? (
+              <a
+                href={content.secondaryCtaHref}
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                {content.secondaryCtaLabel}
+              </a>
+            ) : null}
+          </div>
+
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+            Human-directed. AI-native.
+          </p>
         </div>
       </div>
     </section>

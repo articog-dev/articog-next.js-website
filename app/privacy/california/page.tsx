@@ -2,18 +2,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/privacy/california" },
-  title: "California Privacy Notice Articog",
+  title: "California Privacy Notice | Articog",
   description: "Supplemental privacy notice for California residents under CCPA/CPRA.",
 };
 import { Container, Section, Heading } from "@/components/ui";
 
-export default function CaliforniaPrivacyPage() {
-  const today = new Date().toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+const LAST_UPDATED = "September 15, 2026";
 
+export default function CaliforniaPrivacyPage() {
   return (
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
@@ -29,7 +25,7 @@ export default function CaliforniaPrivacyPage() {
               California Privacy Notice
             </Heading>
             <p className="mb-12 type-label uppercase tracking-widest text-white/30">
-              Last updated: {today}
+              Last updated: {LAST_UPDATED}
             </p>
 
             <div className="space-y-12">
@@ -38,9 +34,6 @@ export default function CaliforniaPrivacyPage() {
                 <div className="type-small leading-relaxed text-white/60">
                   <p>
                     This California Privacy Notice ("Notice") applies as required under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA). 
-                  </p>
-                  <p className="mt-4 italic text-white/40 border-t border-white/5 pt-2">
-                    Note: Applicability is subject to statutory thresholds and will be confirmed with legal counsel.
                   </p>
                 </div>
               </section>
@@ -53,7 +46,6 @@ export default function CaliforniaPrivacyPage() {
                     <li><strong>Identifiers:</strong> Such as contact information (name, email address).</li>
                     <li><strong>Usage Data:</strong> Information about your interaction with our website and services.</li>
                   </ul>
-                  <p className="text-white/40 italic">Categories and specific data points are being finalized based on internal data mapping.</p>
                 </div>
               </section>
 

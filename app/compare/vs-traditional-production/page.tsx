@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Articog vs Traditional Production Comparison",
+  title: "Articog vs Traditional Production | Articog",
   description: "A comparison of Articog's AI accelerated creative engine versus traditional agency production models for speed, scale, and cost.",
   alternates: { canonical: "https://articog.com/compare/vs-traditional-production" },
 };
@@ -11,25 +11,25 @@ import { Link } from "@/components/ui/Link";
 export default function ComparisonPage() {
   const comparisonData = [
     {
-      metric: "First Output",
+      metric: "Production Approach",
       traditional: {
-        value: "2-4 Weeks",
-        desc: "Requires lengthy onboarding, briefing sessions, and manual concepting cycles before the first draft emerges.",
+        value: "Traditional Production",
+        desc: "A multi-stage process with onboarding, briefing, and manual concepting before the first draft.",
       },
       articog: {
-        value: "Under 24 Hours",
-        desc: "Our calibrated pipeline begins generation immediately after the brief is mapped, delivering initial assets in a single day.",
+        value: "AI-Native Workflow",
+        desc: "A human-directed production workflow that uses brand references and AI tools to develop the first round for review.",
       },
     },
     {
-      metric: "Campaign Delivery",
+      metric: "Delivery Model",
       traditional: {
-        value: "4-8 Weeks",
-        desc: "Total timeline from brief to final channel-ready assets is slowed by sequential manual production steps.",
+        value: "Multi-Stage Production",
+        desc: "Channel-ready assets move through sequential production and review stages.",
       },
       articog: {
-        value: "3-5 Days",
-        desc: "Parallelized AI generation and automated formatting allow for entire campaign kits to be delivered in less than a week.",
+        value: "Streamlined Production Workflow",
+        desc: "A structured workflow connects briefing, generation, review, refinement, and delivery.",
       },
     },
     {
@@ -39,19 +39,19 @@ export default function ComparisonPage() {
         desc: "Fixed costs for agency overhead plus unpredictable billing for revisions and additional asset formats.",
       },
       articog: {
-        value: "Scales with Volume",
+        value: "Scales with Demand",
         desc: "Predictable cost structure that aligns with your actual creative output needs, eliminating wasteful overhead.",
       },
     },
     {
-      metric: "Iteration Speed",
+      metric: "Review Model",
       traditional: {
-        value: "Slow Revision Cycles",
-        desc: "Changes often require days to process as they move back through the manual production queue.",
+        value: "Sequential Revision Cycles",
+        desc: "Changes move through the production queue and review process.",
       },
       articog: {
-        value: "Hours, Not Days",
-        desc: "Feedback is integrated into fast iteration loops, allowing for creative pivots in real-time.",
+        value: "Reduced Production Bottlenecks",
+        desc: "Feedback is integrated into structured review cycles for focused creative refinement.",
       },
     },
   ];

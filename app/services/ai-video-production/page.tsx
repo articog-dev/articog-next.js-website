@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services/ai-video-production" },
   title: "AI Video Production | Articog",
-  description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth stage brands.",
+  description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth-stage brands.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
@@ -16,7 +16,7 @@ export default function AIVideoProductionPage() {
     { title: "Product Commercials", path: null, desc: "Dynamic commercial spots showcasing products in stunning environments." },
     { title: "Performance Ads", path: "/services/ad-creative", desc: "Data-driven creative optimized for conversion across paid social." },
     { title: "Social & Reels", path: "/services/social-creative", desc: "Fast-paced, native content designed for high engagement on vertical platforms." },
-    { title: "UGC Style Ads", path: "/services/ad-creative", desc: "Authentic feeling content that builds trust and drives action." },
+    { title: "Creator-Style Ads", path: "/services/ad-creative", desc: "Platform-aware content designed to support trust and action." },
     { title: "Product Launch", path: null, desc: "Complete visual packages to make your next launch unforgettable." },
     { title: "SaaS & Explainers", path: null, desc: "Clear, engaging product explainer videos built for high conversion." },
     { title: "Real Estate Films", path: null, desc: "Cinematic property and development films with responsible AI visualization." },

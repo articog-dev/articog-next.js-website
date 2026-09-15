@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services/product-visuals" },
   title: "Product Visual Content | Articog",
-  description: "Product visual content for ecommerce, launch campaigns, and performance marketing created with speed and brand precision.",
+  description: "Product visual content for e-commerce, launch campaigns, and performance marketing created with speed and brand precision.",
 };
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button } from "@/components/ui";
@@ -39,7 +39,7 @@ export default function ProductVisualsPage() {
               <h2 className="type-h2 mb-6 text-white">Applications</h2>
               <ul className="space-y-4">
                 {[
-                  "Ecommerce product imagery",
+                  "E-commerce product imagery",
                   "Campaign hero assets",
                   "Product launch visual systems",
                   "Advertising creative assets",

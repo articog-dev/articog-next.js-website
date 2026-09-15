@@ -34,7 +34,7 @@ export default function HelpCenterPage() {
       faqs: [
         {
           q: "What creative services does Articog offer?",
-          a: "Articog specializes in AI native video production, high performance ad creative, static visual libraries, and audio production. We provide end to end creative support for growth stage brands."
+          a: "Articog specializes in AI-native video production, high-performance ad creative, static visual libraries, and audio production. We provide end-to-end creative support for growth-stage brands."
         },
         {
           q: "How do I choose the right service for my campaign?",
@@ -48,7 +48,7 @@ export default function HelpCenterPage() {
       faqs: [
         {
           q: "How does a project move from brief to delivery?",
-          a: "Our AI Creative Pipeline follows a structured path: Briefing & Strategy, Concepting, AI Native Production, Human Review & Quality Assurance, and final Delivery. This hybrid human AI model ensures speed without sacrificing brand integrity."
+          a: "Our AI Creative Pipeline follows a structured path: Briefing & Strategy, Concepting, AI-Native Production, Human Review & Quality Assurance, and final Delivery. This hybrid human-AI model supports efficient production while keeping brand review in the process."
         }
       ]
     },
@@ -79,7 +79,7 @@ export default function HelpCenterPage() {
 
   const glossaryTerms = [
     {
-      term: "AI Native Production",
+      term: "AI-Native Production",
       definition: "A production framework where generative AI is not just a tool but the core infrastructure. This allows for near instant iteration and the ability to scale creative output without linear increases in cost or time.",
       link: "/services/ai-video-production",
     },
@@ -89,8 +89,8 @@ export default function HelpCenterPage() {
       link: "/why-articog/production-economics",
     },
     {
-      term: "Post Production",
-      definition: "The final technical stage of content creation, including motion graphics, color grading, upscaling, and audio mastering. Our AI driven post production delivers studio quality finishes at a fraction of traditional timelines.",
+      term: "Post-Production",
+      definition: "The final technical stage of content creation, including motion graphics, color grading, upscaling, and audio mastering. Our AI-driven post-production workflow supports finishing for agreed delivery specifications.",
       link: "/services/post-production",
     },
     {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/solutions/creative-team-overflow" },
-  title: "In-House Creative Overflow Articog",
+  title: "Creative Team Extension | Articog",
   description: "Extend your internal team without full-time hires.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -88,7 +88,7 @@ export default function CreativeOverflowPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Need extra hands on your next project?</h2>
+            <h2 className="type-h2 mb-8 text-white">Need additional creative capacity?</h2>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg">
                 Get Overflow Support

@@ -34,7 +34,7 @@ export const menuGroups = [
         href: "/services/creative-strategy",
       },
       {
-        label: "Post Production",
+        label: "Post-Production",
         href: "/services/post-production",
       },
     ],
@@ -60,7 +60,7 @@ export const menuGroups = [
         href: "/solutions/product-launch",
       },
       {
-        label: "Agency White-Label",
+        label: "Creative Team Extension",
         href: "/solutions/creative-team-overflow",
       },
     ],
@@ -70,7 +70,7 @@ export const menuGroups = [
     links: [
       { label: "Overview", href: "/industries" },
       {
-        label: "DTC & Ecommerce",
+        label: "DTC & E-commerce",
         href: "/industries#dtc-ecommerce",
       },
       {
@@ -108,7 +108,7 @@ export const menuGroups = [
     links: [
       { label: "Portfolio Overview", href: "/work" },
       { label: "Video Ads", href: "/work/video-ads" },
-      { label: "Social & UGC", href: "/work/social" },
+      { label: "Creator-Style Social Content", href: "/work/social" },
       { label: "Customer Stories", href: "/customers" },
     ],
   },
@@ -243,7 +243,8 @@ function DropdownPanel({
           backdropFilter: "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
           padding: isServices ? "28px 28px 24px" : "12px",
-          overflow: "hidden",
+          maxHeight: "calc(100vh - 88px)",
+          overflowY: "auto",
         }}
       >
         {isServices ? (
@@ -286,20 +287,20 @@ function ServicesContent({
       icon: <Film size={14} />,
     },
     {
-      title: "AI Social & UGC",
-      desc: "Creations native to each platform for Instagram, TikTok, YouTube, and LinkedIn at scale.",
+      title: "Creator-Style Social Content",
+      desc: "Content tailored for each platform, from short-form edits to campaign storytelling.",
       href: "/work/social",
       icon: <Smartphone size={14} />,
     },
     {
-      title: "ML Ad Creations",
-      desc: "Hundreds of on brand variants, continuously optimized on performance signals.",
+      title: "Performance Creative Variants",
+      desc: "Iterative creative testing across paid and social channels with clear production guardrails.",
       href: "/services/ad-creative",
       icon: <TestTube2 size={14} />,
     },
     {
-      title: "Creative Automations",
-      desc: "Workflow integration from brief to delivery, with 80% fewer manual production steps.",
+      title: "Creative Workflow Automation",
+      desc: "A clear production workflow that keeps briefs, revisions, and handoff moving efficiently.",
       href: "/how-it-works/ai-creative-pipeline",
       icon: <Workflow size={14} />,
     },
@@ -322,7 +323,7 @@ function ServicesContent({
           href: "/services/ad-creative",
         },
         {
-          label: "AI Posters & Visuals",
+          label: "Campaign Visuals & Product Imagery",
           href: "/services/product-visuals",
         },
         {

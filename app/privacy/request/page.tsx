@@ -7,15 +7,41 @@ import { toast } from 'sonner';
 
 export default function PrivacyRequestPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setErrorMessage('');
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const response = await fetch('/api/privacy-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          requestType: data.get('type'),
+          details: data.get('details'),
+        }),
+      });
+      const result = (await response.json()) as { success?: boolean; message?: string; error?: string };
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'We could not submit your request. Please try again later.');
+      }
+
+      toast.success(result.message || 'Your request was received for review.');
+      form.reset();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'We could not submit your request. Please try again later.';
+      setErrorMessage(message);
+      toast.error(message);
+    } finally {
       setIsSubmitting(false);
-      toast.success('Your request has been submitted. We will be in touch shortly.');
-    }, 1500);
+    }
   };
 
   return (
@@ -31,7 +57,8 @@ export default function PrivacyRequestPage() {
             <div className="space-y-2">
               <Label htmlFor="name" className="text-zinc-300">Full Name</Label>
               <Input
-                id="name" 
+                id="name"
+                name="name"
                 placeholder="John Doe" 
                 required 
                 className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white"
@@ -41,7 +68,8 @@ export default function PrivacyRequestPage() {
             <div className="space-y-2">
               <Label htmlFor="email" className="text-zinc-300">Email Address</Label>
               <Input
-                id="email" 
+                id="email"
+                name="email"
                 type="email" 
                 placeholder="john@example.com" 
                 required 
@@ -65,7 +93,8 @@ export default function PrivacyRequestPage() {
             <div className="space-y-2">
               <Label htmlFor="details" className="text-zinc-300">Details / Message</Label>
               <Textarea
-                id="details" 
+                id="details"
+                name="details"
                 placeholder="Please provide any additional context for your request..." 
                 className="min-h-[120px] resize-none rounded-lg bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white"
               />
@@ -78,6 +107,7 @@ export default function PrivacyRequestPage() {
               <Button type="submit" disabled={isSubmitting} className="w-full bg-white text-black hover:bg-zinc-200 h-14 text-lg font-semibold rounded-full transition-all">
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </Button>
+              {errorMessage ? <p role="alert" className="text-sm text-red-300">{errorMessage}</p> : null}
             </div>
           </form>
 

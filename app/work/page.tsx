@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Creative Production Work | Articog",
-  description: "See AI native creative production across video ads, social content, product visuals, and campaign storytelling for growth stage brands.",
+  description: "See AI-native creative production across video ads, social content, product visuals, and campaign storytelling for growth-stage brands.",
   alternates: { canonical: "https://articog.com/work" },
 };
 import { ArrowRight } from "lucide-react";
@@ -19,8 +19,8 @@ export default function WorkPage() {
       href: "/work/video-ads",
     },
     {
-      title: "Social & UGC",
-      description: "Platform native social creations and UGC style content.",
+      title: "Creator-Style Social Content",
+      description: "Platform-native social creative and creator-style content.",
       href: "/work/social",
     },
     {

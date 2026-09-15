@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/trust/security" },
-  title: "Security & Confidentiality Articog",
+  title: "Security & Confidentiality | Articog",
   description: "NDA, access control, and data handling practices at Articog.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -13,17 +13,17 @@ export default function SecurityPage() {
   const sections = [
     {
       title: "Data Handling",
-      desc: "Client materials, briefs, and source assets are used exclusively for the purposes of your engagement. We do not use your proprietary data to train general models or share it beyond the immediate production team.",
+      desc: "Client materials, briefs, and source assets are used for the purposes of the agreed work and are limited to the project team involved in delivery. We do not use client work product for unrelated commercial purposes without a clear agreement.",
       icon: Lock,
     },
     {
       title: "Confidentiality",
-      desc: "We understand the sensitive nature of pre-launch campaigns and product roadmaps. Standard Non-Disclosure Agreements (NDAs) are available on request for all projects to ensure your peace of mind.",
+      desc: "We understand the sensitivity of pre-launch work and confidential brand information. Standard confidentiality terms and NDAs can be discussed and incorporated as part of the project scope.",
       icon: ShieldCheck,
     },
     {
       title: "Access Controls",
-      desc: "Project access is strictly limited to the specific creative leads and production specialists assigned to your account, ensuring your assets remain secure throughout the creative pipeline.",
+      desc: "Project access is restricted to the team members and collaborators assigned to the work, with permissions managed to fit the needs of each engagement.",
       icon: Key,
     },
   ];

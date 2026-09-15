@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/solutions/enterprise" },
-  title: "Enterprise AI Production Articog",
+  title: "Enterprise AI Production | Articog",
   description: "Creative production built for large organizations with procurement, security, and governance requirements.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -13,12 +13,12 @@ export default function EnterpriseSolutionPage() {
   const whatIsIncluded = [
     {
       title: "Security & NDA",
-      desc: "Formal confidentiality agreements and data handling standards that meet enterprise requirements.",
+      desc: "Confidentiality terms and data-handling requirements can be reviewed during vendor scoping.",
       icon: ShieldCheck,
     },
     {
       title: "IP & Ownership",
-      desc: "Clear, contract-defined ownership terms ensuring you own the assets we produce.",
+      desc: "Contract-defined rights and ownership terms can be reviewed for each engagement.",
       icon: FileText,
     },
     {
@@ -28,7 +28,7 @@ export default function EnterpriseSolutionPage() {
     },
     {
       title: "Governance",
-      desc: "Structured brand and compliance review built directly into the production workflow.",
+      desc: "Brand and compliance review can be included in the production workflow where required.",
       icon: Eye,
     },
     {
@@ -80,7 +80,7 @@ export default function EnterpriseSolutionPage() {
           <div className="mt-12 p-6 rounded-xl bg-white/5 border border-white/10 flex items-start gap-4 max-w-2xl mx-auto text-center justify-center">
             <Info className="w-5 h-5 text-white/40 mt-0.5 flex-shrink-0" />
             <p className="type-small text-white/50 italic leading-relaxed">
-              Procurement documentation and security whitepapers are available on request.
+              Vendor review can be discussed during scoping; available documentation depends on the engagement and current materials.
             </p>
           </div>
         </Container>

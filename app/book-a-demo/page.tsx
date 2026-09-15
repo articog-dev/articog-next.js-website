@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Input, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
+import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 
 const CALENDLY_URL = "https://calendly.com/articog-media-01/articog-demo-call";
 
@@ -23,39 +24,97 @@ declare global {
 
 export default function BookADemoPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [hasTrackedFormStart, setHasTrackedFormStart] = useState(false);
+  const hasTrackedCalendlySchedule = useRef(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const handleCalendlyMessage = (event: MessageEvent) => {
+      if (event.data?.event === "calendly.event_scheduled" && !hasTrackedCalendlySchedule.current) {
+        hasTrackedCalendlySchedule.current = true;
+        trackCalendlyEventScheduled();
+      }
+    };
+
+    window.addEventListener("message", handleCalendlyMessage);
+    return () => window.removeEventListener("message", handleCalendlyMessage);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMessage("");
+    trackFormSubmit("demo");
+    trackDemoFormSubmit();
 
     const formData = new FormData(e.currentTarget);
     const firstName = (formData.get("firstName") as string) || "";
     const lastName = (formData.get("lastName") as string) || "";
     const email = (formData.get("email") as string) || "";
+    const company = (formData.get("company") as string) || "";
+    const role = (formData.get("role") as string) || "";
+    const serviceInterest = formData.getAll("service-interest").map(String);
+    const budget = (formData.get("budget") as string) || "";
+    const timeline = (formData.get("timeline") as string) || "";
+    const consent = formData.get("consent") === "on";
     const name = `${firstName} ${lastName}`.trim();
     const fallbackCalendlyUrl = `${CALENDLY_URL}?${new URLSearchParams({
       name,
       email,
     }).toString()}`;
 
-    setTimeout(() => {
-      setIsLoading(false);
+    const searchParams = new URLSearchParams(window.location.search);
+    const attribution = {
+      source: searchParams.get("source") || searchParams.get("utm_source") || "",
+      medium: searchParams.get("utm_medium") || "",
+      campaign: searchParams.get("utm_campaign") || "",
+      content: searchParams.get("utm_content") || "",
+      term: searchParams.get("utm_term") || "",
+      referrer: document.referrer,
+    };
+
+    try {
+      const response = await fetch("/api/demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          name,
+          email,
+          company,
+          role,
+          serviceInterest,
+          budget,
+          timeline,
+          consent,
+          attribution,
+        }),
+      });
+
+      const result = (await response.json()) as { success?: boolean; error?: string };
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "We could not save your request. Please try again.");
+      }
 
       if (window.Calendly) {
-        // Opens Calendly's popup pre-filled with what we already collected,
-        // so the visitor isn't asked to re-type name/email.
+        trackCalendlyOpen();
         window.Calendly.initPopupWidget({
           url: CALENDLY_URL,
-          prefill: {
-            name,
-            email,
-          },
+          prefill: { name, email },
         });
       } else {
-        // Fallback if the widget script hasn't loaded yet for some reason
+        trackCalendlyOpen();
         window.open(fallbackCalendlyUrl, "_blank", "noopener,noreferrer");
       }
-    }, 400);
+      trackFormSuccess("demo");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "We could not save your request. Please try again.";
+      setErrorMessage(message);
+      trackFormError("demo", message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -65,7 +124,6 @@ export default function BookADemoPage() {
     >
       <Container>
         <div className="mx-auto max-w-3xl">
-          {/* Header */}
           <div className="text-center mb-16">
             <span
               className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
@@ -85,8 +143,7 @@ export default function BookADemoPage() {
                 lineHeight: 1.65,
               }}
             >
-              Tell us about your brand and creative needs. We'll get back to
-              you within one business day.
+              Tell us what you&apos;re planning, then choose a time with our team. We&apos;ll use your brief to make the first conversation specific.
             </p>
           </div>
 
@@ -100,6 +157,12 @@ export default function BookADemoPage() {
           >
             <form
               onSubmit={handleSubmit}
+              onFocus={() => {
+                if (!hasTrackedFormStart) {
+                  setHasTrackedFormStart(true);
+                  trackDemoFormStart();
+                }
+              }}
               className="flex flex-col gap-8"
             >
               {/* First Name + Last Name */}
@@ -312,14 +375,23 @@ export default function BookADemoPage() {
                 {!isLoading && <ArrowRight size={16} />}
               </Button>
 
+              {errorMessage ? (
+                <p role="alert" className="text-center text-sm text-red-300">
+                  {errorMessage}
+                </p>
+              ) : null}
+
               {/* Privacy Note */}
-              <p
+              <div
                 className="text-center font-sans text-[12px] leading-relaxed"
                 style={{
                   color: "rgba(255,255,255,0.35)",
                 }}
               >
-                By submitting, you agree to be contacted about your inquiry.
+                <label className="mb-2 flex items-start justify-center gap-2 text-left">
+                  <input type="checkbox" name="consent" required className="mt-1 h-4 w-4 accent-white" />
+                  <span>By submitting, you agree to be contacted about your inquiry.</span>
+                </label>
                 See our{" "}
                 <Link
                   href="/privacy-policy"
@@ -328,7 +400,7 @@ export default function BookADemoPage() {
                   Privacy Policy
                 </Link>
                 .
-              </p>
+              </div>
             </form>
           </div>
         </div>

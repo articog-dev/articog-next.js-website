@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services/post-production" },
-  title: "Post Production | Articog",
-  description: "Post production for video, motion, sound, and finishing, helping brands polish creative for launch and performance.",
+  title: "Post-Production | Articog",
+  description: "Post-production for video, motion, sound, and finishing, helping brands polish creative for launch and performance.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
@@ -63,7 +63,7 @@ export default function PostProductionPage() {
               </span>
             </div>
             <Heading as="h1" size="hero" className="mb-6">
-              Post Production
+              Post-Production
             </Heading>
           </div>
         </Container>

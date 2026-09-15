@@ -44,17 +44,38 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         className="fixed right-0 top-0 z-50 h-full w-80 flex flex-col"
         style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
           <span className="type-h4 text-white">Articog</span>
           <button
+            type="button"
             onClick={handleClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.10] text-white/45 hover:text-white/90 transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.10] text-white/45 transition-colors hover:text-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             aria-label="Close menu"
           >
             <X size={16} />
           </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 px-6 pb-4">
+          <Link
+            href="/work"
+            onClick={handleClose}
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+          >
+            View Work
+          </Link>
+          <Link
+            href="/book-a-demo"
+            onClick={handleClose}
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-zinc-200"
+          >
+            Book a Demo
+          </Link>
         </div>
 
         {/* Nav */}
@@ -64,8 +85,11 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             return (
               <div key={group.label} className="border-b border-white/[0.04]">
                 <button
+                  type="button"
                   onClick={() => toggleGroup(group.label)}
-                  className="w-full flex items-center justify-between px-3 py-4 font-sans text-[14px] font-medium text-white/70 hover:text-white transition-colors"
+                  aria-expanded={isGroupOpen}
+                  aria-controls={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="w-full flex items-center justify-between px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <span>{group.label}</span>
                   <ChevronDown
@@ -76,7 +100,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </button>
 
                 {isGroupOpen && (
-                  <div className="flex flex-col gap-1 pb-4 pl-3">
+                  <div id={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pb-4 pl-3">
                     {group.links.map((link) => (
                       <Link
                         key={link.href}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Articog vs AI Tools Only Comparison",
+  title: "Articog vs AI Tools | Articog",
   description: "A comparison of Articog's managed creative engine versus doing it yourself with raw AI tools. Why expertise and consistency matter.",
   alternates: { canonical: "https://articog.com/compare/vs-ai-tools" },
 };
@@ -25,7 +25,7 @@ export default function CompareAIToolsPage() {
       metric: "Technical Expertise",
       diy: {
         value: "Steep Learning Curve",
-        desc: "Managing multiple specialized AI tools requires significant time to master prompting, parameters, and post production.",
+        desc: "Managing multiple specialized AI tools requires significant time to master prompting, parameters, and post-production.",
       },
       articog: {
         value: "Calibrated Pipeline",

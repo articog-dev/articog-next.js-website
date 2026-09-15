@@ -31,7 +31,7 @@ export default function SitemapPage() {
         { label: "Product Visuals", href: "/services/product-visuals" },
         { label: "Audio", href: "/services/audio" },
         { label: "Creative Strategy", href: "/services/creative-strategy" },
-        { label: "Post Production", href: "/services/post-production" },
+        { label: "Post-Production", href: "/services/post-production" },
       ]
     },
     {
@@ -87,7 +87,7 @@ export default function SitemapPage() {
       links: [
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/legal/terms-of-service" },
-        { label: "DPA Requests", href: "/contact" },
+        { label: "Vendor & Privacy Questions", href: "/contact" },
         { label: "MSA Requests", href: "/contact" },
         { label: "Cookie Policy", href: "/legal/cookie-policy" },
         { label: "Accessibility", href: "/legal/accessibility" },

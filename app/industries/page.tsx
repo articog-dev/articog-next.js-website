@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Industries We Serve | Articog",
-  description: "Creative production for DTC, SaaS, beauty, automotive, real estate, fashion, and other growth stage businesses.",
+  description: "Creative production for DTC, SaaS, beauty, automotive, real estate, fashion, and other growth-stage businesses.",
   alternates: { canonical: "https://articog.com/industries" },
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
@@ -13,7 +13,7 @@ import { IndustryDetails } from "@/components/sections/IndustryDetails";
 export default function IndustriesPage() {
   const industries = [
     {
-      title: "DTC & Ecommerce",
+      title: "DTC & E-commerce",
       description: "Performance driven creative for brands that need to convert.",
       href: "/industries#dtc-ecommerce",
       icon: ShoppingBag,

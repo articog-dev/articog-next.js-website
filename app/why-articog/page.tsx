@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/why-articog" },
   title: "Why Articog | AI Native Film & Production Company",
-  description: "See how Articog combines AI native production, creative direction, and faster delivery for growth stage brands.",
+  description: "See how Articog combines AI-native production, creative direction, and flexible delivery for growth-stage brands.",
 };
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Button, Heading } from "@/components/ui";
@@ -86,7 +86,7 @@ export default function WhyArticogPage() {
                 <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </h3>
               <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
-                A side by side look at how AI native workflows beat conventional agency timelines.
+                A side-by-side look at how AI-native workflows can fit alongside conventional production.
               </p>
             </Link>
             <Link

@@ -99,7 +99,7 @@ export function HomeVisualShowcase() {
                 Selected visual studies
               </Heading>
               <Heading as="h2" size="section" className="mb-0 text-white">
-                Creative, without limits.
+                Creative, built for your campaign.
               </Heading>
             </div>
           </div>

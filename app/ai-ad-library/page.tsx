@@ -12,9 +12,9 @@ export default function AdLibraryPage() {
   const examples = [
     {
       title: "DTC Launch Creative",
-      type: "Client Work",
+      type: "Concept Piece",
       category: "Video",
-      industry: "DTC & Ecommerce",
+      industry: "DTC & E-commerce",
       format: "9:16 Vertical"
     },
     {
@@ -26,7 +26,7 @@ export default function AdLibraryPage() {
     },
     {
       title: "SaaS Product Story",
-      type: "Client Work",
+      type: "Concept Piece",
       category: "Video",
       industry: "SaaS & Technology",
       format: "16:9 Landscape"
@@ -40,7 +40,7 @@ export default function AdLibraryPage() {
     },
     {
       title: "Real Estate Visual Set",
-      type: "Client Work",
+      type: "Concept Piece",
       category: "Static",
       industry: "Real Estate",
       format: "1:1 Square"
@@ -49,7 +49,7 @@ export default function AdLibraryPage() {
       title: "Performance Social Series",
       type: "Concept Piece",
       category: "Video",
-      industry: "DTC & Ecommerce",
+      industry: "DTC & E-commerce",
       format: "9:16 Vertical"
     }
   ];
@@ -73,18 +73,18 @@ export default function AdLibraryPage() {
               AI Ad Library
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              A curated collection of AI native creative examples across industries and formats.
+              A curated collection of AI-native creative examples across industries and formats.
             </p>
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 py-6 border-y border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-white/30 mr-2">Category:</span>
+              <span className="text-[11px] font-sans font-bold uppercase tracking-widest text-muted-safe mr-2">Category:</span>
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1.5 rounded-full font-sans text-[10px] font-medium transition-all duration-200 border ${
+                  className={`px-3 py-1.5 rounded-full font-sans text-[11px] font-medium transition-all duration-200 border ${
                     activeCategory === cat 
                       ? "bg-white text-black border-white" 
                       : "bg-white/[0.03] text-white/50 border-white/10 hover:text-white hover:border-white/30"
@@ -115,7 +115,7 @@ export default function AdLibraryPage() {
                 className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6"
               >
                 <div className="mb-12 flex gap-2">
-                  <span className={`text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
+                  <span className={`text-[11px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
                     item.type === 'Client Work' 
                       ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
                       : 'bg-purple-500/10 text-purple-400 border-purple-500/20'
@@ -126,10 +126,10 @@ export default function AdLibraryPage() {
 
                 <div>
                   <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="text-[8px] font-sans font-bold uppercase tracking-[0.1em] text-white/40 bg-white/[0.05] px-1.5 py-0.5 rounded">
+                    <span className="text-[11px] font-sans font-bold uppercase tracking-[0.1em] text-muted-safe bg-white/[0.05] px-1.5 py-0.5 rounded">
                       {item.category}
                     </span>
-                    <span className="text-[8px] font-sans font-bold uppercase tracking-[0.1em] text-white/40 bg-white/[0.05] px-1.5 py-0.5 rounded">
+                    <span className="text-[11px] font-sans font-bold uppercase tracking-[0.1em] text-muted-safe bg-white/[0.05] px-1.5 py-0.5 rounded">
                       {item.industry}
                     </span>
                   </div>
@@ -146,7 +146,7 @@ export default function AdLibraryPage() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/40">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            <p className="font-sans text-[11px] text-white/40 uppercase tracking-widest">
+            <p className="font-sans text-[11px] text-muted-safe uppercase tracking-widest">
               All displayed work is used with appropriate permissions and authorization.
             </p>
           </div>

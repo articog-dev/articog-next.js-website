@@ -3,6 +3,7 @@
 export interface HeroContent {
   eyebrow: string;
   headline: string;
+  body: string;
   ctaLabel: string;
   ctaHref: string;
   secondaryCtaLabel?: string;

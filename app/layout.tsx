@@ -20,22 +20,25 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "Articog | AI Native Film & Production Company",
   description:
-    "Articog is an AI native film and creative production company for growth stage brands, creating campaigns, films, social content, and product visuals with speed and precision.",
+    "Articog is an AI-native film and creative production company for growth-stage brands and modern marketing teams. We produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
   metadataBase: new URL("https://articog.com"),
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     siteName: "Articog",
     title: "Articog | AI Native Film & Production Company",
     description:
-      "Articog is an AI native film and creative production company for growth stage brands, creating campaigns, films, social content, and product visuals with speed and precision.",
+      "Articog is an AI-native film and creative production company for growth-stage brands and modern marketing teams. We produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
     url: "https://articog.com",
     images: [
       {
         url: "/og-image.png",
         width: 2400,
         height: 1260,
-        alt: "Articog AI native film and creative production",
+        alt: "Articog AI-native film and creative production",
       },
     ],
   },
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Articog | AI Native Film & Production Company",
     description:
-      "AI native film and creative production for growth stage brands.",
+      "AI-native film and creative production for growth-stage brands and modern marketing teams.",
     images: ["/og-image.png"],
   },
 };
@@ -89,7 +92,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Articog",
               url: "https://articog.com",
-              logo: "https://articog.com/icon.svg",
+              logo: "https://articog.com/articog-logo-white.png",
               sameAs: [
                 "https://www.linkedin.com/company/articog/",
                 "https://www.youtube.com/@articogcom",

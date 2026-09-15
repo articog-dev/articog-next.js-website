@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services/creative-strategy" },
   title: "Creative Strategy & Concepting | Articog",
-  description: "Creative strategy and concepting for growth stage brands that need sharper positioning, stronger ideas, and campaign clarity.",
+  description: "Creative strategy and concepting for growth-stage brands that need sharper positioning, stronger ideas, and campaign clarity.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
@@ -79,7 +79,7 @@ export default function CreativeStrategyPage() {
               <span className="type-label">Strategic Engagement</span>
             </div>
             <p className="type-h2 text-white/70 leading-relaxed italic">
-              "Strategy sessions typically kick off any larger engagement at Articog, whether it's a single flagship film or an ongoing, high volume content program."
+              "Creative strategy and concepting can be scoped as part of an engagement when the brief requires it, from a flagship film to an ongoing content program."
             </p>
           </div>
         </Container>

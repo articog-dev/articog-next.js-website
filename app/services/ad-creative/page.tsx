@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services/ad-creative" },
   title: "Ad Creative Production | Articog",
-  description: "Ad creative built for paid social, display, search, and campaign testing across channels and growth stages.",
+  description: "Ad creative built for paid social, display, search, and campaign testing across channels and growth-stage teams.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
@@ -130,7 +130,7 @@ export default function AdCreativePage() {
             <div>
               <h2 className="type-h2 mb-6 text-white">Built to Test</h2>
               <p className="type-body-lg text-white/60 leading-relaxed mb-6">
-                Stop relying on "best guesses." We deliver hundreds of on brand variants optimized by performance signals.
+                Stop relying on best guesses. We develop on-brand creative variants for structured campaign testing.
               </p>
               <div className="space-y-4">
                 {[

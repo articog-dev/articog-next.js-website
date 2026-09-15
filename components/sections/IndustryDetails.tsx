@@ -13,7 +13,7 @@ type IndustryDetail = {
 const industryDetails: IndustryDetail[] = [
   {
     id: "dtc-ecommerce",
-    title: "DTC & Ecommerce",
+    title: "DTC & E-commerce",
     positioning: "Performance driven creative for brands that need to convert across crowded digital storefronts.",
     considerations: [
       { title: "Creative Fatigue", description: "Keep fresh variants moving through the funnel so audiences do not see the same creative for too long." },
@@ -99,7 +99,7 @@ const industryDetails: IndustryDetail[] = [
       { label: "AI Video Production", href: "/services/ai-video-production" },
     ],
     faqs: [
-      { question: "Can seasonal campaigns be produced quickly?", answer: "The AI native workflow supports faster seasonal and promotional iteration while preserving product consistency." },
+      { question: "Can seasonal campaigns be produced quickly?", answer: "The AI-native workflow supports seasonal and promotional iteration while preserving product consistency." },
       { question: "How is packaging accuracy handled?", answer: "Actual product references are used to maintain accurate packaging, product identity, and SKU representation." },
     ],
   },

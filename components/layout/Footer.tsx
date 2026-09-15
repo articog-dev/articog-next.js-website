@@ -71,7 +71,7 @@ const footerNavSections = [
       { label: "Product Visuals", href: "/services/product-visuals" },
       { label: "Audio & Sound", href: "/services/audio" },
       { label: "Creative Strategy", href: "/services/creative-strategy" },
-      { label: "Post Production", href: "/services/post-production" },
+      { label: "Post-Production", href: "/services/post-production" },
     ],
   },
   {
@@ -123,8 +123,8 @@ export function Footer() {
               Articog
             </Link>
 
-            <p className="type-small leading-relaxed max-w-xs text-white/40">
-              AI native film and creative production for growth stage brands.
+            <p className="type-small leading-relaxed max-w-xs text-white/60">
+              AI-native film and creative production for growth-stage brands.
             </p>
 
             <div className="flex items-center gap-3.5 pt-4">
@@ -135,7 +135,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="text-white/35 hover:text-white/75 transition-colors"
+                  className="text-white/60 hover:text-white transition-colors"
                 >
                   <s.Icon size={16} />
                 </a>
@@ -146,7 +146,7 @@ export function Footer() {
           {/* Dynamic Nav Sections */}
           {footerNavSections.map((section) => (
             <div key={section.title} className="space-y-4">
-              <p className="font-display text-xs font-semibold uppercase tracking-widest text-white/28">
+              <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-safe">
                 {section.title}
               </p>
 
@@ -171,40 +171,40 @@ export function Footer() {
           style={{ borderTop: `1px solid ${border}` }}
         >
           <div className="flex flex-col gap-1">
-            <p className="font-sans text-xs text-white/25">
+            <p className="font-sans text-xs text-white/60">
               &copy; {new Date().getFullYear()} Articog. All rights reserved.
             </p>
 
-            <p className="font-sans text-[10px] text-white/20 uppercase tracking-widest">
-              AI Native Film & Creative Production for Growth-Stage Brands
+            <p className="font-sans text-[10px] text-white/55 uppercase tracking-widest">
+              AI Native Film & Production Company
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-start-2 md:row-start-1">
             <Link
               href="/legal/terms-of-service"
-              className="font-sans text-[10px] text-white/25 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Terms
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="font-sans text-[10px] text-white/25 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Privacy
             </Link>
 
             <Link
               href="/legal/accessibility"
-              className="font-sans text-[10px] text-white/25 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Accessibility
             </Link>
 
             <Link
               href="/copyright"
-              className="font-sans text-[10px] text-white/25 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Copyright
             </Link>

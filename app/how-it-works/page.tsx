@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How AI Native Production Works | Articog",
-  description: "See how AI native production combines creative direction, rapid generation, review, and final delivery for growth stage brands.",
+  title: "How AI-Native Production Works | Articog",
+  description: "See how AI-native production combines creative direction, generation, review, and final delivery for growth-stage brands.",
   alternates: { canonical: "https://articog.com/how-it-works" },
 };
 import { Link } from "@/components/ui/Link";
@@ -15,7 +15,7 @@ export default function HowItWorksPage() {
     {
       step: 1,
       title: "Brief",
-      description: "Share your goal and references. We align on brand voice, visual direction, and performance objectives before production.",
+      description: "Share your goal and references. We align on-brand voice, visual direction, and performance objectives before production.",
       tag: "Day 1",
     },
     {

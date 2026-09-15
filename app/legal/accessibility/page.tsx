@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/legal/accessibility" },
-  title: "Accessibility Statement Articog",
+  title: "Accessibility Statement | Articog",
   description: "Articog's accessibility statement, detailing our commitment to an inclusive digital experience.",
 };
 import { Container, Section, Heading } from "@/components/ui";

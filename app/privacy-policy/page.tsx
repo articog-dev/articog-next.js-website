@@ -447,7 +447,7 @@ export default function PrivacyPolicyPage() {
 
               <dl className="mt-10 grid gap-8 border-t border-white/[0.08] pt-8 sm:grid-cols-2 sm:gap-16">
                 <div className="min-w-0">
-                  <dt className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35">
+                  <dt className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-safe">
                     Effective Date
                   </dt>
 
@@ -457,7 +457,7 @@ export default function PrivacyPolicyPage() {
                 </div>
 
                 <div className="min-w-0">
-                  <dt className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35">
+                  <dt className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-safe">
                     Last Updated
                   </dt>
 

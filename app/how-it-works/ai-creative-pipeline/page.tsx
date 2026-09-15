@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "The AI Creative Pipeline | Articog",
-  description: "Explore how our AI native production pipeline moves from brief to generation, review, refinement, and final delivery.",
+  description: "Explore how our AI-native production pipeline moves from brief to generation, review, refinement, and final delivery.",
   alternates: { canonical: "https://articog.com/how-it-works/ai-creative-pipeline" },
 };
 import { Container, Section, Heading, Button } from "@/components/ui";

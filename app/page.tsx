@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/" },
   title: "Articog | AI Native Film & Production Company",
   description:
-    "Articog is an AI native film and creative production company for growth stage brands, creating campaigns, films, social content, and product visuals with speed and precision.",
+    "Articog is an AI-native film and creative production company for growth-stage brands and modern marketing teams. We produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
 };
 import { siteContent } from "@/lib/content";
 import {
@@ -12,7 +12,6 @@ import {
   Pipeline,
   Capabilities,
   Comparison,
-  CaseStudies,
   FinalCTA,
   HomeVisualShowcase,
   
@@ -26,14 +25,14 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": "https://articog.com/#service",
-  name: "AI Native Film & Creative Production",
+  name: "AI Native Film & Production Company",
   provider: {
     "@type": "Organization",
     "@id": "https://articog.com/#organization",
   },
   serviceType: "Creative Production",
   description:
-    "Articog produces brand films, commercials, AI ad creations, social content, audio ads, and AI visual content for growth stage brands.",
+    "Articog helps growth-stage brands and modern marketing teams produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
   areaServed: { "@type": "Place", name: "Worldwide" },
   audience: {
     "@type": "Audience",
@@ -54,27 +53,27 @@ const serviceSchema = {
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Commercials and Advertisements" },
+        itemOffered: { "@type": "Service", name: "Commercials & Paid Ads" },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "AI Posters and Visual Content" },
+        itemOffered: { "@type": "Service", name: "Campaign Visuals & Product Imagery" },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Audio Ads" },
+        itemOffered: { "@type": "Service", name: "Audio Production" },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "AI UGC and Social Content" },
+        itemOffered: { "@type": "Service", name: "Creator-Style Social Content" },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "ML Ad Creatives" },
+        itemOffered: { "@type": "Service", name: "Performance Creative Variants" },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Creative Automations" },
+        itemOffered: { "@type": "Service", name: "Creative Workflow Automation" },
       },
     ],
   },
@@ -89,14 +88,15 @@ const webPageSchema = {
   isPartOf: { "@id": "https://articog.com/#website" },
   about: { "@id": "https://articog.com/#organization" },
   description:
-    "AI native film and creative production for growth stage brands. Brand films, commercials, ad creations, and social content produced in days.",
+    "AI-native film and creative production for growth-stage brands and modern marketing teams. Brand films, commercials, performance creative, product visuals, and social content produced through human-directed AI workflows.",
   inLanguage: "en-US",
 };
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
-  const { caseStudies, ...homepage } = siteContent;
+  const homepage = siteContent;
+  const showSelectedWork = false;
 
   return (
     <div className="overflow-x-clip">
@@ -111,11 +111,10 @@ export default function HomePage() {
 
       <Hero content={homepage.hero} stats={homepage.proofStats} />
       <Capabilities capabilities={homepage.capabilities} />
-      <HomeVisualShowcase />
+      {showSelectedWork ? <HomeVisualShowcase /> : null}
       
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
-      <CaseStudies caseStudies={caseStudies.slice(0, 1)} />
       <FinalCTA content={homepage.cta} />
     </div>
   );

@@ -36,6 +36,12 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      video.pause();
+      return;
+    }
+
     video.muted = true;
     video.defaultMuted = true;
     video.autoplay = true;
@@ -107,18 +113,26 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
           </Heading>
 
           <Heading as="h2" size="section" className="mb-0">
-            Client outcomes.
+            Selected production examples.
           </Heading>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((cs) => (
+        {caseStudies.length === 0 ? (
+          <div className="max-w-2xl rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+            <h3 className="type-h3 mb-3 text-white">Selected work is being prepared for publication.</h3>
+            <p className="type-body text-white/60">
+              Approved client stories will include the brief, deliverables, channels, production window, and outcome.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {caseStudies.map((cs) => (
             <article
               key={cs.client}
               className="flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] transition-colors duration-200 hover:border-white/[0.14]"
             >
               {/* Metric */}
-              <div className="border-b border-white/[0.08] px-6 pb-5 pt-6">
+              <div className="order-2 border-b border-white/[0.08] px-6 pb-5 pt-6 md:order-1">
                 <p
                   className="font-display font-semibold text-white"
                   style={{
@@ -130,13 +144,13 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
                   {cs.metric}
                 </p>
 
-                <p className="mt-1 font-sans text-xs uppercase tracking-wider text-muted-safe">
+                <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-muted-safe">
                   {cs.metricLabel}
                 </p>
               </div>
 
               {/* Body */}
-              <div className="flex flex-1 flex-col gap-5 p-6">
+              <div className="order-1 flex flex-1 flex-col gap-5 p-6 md:order-2">
                 <div className="flex-1">
                   <h3 className="type-h3 text-white">
                     {cs.outcome}
@@ -145,11 +159,11 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
 
                 <div className="flex items-end justify-between border-t border-white/[0.08] pt-4">
                   <div>
-                    <p className="type-h4 text-white/65">
+                    <p className="type-h4 text-white/75">
                       {cs.client}
                     </p>
 
-                    <p className="font-sans text-xs text-muted-safe">
+                    <p className="font-sans text-[11px] text-muted-safe">
                       {cs.industry}
                     </p>
                   </div>
@@ -158,7 +172,7 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
                     {cs.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/[0.08] px-2 py-0.5 font-sans text-[10px] text-white/35"
+                        className="rounded-full border border-white/[0.08] px-2 py-0.5 font-sans text-[11px] text-muted-safe"
                       >
                         {tag}
                       </span>
@@ -167,8 +181,9 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
                 </div>
               </div>
             </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </Container>
     </Section>
   );

@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Press & Media Kit | Articog",
-  description: "Press resources, branding assets, and company information for Articog's AI native film and creative production work.",
+  description: "Press resources, branding assets, and company information for Articog's AI-native film and creative production work.",
   alternates: { canonical: "https://articog.com/press" },
 };
 
@@ -30,14 +30,14 @@ export default function PressPage() {
       alt: "Articog black logo on white background",
     },
     {
-      title: "Product Screenshots",
+      title: "Press Images / Approved Work",
       description:
         "Approved product and site screenshots are available on request for press use.",
     },
     {
       title: "Company Boilerplate",
       description:
-        "AI native film and creative production for growth stage brands.",
+        "Articog is an AI Native Film & Production Company producing brand films, commercials, performance creative, creator-style social content, product visuals, and audio for growth-stage brands.",
     },
   ];
 
@@ -126,11 +126,10 @@ export default function PressPage() {
                   </h2>
 
                   <div className="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800 text-zinc-300 text-sm leading-relaxed">
-                    Articog is an AI native film and creative production company.
-                    We deliver AI native film and creative production for
-                    growth stage brands, helping teams create brand films,
-                    commercials, social content, and performance creative from
-                    brief to delivery in days.
+                    Articog is an AI Native Film &amp; Production Company
+                    producing brand films, commercials, performance creative,
+                    creator-style social content, product visuals, and audio
+                    for growth-stage brands and modern marketing teams.
                   </div>
                 </div>
 

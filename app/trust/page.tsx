@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/trust" },
-  title: "Trust Center Articog",
-  description: "Built for enterprise confidence. Everything procurement, legal, and security teams need to evaluate Articog.",
+  title: "Trust Center | Articog",
+  description: "A factual overview of Articog's approach to AI, rights, data handling, and project security.",
 };
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Button, Heading, Card, CardContent } from "@/components/ui";
@@ -44,7 +44,7 @@ export default function TrustPage() {
               Built on trust and transparency
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
-              We take IP, security, and licensing seriously. Learn how we protect your brand, data, and creative ownership.
+              Review Articog&apos;s approach to IP, licensing, data handling, and project security before you begin a conversation.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function TrustPage() {
               Responsible AI
             </Link>
             <Link href="/contact" className="font-sans text-xs text-white/45 transition-colors hover:text-white">
-              Subprocessors & Key Vendors
+              Vendor & Tool Review
             </Link>
           </div>
 

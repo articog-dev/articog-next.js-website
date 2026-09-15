@@ -8,15 +8,45 @@ import { toast } from 'sonner';
 export default function EmailPreferencesPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [unsubscribedAll, setUnsubscribedAll] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setErrorMessage('');
+
+    const data = new FormData(e.currentTarget);
+
+    const interests = [
+      data.get('product-updates') ? 'Studio & Service Updates' : null,
+      data.get('insights') ? 'New production capabilities and work' : null,
+      data.get('events') ? 'Event Invitations' : null,
+    ].filter(Boolean) as string[];
+
+    try {
+      const response = await fetch('/api/email-preferences', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.get('email'),
+          interests,
+          unsubscribeAll: data.get('unsubscribe-all') === 'on',
+        }),
+      });
+      const result = (await response.json()) as { success?: boolean; message?: string; error?: string };
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Email preferences could not be updated.');
+      }
+
+      toast.success(result.message || 'Your preferences were updated.');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Email preferences could not be updated.';
+      setErrorMessage(message);
+      toast.error(message);
+    } finally {
       setIsSubmitting(false);
-      toast.success('Your preferences have been updated.');
-    }, 1500);
+    }
   };
 
   return (
@@ -29,6 +59,11 @@ export default function EmailPreferencesPage() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-8 bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-zinc-300">Email Address</label>
+              <input id="email" name="email" type="email" required placeholder="you@company.com" className="w-full rounded-lg border border-zinc-700 bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white focus:outline-none" />
+            </div>
+
             <div className="space-y-6">
               <label className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Categories</label>
               
@@ -37,14 +72,15 @@ export default function EmailPreferencesPage() {
                   <div className="pt-0.5">
                     <input 
                       type="checkbox" 
-                      id="product-updates" 
+                      id="product-updates"
+                      name="product-updates"
                       disabled={unsubscribedAll}
                       className="w-5 h-5 rounded border-zinc-700 bg-black text-white focus:ring-0 focus:ring-offset-0 disabled:opacity-50" 
                     />
                   </div>
                   <div>
-                    <label htmlFor="product-updates" className={`text-lg font-medium transition-colors ${unsubscribedAll ? 'text-zinc-600' : 'text-zinc-200 group-hover:text-white'}`}>Product Updates</label>
-                    <p className="text-sm text-zinc-500">Stay informed about new features and platform improvements.</p>
+                    <label htmlFor="product-updates" className={`text-lg font-medium transition-colors ${unsubscribedAll ? 'text-zinc-600' : 'text-zinc-200 group-hover:text-white'}`}>Studio &amp; Service Updates</label>
+                    <p className="text-sm text-zinc-500">New production capabilities, work, and service updates.</p>
                   </div>
                 </div>
 
@@ -52,14 +88,15 @@ export default function EmailPreferencesPage() {
                   <div className="pt-0.5">
                     <input 
                       type="checkbox" 
-                      id="insights" 
+                      id="insights"
+                      name="insights"
                       disabled={unsubscribedAll}
                       className="w-5 h-5 rounded border-zinc-700 bg-black text-white focus:ring-0 focus:ring-offset-0 disabled:opacity-50" 
                     />
                   </div>
                   <div>
-                    <label htmlFor="insights" className={`text-lg font-medium transition-colors ${unsubscribedAll ? 'text-zinc-600' : 'text-zinc-200 group-hover:text-white'}`}>Case Studies & Insights</label>
-                    <p className="text-sm text-zinc-500">Expert analysis, industry trends, and creative production tips.</p>
+                    <label htmlFor="insights" className={`text-lg font-medium transition-colors ${unsubscribedAll ? 'text-zinc-600' : 'text-zinc-200 group-hover:text-white'}`}>Production Insights</label>
+                    <p className="text-sm text-zinc-500">Case studies, production notes, and useful creative context.</p>
                   </div>
                 </div>
 
@@ -67,7 +104,8 @@ export default function EmailPreferencesPage() {
                   <div className="pt-0.5">
                     <input 
                       type="checkbox" 
-                      id="events" 
+                      id="events"
+                      name="events"
                       disabled={unsubscribedAll}
                       className="w-5 h-5 rounded border-zinc-700 bg-black text-white focus:ring-0 focus:ring-offset-0 disabled:opacity-50" 
                     />
@@ -85,7 +123,8 @@ export default function EmailPreferencesPage() {
                 <div className="pt-0.5">
                   <input 
                     type="checkbox" 
-                    id="unsubscribe-all" 
+                    id="unsubscribe-all"
+                    name="unsubscribe-all"
                     checked={unsubscribedAll}
                     onChange={(e) => setUnsubscribedAll(e.target.checked)}
                     className="w-5 h-5 rounded border-zinc-700 bg-black text-white focus:ring-0 focus:ring-offset-0" 
@@ -105,6 +144,7 @@ export default function EmailPreferencesPage() {
               <Button type="submit" disabled={isSubmitting} className="w-full bg-white text-black hover:bg-zinc-200 h-14 text-lg font-semibold rounded-full transition-all">
                 {isSubmitting ? 'Updating...' : 'Save Preferences'}
               </Button>
+              {errorMessage ? <p role="alert" className="text-sm text-red-300">{errorMessage}</p> : null}
             </div>
           </form>
 
