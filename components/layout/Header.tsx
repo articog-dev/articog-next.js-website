@@ -564,7 +564,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed left-0 right-0 top-0 z-[1000] transition-all duration-300 ${
+        className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
           mobileOpen ? "hidden lg:block" : ""
         }`}
         style={{
@@ -622,7 +622,7 @@ export function Header() {
                     e.stopPropagation();
                     toggleGroup(group.label, e.currentTarget.parentElement ?? e.currentTarget);
                   }}
-                  className="inline-flex items-center gap-1 rounded-lg px-2 py-2 type-nav transition-colors duration-150 xl:px-3"
+                  className="inline-flex items-center gap-1 rounded-full px-2 py-2 type-nav transition-colors duration-150 xl:px-3"
                   style={{
                     color:
                       activeGroup === group.label
@@ -681,7 +681,7 @@ export function Header() {
                 setActiveGroup(null);
                 setMobileOpen(true);
               }}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.10] text-white/55 transition-colors hover:text-white/90 lg:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.10] text-white/55 transition-colors hover:text-white/90 lg:hidden"
               aria-label="Open menu"
             >
               <Menu size={17} />

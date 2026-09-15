@@ -1,18 +1,27 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 
 import { trackCTAClick, trackContentView, trackPageView } from "@/lib/analytics";
+import { readCookieConsentSnapshot, subscribeCookieConsent } from "@/lib/cookie-consent";
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
+  const analyticsConsent = useSyncExternalStore(
+    subscribeCookieConsent,
+    () => {
+      const snapshot = readCookieConsentSnapshot();
+      return snapshot ? JSON.parse(snapshot).analytics === true : null;
+    },
+    () => null,
+  );
 
   useEffect(() => {
-    if (!measurementId) return;
+    if (!measurementId || analyticsConsent !== true) return;
 
     trackPageView(pathname);
 
@@ -40,9 +49,9 @@ export function GoogleAnalytics() {
 
     document.addEventListener("click", handleCtaClick);
     return () => document.removeEventListener("click", handleCtaClick);
-  }, [pathname]);
+  }, [analyticsConsent, pathname]);
 
-  if (!measurementId) return null;
+  if (!measurementId || analyticsConsent !== true) return null;
 
   return (
     <>
