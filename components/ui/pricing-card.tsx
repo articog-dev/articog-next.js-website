@@ -23,7 +23,7 @@ function PlanName({ className, children, ...props }: React.HTMLAttributes<HTMLHe
 }
 
 function Badge({ className, children, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return <span className={cn("rounded-full bg-accent px-3 py-1 type-label text-white", className)} {...props}>{children}</span>;
+  return <span className={cn("rounded-full bg-accent px-3 py-1 type-label text-black", className)} {...props}>{children}</span>;
 }
 
 function Price({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {

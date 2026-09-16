@@ -57,8 +57,8 @@ export function Comparison({ rows }: ComparisonProps) {
             <article key={row.attribute} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
               <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{row.attribute}</h3>
               <div className="space-y-3">
-                <div className="rounded-xl border border-[#6633EE]/20 bg-[#6633EE]/[0.06] p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#9b7cff]">Articog</p>
+                <div className="rounded-xl border border-white/20 bg-white/[0.06] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-white">Articog</p>
                   <p className="mt-1 text-sm text-white">{row.articog}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-sm">
@@ -88,13 +88,13 @@ export function Comparison({ rows }: ComparisonProps) {
                     key={col.key}
                     className={`p-5 text-center border-l ${
                       col.highlight
-                        ? "border-[#6633EE]/20 bg-[#6633EE]/[0.06]"
+                        ? "border-white/20 bg-white/[0.06]"
                         : "border-white/[0.08]"
                     }`}
                   >
                     <p
                       className={`type-h4 ${
-                        col.highlight ? "text-[#6633EE]" : "text-white/40"
+                        col.highlight ? "text-white" : "text-white/40"
                       }`}
                     >
                       {col.label}
@@ -118,8 +118,8 @@ export function Comparison({ rows }: ComparisonProps) {
                   <div className="flex items-center justify-center p-5 border-l border-white/[0.08]">
                     <p className="type-small text-center text-white/38">{row.inhouse}</p>
                   </div>
-                  <div className="flex items-center justify-center gap-2 p-5 border-l border-[#6633EE]/20 bg-[#6633EE]/[0.04]">
-                    <Check size={12} strokeWidth={2.5} className="text-[#6633EE] shrink-0" />
+                  <div className="flex items-center justify-center gap-2 p-5 border-l border-white/20 bg-white/[0.04]">
+                    <Check size={12} strokeWidth={2.5} className="text-white shrink-0" />
                     <p className="type-small text-white text-center">{row.articog}</p>
                   </div>
                 </div>

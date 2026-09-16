@@ -118,7 +118,7 @@ export default function AdLibraryPage() {
                   <span className={`text-[11px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
                     item.type === 'Client Work' 
                       ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
-                      : 'bg-purple-500/10 text-purple-400 border-purple-500/20'
+                      : 'bg-white/10 text-white border-white/20'
                   }`}>
                     {item.type}
                   </span>

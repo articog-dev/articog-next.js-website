@@ -130,7 +130,7 @@ export function Pipeline({ steps }: PipelineProps) {
               {/* Hover accent top line */}
               <div
                 className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                style={{ background: "#6633EE" }}
+                style={{ background: "#ffffff" }}
               />
 
               {/* Number + tag */}

@@ -27,7 +27,7 @@ export function Problems({ problems }: ProblemsProps) {
               <article key={p.number} className="flex gap-6 py-6">
                 <span
                   className="font-display text-xs font-semibold shrink-0 pt-1 w-7 tabular-nums"
-                  style={{ color: "rgba(102,51,238,0.50)" }}
+                  style={{ color: "rgba(255,255,255,0.50)" }}
                 >
                   {p.number}
                 </span>

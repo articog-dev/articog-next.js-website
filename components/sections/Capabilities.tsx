@@ -64,7 +64,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
                 </div>
 
                 <div className="flex flex-col justify-center px-5 py-4 lg:col-span-5 lg:p-6">
-                  <p className="mb-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-[#6633EE]/70">
+                  <p className="mb-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">
                     Outcome
                   </p>
                   <p className="type-body leading-relaxed text-white/80">
