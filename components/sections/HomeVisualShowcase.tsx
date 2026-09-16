@@ -66,6 +66,7 @@ export function HomeVisualShowcase() {
   const animationFrame = useRef<number | null>(null);
   const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0, moved: false });
   const suppressClick = useRef(false);
+  const pendingVisual = useRef<(typeof visuals)[number] | null>(null);
 
   const updateDepth = useCallback(() => {
     const scrollContainer = scrollRef.current;
@@ -92,6 +93,7 @@ export function HomeVisualShowcase() {
       item.style.setProperty("--visual-scale", `${1 - Math.min(0.16, clamped * 0.055)}`);
       item.style.setProperty("--visual-opacity", `${1 - Math.min(0.42, clamped * 0.14)}`);
       item.style.setProperty("--visual-focus", absoluteDistance < 0.45 ? "1" : "0");
+      item.style.zIndex = String(1000 - Math.round(absoluteDistance * 100));
     });
 
     setActiveIndex((current) => (current === nearestIndex ? current : nearestIndex));
@@ -119,13 +121,20 @@ export function HomeVisualShowcase() {
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
+    pendingVisual.current = itemRefs.current
+      .map((item, index) => ({ item, visual: visuals[index] }))
+      .filter(({ item }) => {
+        if (!item) return false;
+        const rect = item.getBoundingClientRect();
+        return event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+      })
+      .sort((first, second) => Number(second.item?.style.zIndex || 0) - Number(first.item?.style.zIndex || 0))[0]?.visual ?? null;
     dragState.current = {
       active: true,
       startX: event.clientX,
       startScrollLeft: scrollContainer.scrollLeft,
       moved: false,
     };
-    scrollContainer.setPointerCapture(event.pointerId);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -133,7 +142,10 @@ export function HomeVisualShowcase() {
     const scrollContainer = scrollRef.current;
     if (!drag.active || !scrollContainer) return;
     const distance = event.clientX - drag.startX;
-    if (Math.abs(distance) > 6) drag.moved = true;
+    if (Math.abs(distance) > 8) {
+      if (!drag.moved) scrollContainer.setPointerCapture(event.pointerId);
+      drag.moved = true;
+    }
     scrollContainer.scrollLeft = drag.startScrollLeft - distance;
   };
 
@@ -144,6 +156,11 @@ export function HomeVisualShowcase() {
     }
     suppressClick.current = dragState.current.moved;
     dragState.current.active = false;
+    if (event.type !== "pointercancel" && !suppressClick.current && !(event.target as HTMLElement).closest("button")) {
+      const visual = pendingVisual.current;
+      if (visual) setSelectedVisual(visual);
+    }
+    pendingVisual.current = null;
   };
 
   useEffect(() => {
