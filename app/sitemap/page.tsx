@@ -16,9 +16,13 @@ export default function SitemapPage() {
       links: [
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
+        { label: "Founder / Leadership", href: "/founder-leadership" },
         { label: "Careers", href: "/careers" },
         { label: "Contact", href: "/contact" },
         { label: "Press & Media", href: "/press" },
+        { label: "Newsletter", href: "/newsletter" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Book a Demo", href: "/book-a-demo" },
       ]
     },
     {
@@ -41,7 +45,7 @@ export default function SitemapPage() {
         { label: "Monthly Subscription", href: "/solutions/monthly-creative-subscription" },
         { label: "Product Launch", href: "/solutions/product-launch" },
         { label: "Performance Marketing", href: "/solutions/performance-marketing" },
-        { label: "Product Launch", href: "/solutions/product-launch" },
+        { label: "Creative Team Extension", href: "/solutions/creative-team-overflow" },
         { label: "Enterprise Solutions", href: "/solutions/enterprise" },
       ]
     },
@@ -49,17 +53,12 @@ export default function SitemapPage() {
       title: "Industries",
       links: [
         { label: "Industries Hub", href: "/industries" },
-        { label: "Industries We Serve", href: "/industries" },
       ]
     },
     {
       title: "Work",
       links: [
-        { label: "Work Hub", href: "/work" },
-        { label: "Video Ads", href: "/work/video-ads" },
-        { label: "Social Gallery", href: "/work/social" },
-        { label: "Product Visuals", href: "/work/product-visuals" },
-        { label: "Work by Industry", href: "/work/industries" },
+        { label: "Portfolio Overview", href: "/work" },
       ]
     },
     {
@@ -75,6 +74,9 @@ export default function SitemapPage() {
       title: "Company Trust",
       links: [
         { label: "Why Articog", href: "/why-articog" },
+        { label: "Production Economics", href: "/why-articog/production-economics" },
+        { label: "How It Works", href: "/how-it-works" },
+        { label: "AI Creative Pipeline", href: "/how-it-works/ai-creative-pipeline" },
         { label: "Trust Center", href: "/trust" },
         { label: "AI & IP Ownership", href: "/trust/ai-and-ip" },
         { label: "Security & Data Protection", href: "/trust/security" },
@@ -87,15 +89,12 @@ export default function SitemapPage() {
       links: [
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/legal/terms-of-service" },
-        { label: "Vendor & Privacy Questions", href: "/contact" },
-        { label: "MSA Requests", href: "/contact" },
         { label: "Cookie Policy", href: "/legal/cookie-policy" },
         { label: "Accessibility", href: "/legal/accessibility" },
         { label: "Copyright", href: "/copyright" },
         { label: "Privacy Choices", href: "/privacy-choices" },
         { label: "California Privacy Notice", href: "/privacy/california" },
         { label: "Email Preferences", href: "/email-preferences" },
-        { label: "Subprocessor Requests", href: "/contact" },
         { label: "Data Rights Request", href: "/privacy/request" },
       ]
     }
