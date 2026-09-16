@@ -78,7 +78,7 @@ export default function HowItWorksPage() {
 
       <Pipeline steps={pipelineSteps} />
 
-      <Section className="pt-0">
+      <Section className="pt-section-sm pb-0">
         <Container>
           <Link
             href="/how-it-works/ai-creative-pipeline"
@@ -96,7 +96,7 @@ export default function HowItWorksPage() {
         </Container>
       </Section>
 
-      <Section size="md" className="pt-0">
+      <Section size="md" className="pt-section-sm">
         <Container>
           <div className="mb-10 text-center">
             <Heading as="h2" size="section" className="mb-4">Getting started and delivery</Heading>
