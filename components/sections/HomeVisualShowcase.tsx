@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Container, Section, Heading } from "@/components/ui";
@@ -58,37 +58,119 @@ const getCloudinaryUrl = (src: string, width: number) =>
 
 const getModalImageUrl = (src: string) => getCloudinaryUrl(src, 2400);
 
-const getRelativePosition = (index: number, activeIndex: number) => {
-  const total = visuals.length;
-  const delta = (index - activeIndex + total) % total;
-  return delta > total / 2 ? delta - total : delta;
-};
-
 export function HomeVisualShowcase() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedVisual, setSelectedVisual] = useState<(typeof visuals)[number] | null>(null);
-  const pointerStartX = useRef<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const animationFrame = useRef<number | null>(null);
+  const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0, moved: false });
 
-  const moveActiveIndex = (direction: -1 | 1) => {
-    setActiveIndex((current) => (current + direction + visuals.length) % visuals.length);
+  const updateDepth = useCallback(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const center = containerRect.left + containerRect.width / 2;
+    let nearestIndex = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    itemRefs.current.forEach((item, index) => {
+      if (!item) return;
+      const rect = item.getBoundingClientRect();
+      const distance = (rect.left + rect.width / 2 - center) / Math.max(rect.width, 1);
+      const absoluteDistance = Math.abs(distance);
+      if (absoluteDistance < nearestDistance) {
+        nearestDistance = absoluteDistance;
+        nearestIndex = index;
+      }
+
+      const clamped = Math.min(3, absoluteDistance);
+      item.style.setProperty("--visual-depth", `${Math.max(-160, 80 - clamped * 100)}px`);
+      item.style.setProperty("--visual-rotation", `${Math.max(-12, Math.min(12, distance * -7))}deg`);
+      item.style.setProperty("--visual-scale", `${1 - Math.min(0.16, clamped * 0.055)}`);
+      item.style.setProperty("--visual-opacity", `${1 - Math.min(0.42, clamped * 0.14)}`);
+      item.style.setProperty("--visual-focus", absoluteDistance < 0.45 ? "1" : "0");
+    });
+
+    setActiveIndex((current) => (current === nearestIndex ? current : nearestIndex));
+  }, []);
+
+  const scheduleDepthUpdate = useCallback(() => {
+    if (animationFrame.current !== null) return;
+    animationFrame.current = window.requestAnimationFrame(() => {
+      animationFrame.current = null;
+      updateDepth();
+    });
+  }, [updateDepth]);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const item = itemRefs.current[(index + visuals.length) % visuals.length];
+    item?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, []);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    scrollToIndex(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    pointerStartX.current = event.clientX;
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+    dragState.current = {
+      active: true,
+      startX: event.clientX,
+      startScrollLeft: scrollContainer.scrollLeft,
+      moved: false,
+    };
+    scrollContainer.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragState.current;
+    const scrollContainer = scrollRef.current;
+    if (!drag.active || !scrollContainer) return;
+    const distance = event.clientX - drag.startX;
+    if (Math.abs(distance) > 6) drag.moved = true;
+    scrollContainer.scrollLeft = drag.startScrollLeft - distance;
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (pointerStartX.current === null) return;
-    const delta = event.clientX - pointerStartX.current;
-    pointerStartX.current = null;
-    if (Math.abs(delta) < 40) return;
-    moveActiveIndex(delta > 0 ? -1 : 1);
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer?.hasPointerCapture(event.pointerId)) {
+      scrollContainer.releasePointerCapture(event.pointerId);
+    }
+    dragState.current.active = false;
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === "ArrowLeft") moveActiveIndex(-1);
-    if (event.key === "ArrowRight") moveActiveIndex(1);
-  };
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => scheduleDepthUpdate();
+    const handleWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 2) return;
+      event.preventDefault();
+      scrollContainer.scrollLeft += event.deltaY;
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+    scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("resize", scheduleDepthUpdate);
+    const initialFrame = window.requestAnimationFrame(() => {
+      scrollToIndex(0);
+      updateDepth();
+    });
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      scrollContainer.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("resize", scheduleDepthUpdate);
+      window.cancelAnimationFrame(initialFrame);
+      if (animationFrame.current !== null) window.cancelAnimationFrame(animationFrame.current);
+    };
+  }, [scheduleDepthUpdate, scrollToIndex, updateDepth]);
 
   useEffect(() => {
     if (!selectedVisual) return;
@@ -110,47 +192,44 @@ export function HomeVisualShowcase() {
   return (
     <>
       <Section className="overflow-hidden border-y border-white/[0.06] bg-[#080808] py-24 md:py-32">
-        <div onKeyDown={handleKeyDown} tabIndex={0}>
+        <div onKeyDown={handleKeyDown}>
           <Container>
-          <div className="mb-6 flex items-end justify-between gap-8 md:mb-8">
-            <div className="max-w-xl">
-              <Heading as="p" size="label" className="mb-4 text-white/45">
-                Selected visual studies
-              </Heading>
-              <Heading as="h2" size="section" className="mb-0 text-white">
-                Creative, built for your campaign.
-              </Heading>
-            </div>
+          <div className="mb-8 md:mb-12">
+            <Heading as="h2" size="section" className="mb-0 text-white lg:whitespace-nowrap">
+              Creative, built for your campaign.
+            </Heading>
           </div>
 
-            <div className="showcase-stage" aria-label="Selected Articog visual studies" onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
-            <div className="showcase-coverflow" aria-live="polite">
-              {visuals.map((visual, index) => {
-                const relativePosition = getRelativePosition(index, activeIndex);
-                const absoluteOffset = Math.abs(relativePosition);
-                const isActive = index === activeIndex;
-                const depth = isActive ? 180 : -absoluteOffset * 120;
-                const translateX = relativePosition * 200;
-                const rotateY = isActive ? 0 : relativePosition > 0 ? -28 : 28;
-                const scale = isActive ? 1 : 1 - absoluteOffset * 0.12;
-                const opacity = isActive ? 1 : Math.max(0.18, 1 - absoluteOffset * 0.2);
-
-                return (
+            <div
+              className="showcase-stage"
+              aria-label="Selected Articog visual studies"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+            >
+              <div
+                ref={scrollRef}
+                className="showcase-coverflow"
+                aria-live="polite"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerUp}
+              >
+                {visuals.map((visual, index) => (
                   <button
                     key={visual.alt}
+                    ref={(item) => { itemRefs.current[index] = item; }}
                     type="button"
-                    className={`showcase-coverflow__item ${isActive ? "showcase-coverflow__item--active" : ""}`}
-                    style={{
-                      transform: isActive
-                        ? "translate3d(-50%, -50%, 180px) rotateY(0deg) scale(1)"
-                        : `translate3d(calc(-50% + ${translateX}px), -50%, ${depth}px) rotateY(${rotateY}deg) scale(${scale})`,
-                      opacity,
-                      zIndex: 100 - absoluteOffset,
-                      visibility: absoluteOffset > 3 ? "hidden" : "visible",
+                    className="showcase-coverflow__item"
+                    onClick={() => {
+                      if (dragState.current.moved) {
+                        dragState.current.moved = false;
+                        return;
+                      }
+                      setSelectedVisual(visual);
                     }}
-                    onClick={() => setSelectedVisual(visual)}
                     aria-label={`Open ${visual.alt}`}
-                    aria-current={isActive ? "true" : undefined}
+                    aria-current={activeIndex === index ? "true" : undefined}
                   >
                     <NextImage
                       src={getCloudinaryUrl(visual.src, 1600)}
@@ -164,16 +243,15 @@ export function HomeVisualShowcase() {
                       decoding="async"
                     />
                   </button>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
 
           <div className="showcase-navigation" aria-label="Visual gallery navigation">
             <div className="showcase-navigation__buttons">
               <button
                 type="button"
-                onClick={() => moveActiveIndex(-1)}
+                onClick={() => scrollToIndex(activeIndex - 1)}
                 aria-label="Previous image"
                 className="showcase-navigation__button"
               >
@@ -181,7 +259,7 @@ export function HomeVisualShowcase() {
               </button>
               <button
                 type="button"
-                onClick={() => moveActiveIndex(1)}
+                onClick={() => scrollToIndex(activeIndex + 1)}
                 aria-label="Next image"
                 className="showcase-navigation__button"
               >
