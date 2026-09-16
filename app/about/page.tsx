@@ -169,7 +169,7 @@ export default function AboutPage() {
 
 function ApproachItem({ title, description }: { title: string; description: string }) {
   return (
-    <div className="space-y-4 rounded-xl border border-white/[0.05] bg-white/[0.02] p-6">
+    <div className="space-y-4 rounded-xl border border-white/[0.05] p-6">
       <h3 className="type-h3 text-white">{title}</h3>
       <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
         {description}
@@ -192,7 +192,7 @@ function FounderPreviewCard({
   circular?: boolean;
 }) {
   return (
-    <article className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-6">
+    <article className="rounded-2xl border border-white/[0.08] p-5 sm:p-6">
       <div className="grid gap-5 sm:grid-cols-[7rem_1fr] sm:items-center">
         <div
           className={`aspect-square overflow-hidden border border-white/[0.08] bg-black ${circular ? "rounded-full" : "rounded-xl"}`}

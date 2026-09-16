@@ -54,7 +54,7 @@ export function Comparison({ rows }: ComparisonProps) {
 
         <div className="space-y-4 md:hidden">
           {rows.map((row) => (
-            <article key={row.attribute} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+            <article key={row.attribute} className="rounded-2xl border border-white/[0.08] p-5">
               <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{row.attribute}</h3>
               <div className="space-y-3">
                 <div className="rounded-xl border border-white/20 bg-white/[0.06] p-4">

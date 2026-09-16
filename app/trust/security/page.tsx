@@ -53,7 +53,7 @@ export default function SecurityPage() {
             {sections.map((section) => (
               <div 
                 key={section.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                className="p-8 rounded-2xl border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <section.icon className="w-5 h-5" />
@@ -69,7 +69,7 @@ export default function SecurityPage() {
       {/* Onboarding Note Section */}
       <Section className="py-20 border-t border-white/5">
         <Container>
-          <div className="p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 max-w-4xl text-center mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl text-center mx-auto">
             <p className="font-sans text-white/70 leading-relaxed">
               Every brand has unique requirements. Specific security protocols, data retention terms, and compliance needs can be discussed and formalized as part of your onboarding process.
             </p>

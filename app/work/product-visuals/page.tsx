@@ -44,7 +44,7 @@ export default function ProductVisualsPage() {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white/5 rounded-xl border border-white/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 rounded-xl border border-white/10">
                 <div>
                   <div className="text-4xl font-display font-bold text-white mb-1">Fast</div>
                   <div className="text-sm font-sans text-white/40 uppercase tracking-wider font-bold">Turnaround model</div>
@@ -76,7 +76,7 @@ export default function ProductVisualsPage() {
               { title: "Digital Banners", desc: "Optimized display assets for web, mobile, and social platforms." },
               { title: "Print-Ready Assets", desc: "High-resolution files ready for any physical production needs." }
             ].map((item) => (
-              <div key={item.title} className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div key={item.title} className="p-8 rounded-2xl border border-white/10">
                 <h3 className="type-h4 text-white mb-3">{item.title}</h3>
                 <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
               </div>

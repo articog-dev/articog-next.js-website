@@ -82,8 +82,7 @@ export default function HowItWorksPage() {
         <Container>
           <Link
             href="/how-it-works/ai-creative-pipeline"
-            className="group mx-auto block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-all hover:border-white/20 hover:bg-white/[0.02]"
-            style={{ background: "rgba(255,255,255,0.01)" }}
+            className="group mx-auto block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-all hover:border-white/20"
           >
             <h3 className="mb-2 flex items-center justify-center gap-2 type-h3 text-white">
               AI Creative Pipeline
@@ -103,7 +102,7 @@ export default function HowItWorksPage() {
           </div>
           <div className="mx-auto grid max-w-6xl gap-3 md:grid-cols-2">
             {[...onboardingSteps, ...deliverySteps].map(([title, description]) => (
-              <div key={title} className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <div key={title} className="rounded-xl border border-white/10 p-5">
                 <h3 className="mb-2 type-h4 text-white">{title}</h3>
                 <p className="type-small leading-relaxed text-white/50">{description}</p>
               </div>

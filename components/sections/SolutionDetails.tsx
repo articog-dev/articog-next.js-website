@@ -105,7 +105,7 @@ export function SolutionDetails({ category }: { category: SolutionCategory }) {
         </div>
         <div className="space-y-3">
           {detailGroups[category].map((group) => (
-            <details key={group.title} className="group rounded-2xl border border-white/10 bg-white/[0.02]">
+            <details key={group.title} className="group rounded-2xl border border-white/10">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-5 marker:hidden md:p-6">
                 <div className="max-w-3xl">
                   <h3 className="type-h3 text-white">{group.title}</h3>

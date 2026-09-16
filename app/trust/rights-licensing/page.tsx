@@ -54,7 +54,7 @@ export default function RightsLicensingPage() {
             {sections.map((section) => (
               <div 
                 key={section.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col"
+                className="p-8 rounded-2xl border border-white/10 flex flex-col"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <section.icon className="w-5 h-5" />
@@ -73,7 +73,7 @@ export default function RightsLicensingPage() {
       {/* Linked Info Section */}
       <Section className="py-20 border-t border-white/5">
         <Container>
-          <div className="p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 max-w-4xl mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="text-center md:text-left">
                 <h3 className="type-h2 text-white mb-4">Related Information</h3>

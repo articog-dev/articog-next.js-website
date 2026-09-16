@@ -61,7 +61,7 @@ export default function SocialWorkPage() {
             {formats.map((format) => (
               <div 
                 key={format.title} 
-                className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 text-center"
+                className="group flex flex-col rounded-2xl border border-white/10 p-6 text-center"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center self-center rounded-xl border border-white/10 text-white/40">
                   <format.icon className="h-6 w-6" />
@@ -72,7 +72,7 @@ export default function SocialWorkPage() {
             ))}
           </div>
 
-          <div className="mt-20 p-8 rounded-3xl bg-white/5 border border-white/10 max-w-3xl mx-auto">
+          <div className="mt-20 p-8 rounded-3xl border border-white/10 max-w-3xl mx-auto">
             <div className="flex gap-4 items-start">
               <Info className="w-6 h-6 text-white/40 mt-1" />
               <div>

@@ -70,8 +70,7 @@ export default function WorkPage() {
               <Link
                 key={cat.title}
                 href={cat.href}
-                className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20 hover:bg-white/[0.02]"
-                style={{ background: "rgba(255,255,255,0.01)" }}
+                className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20"
               >
                 <h2 className="type-h3 mb-2 text-white flex items-center justify-between">
                   {cat.title}

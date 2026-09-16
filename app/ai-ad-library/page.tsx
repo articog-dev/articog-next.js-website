@@ -112,7 +112,7 @@ export default function AdLibraryPage() {
             {visibleExamples.map((item, index) => (
               <div 
                 key={index}
-                className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6"
+                className="group relative rounded-2xl border border-white/[0.08] p-6"
               >
                 <div className="mb-12 flex gap-2">
                   <span className={`text-[11px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${
@@ -142,7 +142,7 @@ export default function AdLibraryPage() {
             ))}
           </div>
 
-          <div className="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-6 mb-24 flex items-center justify-center gap-3">
+          <div className="border border-white/[0.08] rounded-2xl p-6 mb-24 flex items-center justify-center gap-3">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/40">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>

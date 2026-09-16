@@ -66,8 +66,7 @@ export default function DataHandlingPage() {
             {sections.map((section) => (
               <div
                 key={section.title}
-                className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20 hover:bg-white/[0.02]"
-                style={{ background: "rgba(255,255,255,0.01)" }}
+                className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20"
               >
                 <div className="mb-6 w-10 h-10 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-center">
                   {section.icon}
@@ -80,7 +79,7 @@ export default function DataHandlingPage() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] bg-white/[0.01] mb-24 text-center">
+          <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] mb-24 text-center">
             <p className="type-small leading-relaxed mb-0" style={{ color: "rgba(255,255,255,0.40)" }}>
               Note: Specific data handling terms, retention schedules, and security protocols are detailed in each client's master service agreement (MSA).
             </p>

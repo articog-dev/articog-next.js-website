@@ -59,8 +59,7 @@ export default function SolutionsPage() {
               <Link
                 key={card.title}
                 href={card.href}
-                className="group flex items-center justify-between rounded-xl p-5 border border-white/[0.08] transition-colors hover:border-white/20 hover:bg-white/[0.02]"
-                style={{ background: "rgba(255,255,255,0.01)" }}
+                className="group flex items-center justify-between rounded-xl p-5 border border-white/[0.08] transition-colors hover:border-white/20"
               >
                 <div>
                     <h2 className="type-h3 text-white">{card.title}</h2>

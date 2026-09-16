@@ -78,8 +78,7 @@ export default function WhyArticogPage() {
           <div className="grid gap-6 md:grid-cols-2 mb-24">
             <Link
               href="/compare/vs-traditional-production"
-              className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20 hover:bg-white/[0.02]"
-              style={{ background: "rgba(255,255,255,0.01)" }}
+              className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20"
             >
               <h3 className="mb-4 type-h3 text-white flex items-center justify-between">
                 Articog vs Traditional Production
@@ -91,8 +90,7 @@ export default function WhyArticogPage() {
             </Link>
             <Link
               href="/compare/vs-ai-tools"
-              className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20 hover:bg-white/[0.02]"
-              style={{ background: "rgba(255,255,255,0.01)" }}
+              className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20"
             >
               <h3 className="mb-4 type-h3 text-white flex items-center justify-between">
                 Articog vs AI Tools Only

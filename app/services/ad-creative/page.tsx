@@ -79,7 +79,7 @@ export default function AdCreativePage() {
             {deliverables.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                className="p-8 rounded-2xl border border-white/10"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-6 h-6" />
@@ -105,7 +105,7 @@ export default function AdCreativePage() {
                   )}
                 </>
               );
-              const className = "group p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
+              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
 
               return service.href ? (
                 <Link key={service.title} href={service.href} className={className}>

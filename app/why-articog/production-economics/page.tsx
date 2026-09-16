@@ -61,7 +61,7 @@ export default function ProductionEconomicsPage() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] bg-white/[0.01] mb-24">
+          <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] mb-24">
             <h3 className="text-lg font-display font-semibold text-white mb-4 italic">A Note on Performance</h3>
             <p className="type-small leading-relaxed mb-0" style={{ color: "rgba(255,255,255,0.40)" }}>
               Disclaimer: Results vary significantly by project scope, complexity, and brand requirements. No specific savings percentage is guaranteed. Actual economic models and potential ROI should be discussed based on your specific use case and historical production benchmarks.

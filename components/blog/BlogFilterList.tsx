@@ -26,7 +26,7 @@ function BlogCard({ post }: { post: BlogEntry }) {
 
   if (isNative) {
     return (
-      <article className="group overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] transition-colors hover:border-white/[0.14]">
+      <article className="group overflow-hidden rounded-3xl border border-white/[0.08] transition-colors hover:border-white/[0.14]">
         <Link href={`/blog/${post.slug}`} className="block">
           <div className="relative h-56 overflow-hidden border-b border-white/[0.08]">
             <Image
@@ -67,7 +67,7 @@ function BlogCard({ post }: { post: BlogEntry }) {
   }
 
   return (
-    <article className="group overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] transition-colors hover:border-white/[0.14]">
+    <article className="group overflow-hidden rounded-3xl border border-white/[0.08] transition-colors hover:border-white/[0.14]">
       <div className="relative h-56 overflow-hidden border-b border-white/[0.08]">
         {post.featuredImage ? (
           <Image

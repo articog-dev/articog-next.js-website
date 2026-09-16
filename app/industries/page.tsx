@@ -80,7 +80,7 @@ export default function IndustriesPage() {
               <Link
                 key={industry.title}
                 href={industry.href}
-                className="group flex min-h-32 flex-col justify-between bg-black p-5 transition-colors hover:bg-white/[0.04] md:min-h-36 md:p-6"
+                className="group flex min-h-32 flex-col justify-between border border-white/[0.08] p-5 transition-colors hover:border-white/[0.16] md:min-h-36 md:p-6"
               >
                 <div className="flex items-center justify-between">
                   <industry.icon className="h-4 w-4 text-white/50" />

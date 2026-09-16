@@ -118,7 +118,7 @@ export function CaseStudies({ caseStudies }: CaseStudiesProps) {
         </div>
 
         {caseStudies.length === 0 ? (
-          <div className="max-w-2xl rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <div className="max-w-2xl rounded-2xl border border-white/[0.08] p-8">
             <h3 className="type-h3 mb-3 text-white">Selected work is being prepared for publication.</h3>
             <p className="type-body text-white/60">
               Approved client stories will include the brief, deliverables, channels, production window, and outcome.

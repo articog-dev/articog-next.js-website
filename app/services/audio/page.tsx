@@ -60,7 +60,7 @@ export default function AudioPage() {
             {deliverables.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                className="p-8 rounded-2xl border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
@@ -72,7 +72,7 @@ export default function AudioPage() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="group p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
               <div className="flex items-center justify-between mb-8">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
                   <Mic2 className="w-6 h-6" />
@@ -87,7 +87,7 @@ export default function AudioPage() {
               </p>
             </div>
 
-            <div className="group p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
               <div className="flex items-center justify-between mb-8">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
                   <AudioLines className="w-6 h-6" />
@@ -103,7 +103,7 @@ export default function AudioPage() {
             </div>
           </div>
 
-          <div className="mt-12 p-6 rounded-xl bg-white/5 border border-white/10 flex items-start gap-4 max-w-2xl">
+          <div className="mt-12 p-6 rounded-xl border border-white/10 flex items-start gap-4 max-w-2xl">
             <Info className="w-5 h-5 text-white/40 mt-0.5 flex-shrink-0" />
             <p className="type-small text-white/50 italic leading-relaxed">
               Note: All synthetic voice use requires proper consent and rights clearance. Licensing terms and usage rights are confirmed per project as part of scope.

@@ -55,7 +55,7 @@ export default function TrustPage() {
                 href={card.href}
                 className="group block"
               >
-                <Card className="flex-row items-center justify-between rounded-xl border-white/[0.08] bg-white/[0.01] p-0 transition-colors group-hover:border-white/20 group-hover:bg-white/[0.02]">
+                <Card className="flex-row items-center justify-between rounded-xl border-white/[0.08] bg-transparent p-0 transition-colors group-hover:border-white/20">
                   <CardContent className="flex w-full items-center justify-between p-5">
                     <h2 className="type-h3 text-white">{card.title}</h2>
                     <ArrowRight size={18} className="ml-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />

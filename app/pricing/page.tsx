@@ -59,7 +59,7 @@ export default function PricingPage() {
         </div>
 
         <div className="mb-16 grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <div className="rounded-2xl border border-white/[0.08] p-8">
             <h2 className="mb-4 type-h3 text-white">Typical budget range</h2>
             <p className="mb-5 type-small leading-relaxed text-white/60">
               Final quotes depend on scope, formats, review cycles, and production requirements.
@@ -69,7 +69,7 @@ export default function PricingPage() {
               <li>$15k-$50k</li>
             </ul>
           </div>
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <div className="rounded-2xl border border-white/[0.08] p-8">
             <h2 className="mb-4 type-h3 text-white">Typical planning horizon</h2>
             <p className="mb-5 type-small leading-relaxed text-white/60">
               We confirm timing after understanding the brief, approvals, formats, and launch requirements.
@@ -81,7 +81,7 @@ export default function PricingPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 md:p-10 text-center">
+        <div className="rounded-2xl border border-white/[0.08] p-8 md:p-10 text-center">
           <h2 className="mb-4 type-h2 text-white">Start with a quick discovery call</h2>
           <p className="mx-auto mb-8 max-w-2xl type-small leading-relaxed text-white/50">
             We will review your goals, production needs, timeline, and creative output so we can recommend the best engagement for your team.

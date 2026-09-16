@@ -37,7 +37,7 @@ export default function CustomersPage() {
       {/* Stories Grid */}
       <Section size="md" className="border-t border-white/[0.05]">
         <Container>
-          <div className="mx-auto max-w-2xl rounded-2xl border border-white/[0.08] bg-white/[0.02] p-10 text-center">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-white/[0.08] p-10 text-center">
             <h2 className="type-h3 mb-3 text-white">Selected work is being prepared for publication.</h2>
             <p className="type-body text-white/60">
               Approved client stories will include the brief, deliverables, channels, production window, and outcome.

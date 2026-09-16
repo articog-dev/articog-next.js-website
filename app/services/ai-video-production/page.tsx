@@ -82,7 +82,7 @@ export default function AIVideoProductionPage() {
                   )}
                 </>
               );
-              const className = "group p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
+              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
 
               return item.path ? (
                 <Link key={item.title} href={item.path} className={className}>

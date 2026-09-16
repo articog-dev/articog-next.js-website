@@ -57,7 +57,7 @@ export default function CreativeOverflowPage() {
             {features.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                className="p-8 rounded-2xl border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
@@ -75,7 +75,7 @@ export default function CreativeOverflowPage() {
       {/* Comparison Note Section */}
       <Section className="py-20 border-t border-white/5">
         <Container>
-          <div className="p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 max-w-4xl border-l-4 border-l-white/20">
+          <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl border-l-4 border-l-white/20">
             <h3 className="type-h2 text-white mb-4">A Note on Engagement</h3>
             <p className="font-sans text-white/70 leading-relaxed max-w-2xl">
               Unlike our <Link href="/solutions/monthly-creative-subscription" className="text-white hover:text-white/80 underline underline-offset-4">Monthly Creative Subscription</Link>, this solution is specifically for teams that already have creative resources in-house and need targeted overflow support, rather than a fully outsourced creative engine.

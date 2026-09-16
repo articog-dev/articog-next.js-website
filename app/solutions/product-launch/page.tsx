@@ -65,7 +65,7 @@ export default function ProductLaunchSolutionPage() {
             {howItWorks.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-4"
+                className="p-8 rounded-2xl border border-white/10 flex flex-col gap-4"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
                   <item.icon className="w-5 h-5 text-white" />
@@ -78,7 +78,7 @@ export default function ProductLaunchSolutionPage() {
             ))}
           </div>
 
-          <div className="mt-12 p-6 rounded-xl bg-white/5 border border-white/10 flex items-start gap-4 max-w-2xl mx-auto">
+          <div className="mt-12 p-6 rounded-xl border border-white/10 flex items-start gap-4 max-w-2xl mx-auto">
             <Info className="w-5 h-5 text-white/40 mt-0.5 flex-shrink-0" />
             <p className="type-small text-white/50 italic leading-relaxed">
               Looking for cinematic hero films? Check out our <Link href="/services/ai-video-production" className="text-white underline hover:text-white/80 transition-colors">AI Video Production service</Link>.

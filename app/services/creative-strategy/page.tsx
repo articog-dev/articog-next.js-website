@@ -57,7 +57,7 @@ export default function CreativeStrategyPage() {
             {capabilities.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                className="p-8 rounded-2xl border border-white/10"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />

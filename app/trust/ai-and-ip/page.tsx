@@ -77,7 +77,7 @@ export default function AIIPPage() {
             {policies.map((policy) => (
               <div 
                 key={policy.title} 
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col"
+                className="p-8 rounded-2xl border border-white/10 flex flex-col"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <policy.icon className="w-5 h-5" />
@@ -96,7 +96,7 @@ export default function AIIPPage() {
       {/* Closing Note Section */}
       <Section className="py-20 border-t border-white/5">
         <Container>
-          <div className="p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 max-w-4xl text-center mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl text-center mx-auto">
             <p className="font-sans text-white/70 leading-relaxed">
               While these policies represent our standard approach, specific Intellectual Property terms and legal protections are clearly set out in each client's individual service agreement.
             </p>
@@ -114,7 +114,7 @@ export default function AIIPPage() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {responsibleAIPrinciples.map((principle) => (
-              <div key={principle.title} className="rounded-2xl p-8 border border-white/[0.08]" style={{ background: "rgba(255,255,255,0.01)" }}>
+              <div key={principle.title} className="rounded-2xl p-8 border border-white/[0.08]">
                 <div className="mb-6 w-12 h-12 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center">
                   <principle.icon className="w-6 h-6 text-white/40" />
                 </div>

@@ -330,9 +330,8 @@ export default function ServicesPage() {
                   <Link
                     key={service.href}
                     href={service.href}
-                    className="group flex items-center justify-between rounded-xl p-5 transition-colors duration-200 hover:bg-white/[0.05]"
+                    className="group flex items-center justify-between rounded-xl p-5 transition-colors duration-200 hover:border-white/[0.16]"
                     style={{
-                      background: "rgba(255,255,255,0.03)",
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
@@ -358,7 +357,7 @@ export default function ServicesPage() {
             {serviceDeliverables.map(({ title, description, Icon }, index) => (
               <div
                 key={title}
-                className={`rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 ${index === serviceDeliverables.length - 1 ? "sm:col-span-3" : ""}`}
+                className={`rounded-xl border border-white/[0.08] p-6 ${index === serviceDeliverables.length - 1 ? "sm:col-span-3" : ""}`}
               >
                 <Icon className="mb-5 h-6 w-6 text-white/70" aria-hidden="true" />
                 <h2 className="type-h3 mb-3 text-white">{title}</h2>
