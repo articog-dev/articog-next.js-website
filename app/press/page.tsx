@@ -34,11 +34,6 @@ export default function PressPage() {
       description:
         "Approved product and site screenshots are available on request for press use.",
     },
-    {
-      title: "Company Boilerplate",
-      description:
-        "Articog is an AI Native Film & Production Company producing brand films, commercials, performance creative, creator-style social content, product visuals, and audio for growth-stage brands.",
-    },
   ];
 
   return (
