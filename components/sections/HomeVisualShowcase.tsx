@@ -54,7 +54,7 @@ const visuals = [
 ];
 
 const getCloudinaryUrl = (src: string, width: number) =>
-  src.replace("/image/upload/", `/image/upload/f_auto,q_auto:good,dpr_auto,w_${width},c_limit/`);
+  src.replace("/image/upload/", `/image/upload/f_auto,dpr_auto,w_${width},c_limit/`);
 
 const getModalImageUrl = (src: string) => getCloudinaryUrl(src, 2400);
 
@@ -65,6 +65,7 @@ export function HomeVisualShowcase() {
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const animationFrame = useRef<number | null>(null);
   const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0, moved: false });
+  const suppressClick = useRef(false);
 
   const updateDepth = useCallback(() => {
     const scrollContainer = scrollRef.current;
@@ -141,6 +142,7 @@ export function HomeVisualShowcase() {
     if (scrollContainer?.hasPointerCapture(event.pointerId)) {
       scrollContainer.releasePointerCapture(event.pointerId);
     }
+    suppressClick.current = dragState.current.moved;
     dragState.current.active = false;
   };
 
@@ -222,7 +224,8 @@ export function HomeVisualShowcase() {
                     type="button"
                     className="showcase-coverflow__item"
                     onClick={() => {
-                      if (dragState.current.moved) {
+                      if (suppressClick.current || dragState.current.moved) {
+                        suppressClick.current = false;
                         dragState.current.moved = false;
                         return;
                       }
@@ -238,7 +241,7 @@ export function HomeVisualShowcase() {
                       width={1600}
                       height={2133}
                       priority={index === 0}
-                      quality={75}
+                      quality={100}
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
                     />
