@@ -42,9 +42,9 @@ export default function AboutPage() {
                 Sai Teja Inampudi
               </Heading>
               <p className="type-body-lg leading-relaxed text-white/60">
-                CEO &amp; Founder — Articog, AI-Native Film &amp; Production Company
+                CEO &amp; Founder, Articog, AI-Native Film &amp; Production Company
                 <br />
-                Co-Founder — AFIN (AI Film India Network)
+                Co-Founder, AFIN (AI Film India Network)
               </p>
             </div>
 

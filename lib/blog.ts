@@ -165,7 +165,7 @@ export const blogPosts: BlogEntry[] = [
   {
     type: "medium",
     slug: "afin-ai-film-india-network",
-    title: "AFIN — AI Film India Network",
+    title: "AFIN: AI Film India Network",
     excerpt: "",
     publishedAt: "2025-05-02",
     featuredImage:
