@@ -122,7 +122,7 @@ export function BreezyOpenings() {
           appearance: none;
           margin-top: 1.25rem;
           border: none;
-          background: transparent;
+          background: #ffffff;
           padding: 0;
           color: #101828;
           font-size: 1rem;

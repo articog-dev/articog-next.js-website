@@ -43,7 +43,7 @@ export function NotFound() {
           </Link>
           <Link
             href="/book-a-demo"
-            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-accent px-8 h-12 type-small text-white transition-all hover:bg-accent-hover active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 h-12 type-small text-black transition-all hover:bg-zinc-200 active:scale-95"
           >
             Book a Demo
           </Link>
