@@ -29,8 +29,16 @@ export function Hero({ content }: HeroProps) {
     video.setAttribute("muted", "");
 
     const playVideo = () => {
-      if (video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        void video.play().catch(() => undefined);
+      if (video.paused && video.readyState >= HTMLMediaElement.HAVE_METADATA) {
+        void video.play().catch(() => {
+          if (document.visibilityState === "visible") {
+            window.setTimeout(() => {
+              if (video.paused && document.visibilityState === "visible") {
+                void video.play().catch(() => undefined);
+              }
+            }, 250);
+          }
+        });
       }
     };
 
@@ -41,11 +49,17 @@ export function Hero({ content }: HeroProps) {
     };
 
     playVideo();
-    video.addEventListener("canplay", playVideo, { once: true });
+    video.addEventListener("loadedmetadata", playVideo);
+    video.addEventListener("loadeddata", playVideo);
+    video.addEventListener("canplay", playVideo);
+    video.addEventListener("pause", playVideo);
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
+      video.removeEventListener("loadedmetadata", playVideo);
+      video.removeEventListener("loadeddata", playVideo);
       video.removeEventListener("canplay", playVideo);
+      video.removeEventListener("pause", playVideo);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
@@ -73,11 +87,15 @@ export function Hero({ content }: HeroProps) {
           loop
           controls={false}
           preload="auto"
-          src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1280,dpr_auto,c_limit/v1786961383/Web_3.mp4"
           poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:good,f_auto,w_1280,so_0/v1786961383/Web_3.jpg"
           className="h-full w-full object-cover"
           aria-hidden="true"
-        />
+        >
+          <source
+            src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1280,dpr_auto,c_limit/v1786961383/Web_3.mp4"
+            type="video/mp4"
+          />
+        </video>
 
         {/* Light vignette for text readability without washing out the video */}
         <div
