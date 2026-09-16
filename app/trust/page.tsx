@@ -77,7 +77,7 @@ export default function TrustPage() {
           <div className="text-center pt-12 border-t border-white/10">
             <p className="type-body mb-6 text-white/60">Have a question not covered here?</p>
             <Button asChild variant="primary" size="lg">
-              <Link href="/contact">Contact us</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </div>
         </Container>

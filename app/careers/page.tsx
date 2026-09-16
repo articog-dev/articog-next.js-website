@@ -44,7 +44,7 @@ export default function CareersPage() {
               Stay connected
             </Heading>
             <Button asChild variant="primary" size="lg">
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </div>
         </Container>

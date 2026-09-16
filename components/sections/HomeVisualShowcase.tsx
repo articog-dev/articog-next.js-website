@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Container, Section, Heading } from "@/components/ui";
@@ -67,9 +67,27 @@ const getRelativePosition = (index: number, activeIndex: number) => {
 export function HomeVisualShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedVisual, setSelectedVisual] = useState<(typeof visuals)[number] | null>(null);
+  const pointerStartX = useRef<number | null>(null);
 
   const moveActiveIndex = (direction: -1 | 1) => {
     setActiveIndex((current) => (current + direction + visuals.length) % visuals.length);
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    pointerStartX.current = event.clientX;
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (pointerStartX.current === null) return;
+    const delta = event.clientX - pointerStartX.current;
+    pointerStartX.current = null;
+    if (Math.abs(delta) < 40) return;
+    moveActiveIndex(delta > 0 ? -1 : 1);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === "ArrowLeft") moveActiveIndex(-1);
+    if (event.key === "ArrowRight") moveActiveIndex(1);
   };
 
   useEffect(() => {
@@ -92,7 +110,8 @@ export function HomeVisualShowcase() {
   return (
     <>
       <Section className="overflow-hidden border-y border-white/[0.06] bg-[#080808] py-24 md:py-32">
-        <Container>
+        <div onKeyDown={handleKeyDown} tabIndex={0}>
+          <Container>
           <div className="mb-6 flex items-end justify-between gap-8 md:mb-8">
             <div className="max-w-xl">
               <Heading as="p" size="label" className="mb-4 text-white/45">
@@ -104,7 +123,7 @@ export function HomeVisualShowcase() {
             </div>
           </div>
 
-          <div className="showcase-stage" aria-label="Selected Articog visual studies">
+            <div className="showcase-stage" aria-label="Selected Articog visual studies" onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
             <div className="showcase-coverflow" aria-live="polite">
               {visuals.map((visual, index) => {
                 const relativePosition = getRelativePosition(index, activeIndex);
@@ -170,7 +189,8 @@ export function HomeVisualShowcase() {
               </button>
             </div>
           </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
       {selectedVisual && (

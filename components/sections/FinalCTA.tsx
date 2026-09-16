@@ -45,7 +45,7 @@ export function FinalCTA({ content }: FinalCTAProps) {
             </Button>
             <Button asChild variant="ghost" size="lg">
               <Link href="/contact">
-                Get in touch
+                Contact Us
                 <ArrowUpRight size={14} />
               </Link>
             </Button>

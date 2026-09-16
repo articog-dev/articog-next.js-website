@@ -2,66 +2,77 @@
 
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./CreativeDocument.module.css";
 
 type PortfolioProject = {
   title: string;
   category: string;
+  filters: WorkFilter[];
   description: string;
   number: string;
   src: string;
   alt: string;
 };
 
+type WorkFilter = "Video" | "Product" | "Social" | "Industries";
+
+const workFilters: Array<"All" | WorkFilter> = ["All", "Video", "Product", "Social", "Industries"];
+
 const projects: PortfolioProject[] = [
   {
-    title: "Creative Visual 01",
-    category: "Campaign Artwork",
-    description: "Luxury launch storytelling built for premium positioning and performance-led creative.",
+    title: "Product Film — Footwear",
+    category: "Visual Study · Product film · Post-production",
+    filters: ["Video", "Product"],
+    description: "Cinematic product storytelling shaped for premium positioning and campaign use.",
     number: "01",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795062/hf_20260821_063718_d5d2aeb0-64d1-4655-ac8a-ba9e4f5e6c02.png",
-    alt: "Articog creative visual study 01",
+    alt: "Articog product film visual study for footwear",
   },
   {
-    title: "Creative Visual 02",
-    category: "Brand System",
-    description: "Editorial visual language refined for motion-first marketing and multi-format distribution.",
+    title: "Beauty Campaign Visual",
+    category: "Visual Study · Product fidelity · Social adaptation",
+    filters: ["Product", "Social"],
+    description: "Product-focused campaign imagery developed for visual consistency across formats.",
     number: "02",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795062/hf_20260821_055524_1a0e7292-1148-46c0-a291-3d9e153b9bb0.png",
-    alt: "Articog creative visual study 02",
+    alt: "Articog beauty campaign visual study",
   },
   {
-    title: "Creative Visual 03",
-    category: "Launch Assets",
-    description: "High-contrast campaign imagery designed to hold attention across digital channels.",
+    title: "Real Estate Cinematic",
+    category: "Concept Film · AI environments · Film finishing",
+    filters: ["Video", "Industries"],
+    description: "Architectural visualization with cinematic environments and a finished-film sensibility.",
     number: "03",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_075104_3836aa7f-4399-4256-9bc3-022992543e67.png",
-    alt: "Articog creative visual study 03",
+    alt: "Articog real estate cinematic visual study",
   },
   {
-    title: "Creative Visual 04",
-    category: "Product Storytelling",
-    description: "Cinematic product presentation balancing sharp detail, atmosphere, and conversion intent.",
+    title: "Fashion Film Study",
+    category: "Visual Study · Art direction · Styling · Motion",
+    filters: ["Video", "Social"],
+    description: "Fashion-led visual direction exploring styling, movement, and cinematic composition.",
     number: "04",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_083052_c34ee14c-6e9a-4c17-8f3b-34e90869a8c4.png",
-    alt: "Articog creative visual study 04",
+    alt: "Articog fashion film visual study",
   },
   {
-    title: "Creative Visual 05",
-    category: "Social Creative",
-    description: "Platform-native motion concepts designed to feel premium while remaining instantly readable.",
+    title: "Consumer Tech Product Film",
+    category: "Articog Original · Product storytelling · Multi-format delivery",
+    filters: ["Video", "Product"],
+    description: "Product storytelling designed to carry a clear visual idea across campaign formats.",
     number: "05",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_081708_9bf57f26-425b-47f7-b199-bad796e7f256.png",
-    alt: "Articog creative visual study 05",
+    alt: "Articog consumer technology product film study",
   },
   {
-    title: "Creative Visual 06",
-    category: "Creative Direction",
-    description: "Refined art direction and visual depth applied to campaign work for modern brands.",
+    title: "Articog Original",
+    category: "Visual Study · Creative direction",
+    filters: ["Video"],
+    description: "An original visual study exploring art direction, depth, and campaign composition.",
     number: "06",
     src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795059/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png",
-    alt: "Articog creative visual study 06",
+    alt: "Articog original visual study",
   },
 ];
 
@@ -70,12 +81,45 @@ const getCloudinaryUrl = (src: string, width: number) =>
 
 export function CreativeDocument() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeFilter, setActiveFilter] = useState<"All" | WorkFilter>("All");
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const dragStartX = useRef<number | null>(null);
+  const didDrag = useRef(false);
 
-  const activeProject = projects[activeIndex];
+  const filteredProjects = activeFilter === "All"
+    ? projects
+    : projects.filter((project) => project.filters.includes(activeFilter));
+  const activeProject = filteredProjects[activeIndex] ?? filteredProjects[0];
 
-  const moveProject = (direction: number) => {
-    setActiveIndex((current) => (current + direction + projects.length) % projects.length);
+  const moveProject = useCallback((direction: number) => {
+    setActiveIndex((current) => (current + direction + filteredProjects.length) % filteredProjects.length);
+  }, [filteredProjects.length]);
+
+  const startDrag = (clientX: number) => {
+    dragStartX.current = clientX;
+    didDrag.current = false;
+  };
+
+  const updateDrag = (clientX: number) => {
+    if (dragStartX.current !== null && Math.abs(clientX - dragStartX.current) > 8) {
+      didDrag.current = true;
+    }
+  };
+
+  const finishDrag = (clientX: number) => {
+    if (dragStartX.current === null) return;
+
+    const deltaX = clientX - dragStartX.current;
+    dragStartX.current = null;
+
+    if (Math.abs(deltaX) > 40) {
+      moveProject(deltaX < 0 ? 1 : -1);
+    }
+  };
+
+  const cancelDrag = () => {
+    dragStartX.current = null;
+    didDrag.current = false;
   };
 
   useEffect(() => {
@@ -93,7 +137,7 @@ export function CreativeDocument() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [moveProject]);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -116,9 +160,9 @@ export function CreativeDocument() {
       </div>
 
       <div className={styles.gallery} aria-live="polite">
-        {projects.map((project, index) => {
-          const offset = ((index - activeIndex + projects.length) % projects.length);
-          const normalizedOffset = offset > projects.length / 2 ? offset - projects.length : offset;
+        {filteredProjects.map((project, index) => {
+          const offset = ((index - activeIndex + filteredProjects.length) % filteredProjects.length);
+          const normalizedOffset = offset > filteredProjects.length / 2 ? offset - filteredProjects.length : offset;
           const isActive = normalizedOffset === 0;
           const isNeighbor = Math.abs(normalizedOffset) === 1;
           const isHidden = Math.abs(normalizedOffset) > 1;
@@ -135,6 +179,17 @@ export function CreativeDocument() {
             <article
               key={project.title}
               className={`${styles.projectCard} ${isActive ? styles.active : ""} ${isNeighbor ? styles.neighbor : ""}`}
+              onMouseDown={(event) => startDrag(event.clientX)}
+              onMouseMove={(event) => updateDrag(event.clientX)}
+              onMouseUp={(event) => finishDrag(event.clientX)}
+              onMouseLeave={cancelDrag}
+              onTouchStart={(event) => startDrag(event.touches[0].clientX)}
+              onTouchMove={(event) => {
+                updateDrag(event.touches[0].clientX);
+                if (didDrag.current) event.preventDefault();
+              }}
+              onTouchEnd={(event) => finishDrag(event.changedTouches[0].clientX)}
+              onTouchCancel={cancelDrag}
               style={{
                 transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), ${depth}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
                 opacity,
@@ -145,7 +200,14 @@ export function CreativeDocument() {
               <button
                 type="button"
                 className={styles.imageButton}
-                onClick={() => setSelectedProject(project)}
+                onClick={(event) => {
+                  if (didDrag.current) {
+                    event.preventDefault();
+                    didDrag.current = false;
+                    return;
+                  }
+                  setSelectedProject(project);
+                }}
                 aria-label={`Open ${project.alt} in a larger preview`}
               >
                 <Image
@@ -161,6 +223,23 @@ export function CreativeDocument() {
             </article>
           );
         })}
+      </div>
+
+      <div className={styles.filters} aria-label="Filter work by category" role="group">
+        {workFilters.map((filter) => (
+          <button
+            key={filter}
+            type="button"
+            className={`${styles.filter} ${activeFilter === filter ? styles.filterActive : ""}`}
+            onClick={() => {
+              setActiveFilter(filter);
+              setActiveIndex(0);
+            }}
+            aria-pressed={activeFilter === filter}
+          >
+            {filter}
+          </button>
+        ))}
       </div>
 
       <div className={styles.controlsWrap}>

@@ -19,7 +19,7 @@ export default function PerformanceMarketingPage() {
     },
     {
       title: "Performance-Informed Iteration",
-      desc: "Creative direction shaped by real-time conversion data, doubling down on what works and cutting what doesn't.",
+      desc: "Creative direction shaped by campaign feedback, helping teams build on what works and refine what does not.",
       icon: TrendingUp,
     },
     {

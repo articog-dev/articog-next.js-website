@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Link } from "@/components/ui/Link";
 import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
+import { FooterNavSections } from "./FooterNavSections";
 
 const border = "rgba(255,255,255,0.08)";
 
@@ -131,7 +132,7 @@ export function Footer() {
             </Link>
 
             <p className="type-small leading-relaxed max-w-xs text-white/60">
-              AI-native film and creative production for growth-stage brands.
+              AI-native film and creative production for brands and modern marketing teams.
             </p>
 
             <div className="flex items-center gap-3.5 pt-4">
@@ -150,26 +151,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Dynamic Nav Sections */}
-          {footerNavSections.map((section) => (
-            <div key={section.title} className="space-y-4">
-              <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-safe">
-                {section.title}
-              </p>
-
-              <nav className="flex flex-col gap-2">
-                {section.links.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="type-small text-muted-safe hover:text-white/80 transition-colors w-fit"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          ))}
+          <FooterNavSections sections={footerNavSections} />
         </div>
 
         {/* Bottom */}

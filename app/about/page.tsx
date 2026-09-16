@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <div className="bg-black">
       {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
+      <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
@@ -193,7 +193,7 @@ function FounderPreviewCard({
 }) {
   return (
     <article className="rounded-2xl border border-white/[0.08] p-5 sm:p-6">
-      <div className="grid gap-5 sm:grid-cols-[7rem_1fr] sm:items-center">
+      <div className="grid grid-cols-[5.5rem_1fr] items-center gap-4 sm:grid-cols-[7rem_1fr] sm:gap-5">
         <div
           className={`aspect-square overflow-hidden border border-white/[0.08] bg-black ${circular ? "rounded-full" : "rounded-xl"}`}
         >

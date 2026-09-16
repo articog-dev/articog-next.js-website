@@ -125,7 +125,7 @@ export function Pipeline({ steps }: PipelineProps) {
           {steps.map((step) => (
             <div
               key={step.step}
-              className="group relative flex cursor-default flex-col gap-5 border-b p-7 transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"
+              className="group relative flex cursor-default flex-col gap-5 border-b p-7 transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] max-sm:pl-20 sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"
             >
               {/* Hover accent top line */}
               <div
@@ -133,10 +133,12 @@ export function Pipeline({ steps }: PipelineProps) {
                 style={{ background: "#ffffff" }}
               />
 
+              <div className="absolute bottom-[-1.5rem] left-[2.15rem] top-14 w-px bg-white/[0.18] last:hidden sm:hidden" aria-hidden="true" />
+
               {/* Number + tag */}
               <div className="flex items-center justify-between">
                 <div
-                  className="flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold"
+                  className="flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold max-sm:absolute max-sm:left-7 max-sm:top-7"
                   style={{
                     border: "1px solid rgba(255,255,255,0.20)",
                     color: "rgba(255,255,255,0.95)",

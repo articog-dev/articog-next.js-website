@@ -55,7 +55,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
                 </div>
 
                 <div className="flex flex-col justify-center border-b border-white/[0.08] px-5 py-4 lg:col-span-4 lg:border-b-0 lg:border-r lg:p-6">
-                  <p className="mb-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/30">
+                  <p className="mb-1.5 hidden font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/30 lg:block">
                     Use case
                   </p>
                   <p className="type-body leading-relaxed text-white/60">
@@ -64,7 +64,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
                 </div>
 
                 <div className="flex flex-col justify-center px-5 py-4 lg:col-span-5 lg:p-6">
-                  <p className="mb-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">
+                  <p className="mb-1.5 hidden font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70 lg:block">
                     Outcome
                   </p>
                   <p className="type-body leading-relaxed text-white/80">

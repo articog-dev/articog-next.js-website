@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, Heading, Button } from "@/components/ui";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 import { getBlogPostBySlug, getNativeBlogPosts } from "@/lib/blog";
 
@@ -74,8 +74,31 @@ export default async function BlogArticlePage({
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: [post.featuredImage],
+    datePublished: post.publishedAt,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Articog",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://articog.com/articog-logo-white.png",
+      },
+    },
+    mainEntityOfPage: `https://articog.com/blog/${post.slug}`,
+  };
+
   return (
     <div className="bg-black min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <Section size="lg" className="pt-32 md:pt-40">
         <Container className="max-w-4xl">
           <div className="mb-8">
@@ -172,6 +195,15 @@ export default async function BlogArticlePage({
               })}
             </div>
           </article>
+
+          <div className="mx-auto mt-16 max-w-3xl border-t border-white/10 pt-10 text-center">
+            <Heading as="h2" size="section" className="mb-6">
+              Your next campaign. Delivered in days.
+            </Heading>
+            <Button asChild variant="primary" size="lg">
+              <Link href="/book-a-demo">Book a Demo</Link>
+            </Button>
+          </div>
         </Container>
       </Section>
     </div>

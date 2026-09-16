@@ -159,6 +159,16 @@ export const menuGroups = [
   },
 ];
 
+const groupHubHrefs: Record<string, string> = {
+  Services: "/services",
+  Solutions: "/solutions",
+  Industries: "/industries",
+  Work: "/work",
+  "Why Articog": "/why-articog",
+  Resources: "/blog",
+  Company: "/about",
+};
+
 // ─── Dropdown Panel ───────────────────────────────────────────────────────────
 
 function DropdownPanel({
@@ -467,6 +477,7 @@ export function Header() {
   const [dropdownAnchor, setDropdownAnchor] = useState<HTMLElement | null>(null);
 
   const headerRef = useRef<HTMLElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -550,6 +561,11 @@ export function Header() {
     setDropdownAnchor(null);
   };
 
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    requestAnimationFrame(() => mobileMenuButtonRef.current?.focus());
+  };
+
   return (
     <>
       <header
@@ -608,38 +624,44 @@ export function Header() {
                       : 1,
                 }}
               >
-                <button
-                  type="button"
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => openGroup(group.label, event.currentTarget.parentElement ?? event.currentTarget)}
-                  aria-expanded={
-                    activeGroup === group.label
-                  }
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleGroup(group.label, e.currentTarget.parentElement ?? e.currentTarget);
-                  }}
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-2 type-nav transition-colors duration-150 xl:px-3"
-                  style={{
-                    color:
-                      activeGroup === group.label
-                        ? "rgba(255,255,255,0.95)"
-                        : "rgba(255,255,255,0.55)",
-                  }}
-                >
-                  {group.label}
-
-                  <ChevronDown
-                    size={11}
-                    className="opacity-30 transition-transform duration-200"
+                <div className="inline-flex items-center rounded-full px-2 py-2 xl:px-3">
+                  <Link
+                    href={groupHubHrefs[group.label]}
+                    onClick={closeDropdown}
+                    className="type-nav transition-colors duration-150"
                     style={{
-                      transform:
+                      color:
                         activeGroup === group.label
-                          ? "rotate(180deg)"
-                          : "rotate(0deg)",
+                          ? "rgba(255,255,255,0.95)"
+                          : "rgba(255,255,255,0.55)",
                     }}
-                  />
-                </button>
+                  >
+                    {group.label}
+                  </Link>
+                  <button
+                    type="button"
+                    aria-haspopup="true"
+                    aria-label={`Open ${group.label} menu`}
+                    aria-expanded={activeGroup === group.label}
+                    onMouseEnter={(event) => openGroup(group.label, event.currentTarget.parentElement?.parentElement ?? event.currentTarget)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleGroup(group.label, e.currentTarget.parentElement?.parentElement ?? e.currentTarget);
+                    }}
+                    className="flex min-h-6 min-w-6 items-center justify-center"
+                  >
+                    <ChevronDown
+                      size={11}
+                      className="opacity-30 transition-transform duration-200"
+                      style={{
+                        transform:
+                          activeGroup === group.label
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                      }}
+                    />
+                  </button>
+                </div>
 
                 <DropdownPanel
                   group={group}
@@ -674,12 +696,15 @@ export function Header() {
 
             <button
               type="button"
+              ref={mobileMenuButtonRef}
               onClick={() => {
                 setActiveGroup(null);
                 setMobileOpen(true);
               }}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.10] text-white/55 transition-colors hover:text-white/90 lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.10] text-white/55 transition-colors hover:text-white/90 lg:hidden"
               aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               <Menu size={17} />
             </button>
@@ -689,7 +714,7 @@ export function Header() {
 
       <MobileMenu
         isOpen={mobileOpen}
-        onClose={() => setMobileOpen(false)}
+        onClose={closeMobileMenu}
       />
     </>
   );

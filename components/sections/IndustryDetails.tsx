@@ -158,7 +158,7 @@ export function IndustryDetails() {
         <div className="grid gap-4 lg:grid-cols-2">
           {industryDetails.map((industry) => (
             <details key={industry.id} id={industry.id} className="group self-start scroll-mt-24 overflow-hidden rounded-2xl border border-white/[0.1] transition-colors open:border-white/[0.2]">
-              <summary className="flex min-h-52 cursor-pointer list-none flex-col justify-between gap-6 p-6 marker:hidden md:min-h-56 md:p-8">
+              <summary className="flex min-h-0 cursor-pointer list-none flex-col justify-between gap-6 p-6 marker:hidden md:min-h-56 md:p-8">
                 <div className="flex items-start justify-between gap-6">
                   <div className="min-w-0">
                     <h3 className="type-h3 text-white">{industry.title}</h3>

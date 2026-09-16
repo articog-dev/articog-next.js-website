@@ -6,6 +6,7 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { RouteBreadcrumbs } from "@/components/layout/RouteBreadcrumbs";
 import { CookieConsent } from "@/components/analytics/CookieConsent";
 import "./globals.css";
 
@@ -63,12 +64,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link
-          rel="preload"
-          as="video"
-          href="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1280,dpr_auto,c_limit/v1786961383/Web_3.mp4"
-          type="video/mp4"
-        />
-        <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
@@ -77,7 +72,10 @@ export default function RootLayout({
         <GoogleAnalytics />
         <AnnouncementBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <RouteBreadcrumbs />
+          {children}
+        </main>
         <Footer />
         <CookieConsent />
         <script
@@ -85,16 +83,29 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Articog",
-              url: "https://articog.com",
-              logo: "https://articog.com/articog-logo-white.png",
-              sameAs: [
-                "https://www.linkedin.com/company/articog/",
-                "https://www.youtube.com/@articogcom",
-                "https://x.com/articogcom",
-                "https://www.instagram.com/articogcom/",
-                "https://medium.com/@articog.com",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://articog.com/#organization",
+                  name: "Articog",
+                  url: "https://articog.com",
+                  logo: "https://articog.com/articog-logo-white.png",
+                  sameAs: [
+                    "https://www.linkedin.com/company/articog/",
+                    "https://www.youtube.com/@articogcom",
+                    "https://x.com/articogcom",
+                    "https://www.instagram.com/articogcom/",
+                    "https://medium.com/@articog.com",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://articog.com/#website",
+                  url: "https://articog.com",
+                  name: "Articog",
+                  publisher: { "@id": "https://articog.com/#organization" },
+                  inLanguage: "en-US",
+                },
               ],
             }),
           }}

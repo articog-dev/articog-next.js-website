@@ -56,7 +56,7 @@ export default function HowItWorksPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
+      <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <span

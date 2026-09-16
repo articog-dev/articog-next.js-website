@@ -64,7 +64,7 @@ export default function IndustriesPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 pb-24 md:pt-40 md:pb-32 text-center">
+      <Section size="lg" className="pt-20 pb-24 text-center md:pt-24 md:pb-32">
         <Container>
           <div className="max-w-3xl mx-auto">
             <span className="font-sans text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-6 inline-block">

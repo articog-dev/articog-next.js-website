@@ -10,7 +10,6 @@ interface HeroProps {
 }
 
 export function Hero({ content }: HeroProps) {
-  const lines = content.headline.split("\n");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useLayoutEffect(() => {
@@ -132,9 +131,9 @@ export function Hero({ content }: HeroProps) {
 
           {/* Headline */}
           <h1 className="hero-heading type-h1 text-white">
-            {lines.map((line, i) => (
+            {content.headline.split("\n").map((line, i, lines) => (
               <span key={i} className="block">
-                {line}
+                {line}{i < lines.length - 1 ? " " : ""}
               </span>
             ))}
           </h1>

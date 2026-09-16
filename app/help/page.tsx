@@ -2,26 +2,33 @@
 
 import { Container, Section, Button, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 function AccordionItem({ title, children }: { title: string; children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const contentId = `help-answer-${useId().replace(/:/g, "")}`;
   return (
     <div className="border-b border-white/[0.08]">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={contentId}
         className="w-full flex items-center justify-between py-5 text-left transition-colors hover:text-white"
         style={{ color: isOpen ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.6)" }}
       >
         <span className="type-body font-medium leading-relaxed">{title}</span>
         {isOpen ? <ChevronUp size={18} className="text-white/40" /> : <ChevronDown size={18} className="text-white/40" />}
       </button>
-      {isOpen && (
-        <div className="pb-6 type-small leading-relaxed text-white/50 animate-in fade-in slide-in-from-top-1 duration-200">
-          {children}
-        </div>
-      )}
+      <div
+        id={contentId}
+        role="region"
+        hidden={!isOpen}
+        className={`${isOpen ? "animate-in fade-in slide-in-from-top-1 duration-200" : ""} pb-6 type-small leading-relaxed text-white/50`}
+      >
+        {children}
+      </div>
     </div>
   );
 }
@@ -34,7 +41,7 @@ export default function HelpCenterPage() {
       faqs: [
         {
           q: "What creative services does Articog offer?",
-          a: "Articog specializes in AI-native video production, high-performance ad creative, static visual libraries, and audio production. We provide end-to-end creative support for growth-stage brands."
+          a: "Articog provides AI-native video production, ad creative, product visuals, social creative, and audio production through a human-directed workflow."
         },
         {
           q: "How do I choose the right service for my campaign?",
@@ -80,12 +87,12 @@ export default function HelpCenterPage() {
   const glossaryTerms = [
     {
       term: "AI-Native Production",
-      definition: "A production framework where generative AI is not just a tool but the core infrastructure. This allows for near instant iteration and the ability to scale creative output without linear increases in cost or time.",
+      definition: "A production approach where generative AI is integrated across concept development, production and finishing to improve speed, flexibility and creative output.",
       link: "/services/ai-video-production",
     },
     {
       term: "Brand Consistency at Scale",
-      definition: "The process of ensuring that every generated asset adheres to strict visual and tonal guidelines across thousands of variants. This is achieved through proprietary model tuning and rigorous automated quality assurance passes.",
+      definition: "A structured production process using brand references, creative direction, review checkpoints and production controls to maintain consistency across formats and variants.",
       link: "/why-articog/production-economics",
     },
     {
@@ -117,7 +124,7 @@ export default function HelpCenterPage() {
   return (
     <div className="bg-black min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Section size="lg" className="pt-32 md:pt-40">
+      <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
             <span
@@ -137,7 +144,7 @@ export default function HelpCenterPage() {
               <div key={idx} className="scroll-mt-32" id={section.title.toLowerCase().replace(/\s+/g, '-')}>
                 <div className="flex items-end justify-between mb-6 border-b border-white/[0.1] pb-4">
                   <h2 className="type-h2 text-white">{section.title}</h2>
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap justify-end gap-2 sm:gap-4">
                     {section.links.map((link, lIdx) => (
                       <Link 
                         key={lIdx} 

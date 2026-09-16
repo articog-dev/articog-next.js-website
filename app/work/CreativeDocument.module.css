@@ -38,6 +38,12 @@
   perspective: 1800px;
   transform-style: preserve-3d;
   overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.gallery:active {
+  cursor: grabbing;
 }
 
 .projectCard {
@@ -148,6 +154,37 @@
   padding: 0 clamp(0.25rem, 1.5vw, 1rem);
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.25rem auto 0;
+  max-width: 1180px;
+  padding: 0 clamp(0.25rem, 1.5vw, 1rem);
+}
+
+.filter {
+  min-height: 2.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.68);
+  font: 600 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.filter:hover,
+.filter:focus-visible,
+.filterActive {
+  border-color: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  outline: none;
+}
+
 .controls {
   display: flex;
   align-items: center;
@@ -238,6 +275,21 @@
   .controlsWrap {
     margin-top: 1.25rem;
     justify-content: flex-start;
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter {
+    flex: 0 0 auto;
   }
 
   .gallery {

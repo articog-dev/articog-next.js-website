@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Input, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
+import { Container, Section, Button, Input, Textarea, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 
@@ -56,6 +56,8 @@ export default function BookADemoPage() {
     const serviceInterest = formData.getAll("service-interest").map(String);
     const budget = (formData.get("budget") as string) || "";
     const timeline = (formData.get("timeline") as string) || "";
+    const projectContext = (formData.get("projectContext") as string) || "";
+    const referenceUrl = (formData.get("referenceUrl") as string) || "";
     const consent = formData.get("consent") === "on";
     const name = `${firstName} ${lastName}`.trim();
     const fallbackCalendlyUrl = `${CALENDLY_URL}?${new URLSearchParams({
@@ -87,6 +89,8 @@ export default function BookADemoPage() {
           serviceInterest,
           budget,
           timeline,
+          projectContext,
+          referenceUrl,
           consent,
           attribution,
         }),
@@ -120,7 +124,7 @@ export default function BookADemoPage() {
   return (
     <Section
       size="lg"
-      className="pt-32 md:pt-40 bg-black min-h-screen"
+      className="pt-20 md:pt-24 bg-black min-h-screen"
     >
       <Container>
         <div className="mx-auto max-w-3xl">
@@ -156,10 +160,10 @@ export default function BookADemoPage() {
                   trackDemoFormStart();
                 }
               }}
-              className="flex flex-col gap-8"
+              className="flex flex-col gap-5 md:gap-8"
             >
               {/* First Name + Last Name */}
-              <div className="grid gap-8 sm:grid-cols-2">
+              <div className="grid gap-5 sm:grid-cols-2 sm:gap-8">
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="firstName"
@@ -174,7 +178,8 @@ export default function BookADemoPage() {
                     name="firstName"
                     required
                     placeholder="Jane"
-                    className="h-12 rounded-lg px-4"
+                    className="h-14 rounded-lg px-4 text-base sm:h-12"
+                    autoComplete="given-name"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -197,7 +202,8 @@ export default function BookADemoPage() {
                     name="lastName"
                     required
                     placeholder="Doe"
-                    className="h-12 rounded-lg px-4"
+                    className="h-14 rounded-lg px-4 text-base sm:h-12"
+                    autoComplete="family-name"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -205,6 +211,42 @@ export default function BookADemoPage() {
                     }}
                   />
                 </div>
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="projectContext" className="type-nav text-white/70">
+                  Tell us about your project
+                </label>
+                <Textarea
+                  id="projectContext"
+                  name="projectContext"
+                  placeholder="Deliverables, campaign objective, references, target platforms or anything we should know."
+                  className="min-h-32 resize-y rounded-lg p-4 text-base"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    color: "white",
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="referenceUrl" className="type-nav text-white/70">
+                  Reference / Website URL <span className="text-white/40">(optional)</span>
+                </label>
+                <Input
+                  type="url"
+                  id="referenceUrl"
+                  name="referenceUrl"
+                  placeholder="https://"
+                  autoComplete="url"
+                  className="h-14 rounded-lg px-4 text-base"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    color: "white",
+                  }}
+                />
               </div>
 
               {/* Work Email + Company Name */}
@@ -223,7 +265,8 @@ export default function BookADemoPage() {
                     name="email"
                     required
                     placeholder="jane@company.com"
-                    className="h-12 rounded-lg px-4"
+                    className="h-14 rounded-lg px-4 text-base sm:h-12"
+                    autoComplete="email"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -246,7 +289,8 @@ export default function BookADemoPage() {
                     name="company"
                     required
                     placeholder="Acme Corp"
-                    className="h-12 rounded-lg px-4"
+                    className="h-14 rounded-lg px-4 text-base sm:h-12"
+                    autoComplete="organization"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -270,7 +314,8 @@ export default function BookADemoPage() {
                   id="role"
                   name="role"
                   placeholder="Creative Director"
-                  className="h-12 rounded-lg px-4"
+                  className="h-14 rounded-lg px-4 text-base sm:h-12"
+                  autoComplete="organization-title"
                   style={{
                     background: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.08)",
@@ -315,7 +360,7 @@ export default function BookADemoPage() {
               </div>
 
               {/* Budget + Timeline */}
-              <div className="grid gap-8 sm:grid-cols-2">
+              <div className="grid gap-5 sm:grid-cols-2 sm:gap-8">
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="budget"
@@ -325,7 +370,7 @@ export default function BookADemoPage() {
                   </label>
 
                   <Select name="budget" defaultValue="">
-                    <SelectTrigger id="budget" className="h-12 rounded-lg px-4"><SelectValue placeholder="Select budget" /></SelectTrigger>
+                    <SelectTrigger id="budget" className="h-14 rounded-lg px-4 text-base sm:h-12"><SelectValue placeholder="Select budget" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Under $5k">Under $5k</SelectItem>
                       <SelectItem value="$5k $15k">$5k $15k</SelectItem>
@@ -344,7 +389,7 @@ export default function BookADemoPage() {
                   </label>
 
                   <Select name="timeline" defaultValue="">
-                    <SelectTrigger id="timeline" className="h-12 rounded-lg px-4"><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                    <SelectTrigger id="timeline" className="h-14 rounded-lg px-4 text-base sm:h-12"><SelectValue placeholder="Select timeline" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Immediately">Immediately</SelectItem>
                       <SelectItem value="Within 1 month">Within 1 month</SelectItem>
@@ -363,7 +408,7 @@ export default function BookADemoPage() {
                 className="mt-4 w-full"
                 disabled={isLoading}
               >
-                {isLoading ? "Scheduling..." : "Schedule a Call"}
+                {isLoading ? "Scheduling..." : "Continue to Scheduling"}
 
                 {!isLoading && <ArrowRight size={16} />}
               </Button>

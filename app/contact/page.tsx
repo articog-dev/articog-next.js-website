@@ -27,6 +27,8 @@ export default function ContactPage() {
     const data = {
       name: formData.get("name")?.toString().trim() || "",
       email: formData.get("email")?.toString().trim() || "",
+      company: formData.get("company")?.toString().trim() || "",
+      companyWebsite: formData.get("companyWebsite")?.toString().trim() || "",
       inquiryType: formData.get("inquiryType")?.toString() || "",
       message: formData.get("message")?.toString().trim() || "",
     };
@@ -169,6 +171,45 @@ export default function ContactPage() {
                 </div>
               </div>
 
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="company" className="type-nav text-white/70">
+                  Company <span className="text-accent">*</span>
+                </label>
+                <Input
+                  type="text"
+                  id="company"
+                  name="company"
+                  required
+                  autoComplete="organization"
+                  placeholder="Acme Corp"
+                  className="h-14 rounded-lg px-4 text-base"
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    color: "white",
+                    backgroundColor: "rgba(255,255,255,0.04)",
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="companyWebsite" className="type-nav text-white/70">
+                  Company Website <span className="text-white/40">(optional)</span>
+                </label>
+                <Input
+                  type="url"
+                  id="companyWebsite"
+                  name="companyWebsite"
+                  autoComplete="url"
+                  placeholder="https://"
+                  className="h-14 rounded-lg px-4 text-base"
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    color: "white",
+                    backgroundColor: "rgba(255,255,255,0.04)",
+                  }}
+                />
+              </div>
+
               {/* Inquiry Type */}
               <div className="flex flex-col gap-2.5">
                 <label
@@ -202,8 +243,8 @@ export default function ContactPage() {
                   id="message"
                   name="message"
                   required
-                  placeholder="Tell us about your inquiry..."
-                  className="min-h-[160px] resize-none rounded-lg p-4"
+                  placeholder="Tell us about your project, goals, timeline and deliverables."
+                  className="min-h-[160px] resize-none rounded-lg p-4 text-base"
                   style={{
                     border: "1px solid rgba(255,255,255,0.08)",
                     color: "white",

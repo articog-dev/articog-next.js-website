@@ -10,6 +10,8 @@ type DemoPayload = {
   serviceInterest: string[];
   budget: string;
   timeline: string;
+  projectContext?: string;
+  referenceUrl?: string;
   consent: boolean;
   attribution: {
     source?: string;
@@ -101,6 +103,8 @@ export async function POST(request: Request) {
     serviceInterest: Array.isArray(data.serviceInterest) ? data.serviceInterest : [],
     budget: data.budget?.trim() || "",
     timeline: data.timeline?.trim() || "",
+    projectContext: data.projectContext?.trim() || "",
+    referenceUrl: data.referenceUrl?.trim() || "",
     consent: true,
     attribution: data.attribution ?? {},
   };
@@ -148,6 +152,8 @@ export async function POST(request: Request) {
             `Service interest: ${lead.serviceInterest.join(", ")}`,
             `Budget: ${lead.budget}`,
             `Timeline: ${lead.timeline}`,
+            `Project context: ${lead.projectContext}`,
+            `Reference / Website URL: ${lead.referenceUrl}`,
             `Source: ${lead.attribution.source || ""}`,
             `Referrer: ${lead.attribution.referrer || ""}`,
           ].join("\n"),

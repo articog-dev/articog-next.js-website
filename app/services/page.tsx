@@ -253,13 +253,52 @@ const serviceGroups = [
   },
 ];
 
+const serviceModelGroups = [
+  {
+    title: "Film & Video",
+    items: [
+      ["Brand Films", "/services/ai-video-production"],
+      ["Commercials", "/services/ai-video-production"],
+      ["Product Films", "/services/ai-video-production"],
+      ["Explainers", "/services/ai-video-production"],
+    ],
+  },
+  {
+    title: "Performance & Social",
+    items: [
+      ["Paid Ads", "/services/ad-creative"],
+      ["UGC-style Creative", "/services/social-creative"],
+      ["Reels / Short-form", "/services/social-creative"],
+      ["Creative Variants", "/services/ad-creative"],
+    ],
+  },
+  {
+    title: "Visual Production",
+    items: [
+      ["Product Visuals", "/services/product-visuals"],
+      ["Campaign Imagery", "/services/ad-creative"],
+      ["OOH / Display", "/services/product-visuals"],
+      ["Social Assets", "/services/social-creative"],
+    ],
+  },
+  {
+    title: "Production Systems",
+    items: [
+      ["Creative Automation", "/how-it-works/ai-creative-pipeline"],
+      ["Localization", "/services/ai-video-production"],
+      ["Post-production", "/services/post-production"],
+      ["Multi-format Adaptation", "/services/post-production"],
+    ],
+  },
+];
+
 export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
       <Section
         size="lg"
-        className="relative flex min-h-[60vh] items-center overflow-hidden pt-32 md:pt-40"
+        className="relative flex items-center overflow-hidden py-20 md:py-24"
       >
         {/* Optimized Background Video */}
         <div className="absolute inset-0 z-0">
@@ -312,6 +351,33 @@ export default function ServicesPage() {
               Every creative format, delivered.
             </h1>
 
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-white/[0.05] py-20">
+        <Container>
+          <div className="mx-auto mb-10 max-w-3xl">
+            <span className="mb-4 inline-block type-label uppercase tracking-[0.18em] text-white/40">
+              WHAT WE PRODUCE
+            </span>
+            <h2 className="type-h2 text-white">One production partner. Every campaign format.</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {serviceModelGroups.map((group) => (
+              <div key={group.title} className="rounded-xl border border-white/[0.08] p-6">
+                <h3 className="type-h3 mb-5 text-white">{group.title}</h3>
+                <ul className="space-y-3">
+                  {group.items.map(([label, href]) => (
+                    <li key={label}>
+                      <Link href={href} className="type-small text-white/60 transition-colors hover:text-white">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </Container>
       </Section>

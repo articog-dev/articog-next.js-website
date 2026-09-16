@@ -121,10 +121,7 @@ export default function PressPage() {
                   </h2>
 
                   <div className="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800 text-zinc-300 text-sm leading-relaxed">
-                    Articog is an AI Native Film &amp; Production Company
-                    producing brand films, commercials, performance creative,
-                    creator-style social content, product visuals, and audio
-                    for growth-stage brands and modern marketing teams.
+                    Articog is an AI-Native Film &amp; Production Company producing brand films, commercials, performance creative, social content, product visuals and audio for brands and modern marketing teams.
                   </div>
                 </div>
 

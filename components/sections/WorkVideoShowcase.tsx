@@ -27,7 +27,7 @@ export function WorkVideoShowcase() {
               {videoId ? (
                 <Image
                   src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
-                  alt=""
+                  alt={video.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   loading="lazy"

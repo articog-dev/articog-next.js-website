@@ -26,25 +26,36 @@ export default function AIVideoProductionPage() {
 
   const faqs = [
     {
-      q: "What is the typical turnaround time?",
-      a: "Most projects are delivered within 48-72 hours from brief approval. Complex brand films may take up to 5 business days depending on the scope and requirements."
+      q: "How long does a project take?",
+      a: "Timelines depend on scope, number of deliverables and review cycles. Articog defines an expected first-review and final-delivery timeline during scoping."
     },
     {
-      q: "How does the revision process work?",
-      a: "Every project includes two rounds of revisions. We use a collaborative platform where you can leave time stamped feedback directly on the video drafts."
+      q: "How do revisions work?",
+      a: "Each engagement defines review stages and revision rounds. Feedback is consolidated and applied through the production workflow to maintain visual consistency."
     },
     {
-      q: "Who owns the rights to the final content?",
-      a: "Upon final payment, you own 100% of the commercial rights to the delivered assets. You are free to use them across any platform, globally, in perpetuity."
+      q: "Who owns the final content?",
+      a: "Usage and ownership terms are defined in the signed project or service agreement, including any relevant third-party licensing conditions."
     },
     {
-      q: "Is the content truly unique to my brand?",
-      a: "Yes. Every asset is generated based on your specific brand guidelines, color palettes, and creative brief, ensuring zero overlap with other brands."
+      q: "Will the creative be unique to our brand?",
+      a: "Creative direction, prompts, production decisions and finishing are built around the approved brief and brand system rather than reused as a one-size-fits-all template."
     }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  };
+
   return (
     <div className="bg-black min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>

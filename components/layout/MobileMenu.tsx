@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import { X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui";
@@ -12,11 +12,39 @@ interface MobileMenuProps {
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const [openGroups, setOpenGroups] = useState<string[]>([]);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
+    if (isOpen) closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])',
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    if (isOpen) document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   const handleClose = () => {
     setOpenGroups([]);
@@ -42,6 +70,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       {/* Drawer */}
       <div
+        ref={dialogRef}
+        id="mobile-navigation"
         className="fixed right-0 top-0 z-50 h-full w-80 flex flex-col"
         style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
         role="dialog"
@@ -53,8 +83,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <span className="type-h4 text-white">Articog</span>
           <button
             type="button"
+            ref={closeButtonRef}
             onClick={handleClose}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.10] text-white/45 transition-colors hover:text-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.10] text-white/45 transition-colors hover:text-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             aria-label="Close menu"
           >
             <X size={16} />
@@ -106,7 +137,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         key={link.href}
                         href={link.href}
                         onClick={handleClose}
-                        className="font-sans text-[13px] px-3 py-2 rounded-lg text-white/50 hover:text-white/85 transition-colors"
+                        className="flex min-h-11 items-center rounded-lg px-3 py-2 font-sans text-[13px] text-white/50 transition-colors hover:text-white/85"
                       >
                         {link.label}
                       </Link>

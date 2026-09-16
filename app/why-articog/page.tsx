@@ -13,40 +13,40 @@ import { Comparison } from "@/components/sections/Comparison";
 export default function WhyArticogPage() {
   const comparisonRows = [
     {
-      attribute: "First output",
-      agency: "4 8 weeks",
-      inhouse: "2 4 weeks",
-      articog: "2 4 days"
+      attribute: "Production approach",
+      agency: "Traditional production",
+      inhouse: "Internal workflow",
+      articog: "AI-native production"
     },
     {
-      attribute: "Campaign delivery",
-      agency: "12+ weeks",
-      inhouse: "6 8 weeks",
-      articog: "7 10 days"
+      attribute: "Engagement",
+      agency: "Multi-stage production",
+      inhouse: "Internal production",
+      articog: "Project, ongoing or strategic"
     },
     {
-      attribute: "Cost structure",
-      agency: "Project/Retainer",
-      inhouse: "Salaries + Benefits",
-      articog: "Flat Monthly Fee"
-    },
-    {
-      attribute: "Volume flexibility",
-      agency: "Limited",
-      inhouse: "Fixed",
-      articog: "High / Scalable"
+      attribute: "Production capacity",
+      agency: "Capacity tied to team and vendors",
+      inhouse: "Capacity tied to headcount",
+      articog: "Scales with campaign demand"
     },
     {
       attribute: "Brand consistency",
-      agency: "Varies by team",
-      inhouse: "High manual effort",
-      articog: "Systematic / AI-enforced"
+      agency: "Brief dependent",
+      inhouse: "Manual controls",
+      articog: "Structured brand controls"
     },
     {
-      attribute: "Iteration speed",
-      agency: "Slow",
-      inhouse: "Medium",
-      articog: "Instant / Real-time"
+      attribute: "Iteration",
+      agency: "Slow feedback cycles",
+      inhouse: "Moderate feedback cycles",
+      articog: "Fast feedback and revision cycles"
+    },
+    {
+      attribute: "Team",
+      agency: "External production team",
+      inhouse: "Internal creative team",
+      articog: "Creative direction + AI production + post-production"
     }
   ];
 

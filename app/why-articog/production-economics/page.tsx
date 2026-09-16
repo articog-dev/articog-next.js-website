@@ -24,7 +24,7 @@ export default function ProductionEconomicsPage() {
     {
       title: "Time-to-Market Value",
       icon: <Clock className="w-6 h-6 text-white/40" />,
-      description: "Speed is a financial asset. Reducing campaign turnaround from months to days allows brands to respond to trends in real-time and reduces the 'opportunity cost' of delayed creative testing.",
+      description: "Speed is a financial asset. Flexible campaign timelines help brands respond to changing priorities and reduce the opportunity cost of delayed creative testing.",
     },
   ];
 

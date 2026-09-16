@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { saveCookieConsent, readCookieConsentSnapshot, subscribeCookieConsent, type CookieConsent } from "@/lib/cookie-consent";
 
 export function CookieConsent() {
@@ -9,6 +9,36 @@ export function CookieConsent() {
   const [consent, setConsent] = useState<CookieConsent | null>(storedConsent);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+  const dialogRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (consent || storedConsent || !dialogRef.current) return;
+
+    const dialog = dialogRef.current;
+    const focusable = dialog.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled])',
+    );
+    focusable[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    dialog.addEventListener("keydown", handleKeyDown);
+    return () => dialog.removeEventListener("keydown", handleKeyDown);
+  }, [consent, storedConsent]);
 
   if (consent || storedConsent) return null;
 
@@ -20,9 +50,10 @@ export function CookieConsent() {
   return (
     <div className="fixed inset-x-4 bottom-4 z-[1200] sm:inset-x-auto sm:bottom-6 sm:left-auto sm:right-6 sm:w-[380px] sm:max-w-[calc(100vw-3rem)]">
       <section
-        className="rounded-2xl border border-white/15 bg-[#111]/95 p-5 text-white shadow-2xl backdrop-blur-xl"
+        ref={dialogRef}
+        className="max-h-[30vh] overflow-y-auto rounded-2xl border border-white/15 bg-[#111]/95 p-5 text-white shadow-2xl backdrop-blur-xl sm:max-h-none sm:overflow-visible"
         role="dialog"
-        aria-modal="false"
+        aria-modal="true"
         aria-labelledby="cookie-settings-title"
         aria-describedby="cookie-settings-description"
       >
@@ -55,16 +86,18 @@ export function CookieConsent() {
             </button>
           </div>
         ) : (
-          <div className="mt-5 flex flex-col gap-2">
+          <div className="mt-5 grid gap-2">
             <button type="button" onClick={() => setIsCustomizing(true)} className="w-full rounded-full border border-white/20 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
               Customize Cookie Settings
             </button>
-            <button type="button" onClick={() => save(false)} className="w-full rounded-full border border-white/10 px-4 py-3 text-sm font-medium text-white/75 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-              Reject All Cookies
-            </button>
-            <button type="button" onClick={() => save(true)} className="w-full rounded-full bg-white px-4 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-              Accept All Cookies
-            </button>
+            <div className="grid grid-cols-2 gap-2">
+              <button type="button" onClick={() => save(false)} className="w-full rounded-full border border-white/10 px-3 py-3 text-sm font-medium text-white/75 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                Reject All Cookies
+              </button>
+              <button type="button" onClick={() => save(true)} className="w-full rounded-full bg-white px-3 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                Accept All Cookies
+              </button>
+            </div>
           </div>
         )}
 

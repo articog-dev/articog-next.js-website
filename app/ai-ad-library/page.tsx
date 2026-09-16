@@ -60,7 +60,7 @@ export default function AdLibraryPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
+      <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <span
@@ -78,11 +78,13 @@ export default function AdLibraryPage() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 py-6 border-y border-white/[0.08]">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3" role="group" aria-label="Filter ad library by category">
               <span className="text-[11px] font-sans font-bold uppercase tracking-widest text-muted-safe mr-2">Category:</span>
               {categories.map((cat) => (
                 <button
                   key={cat}
+                  type="button"
+                  aria-pressed={activeCategory === cat}
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3 py-1.5 rounded-full font-sans text-[11px] font-medium transition-all duration-200 border ${
                     activeCategory === cat 

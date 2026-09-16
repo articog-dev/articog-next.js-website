@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 type ContactData = {
   name: string;
   email: string;
+  company?: string;
+  companyWebsite?: string;
   inquiryType: string;
   message: string;
 };
@@ -71,6 +73,8 @@ async function alertSheetFailure(data: ContactData, error: unknown) {
         "",
         `Name: ${data.name}`,
         `Email: ${data.email}`,
+        `Company: ${data.company}`,
+        `Company website: ${data.companyWebsite}`,
         `Inquiry type: ${data.inquiryType}`,
         `Message: ${data.message}`,
         "",
@@ -93,7 +97,7 @@ export async function POST(request: Request) {
 
     const data = await request.json();
 
-    const { name, email, inquiryType, message, website } = data;
+    const { name, email, company, companyWebsite, inquiryType, message, website } = data;
 
     if (website) {
       return NextResponse.json({ success: true, message: "Message submitted successfully." });
@@ -117,12 +121,12 @@ export async function POST(request: Request) {
       const response = await fetch(googleSheetsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, inquiryType, message }),
+        body: JSON.stringify({ name, email, company: company || "", companyWebsite: companyWebsite || "", inquiryType, message }),
       });
 
       if (!response.ok) throw new Error("Failed to save data to Google Sheets.");
     } catch (error) {
-      await alertSheetFailure({ name, email, inquiryType, message }, error);
+      await alertSheetFailure({ name, email, company, companyWebsite, inquiryType, message }, error);
       throw error;
     }
 
@@ -135,6 +139,8 @@ export async function POST(request: Request) {
           "",
           `Name: ${name}`,
           `Email: ${email}`,
+          `Company: ${company}`,
+          `Company website: ${companyWebsite}`,
           `Inquiry type: ${inquiryType}`,
           "",
           "Message:",
