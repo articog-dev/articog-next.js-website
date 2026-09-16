@@ -9,7 +9,31 @@ export const metadata: Metadata = {
 
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button } from "@/components/ui";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
+
+const serviceDeliverables = [
+  {
+    title: "Feed Post",
+    description: "High impact square and 4:5 assets built for the main feed.",
+    Icon: Grid2X2,
+  },
+  {
+    title: "Story Format",
+    description: "Immersive 9:16 vertical content designed for mobile-first consumption.",
+    Icon: Smartphone,
+  },
+  {
+    title: "Reel Cover",
+    description: "Custom-designed thumbnail covers that drive higher click-through rates.",
+    Icon: Instagram,
+  },
+  {
+    title: "Organized for Scale",
+    description:
+      "All content is intelligently grouped into thematic series to ensure cross channel consistency. Every asset is meticulously organized by campaign and format, making reference and implementation seamless for your team.",
+    Icon: Layers3,
+  },
+];
 
 const serviceGroups = [
   {
@@ -326,6 +350,24 @@ export default function ServicesPage() {
           </Section>
         ))}
       </div>
+
+      {/* Service Deliverables */}
+      <Section size="md" className="border-t border-white/[0.05]">
+        <Container>
+          <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-3">
+            {serviceDeliverables.map(({ title, description, Icon }, index) => (
+              <div
+                key={title}
+                className={`rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 ${index === serviceDeliverables.length - 1 ? "sm:col-span-3" : ""}`}
+              >
+                <Icon className="mb-5 h-6 w-6 text-white/70" aria-hidden="true" />
+                <h2 className="type-h3 mb-3 text-white">{title}</h2>
+                <p className="type-small leading-relaxed text-white/60">{description}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {/* CTA */}
       <Section size="lg" className="border-t border-white/[0.05]">
