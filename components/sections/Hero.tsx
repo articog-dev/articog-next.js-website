@@ -121,10 +121,6 @@ export function Hero({ content }: HeroProps) {
             ))}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-[46rem] text-base leading-relaxed text-white/70 sm:text-lg">
-            {content.body}
-          </p>
-
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href={content.ctaHref}
