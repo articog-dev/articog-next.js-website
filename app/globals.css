@@ -22,8 +22,8 @@
   --color-surface: rgba(255, 255, 255, 0.03);
   --color-surface-hover: rgba(255, 255, 255, 0.05);
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Sora", system-ui, sans-serif;
+  --font-sans: var(--font-sora);
+  --font-display: var(--font-sora);
 
   --text-h1: clamp(2.25rem, calc(1.125rem + 3.8vw), 4rem);
   --text-h1--line-height: 1.08;
@@ -192,6 +192,12 @@
 }
 
 @layer base {
+  html,
+  body {
+    background-color: #000000;
+    font-family: var(--font-sora);
+  }
+
   h1:not(.type-label) {
     font-family: var(--font-display) !important;
     font-size: var(--text-h1) !important;
