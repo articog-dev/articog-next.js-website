@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/components/ui/Link";
 import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
@@ -118,9 +119,15 @@ export function Footer() {
           <div className="space-y-4 md:col-span-2">
             <Link
               href="/"
-              className="type-h4 text-white/90 hover:text-white transition-colors"
+              className="relative inline-flex h-6 w-20 overflow-hidden transition-opacity hover:opacity-75"
             >
-              Articog
+              <Image
+                src="/articog-logo-white.png"
+                alt="Articog logo"
+                width={2000}
+                height={2000}
+                className="absolute left-0 top-[-30px] h-20 w-20 max-w-none"
+              />
             </Link>
 
             <p className="type-small leading-relaxed max-w-xs text-white/60">
