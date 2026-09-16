@@ -14,18 +14,25 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
         </div>
 
         <div className="border-t border-white/[0.14]">
-          {capabilities.map((cap) => (
-            <div
+          {capabilities.map((cap, index) => (
+            <a
               key={cap.title}
+              href="/services"
               className="group grid gap-3 border-b border-white/[0.14] py-7 transition-colors duration-200 hover:border-white/30 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] md:items-start md:gap-10 md:py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16"
             >
-              <h3 className="type-h3 text-white transition-transform duration-200 group-hover:translate-x-1">
-                {cap.title}
-              </h3>
-              <p className="type-body max-w-2xl leading-relaxed text-white/60">
-                {cap.useCase}
-              </p>
-            </div>
+              <div className="flex min-w-0 items-center gap-3 md:gap-5">
+                <span className="w-7 shrink-0 font-sans text-xs tabular-nums text-white/35 md:w-9 md:text-sm">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span aria-hidden="true" className="h-5 w-px bg-white/15" />
+                <h3 className="type-h3 min-w-0 text-white transition-transform duration-200 group-hover:translate-x-1">
+                  {cap.title}
+                </h3>
+              </div>
+              <span aria-hidden="true" className="justify-self-end text-lg text-white/40 transition-transform duration-200 group-hover:translate-x-1 md:self-center">
+                →
+              </span>
+            </a>
           ))}
         </div>
       </Container>
