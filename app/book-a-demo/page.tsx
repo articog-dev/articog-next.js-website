@@ -125,13 +125,6 @@ export default function BookADemoPage() {
       <Container>
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-16">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              BOOK A DEMO
-            </span>
-
             <h1 className="type-h1 mb-6 text-white">
               Book a Demo
             </h1>
@@ -143,7 +136,7 @@ export default function BookADemoPage() {
                 lineHeight: 1.65,
               }}
             >
-              Tell us what you&apos;re planning, then choose a time with our team. We&apos;ll use your brief to make the first conversation specific.
+              Share your plan, choose a time, and we’ll tailor the conversation to your brief.
             </p>
           </div>
 
