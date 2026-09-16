@@ -1,7 +1,6 @@
 "use client";
 
 import type { HeroContent, ProofStat } from "@/types";
-import { ArrowRight } from "lucide-react";
 import { useLayoutEffect, useRef } from "react";
 
 interface HeroProps {
@@ -123,7 +122,7 @@ export function Hero({ content }: HeroProps) {
 
       {/* Main Content Area */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           {/* Eyebrow */}
           <p className="mb-6 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40 sm:mb-8 sm:text-xs">
             {content.eyebrow}
@@ -137,24 +136,6 @@ export function Hero({ content }: HeroProps) {
               </span>
             ))}
           </h1>
-
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={content.ctaHref}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              {content.ctaLabel}
-              <ArrowRight size={16} aria-hidden="true" />
-            </a>
-            {content.secondaryCtaHref && content.secondaryCtaLabel ? (
-              <a
-                href={content.secondaryCtaHref}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                {content.secondaryCtaLabel}
-              </a>
-            ) : null}
-          </div>
 
         </div>
       </div>

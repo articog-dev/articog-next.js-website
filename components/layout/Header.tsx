@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import {
@@ -597,14 +596,7 @@ export function Header() {
             className="relative inline-flex h-6 w-20 overflow-hidden transition-opacity hover:opacity-75"
             onClick={closeDropdown}
           >
-            <Image
-              src="/articog-logo-white.png"
-              alt="Articog logo"
-              width={2000}
-              height={2000}
-              className="absolute left-0 top-[-30px] h-20 w-20 max-w-none"
-              priority
-            />
+            <span className="font-display text-lg font-semibold tracking-[-0.02em] text-white">Articog</span>
           </Link>
 
           {/* Desktop Navigation */}

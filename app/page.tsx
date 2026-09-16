@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/" },
@@ -111,6 +112,25 @@ export default function HomePage() {
 
       <Hero content={homepage.hero} stats={homepage.proofStats} />
       <Capabilities capabilities={homepage.capabilities} />
+      <div className="bg-[#0a0a0a] px-4 py-8 sm:py-10">
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href={homepage.hero.ctaHref}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+          >
+            {homepage.hero.ctaLabel}
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
+          {homepage.hero.secondaryCtaHref && homepage.hero.secondaryCtaLabel ? (
+            <a
+              href={homepage.hero.secondaryCtaHref}
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+            >
+              {homepage.hero.secondaryCtaLabel}
+            </a>
+          ) : null}
+        </div>
+      </div>
       <HomeVisualShowcase />
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
