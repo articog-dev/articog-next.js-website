@@ -4,8 +4,13 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import {
+  ArrowUpRight,
   ChevronDown,
+  Film,
   Menu,
+  Smartphone,
+  TestTube2,
+  Workflow,
 } from "lucide-react";
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
@@ -272,6 +277,29 @@ function ServicesContent({
 }: {
   onClose: () => void;
 }) {
+  const featured = [
+    {
+      title: "Brand Films & Commercials",
+      href: "/services/ai-video-production",
+      icon: <Film size={14} />,
+    },
+    {
+      title: "Creator-Style Social Content",
+      href: "/work/social",
+      icon: <Smartphone size={14} />,
+    },
+    {
+      title: "Performance Creative Variants",
+      href: "/services/ad-creative",
+      icon: <TestTube2 size={14} />,
+    },
+    {
+      title: "Creative Workflow Automation",
+      href: "/how-it-works/ai-creative-pipeline",
+      icon: <Workflow size={14} />,
+    },
+  ];
+
   const columns = [
     {
       title: "By Service",
@@ -369,6 +397,37 @@ function ServicesContent({
 
   return (
     <>
+      {/* Featured Services */}
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
+        {featured.map((item) => (
+          <Link
+            key={item.title}
+            href={item.href}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="group flex min-w-0 flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:bg-white/[0.04]"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.03] text-zinc-400 transition-colors group-hover:text-white">
+                {item.icon}
+              </div>
+              <ArrowUpRight size={14} className="text-zinc-500 transition-colors group-hover:text-white" />
+            </div>
+
+            <div>
+              <h4 className="type-h4 mb-1 text-white">
+                {item.title}
+              </h4>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Divider */}
+      <div className="mb-8 h-px w-full bg-white/[0.06]" />
+
       {/* Service Categories */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-8">
         {columns.map((col) => (
