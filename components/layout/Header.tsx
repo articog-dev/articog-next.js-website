@@ -107,9 +107,6 @@ export const menuGroups = [
     label: "Work",
     links: [
       { label: "Portfolio Overview", href: "/work" },
-      { label: "Video Ads", href: "/work/video-ads" },
-      { label: "Creator-Style Social Content", href: "/work/social" },
-      { label: "Customer Stories", href: "/customers" },
     ],
   },
   {
