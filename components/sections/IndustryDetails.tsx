@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { Plus, X } from "lucide-react";
 import { Container, Section } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 
@@ -148,6 +152,8 @@ const industryDetails: IndustryDetail[] = [
 ];
 
 export function IndustryDetails() {
+  const [openIndustryId, setOpenIndustryId] = useState<string | null>(null);
+
   return (
     <Section className="border-t border-white/10 py-20 text-left md:py-24">
       <Container>
@@ -156,57 +162,110 @@ export function IndustryDetails() {
         </div>
         <div className="space-y-6">
           {industryDetails.map((industry) => (
-            <section
+            <IndustryCard
               key={industry.id}
-              id={industry.id}
-              className="scroll-mt-28 rounded-2xl border border-white/[0.1] p-6 md:p-8"
-            >
-              <div className="max-w-3xl">
-                <h3 className="type-h3 text-white">{industry.title}</h3>
-              </div>
-
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                {industry.considerations.map((consideration) => (
-                  <div key={consideration.title}>
-                    <h4 className="type-h4 text-white">{consideration.title}</h4>
-                    <p className="mt-2 type-small leading-relaxed text-white/50">
-                      {consideration.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {industry.serviceLinks && (
-                <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/[0.08] pt-5">
-                  {industry.serviceLinks.map((service) => (
-                    <Link
-                      key={service.href}
-                      href={service.href}
-                      className="type-small text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
-                    >
-                      {service.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {industry.faqs && (
-                <div className="mt-8 border-t border-white/[0.08] pt-5">
-                  <h4 className="type-label text-white/45">Frequently Asked Questions</h4>
-                  <div className="mt-4 space-y-5">
-                    {industry.faqs.map((faq) => (
-                      <div key={faq.question}>
-                        <h5 className="type-small font-semibold text-white/80">{faq.question}</h5>
-                        <p className="mt-1 type-small leading-relaxed text-white/50">{faq.answer}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </section>
+              industry={industry}
+              isOpen={openIndustryId === industry.id}
+              onToggle={() =>
+                setOpenIndustryId((currentId) =>
+                  currentId === industry.id ? null : industry.id,
+                )
+              }
+            />
           ))}
         </div>
       </Container>
     </Section>
+  );
+}
+
+function IndustryCard({
+  industry,
+  isOpen,
+  onToggle,
+}: {
+  industry: IndustryDetail;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const detailsId = `${industry.id}-details`;
+
+  return (
+    <section
+      id={industry.id}
+      className="scroll-mt-28 overflow-hidden rounded-2xl border border-white/[0.1] transition-colors hover:border-white/[0.16]"
+    >
+      <button
+        type="button"
+        aria-controls={detailsId}
+        aria-expanded={isOpen}
+        aria-label={`${isOpen ? "Collapse" : "Expand"} ${industry.title}`}
+        onClick={onToggle}
+        className="flex min-h-[88px] w-full items-center justify-between gap-6 px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[112px] md:px-8"
+      >
+        <h3 className="type-h3 text-white">{industry.title}</h3>
+        {isOpen ? (
+          <X className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
+        ) : (
+          <Plus className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
+        )}
+      </button>
+
+      <div
+        id={detailsId}
+        aria-hidden={!isOpen}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden px-6 pb-6 md:px-8 md:pb-8">
+          <div className="border-t border-white/[0.08] pt-6">
+            <h4 className="type-label text-white/45">Additional Details</h4>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {industry.considerations.map((consideration) => (
+                <div
+                  key={consideration.title}
+                  className="h-full rounded-xl border border-white/[0.08] p-5"
+                >
+                  <h5 className="type-h4 text-white">{consideration.title}</h5>
+                  <p className="mt-2 type-small leading-relaxed text-white/50">
+                    {consideration.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {industry.serviceLinks && (
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/[0.08] pt-5">
+                {industry.serviceLinks.map((service) => (
+                  <Link
+                    key={service.href}
+                    href={service.href}
+                    className="type-small text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+                  >
+                    {service.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {industry.faqs && (
+              <div className="mt-8 border-t border-white/[0.08] pt-5">
+                <h4 className="type-label text-white/45">Frequently Asked Questions</h4>
+                <div className="mt-4 space-y-5">
+                  {industry.faqs.map((faq) => (
+                    <div key={faq.question}>
+                      <h5 className="type-small font-semibold text-white/80">{faq.question}</h5>
+                      <p className="mt-1 type-small leading-relaxed text-white/50">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
