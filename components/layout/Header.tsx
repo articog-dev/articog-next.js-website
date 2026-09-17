@@ -418,7 +418,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
 
-          <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
+          <nav className="hidden items-center gap-0.5 lg:flex">
             {menuGroups.map((group) => {
               const isDirectGroup =
                 group.label === "Solutions" ||
