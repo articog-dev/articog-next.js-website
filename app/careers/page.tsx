@@ -14,14 +14,14 @@ export default function CareersPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
-          <div className="mx-auto max-w-3xl text-center mb-20">
+          <div className="mx-auto mb-12 max-w-3xl text-center">
             <Heading as="h1" size="hero" className="mb-6">
               Join the future of production
             </Heading>
           </div>
 
           <div className="max-w-4xl mx-auto mb-24">
-            <h2 className="text-2xl font-display font-semibold text-white mb-8">Open Roles</h2>
+            <h2 className="type-h2 mb-8 text-white">Open Roles</h2>
 
             <BreezyOpenings />
 
