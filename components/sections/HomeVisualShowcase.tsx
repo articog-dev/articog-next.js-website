@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section } from "@/components/ui";
 
 const visuals = [
   {
@@ -240,15 +240,9 @@ export function HomeVisualShowcase() {
 
   return (
     <>
-      <Section className="overflow-hidden border-y border-white/[0.06] bg-[#080808] py-24 md:py-32">
+      <Section className="overflow-hidden border-y border-white/[0.06] bg-[#080808] py-12 md:py-16">
         <div onKeyDown={handleKeyDown}>
           <Container>
-          <div className="mb-8 md:mb-12">
-            <Heading as="h2" size="section" className="mb-0 text-white lg:whitespace-nowrap">
-              Creative, built for your campaign.
-            </Heading>
-          </div>
-
             <div
               className="showcase-stage"
               aria-label="Selected Articog visual studies"
