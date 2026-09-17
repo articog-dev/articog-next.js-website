@@ -49,7 +49,7 @@ export default function CustomersPage() {
       {/* CTA Section */}
       <FinalCTA 
         content={{
-          headline: "Ready to be our next\nsuccess story?",
+          headline: "Ready to transform your production?",
           ctaLabel: "Book a Demo",
           ctaHref: "/book-a-demo"
         }} 

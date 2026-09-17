@@ -85,7 +85,6 @@ export default function AdCreativePage() {
                   <item.icon className="w-6 h-6" />
                 </div>
                 <h3 className="type-h3 text-white mb-3">{item.title}</h3>
-                <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -95,12 +94,11 @@ export default function AdCreativePage() {
               const card = (
                 <>
                   <div>
-                    <h3 className="type-h3 text-white mb-3">{service.title}</h3>
-                    <p className="type-small text-white/50 leading-relaxed mb-6">{service.description}</p>
+                    <h3 className="type-h3 text-white">{service.title}</h3>
                   </div>
                   {service.href && (
                     <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
-                      Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   )}
                 </>
@@ -160,10 +158,10 @@ export default function AdCreativePage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to scale your performance?</h2>
+            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg">
-                Scale Your Ad Creative
+                Book a Demo
               </Button>
             </Link>
           </div>

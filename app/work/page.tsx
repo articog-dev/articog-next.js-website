@@ -69,7 +69,7 @@ export default function WorkPage() {
           </div>
 
           <div className="text-center pt-16 border-t border-white/10">
-            <p className="type-body-lg mb-8 text-white/60">Want work like this for your brand?</p>
+            <p className="type-body-lg mb-8 text-white/60">Ready to transform your production?</p>
             <Button asChild variant="primary" size="lg">
               <Link href="/book-a-demo">Book a Demo</Link>
             </Button>

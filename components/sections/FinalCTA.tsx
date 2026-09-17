@@ -14,9 +14,7 @@ export function FinalCTA({ content }: FinalCTAProps) {
         <div className="mx-auto max-w-xl text-center">
 
           <h2 className="type-h2 mb-5 text-white">
-            {content.headline.split("\n").map((line, i) => (
-              <span key={i} className="block">{line}</span>
-            ))}
+            Ready to transform your production?
           </h2>
 
           <div className="flex flex-wrap items-center justify-center gap-3">

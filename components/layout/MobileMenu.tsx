@@ -81,7 +81,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
-          <span className="type-h4 text-white">Articog</span>
+          <Link href="/" onClick={handleClose} className="type-h4 text-white">
+            Articog
+          </Link>
           <button
             type="button"
             ref={closeButtonRef}

@@ -198,7 +198,7 @@ export default async function BlogArticlePage({
 
           <div className="mx-auto mt-16 max-w-3xl border-t border-white/10 pt-10 text-center">
             <Heading as="h2" size="section" className="mb-6">
-              Your next campaign. Delivered in days.
+              Ready to transform your production?
             </Heading>
             <Button asChild variant="primary" size="lg">
               <Link href="/book-a-demo">Book a Demo</Link>

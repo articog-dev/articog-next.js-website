@@ -170,7 +170,7 @@ export const siteContent: SiteContent = {
   testimonials: [],
 
   cta: {
-    headline: "Your next campaign.\nDelivered in days.",
+    headline: "Ready to transform your production?",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
   },

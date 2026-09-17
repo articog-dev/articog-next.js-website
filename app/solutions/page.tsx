@@ -68,7 +68,7 @@ export default function SolutionsPage() {
           </div>
 
           <div className="text-center pt-12 border-t border-white/10">
-            <p className="type-body mb-6 text-white/60">Not sure which fits?</p>
+            <p className="type-body mb-6 text-white/60">Ready to transform your production?</p>
             <Button asChild variant="primary" size="lg">
               <Link href="/book-a-demo">Book a Demo</Link>
             </Button>

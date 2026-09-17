@@ -87,7 +87,7 @@ export default function DataHandlingPage() {
 
           <div className="text-center pt-16 border-t border-white/10">
             <Heading as="h2" size="section" className="mb-8">
-              Review our practices
+              Ready to transform your production?
             </Heading>
             <Button asChild variant="primary" size="lg">
               <Link href="/book-a-demo">Book a Demo</Link>

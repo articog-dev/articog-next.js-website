@@ -84,8 +84,7 @@ export default function PostProductionPage() {
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="type-h3 text-white mb-2">{item.title}</h3>
-                  <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
+                  <h3 className="type-h3 text-white">{item.title}</h3>
                 </div>
               </div>
             ))}
@@ -106,11 +105,10 @@ export default function PostProductionPage() {
             {subPages.map((page) => {
               const card = (
                 <>
-                  <h3 className="type-h3 text-white mb-2">{page.title}</h3>
-                  <p className="type-small text-white/50 mb-6">{page.description}</p>
+                  <h3 className="type-h3 text-white">{page.title}</h3>
                   {page.href && (
                     <span className="inline-flex items-center gap-2 text-sm text-white/80 font-medium group-hover:text-white transition-colors">
-                      Learn more <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </span>
                   )}
                 </>
@@ -136,10 +134,10 @@ export default function PostProductionPage() {
       <Section className="py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to finish your project?</h2>
+            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg">
-                Finish Your Project
+                Book a Demo
               </Button>
             </Link>
           </div>

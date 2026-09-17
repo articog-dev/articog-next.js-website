@@ -62,8 +62,7 @@ export default function CreativeStrategyPage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h4 text-white mb-2">{item.title}</h3>
-                <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
+                <h3 className="type-h4 text-white">{item.title}</h3>
               </div>
             ))}
           </div>
@@ -91,10 +90,10 @@ export default function CreativeStrategyPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to build your creative foundation?</h2>
+            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg">
-                Start with Strategy
+                Book a Demo
               </Button>
             </Link>
           </div>

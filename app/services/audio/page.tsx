@@ -65,8 +65,7 @@ export default function AudioPage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h4 text-white mb-2">{item.title}</h3>
-                <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
+                <h3 className="type-h4 text-white">{item.title}</h3>
               </div>
             ))}
           </div>
@@ -82,9 +81,6 @@ export default function AudioPage() {
                 </div>
               </div>
               <h3 className="type-h2 text-white mb-2">AI Voiceover</h3>
-              <p className="type-small text-white/50 leading-relaxed">
-                Hyper-realistic synthetic voice production for localization and rapid iteration.
-              </p>
             </div>
 
             <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
@@ -97,9 +93,6 @@ export default function AudioPage() {
                 </div>
               </div>
               <h3 className="type-h2 text-white mb-2">Music & Sound Design</h3>
-              <p className="type-small text-white/50 leading-relaxed">
-                Custom scoring and immersive soundscapes for cinematic impact.
-              </p>
             </div>
           </div>
 

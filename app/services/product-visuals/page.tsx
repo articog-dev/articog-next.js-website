@@ -59,6 +59,7 @@ export default function ProductVisualsPage() {
 
       <Section className="py-32">
         <Container className="text-center">
+          <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
           <Button asChild variant="primary" size="lg">
             <Link href="/book-a-demo">
               Book a Demo <ArrowRight size={15} className="ml-2" />

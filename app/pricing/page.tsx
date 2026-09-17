@@ -82,7 +82,7 @@ export default function PricingPage() {
         </div>
 
         <div className="rounded-2xl border border-white/[0.08] p-8 md:p-10 text-center">
-          <h2 className="mb-4 type-h2 text-white">Start with a quick discovery call</h2>
+          <h2 className="mb-4 type-h2 text-white">Ready to transform your production?</h2>
           <p className="mx-auto mb-8 max-w-2xl type-small leading-relaxed text-white/50">
             We will review your goals, production needs, timeline, and creative output so we can recommend the best engagement for your team.
           </p>

@@ -152,7 +152,7 @@ export default function AboutPage() {
             style={{ background: "rgba(255,255,255,0.02)" }}
           >
             <Heading as="h2" size="section" className="mb-6">
-              Ready to make your next campaign AI-native?
+              Ready to transform your production?
             </Heading>
             <Button asChild variant="primary" size="lg">
               <Link to="/book-a-demo">

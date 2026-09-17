@@ -83,12 +83,11 @@ export default function AIVideoProductionPage() {
               const card = (
                 <>
                   <div>
-                    <h3 className="type-h3 text-white mb-3 group-hover:text-white transition-colors">{item.title}</h3>
-                    <p className="type-small text-white/50 leading-relaxed mb-6">{item.desc}</p>
+                    <h3 className="type-h3 text-white group-hover:text-white transition-colors">{item.title}</h3>
                   </div>
                   {item.path && (
                     <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
-                      Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   )}
                 </>
