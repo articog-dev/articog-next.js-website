@@ -88,7 +88,7 @@ function SaiTejaProfile() {
 
 function HarikaGovadaProfile() {
   return (
-    <article className="grid gap-10 border-t border-white/[0.08] pt-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-14">
+    <article id="harika-govada" className="scroll-mt-28 grid gap-10 border-t border-white/[0.08] pt-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-14">
       <div className="w-full max-w-xs overflow-hidden rounded-full border border-white/[0.08] bg-black">
         <Image
           src="/harika-govada.png.png"

@@ -89,6 +89,7 @@ export default function AboutPage() {
                 role="MD & Co-Founder"
                 imageSrc="/harika-govada.png.png"
                 imageAlt="Dr. Harika Govada"
+                profileHref="/founder-leadership#harika-govada"
                 circular
               />
             </div>
@@ -183,12 +184,14 @@ function FounderPreviewCard({
   role,
   imageSrc,
   imageAlt,
+  profileHref = "/founder-leadership",
   circular = false,
 }: {
   name: string;
   role: string;
   imageSrc: string;
   imageAlt: string;
+  profileHref?: string;
   circular?: boolean;
 }) {
   return (
@@ -210,7 +213,7 @@ function FounderPreviewCard({
           <h3 className="type-h3 text-white">{name}</h3>
           <p className="mt-2 type-body text-white/60">{role}</p>
           <Button asChild variant="outline" size="sm" className="mt-5">
-            <Link to="/founder-leadership">
+            <Link to={profileHref}>
               View More
               <ArrowRight aria-hidden="true" />
             </Link>

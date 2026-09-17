@@ -401,12 +401,12 @@ export default function ServicesPage() {
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                    <h3 className="type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
+                    <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
                       {service.title}
                     </h3>
                     <ArrowRight
                       size={14}
-                      className="shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
+                      className="ml-4 shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
                     />
                   </Link>
                 ))}
