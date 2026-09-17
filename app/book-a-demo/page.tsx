@@ -132,16 +132,6 @@ export default function BookADemoPage() {
             <h1 className="type-h1 mb-6 text-white">
               Book a Demo
             </h1>
-
-            <p
-              className="mx-auto max-w-lg type-body md:text-lg"
-              style={{
-                color: "rgba(255,255,255,0.55)",
-                lineHeight: 1.65,
-              }}
-            >
-              Share your plan, choose a time, and we’ll tailor the conversation to your brief.
-            </p>
           </div>
 
           {/* Form */}
