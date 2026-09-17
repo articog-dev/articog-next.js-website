@@ -401,7 +401,7 @@ export default function ServicesPage() {
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                    <div className="flex min-w-0 items-center justify-between gap-4">
+                    <div className="flex w-full min-w-0 items-center justify-between gap-4">
                       <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
                         {service.title}
                       </h3>
