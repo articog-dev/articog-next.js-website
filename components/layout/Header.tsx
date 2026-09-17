@@ -420,7 +420,10 @@ export function Header() {
 
           <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
             {menuGroups.map((group) => {
-              const isDirectGroup = group.label === "Work" || group.label === "Industries";
+              const isDirectGroup =
+                group.label === "Solutions" ||
+                group.label === "Work" ||
+                group.label === "Industries";
 
               return (
               <div
