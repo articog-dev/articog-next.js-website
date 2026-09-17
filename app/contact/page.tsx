@@ -78,29 +78,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-3xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{
-                color: "rgba(255,255,255,0.40)",
-              }}
-            >
-              CONTACT
-            </span>
-
             <h1 className="type-h1 mb-6 text-white">
               Contact Us
             </h1>
-
-            <p
-              className="mx-auto max-w-lg type-body md:text-lg"
-              style={{
-                color: "rgba(255,255,255,0.55)",
-                lineHeight: 1.65,
-              }}
-            >
-              Have a question or a project in mind? Drop us a line and
-              let&apos;s talk about your next creative engine.
-            </p>
           </div>
 
           {/* Contact Form */}
