@@ -15,32 +15,26 @@ export default function WorkPage() {
   const categories = [
     {
       title: "Video Ads",
-      description: "Commercial and performance video work.",
       href: "/work/video-ads",
     },
     {
       title: "Creator-Style Social Content",
-      description: "Platform-native social creative and creator-style content.",
       href: "/work/social",
     },
     {
       title: "Product Visuals",
-      description: "High quality product visuals and campaign assets.",
       href: "/work/product-visuals",
     },
     {
       title: "Work by Industry",
-      description: "Explore creative production across industry verticals.",
       href: "/work/industries",
     },
     {
       title: "AI Ad Library",
-      description: "A browsable library of AI generated ad assets and variants.",
       href: "/ai-ad-library",
     },
     {
       title: "Customer Stories",
-      description: "In-depth case studies and outcomes from our partners.",
       href: "/customers",
     },
   ];
@@ -70,9 +64,6 @@ export default function WorkPage() {
                   {cat.title}
                   <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </h2>
-                <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
-                  {cat.description}
-                </p>
               </Link>
             ))}
           </div>
