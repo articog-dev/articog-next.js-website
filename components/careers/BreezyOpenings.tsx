@@ -54,12 +54,18 @@ export function BreezyOpenings() {
 
         #bzOpeningsContainer > ul {
           display: grid;
-          gap: 1.25rem;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.5rem;
         }
 
         #bzOpeningsContainer > ul > li,
         #bzOpeningsContainer li {
           list-style: none;
+        }
+
+        #bzOpeningsContainer > ul > li {
+          display: flex;
+          min-width: 0;
         }
 
         #bzOpeningsContainer a {
@@ -71,15 +77,17 @@ export function BreezyOpenings() {
         #bzOpeningsContainer li > a {
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
           width: 100%;
-          min-height: 100%;
-          background: #dfead7;
-          border: 1px solid rgba(15, 23, 42, 0.08);
+          flex: 1;
+          min-height: 19rem;
+          background: #ffffff;
+          border: 1px solid rgba(15, 23, 42, 0.1);
           border-radius: 1.25rem;
-          padding: 1.5rem 1.5rem 1.1rem;
+          padding: 1.75rem 2rem;
           color: #101828;
           transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+          box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
         }
 
         #bzOpeningsContainer > ul > li > a:hover,
@@ -91,15 +99,17 @@ export function BreezyOpenings() {
 
         #bzOpeningsContainer h2,
         #bzOpeningsContainer h3 {
+          order: 1;
           margin: 0;
           color: #101828;
-          font-size: clamp(1.65rem, 2vw, 2.1rem);
+          font-size: clamp(1.45rem, 2vw, 1.9rem);
           line-height: 1.1;
           font-weight: 700;
-          letter-spacing: -0.04em;
+          letter-spacing: -0.03em;
         }
 
         #bzOpeningsContainer ul ul {
+          order: 2;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
@@ -119,13 +129,15 @@ export function BreezyOpenings() {
         #bzOpeningsContainer button,
         #bzOpeningsContainer .bz-button,
         #bzOpeningsContainer [role="button"] {
+          order: 3;
           appearance: none;
-          margin-top: 1.25rem;
-          border: none;
-          background: #ffffff;
-          padding: 0;
-          color: #101828;
-          font-size: 1rem;
+          margin-top: auto;
+          border: 1px solid #101828;
+          border-radius: 999px;
+          background: #101828;
+          padding: 0.7rem 1.05rem;
+          color: #ffffff;
+          font-size: 0;
           font-weight: 700;
           letter-spacing: -0.02em;
           cursor: pointer;
@@ -135,18 +147,25 @@ export function BreezyOpenings() {
           width: fit-content;
         }
 
-        #bzOpeningsContainer button::after,
-        #bzOpeningsContainer .bz-button::after,
-        #bzOpeningsContainer [role="button"]::after {
-          content: "↗";
-          font-size: 1.05em;
+        #bzOpeningsContainer button::before,
+        #bzOpeningsContainer .bz-button::before,
+        #bzOpeningsContainer [role="button"]::before {
+          content: "Apply Now →";
+          font-size: 0.95rem;
           line-height: 1;
         }
 
         #bzOpeningsContainer button:hover,
         #bzOpeningsContainer .bz-button:hover,
         #bzOpeningsContainer [role="button"]:hover {
-          opacity: 0.8;
+          background: #1f2937;
+          border-color: #1f2937;
+        }
+
+        @media (max-width: 767px) {
+          #bzOpeningsContainer > ul {
+            grid-template-columns: 1fr;
+          }
         }
 
         @media (max-width: 640px) {
@@ -156,7 +175,8 @@ export function BreezyOpenings() {
 
           #bzOpeningsContainer > ul > li > a,
           #bzOpeningsContainer li > a {
-            padding: 1.1rem 1rem 0.9rem;
+            min-height: 17rem;
+            padding: 1.5rem 1.25rem;
             border-radius: 1rem;
           }
 
@@ -171,7 +191,7 @@ export function BreezyOpenings() {
         }
       `}</style>
 
-      <div className="min-w-0 overflow-x-auto">
+      <div className="min-w-0 overflow-visible">
         <div id="bzOpeningsContainer" className="min-w-0" />
       </div>
     </>
