@@ -6,7 +6,6 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { RouteBreadcrumbs } from "@/components/layout/RouteBreadcrumbs";
 import "./globals.css";
 
 const sora = Sora({
@@ -72,7 +71,6 @@ export default function RootLayout({
         <AnnouncementBar />
         <Header />
         <main className="flex-1">
-          <RouteBreadcrumbs />
           {children}
         </main>
         <Footer />
