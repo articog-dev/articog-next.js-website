@@ -77,18 +77,9 @@ const footerNavSections = [
     ],
   },
   {
-    title: "Resources",
+    title: "Blog",
     links: [
-      { label: "Solutions", href: "/solutions" },
-      { label: "Industries", href: "/industries" },
-      { label: "Work", href: "/work" },
       { label: "Blog", href: "/blog" },
-      { label: "AI Ad Library", href: "/ai-ad-library" },
-      { label: "Help Center", href: "/help" },
-      { label: "Why Articog", href: "/why-articog" },
-      { label: "How It Works", href: "/how-it-works" },
-      { label: "Trust Center", href: "/trust" },
-      { label: "Customer Stories", href: "/customers" },
     ],
   },
   {
@@ -99,7 +90,7 @@ const footerNavSections = [
       { label: "Press & Media", href: "/press" },
       { label: "Pricing", href: "/pricing" },
       { label: "Book a Demo", href: "/book-a-demo" },
-      { label: "Newsletter", href: "/newsletter" },
+      { label: "Help Center", href: "/help" },
       { label: "Contact", href: "/contact" },
       { label: "Sitemap", href: "/sitemap" },
     ],
