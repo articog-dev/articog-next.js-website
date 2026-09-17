@@ -58,11 +58,18 @@ const getCloudinaryUrl = (src: string, width: number) =>
 
 const getModalImageUrl = (src: string) => getCloudinaryUrl(src, 2400);
 
+const LOOP_COPIES = 3;
+const LOOP_START_INDEX = visuals.length;
+const renderedVisuals = Array.from({ length: LOOP_COPIES }, (_, copyIndex) =>
+  visuals.map((visual, visualIndex) => ({ visual, visualIndex, copyIndex })),
+).flat();
+
 export function HomeVisualShowcase() {
   const [selectedVisual, setSelectedVisual] = useState<(typeof visuals)[number] | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const renderedIndex = useRef(LOOP_START_INDEX);
   const animationFrame = useRef<number | null>(null);
   const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0, moved: false });
   const suppressClick = useRef(false);
@@ -96,7 +103,23 @@ export function HomeVisualShowcase() {
       item.style.zIndex = String(1000 - Math.round(absoluteDistance * 100));
     });
 
-    setActiveIndex((current) => (current === nearestIndex ? current : nearestIndex));
+    const normalizedIndex = nearestIndex < LOOP_START_INDEX
+      ? nearestIndex + visuals.length
+      : nearestIndex >= LOOP_START_INDEX + visuals.length
+        ? nearestIndex - visuals.length
+        : nearestIndex;
+
+    if (normalizedIndex !== nearestIndex) {
+      const currentItem = itemRefs.current[nearestIndex];
+      const normalizedItem = itemRefs.current[normalizedIndex];
+      if (currentItem && normalizedItem) {
+        scrollContainer.scrollLeft += normalizedItem.offsetLeft - currentItem.offsetLeft;
+      }
+    }
+
+    renderedIndex.current = normalizedIndex;
+    const logicalIndex = normalizedIndex % visuals.length;
+    setActiveIndex((current) => (current === logicalIndex ? current : logicalIndex));
   }, []);
 
   const scheduleDepthUpdate = useCallback(() => {
@@ -107,22 +130,29 @@ export function HomeVisualShowcase() {
     });
   }, [updateDepth]);
 
-  const scrollToIndex = useCallback((index: number) => {
-    const item = itemRefs.current[(index + visuals.length) % visuals.length];
-    item?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  const scrollToIndex = useCallback((index: number, direction: -1 | 0 | 1) => {
+    const logicalIndex = (index + visuals.length) % visuals.length;
+    const targetIndex = direction === 0
+      ? LOOP_START_INDEX + logicalIndex
+      : renderedIndex.current + direction;
+    const item = itemRefs.current[targetIndex];
+    if (!item) return;
+    renderedIndex.current = targetIndex;
+    item.scrollIntoView({ behavior: direction === 0 ? "auto" : "smooth", block: "nearest", inline: "center" });
   }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
     event.preventDefault();
-    scrollToIndex(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+    scrollToIndex(activeIndex + direction, direction);
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
     pendingVisual.current = itemRefs.current
-      .map((item, index) => ({ item, visual: visuals[index] }))
+      .map((item, index) => ({ item, visual: renderedVisuals[index].visual }))
       .filter(({ item }) => {
         if (!item) return false;
         const rect = item.getBoundingClientRect();
@@ -178,7 +208,7 @@ export function HomeVisualShowcase() {
     scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", scheduleDepthUpdate);
     const initialFrame = window.requestAnimationFrame(() => {
-      scrollToIndex(0);
+      scrollToIndex(0, 0);
       updateDepth();
     });
 
@@ -234,9 +264,9 @@ export function HomeVisualShowcase() {
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerUp}
               >
-                {visuals.map((visual, index) => (
+                {renderedVisuals.map(({ visual, visualIndex, copyIndex }, index) => (
                   <button
-                    key={visual.alt}
+                    key={`${copyIndex}-${visual.alt}`}
                     ref={(item) => { itemRefs.current[index] = item; }}
                     type="button"
                     className="showcase-coverflow__item"
@@ -249,7 +279,7 @@ export function HomeVisualShowcase() {
                       setSelectedVisual(visual);
                     }}
                     aria-label={`Open ${visual.alt}`}
-                    aria-current={activeIndex === index ? "true" : undefined}
+                    aria-current={activeIndex === visualIndex ? "true" : undefined}
                   >
                     <NextImage
                       src={getCloudinaryUrl(visual.src, 1600)}
@@ -257,9 +287,9 @@ export function HomeVisualShowcase() {
                       alt={visual.alt}
                       width={1600}
                       height={2133}
-                      priority={index === 0}
+                      priority={copyIndex === 1 && visualIndex === 0}
                       quality={100}
-                      loading={index === 0 ? "eager" : "lazy"}
+                      loading={copyIndex === 1 && visualIndex === 0 ? "eager" : "lazy"}
                       decoding="async"
                     />
                   </button>
@@ -271,7 +301,7 @@ export function HomeVisualShowcase() {
             <div className="showcase-navigation__buttons">
               <button
                 type="button"
-                onClick={() => scrollToIndex(activeIndex - 1)}
+                onClick={() => scrollToIndex(activeIndex - 1, -1)}
                 aria-label="Previous image"
                 className="showcase-navigation__button"
               >
@@ -279,7 +309,7 @@ export function HomeVisualShowcase() {
               </button>
               <button
                 type="button"
-                onClick={() => scrollToIndex(activeIndex + 1)}
+                onClick={() => scrollToIndex(activeIndex + 1, 1)}
                 aria-label="Next image"
                 className="showcase-navigation__button"
               >
