@@ -1,5 +1,4 @@
 import { Container, Section } from "@/components/ui";
-import { Link } from "@/components/ui/Link";
 
 type IndustryDetail = {
   id: string;
@@ -152,61 +151,16 @@ export function IndustryDetails() {
     <Section className="border-t border-white/10 py-20 text-left md:py-24">
       <Container>
         <div className="mb-12 max-w-2xl md:mb-16">
-          <p className="mb-3 type-label uppercase tracking-[0.2em] text-white/40">Explore by industry</p>
           <h2 className="type-h2 text-white">Creative production by industry</h2>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
           {industryDetails.map((industry) => (
-            <details key={industry.id} id={industry.id} className="group self-start scroll-mt-24 overflow-hidden rounded-2xl border border-white/[0.1] transition-colors open:border-white/[0.2]">
-              <summary className="flex min-h-0 cursor-pointer list-none flex-col justify-between gap-6 p-6 marker:hidden md:min-h-56 md:p-8">
-                <div className="flex items-start justify-between gap-6">
-                  <div className="min-w-0">
-                    <h3 className="type-h3 text-white">{industry.title}</h3>
-                    <p className="mt-4 max-w-xl type-small leading-relaxed text-white/60">{industry.positioning}</p>
-                  </div>
-                  <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 text-lg font-light leading-none text-white/50 transition-transform group-open:rotate-45">+</span>
-                </div>
-                <div>
-                  <p className="mb-3 type-label uppercase tracking-[0.2em] text-white/35">Key focus</p>
-                  <p className="max-w-xl type-small leading-relaxed text-white/80">{industry.considerations[0].title}</p>
-                  {industry.serviceLinks && (
-                    <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium">
-                      {industry.serviceLinks.map((link) => (
-                        <span key={link.href} className="text-white/70">{link.label}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </summary>
-              <div className="border-t border-white/[0.08] px-6 pb-6 pt-6 md:px-8 md:pb-8">
-                <p className="mb-4 type-label uppercase tracking-[0.2em] text-white/35">Additional details</p>
-                <div className="grid gap-3 md:grid-cols-3">
-                  {industry.considerations.slice(0, 3).map((item) => (
-                    <div key={item.title} className="rounded-xl border border-white/[0.08] bg-black/10 p-4">
-                      <h4 className="mb-2 type-h4 text-white">{item.title}</h4>
-                      <p className="font-sans text-xs leading-relaxed text-white/50">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-                {industry.serviceLinks && (
-                  <div className="mt-5 flex flex-wrap gap-4 text-sm font-medium">
-                    {industry.serviceLinks.map((link) => (
-                      <Link key={link.href} href={link.href} className="text-white underline underline-offset-4 hover:text-white/70">{link.label}</Link>
-                    ))}
-                  </div>
-                )}
-                {industry.faqs && (
-                  <div className="mt-6 grid gap-4 md:grid-cols-2">
-                    {industry.faqs.map((faq) => (
-                      <div key={faq.question} className="border-l border-white/20 pl-5">
-                        <h4 className="mb-2 type-h4 text-white">{faq.question}</h4>
-                        <p className="type-small leading-relaxed text-white/50">{faq.answer}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+            <div key={industry.id} id={industry.id} className="group scroll-mt-24 rounded-2xl border border-white/[0.1] p-6 transition-colors hover:border-white/[0.2] md:p-8">
+              <div className="flex items-center justify-between gap-6">
+                <h3 className="type-h3 text-white">{industry.title}</h3>
+                <span className="shrink-0 text-white/45 transition-transform group-hover:translate-x-0.5 group-hover:text-white/80" aria-hidden="true">→</span>
               </div>
-            </details>
+            </div>
           ))}
         </div>
       </Container>

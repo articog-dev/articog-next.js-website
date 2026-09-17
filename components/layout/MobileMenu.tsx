@@ -114,13 +114,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <nav className="flex flex-col flex-1 overflow-y-auto px-4 pb-12">
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
-            const isDirectGroup = group.label === "Work";
+            const isDirectGroup = group.label === "Work" || group.label === "Industries";
 
             if (isDirectGroup) {
               return (
                 <div key={group.label} className="border-b border-white/[0.04]">
                   <Link
-                    href="/work"
+                    href={group.label === "Industries" ? "/industries" : "/work"}
                     onClick={handleClose}
                     className="flex w-full items-center rounded-full px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >

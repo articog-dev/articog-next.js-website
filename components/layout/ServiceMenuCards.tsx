@@ -10,7 +10,7 @@ export const primaryServiceCards = [
     title: "Brand Films & Commercials",
     description: "Cinematic stories that bring your brand to life.",
     href: "/services/ai-video-production",
-    image: "/services/brand-films-commercials.jpg",
+    image: "/services/articog-service-01-brand-films-image-only.jpg",
     alt: "Cinematic brand film production",
   },
   {
@@ -26,7 +26,7 @@ export const primaryServiceCards = [
     title: "Performance Creative Variants",
     description: "Data-driven creative variations built for campaign performance.",
     href: "/services/ad-creative",
-    image: "/services/articog-performance-creative.jpg",
+    image: "/services/articog-service-03-performance-creative-image-only.jpg",
     alt: "Performance creative production workspace",
   },
   {

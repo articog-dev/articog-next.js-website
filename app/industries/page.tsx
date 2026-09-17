@@ -7,58 +7,42 @@ export const metadata: Metadata = {
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
-import { ArrowRight, ShoppingBag, Laptop, Home, Smartphone, Sparkles, Car, Coffee, Shirt } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { IndustryDetails } from "@/components/sections/IndustryDetails";
 
 export default function IndustriesPage() {
   const industries = [
     {
       title: "DTC & E-commerce",
-      description: "Performance driven creative for brands that need to convert.",
       href: "/industries#dtc-ecommerce",
-      icon: ShoppingBag,
     },
     {
       title: "SaaS & Technology",
-      description: "Accurate UI and clear storytelling for complex software.",
       href: "/industries#saas-technology",
-      icon: Laptop,
     },
     {
       title: "Real Estate",
-      description: "Immersive visuals for listings, developments, and investors.",
       href: "/industries#real-estate",
-      icon: Home,
     },
     {
       title: "Consumer Electronics",
-      description: "Product visuals that highlight technical precision and design.",
       href: "/industries#consumer-electronics",
-      icon: Smartphone,
     },
     {
       title: "Beauty & Skincare",
-      description: "Lifestyle creative that emphasizes product benefits.",
       href: "/industries#beauty-skincare",
-      icon: Sparkles,
     },
     {
       title: "Automotive & Mobility",
-      description: "Cinematic vehicle films and marketing visuals produced with AI.",
       href: "/industries#automotive-mobility",
-      icon: Car,
     },
     {
       title: "Food & Beverage",
-      description: "Product visuals and seasonal campaigns for food and beverage brands.",
       href: "/industries#food-beverage",
-      icon: Coffee,
     },
     {
       title: "Fashion & Lifestyle",
-      description: "Campaign visuals and social content for fashion brands.",
       href: "/industries#fashion-lifestyle",
-      icon: Shirt,
     },
   ];
 
@@ -82,13 +66,9 @@ export default function IndustriesPage() {
                 href={industry.href}
                 className="group flex min-h-32 flex-col justify-between border border-white/[0.08] p-5 transition-colors hover:border-white/[0.16] md:min-h-36 md:p-6"
               >
-                <div className="flex items-center justify-between">
-                  <industry.icon className="h-4 w-4 text-white/50" />
-                  <ArrowRight size={15} className="text-white/30 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />
-                </div>
-                <div className="mt-8">
-                    <h2 className="type-h3 text-white">{industry.title}</h2>
-                  <p className="mt-2 max-w-sm font-sans text-xs leading-relaxed text-white/50">{industry.description}</p>
+                <div className="flex items-center justify-between gap-6">
+                  <h2 className="type-h3 text-white">{industry.title}</h2>
+                  <ArrowRight size={18} className="shrink-0 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white/80" aria-hidden="true" />
                 </div>
               </Link>
             ))}
