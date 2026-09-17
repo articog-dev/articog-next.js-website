@@ -55,9 +55,6 @@ export default function IndustriesPage() {
       <Section size="lg" className="pt-20 pb-24 text-center md:pt-24 md:pb-32">
         <Container>
           <div className="max-w-3xl mx-auto">
-            <span className="font-sans text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-6 inline-block">
-              Industries
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               Industries We Serve
             </Heading>

@@ -146,7 +146,6 @@ export const menuGroups = [
       { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
       { label: "Press & Media", href: "/press" },
-      { label: "Newsletter", href: "/newsletter" },
       { label: "Contact", href: "/contact" },
     ],
   },
