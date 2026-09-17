@@ -208,7 +208,10 @@ export function HomeVisualShowcase() {
     scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", scheduleDepthUpdate);
     const initialFrame = window.requestAnimationFrame(() => {
-      scrollToIndex(0, 0);
+      const initialItem = itemRefs.current[LOOP_START_INDEX];
+      if (initialItem) {
+        scrollContainer.scrollLeft = initialItem.offsetLeft - (scrollContainer.clientWidth - initialItem.offsetWidth) / 2;
+      }
       updateDepth();
     });
 
