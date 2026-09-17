@@ -58,7 +58,7 @@ export default function VideoAdsGalleryPage() {
             <Section className="mt-20 py-12 border-t border-zinc-900 text-center">
               <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
               <p className="text-zinc-500 type-small mb-8 italic">All displayed work is used with appropriate permissions.</p>
-              <Link to="/book-a-demo" className="text-white hover:underline underline-offset-4">
+              <Link to="/book-a-demo" className="text-sm font-medium leading-5 text-white hover:underline underline-offset-4">
                 Book a Demo →
               </Link>
             </Section>
