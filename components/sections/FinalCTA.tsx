@@ -13,23 +13,6 @@ export function FinalCTA({ content }: FinalCTAProps) {
       <Container>
         <div className="mx-auto max-w-xl text-center">
 
-          {/* Availability badge */}
-          <div
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8"
-            style={{ border: "1px solid rgba(255,255,255,0.10)" }}
-          >
-            <span
-              className="h-1.5 w-1.5 rounded-full animate-pulse"
-              style={{ background: "#34d399" }}
-            />
-            <span
-              className="type-label"
-              style={{ color: "rgba(255,255,255,0.55)" }}
-            >
-              Accepting new projects
-            </span>
-          </div>
-
           <h2 className="type-h2 mb-5 text-white">
             {content.headline.split("\n").map((line, i) => (
               <span key={i} className="block">{line}</span>
