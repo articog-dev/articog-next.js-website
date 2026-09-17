@@ -18,9 +18,6 @@ export default function AboutPage() {
       <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-              ABOUT ARTICOG
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               Production craft. Rebuilt for the AI era.
             </Heading>
@@ -35,9 +32,6 @@ export default function AboutPage() {
         <Container>
           <div className="mx-auto grid max-w-6xl gap-x-12 gap-y-8 lg:grid-cols-[0.9fr_1.8fr] lg:items-start">
             <div className="space-y-4 lg:pt-[0.25rem]">
-              <span className="inline-block type-label uppercase tracking-[0.18em] text-white/40">
-                WHO WE ARE
-              </span>
               <Heading as="h2" size="section" className="max-w-[15rem] leading-[0.92] text-balance">
                 A creative company
                 <br />
@@ -69,9 +63,6 @@ export default function AboutPage() {
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 max-w-3xl">
-              <span className="mb-4 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-                FOUNDER / LEADERSHIP
-              </span>
               <Heading as="h2" size="section" className="mb-4">
                 The people behind Articog
               </Heading>

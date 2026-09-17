@@ -338,15 +338,6 @@ export default function ServicesPage() {
 
         <Container className="relative z-20">
           <div className="mx-auto max-w-3xl text-center">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{
-                color: "rgba(255,255,255,0.40)",
-              }}
-            >
-              Services
-            </span>
-
             <h1 className="type-h1 text-white">
               Every creative format, delivered.
             </h1>
@@ -358,9 +349,6 @@ export default function ServicesPage() {
       <Section className="border-t border-white/[0.05] py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-3xl">
-            <span className="mb-4 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-              WHAT WE PRODUCE
-            </span>
             <h2 className="type-h2 text-white">One production partner. Every campaign format.</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
