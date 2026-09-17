@@ -396,18 +396,20 @@ export default function ServicesPage() {
                   <Link
                     key={service.href}
                     href={service.href}
-                    className="group flex items-center justify-between rounded-xl p-5 transition-colors duration-200 hover:border-white/[0.16]"
+                    className="group block rounded-xl p-5 transition-colors duration-200 hover:border-white/[0.16]"
                     style={{
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                    <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
-                      {service.title}
-                    </h3>
-                    <ArrowRight
-                      size={14}
-                      className="ml-4 shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
-                    />
+                    <div className="flex min-w-0 items-center justify-between gap-4">
+                      <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
+                        {service.title}
+                      </h3>
+                      <ArrowRight
+                        size={14}
+                        className="shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
+                      />
+                    </div>
                   </Link>
                 ))}
               </div>

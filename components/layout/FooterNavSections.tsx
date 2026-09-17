@@ -10,9 +10,9 @@ type FooterSection = {
 export function FooterNavSections({ sections }: { sections: FooterSection[] }) {
   return (
     <>
-      <div className="grid gap-12 sm:grid-cols-2 md:col-span-3 md:grid-cols-3">
+      <div className="grid gap-x-12 gap-y-8 sm:grid-cols-2 md:col-span-3 md:grid-cols-[repeat(3,minmax(0,1fr))]">
         {sections.map((section) => (
-          <div key={section.title} className="hidden space-y-4 md:block">
+          <div key={section.title} className="hidden min-w-0 space-y-4 md:block">
             <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-safe">
               {section.title}
             </p>
