@@ -83,7 +83,7 @@ export default function SecurityPage() {
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
             <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14 text-lg">
+              <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo
               </Button>
             </Link>

@@ -112,7 +112,7 @@ export default function AudioPage() {
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="type-h2 mb-8 text-white">Elevate your project's sound</h2>
             <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14 text-lg">
+              <Button size="lg" className="rounded-full px-8 h-14">
                 Add Audio Production
               </Button>
             </Link>

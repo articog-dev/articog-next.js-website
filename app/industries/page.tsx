@@ -105,7 +105,7 @@ export default function IndustriesPage() {
           <div className="text-center pt-12 border-t border-white/10">
             <p className="type-body mb-6 text-white/60">Ready to transform your production?</p>
             <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14 text-lg">
+              <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo
               </Button>
             </Link>
