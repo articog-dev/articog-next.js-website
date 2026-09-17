@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import { X, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui";
 import { menuGroups } from "./Header";
 import { ServiceMenuCards } from "./ServiceMenuCards";
 
@@ -95,23 +94,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 px-6 pb-4">
-          <Link
-            href="/work"
-            onClick={handleClose}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-          >
-            View Work
-          </Link>
-          <Link
-            href="/book-a-demo"
-            onClick={handleClose}
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-zinc-200"
-          >
-            Book a Demo
-          </Link>
-        </div>
-
         {/* Nav */}
         <nav className="flex flex-col flex-1 overflow-y-auto px-4 pb-12">
           {menuGroups.map((group) => {
@@ -183,13 +165,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           })}
 
         </nav>
-
-        {/* CTA */}
-        <div className="px-6 pb-8 pt-6 shrink-0 bg-[#060606]">
-          <Button asChild variant="primary" size="lg" className="w-full">
-            <Link href="/book-a-demo" onClick={handleClose}>Book a Demo</Link>
-          </Button>
-        </div>
       </div>
     </>
   );

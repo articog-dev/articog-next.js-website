@@ -94,9 +94,6 @@ export function CookieConsent() {
               <button type="button" onClick={() => save(false)} className="w-full rounded-full border border-white/10 px-3 py-3 text-sm font-medium text-white/75 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                 Reject All Cookies
               </button>
-              <button type="button" onClick={() => save(true)} className="w-full rounded-full bg-white px-3 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                Accept All Cookies
-              </button>
             </div>
           </div>
         )}
