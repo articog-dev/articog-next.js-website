@@ -392,9 +392,9 @@ export default function ServicesPage() {
               </h2>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {group.items.filter((service, index, items) => items.findIndex((item) => item.href === service.href) === index).map((service) => (
+                {group.items.map((service) => (
                   <Link
-                    key={service.href}
+                    key={`${group.category}-${service.title}`}
                     href={service.href}
                     className="group block rounded-xl p-5 transition-colors duration-200 hover:border-white/[0.16]"
                     style={{
