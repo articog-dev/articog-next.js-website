@@ -105,9 +105,7 @@ export const menuGroups = [
   },
   {
     label: "Work",
-    links: [
-      { label: "Portfolio Overview", href: "/work" },
-    ],
+    links: [],
   },
   {
     label: "Why Articog",
@@ -602,12 +600,15 @@ export function Header() {
           {/* Desktop Navigation */}
 
           <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
-            {menuGroups.map((group) => (
+            {menuGroups.map((group) => {
+              const isDirectGroup = group.label === "Work";
+
+              return (
               <div
                 key={group.label}
                 className="relative nav-group-container"
-                onMouseEnter={(event) => openGroup(group.label, event.currentTarget as HTMLElement)}
-                onMouseLeave={scheduleClose}
+                onMouseEnter={isDirectGroup ? undefined : (event) => openGroup(group.label, event.currentTarget as HTMLElement)}
+                onMouseLeave={isDirectGroup ? undefined : scheduleClose}
                 onClick={(e) => e.stopPropagation()}
                 style={{
                   zIndex:
@@ -630,41 +631,44 @@ export function Header() {
                   >
                     {group.label}
                   </Link>
-                  <button
-                    type="button"
-                    aria-haspopup="true"
-                    aria-label={`Open ${group.label} menu`}
-                    aria-expanded={activeGroup === group.label}
-                    onMouseEnter={(event) => openGroup(group.label, event.currentTarget.parentElement?.parentElement ?? event.currentTarget)}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleGroup(group.label, e.currentTarget.parentElement?.parentElement ?? e.currentTarget);
-                    }}
-                    className="flex min-h-6 min-w-6 items-center justify-center"
-                  >
-                    <ChevronDown
-                      size={11}
-                      className="opacity-30 transition-transform duration-200"
-                      style={{
-                        transform:
-                          activeGroup === group.label
-                            ? "rotate(180deg)"
-                            : "rotate(0deg)",
+                  {!isDirectGroup && (
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-label={`Open ${group.label} menu`}
+                      aria-expanded={activeGroup === group.label}
+                      onMouseEnter={(event) => openGroup(group.label, event.currentTarget.parentElement?.parentElement ?? event.currentTarget)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleGroup(group.label, e.currentTarget.parentElement?.parentElement ?? e.currentTarget);
                       }}
-                    />
-                  </button>
+                      className="flex min-h-6 min-w-6 items-center justify-center"
+                    >
+                      <ChevronDown
+                        size={11}
+                        className="opacity-30 transition-transform duration-200"
+                        style={{
+                          transform:
+                            activeGroup === group.label
+                              ? "rotate(180deg)"
+                              : "rotate(0deg)",
+                        }}
+                      />
+                    </button>
+                  )}
                 </div>
 
-                <DropdownPanel
-                  group={group}
-                  onClose={closeDropdown}
-                  isOpen={
-                    activeGroup === group.label
-                  }
-                  anchorElement={dropdownAnchor}
-                />
+                {!isDirectGroup && (
+                  <DropdownPanel
+                    group={group}
+                    onClose={closeDropdown}
+                    isOpen={activeGroup === group.label}
+                    anchorElement={dropdownAnchor}
+                  />
+                )}
               </div>
-            ))}
+              );
+            })}
           </nav>
 
           {/* CTA */}
