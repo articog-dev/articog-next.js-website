@@ -52,32 +52,7 @@ export function Comparison({ rows }: ComparisonProps) {
         {/* Heading removed from comparison section to avoid duplication with hero */}
 
 
-        <div className="space-y-4 md:hidden">
-          {rows.map((row) => (
-            <article key={row.attribute} className="rounded-2xl border border-white/[0.08] p-5">
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{row.attribute}</h3>
-              <div className="space-y-3">
-                <div className="rounded-xl border border-white/20 bg-white/[0.06] p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white">Articog</p>
-                  <p className="mt-1 text-sm text-white">{row.articog}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div className="rounded-xl border border-white/[0.08] p-3">
-                    <p className="text-xs uppercase tracking-wider text-white/45">Traditional</p>
-                    <p className="mt-1 text-white/65">{row.agency}</p>
-                  </div>
-                  <div className="rounded-xl border border-white/[0.08] p-3">
-                    <p className="text-xs uppercase tracking-wider text-white/45">In-house</p>
-                    <p className="mt-1 text-white/65">{row.inhouse}</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="hidden overflow-hidden rounded-2xl border border-white/[0.08] md:block">
-          {/* Scroll wrapper for mobile */}
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <div className="overflow-x-auto">
             <div style={{ minWidth: "600px" }}>
               {/* Column headers */}
