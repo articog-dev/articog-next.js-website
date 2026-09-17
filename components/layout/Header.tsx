@@ -133,16 +133,13 @@ export const menuGroups = [
     ],
   },
   {
-    label: "Resources",
-    links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Help Center", href: "/help" },
-      { label: "AI Ad Library", href: "/ai-ad-library" },
-    ],
+    label: "Blog",
+    links: [],
   },
   {
     label: "Company",
     links: [
+      { label: "Help Center", href: "/help" },
       { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
       { label: "Press & Media", href: "/press" },
@@ -157,7 +154,7 @@ const groupHubHrefs: Record<string, string> = {
   Industries: "/industries",
   Work: "/work",
   "Why Articog": "/why-articog",
-  Resources: "/blog",
+  Blog: "/blog",
   Company: "/about",
 };
 
@@ -423,7 +420,8 @@ export function Header() {
               const isDirectGroup =
                 group.label === "Solutions" ||
                 group.label === "Work" ||
-                group.label === "Industries";
+                group.label === "Industries" ||
+                group.label === "Blog";
 
               return (
               <div

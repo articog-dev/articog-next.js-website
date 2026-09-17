@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
+import { Button } from "@/components/ui";
 import { X, ChevronDown } from "lucide-react";
 import { menuGroups } from "./Header";
 import { ServiceMenuCards } from "./ServiceMenuCards";
@@ -95,13 +96,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         {/* Nav */}
-        <nav className="flex flex-col flex-1 overflow-y-auto px-4 pb-12">
+        <nav className="flex flex-col overflow-y-auto px-4 pb-8">
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
             const isDirectGroup =
               group.label === "Solutions" ||
               group.label === "Work" ||
-              group.label === "Industries";
+              group.label === "Industries" ||
+              group.label === "Blog";
 
             if (isDirectGroup) {
               return (
@@ -112,7 +114,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         ? "/solutions"
                         : group.label === "Industries"
                           ? "/industries"
-                          : "/work"
+                          : group.label === "Blog"
+                            ? "/blog"
+                            : "/work"
                     }
                     onClick={handleClose}
                     className="flex w-full items-center rounded-full px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -163,7 +167,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </div>
             );
           })}
-
+          <div className="mt-4 border-t border-white/[0.08] pt-6">
+            <Button asChild size="lg" className="w-full">
+              <Link href="/book-a-demo" onClick={handleClose}>
+                Book a Demo
+              </Link>
+            </Button>
+          </div>
         </nav>
       </div>
     </>
