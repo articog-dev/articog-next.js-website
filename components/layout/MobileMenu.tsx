@@ -4,6 +4,7 @@ import { Link } from "@/components/ui/Link";
 import { X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui";
 import { menuGroups } from "./Header";
+import { ServiceMenuCards } from "./ServiceMenuCards";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -147,18 +148,24 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </button>
 
                 {isGroupOpen && (
-                  <div id={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pb-4 pl-3">
-                    {group.links.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={handleClose}
-                        className="flex min-h-11 items-center rounded-lg px-3 py-2 font-sans text-[13px] text-white/50 transition-colors hover:text-white/85"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
+                  group.label === "Services" ? (
+                    <div id="mobile-menu-services" className="pb-4">
+                      <ServiceMenuCards onClose={handleClose} />
+                    </div>
+                  ) : (
+                    <div id={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pb-4 pl-3">
+                      {group.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={handleClose}
+                          className="flex min-h-11 items-center rounded-lg px-3 py-2 font-sans text-[13px] text-white/50 transition-colors hover:text-white/85"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )
                 )}
               </div>
             );

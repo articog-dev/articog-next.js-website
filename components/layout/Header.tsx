@@ -3,16 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import {
-  ArrowUpRight,
   ChevronDown,
-  Film,
   Menu,
-  Smartphone,
-  TestTube2,
-  Workflow,
 } from "lucide-react";
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
+import { ServiceMenuCards } from "./ServiceMenuCards";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
 
@@ -284,184 +280,8 @@ function ServicesContent({
 }: {
   onClose: () => void;
 }) {
-  const featured = [
-    {
-      title: "Brand Films & Commercials",
-      href: "/services/ai-video-production",
-      icon: <Film size={14} />,
-    },
-    {
-      title: "Creator-Style Social Content",
-      href: "/work/social",
-      icon: <Smartphone size={14} />,
-    },
-    {
-      title: "Performance Creative Variants",
-      href: "/services/ad-creative",
-      icon: <TestTube2 size={14} />,
-    },
-    {
-      title: "Creative Workflow Automation",
-      href: "/how-it-works/ai-creative-pipeline",
-      icon: <Workflow size={14} />,
-    },
-  ];
-
-  const columns = [
-    {
-      title: "By Service",
-      links: [
-        {
-          label: "Brand Films",
-          href: "/services/ai-video-production",
-        },
-        {
-          label: "Brand Storytelling",
-          href: "/services/creative-strategy",
-        },
-        {
-          label: "Commercials & Ads",
-          href: "/services/ad-creative",
-        },
-        {
-          label: "Campaign Visuals & Product Imagery",
-          href: "/services/product-visuals",
-        },
-        {
-          label: "Audio Ads",
-          href: "/services/audio",
-        },
-      ],
-    },
-    {
-      title: "By Channel",
-      links: [
-        {
-          label: "Social Media",
-          href: "/work/social",
-        },
-        {
-          label: "Paid Advertising",
-          href: "/services/ad-creative",
-        },
-        {
-          label: "Streaming Audio",
-          href: "/services/audio",
-        },
-        {
-          label: "OOH & Print",
-          href: "/services/product-visuals",
-        },
-        {
-          label: "YouTube & Video",
-          href: "/services/ai-video-production",
-        },
-      ],
-    },
-    {
-      title: "By Goal",
-      links: [
-        {
-          label: "Brand Awareness",
-          href: "/solutions/product-launch",
-        },
-        {
-          label: "Performance Marketing",
-          href: "/solutions/performance-marketing",
-        },
-        {
-          label: "Product Launch",
-          href: "/solutions/product-launch",
-        },
-        {
-          label: "Content at Scale",
-          href: "/solutions/monthly-creative-subscription",
-        },
-      ],
-    },
-    {
-      title: "Quick Links",
-      links: [
-        {
-          label: "View All Services",
-          href: "/services",
-        },
-        {
-          label: "How It Works",
-          href: "/how-it-works",
-        },
-        {
-          label: "Case Studies",
-          href: "/work",
-        },
-        {
-          label: "Book a Demo",
-          href: "/book-a-demo",
-        },
-      ],
-    },
-  ];
-
   return (
-    <>
-      {/* Featured Services */}
-      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
-        {featured.map((item) => (
-          <Link
-            key={item.title}
-            href={item.href}
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className="group flex min-w-0 flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:bg-white/[0.04]"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.03] text-zinc-400 transition-colors group-hover:text-white">
-                {item.icon}
-              </div>
-              <ArrowUpRight size={14} className="text-zinc-500 transition-colors group-hover:text-white" />
-            </div>
-
-            <div>
-              <h4 className="type-h4 mb-1 text-white">
-                {item.title}
-              </h4>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* Divider */}
-      <div className="mb-8 h-px w-full bg-white/[0.06]" />
-
-      {/* Service Categories */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-8">
-        {columns.map((col) => (
-          <div key={col.title} className="min-w-0">
-            <h5 className="mb-4 text-[10px] font-bold uppercase tracking-widest text-zinc-500 sm:text-[11px]">
-              {col.title}
-            </h5>
-
-            <div className="flex flex-col gap-3">
-              {col.links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onClose();
-                  }}
-                  className="w-fit text-[13px] font-medium text-zinc-400 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
+    <ServiceMenuCards onClose={onClose} />
   );
 }
 
