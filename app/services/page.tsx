@@ -401,13 +401,13 @@ export default function ServicesPage() {
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                    <div className="flex w-full min-w-0 items-center justify-between gap-4">
+                    <div className="flex w-full min-w-0 items-center gap-4">
                       <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
                         {service.title}
                       </h3>
                       <ArrowRight
                         size={14}
-                        className="shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
+                        className="ml-auto shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
                       />
                     </div>
                   </Link>
