@@ -86,9 +86,6 @@ function BlogCard({ post }: { post: BlogEntry }) {
 
       <div className="p-6 md:p-7">
         <div className="mb-4 flex items-center justify-between gap-3">
-          <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
-            {post.sourceLabel.toUpperCase()}
-          </span>
           <span className="font-sans text-xs text-white/35">
             {formatDate(post.publishedAt)}
           </span>
