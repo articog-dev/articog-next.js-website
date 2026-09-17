@@ -74,10 +74,10 @@ export function CaseStudies({}: { caseStudies: CaseStudy[] }) {
   return (
     <Section
       id="approach"
-      className="relative overflow-hidden"
+      className="relative flex min-h-[100svh] items-center overflow-hidden"
       aria-labelledby="approach-heading"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 h-full w-full">
         <video
           ref={(video) => {
             videoRef.current = video;
@@ -98,7 +98,7 @@ export function CaseStudies({}: { caseStudies: CaseStudy[] }) {
               : undefined
           }
           poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:good,f_auto,w_1600,so_0/v1786974706/Web_2.jpg"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
           aria-hidden="true"
         />
         <div
