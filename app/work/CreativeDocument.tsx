@@ -17,8 +17,6 @@ type PortfolioProject = {
 
 type WorkFilter = "Video" | "Product" | "Social" | "Industries";
 
-const workFilters: Array<"All" | WorkFilter> = ["All", "Video", "Product", "Social", "Industries"];
-
 const projects: PortfolioProject[] = [
   {
     title: "Product Film — Footwear",
@@ -81,19 +79,13 @@ const getCloudinaryUrl = (src: string, width: number) =>
 
 export function CreativeDocument() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeFilter, setActiveFilter] = useState<"All" | WorkFilter>("All");
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   const dragStartX = useRef<number | null>(null);
   const didDrag = useRef(false);
 
-  const filteredProjects = activeFilter === "All"
-    ? projects
-    : projects.filter((project) => project.filters.includes(activeFilter));
-  const activeProject = filteredProjects[activeIndex] ?? filteredProjects[0];
-
   const moveProject = useCallback((direction: number) => {
-    setActiveIndex((current) => (current + direction + filteredProjects.length) % filteredProjects.length);
-  }, [filteredProjects.length]);
+    setActiveIndex((current) => (current + direction + projects.length) % projects.length);
+  }, []);
 
   const startDrag = (clientX: number) => {
     dragStartX.current = clientX;
@@ -152,17 +144,10 @@ export function CreativeDocument() {
 
   return (
     <section className={styles.showcase} aria-label="Portfolio showcase">
-      <div className={styles.headerRow}>
-        <div>
-          <p className={styles.kicker}>Selected work</p>
-          <h2>Creative work built to feel premium on every screen.</h2>
-        </div>
-      </div>
-
       <div className={styles.gallery} aria-live="polite">
-        {filteredProjects.map((project, index) => {
-          const offset = ((index - activeIndex + filteredProjects.length) % filteredProjects.length);
-          const normalizedOffset = offset > filteredProjects.length / 2 ? offset - filteredProjects.length : offset;
+        {projects.map((project, index) => {
+          const offset = ((index - activeIndex + projects.length) % projects.length);
+          const normalizedOffset = offset > projects.length / 2 ? offset - projects.length : offset;
           const isActive = normalizedOffset === 0;
           const isNeighbor = Math.abs(normalizedOffset) === 1;
           const isHidden = Math.abs(normalizedOffset) > 1;
@@ -225,23 +210,6 @@ export function CreativeDocument() {
         })}
       </div>
 
-      <div className={styles.filters} aria-label="Filter work by category" role="group">
-        {workFilters.map((filter) => (
-          <button
-            key={filter}
-            type="button"
-            className={`${styles.filter} ${activeFilter === filter ? styles.filterActive : ""}`}
-            onClick={() => {
-              setActiveFilter(filter);
-              setActiveIndex(0);
-            }}
-            aria-pressed={activeFilter === filter}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-
       <div className={styles.controlsWrap}>
         <div className={styles.controls}>
           <button type="button" onClick={() => moveProject(-1)} className={styles.arrow} aria-label="Previous portfolio project">
@@ -250,15 +218,6 @@ export function CreativeDocument() {
           <button type="button" onClick={() => moveProject(1)} className={styles.arrow} aria-label="Next portfolio project">
             <ArrowRight size={16} aria-hidden="true" />
           </button>
-        </div>
-      </div>
-
-      <div className={styles.metaRow}>
-        <div className={styles.projectInfo}>
-          <span className={styles.category}>{activeProject.category}</span>
-          <h3>{activeProject.title}</h3>
-          <p>{activeProject.description}</p>
-          <a href="/work" className={styles.viewProject}>View Project</a>
         </div>
       </div>
 
