@@ -1,4 +1,5 @@
 import { Container, Section } from "@/components/ui";
+import { Link } from "@/components/ui/Link";
 
 type IndustryDetail = {
   id: string;
@@ -153,14 +154,56 @@ export function IndustryDetails() {
         <div className="mb-12 max-w-2xl md:mb-16">
           <h2 className="type-h2 text-white">Creative production by industry</h2>
         </div>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="space-y-6">
           {industryDetails.map((industry) => (
-            <div key={industry.id} id={industry.id} className="group scroll-mt-24 rounded-2xl border border-white/[0.1] p-6 transition-colors hover:border-white/[0.2] md:p-8">
-              <div className="flex items-center justify-between gap-6">
+            <section
+              key={industry.id}
+              id={industry.id}
+              className="scroll-mt-28 rounded-2xl border border-white/[0.1] p-6 md:p-8"
+            >
+              <div className="max-w-3xl">
                 <h3 className="type-h3 text-white">{industry.title}</h3>
-                <span className="shrink-0 text-white/45 transition-transform group-hover:translate-x-0.5 group-hover:text-white/80" aria-hidden="true">→</span>
               </div>
-            </div>
+
+              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                {industry.considerations.map((consideration) => (
+                  <div key={consideration.title}>
+                    <h4 className="type-h4 text-white">{consideration.title}</h4>
+                    <p className="mt-2 type-small leading-relaxed text-white/50">
+                      {consideration.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {industry.serviceLinks && (
+                <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/[0.08] pt-5">
+                  {industry.serviceLinks.map((service) => (
+                    <Link
+                      key={service.href}
+                      href={service.href}
+                      className="type-small text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+                    >
+                      {service.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {industry.faqs && (
+                <div className="mt-8 border-t border-white/[0.08] pt-5">
+                  <h4 className="type-label text-white/45">Frequently Asked Questions</h4>
+                  <div className="mt-4 space-y-5">
+                    {industry.faqs.map((faq) => (
+                      <div key={faq.question}>
+                        <h5 className="type-small font-semibold text-white/80">{faq.question}</h5>
+                        <p className="mt-1 type-small leading-relaxed text-white/50">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
           ))}
         </div>
       </Container>

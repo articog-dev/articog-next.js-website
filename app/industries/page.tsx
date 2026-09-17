@@ -44,6 +44,10 @@ export default function IndustriesPage() {
       title: "Fashion & Lifestyle",
       href: "/industries#fashion-lifestyle",
     },
+    {
+      title: "Additional Industry Applications",
+      href: "/industries#additional-applications",
+    },
   ];
 
   return (
@@ -59,14 +63,14 @@ export default function IndustriesPage() {
             </Heading>
           </div>
 
-          <div className="mx-auto mb-24 grid max-w-5xl gap-px overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.1] text-left sm:grid-cols-2">
+          <div className="mx-auto mb-16 grid max-w-5xl gap-3 overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.1] text-left sm:grid-cols-2">
             {industries.map((industry) => (
               <Link
                 key={industry.title}
                 href={industry.href}
-                className="group flex min-h-32 flex-col justify-between border border-white/[0.08] p-5 transition-colors hover:border-white/[0.16] md:min-h-36 md:p-6"
+                className="group flex min-h-[88px] items-center border border-white/[0.08] px-5 py-4 transition-colors hover:border-white/[0.16] sm:min-h-[96px] sm:px-6 md:min-h-[112px]"
               >
-                <div className="flex items-center justify-between gap-6">
+                <div className="flex w-full items-center justify-between gap-6">
                   <h2 className="type-h3 text-white">{industry.title}</h2>
                   <ArrowRight size={18} className="shrink-0 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white/80" aria-hidden="true" />
                 </div>
