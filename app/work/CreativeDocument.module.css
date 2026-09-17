@@ -13,6 +13,7 @@
   transform-style: preserve-3d;
   overflow: hidden;
   touch-action: pan-y;
+  overscroll-behavior-x: contain;
   cursor: grab;
 }
 
@@ -54,6 +55,8 @@
   border-radius: inherit;
   background: #111111;
   cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .image {
@@ -160,13 +163,13 @@
     width: min(78vw, 700px);
   }
 
-  .controlsWrap {
-    margin-top: 1.25rem;
-    justify-content: flex-start;
-  }
-
   .gallery {
     height: 23rem;
+  }
+
+  .controlsWrap {
+    margin-top: 1.25rem;
+    justify-content: center;
   }
 
   .projectCard {

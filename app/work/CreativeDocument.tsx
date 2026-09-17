@@ -80,38 +80,71 @@ const getCloudinaryUrl = (src: string, width: number) =>
 export function CreativeDocument() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
-  const dragStartX = useRef<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const lastPointerX = useRef<number | null>(null);
+  const pointerDistance = useRef(0);
+  const activePointerId = useRef<number | null>(null);
   const didDrag = useRef(false);
+  const lastWheelTime = useRef(0);
 
   const moveProject = useCallback((direction: number) => {
     setActiveIndex((current) => (current + direction + projects.length) % projects.length);
   }, []);
 
-  const startDrag = (clientX: number) => {
-    dragStartX.current = clientX;
+  const startDragAt = (clientX: number, clientY: number) => {
+    pointerStart.current = { x: clientX, y: clientY };
+    lastPointerX.current = clientX;
+    pointerDistance.current = 0;
     didDrag.current = false;
   };
 
-  const updateDrag = (clientX: number) => {
-    if (dragStartX.current !== null && Math.abs(clientX - dragStartX.current) > 8) {
+  const updateDragAt = (clientX: number, clientY: number) => {
+    if (activePointerId.current === null || !pointerStart.current || lastPointerX.current === null) return;
+
+    const deltaX = clientX - lastPointerX.current;
+    const totalX = clientX - pointerStart.current.x;
+    const totalY = clientY - pointerStart.current.y;
+    pointerDistance.current += deltaX;
+
+    if (Math.abs(totalX) > 10 && Math.abs(totalX) > Math.abs(totalY)) {
       didDrag.current = true;
     }
+
+    if (Math.abs(pointerDistance.current) >= 42 && Math.abs(totalX) > Math.abs(totalY)) {
+      const direction = pointerDistance.current < 0 ? 1 : -1;
+      moveProject(direction);
+      pointerDistance.current -= pointerDistance.current < 0 ? -42 : 42;
+    }
+    lastPointerX.current = clientX;
   };
 
-  const finishDrag = (clientX: number) => {
-    if (dragStartX.current === null) return;
+  const finishDrag = () => {
+    if (activePointerId.current === null) return;
 
-    const deltaX = clientX - dragStartX.current;
-    dragStartX.current = null;
-
-    if (Math.abs(deltaX) > 40) {
-      moveProject(deltaX < 0 ? 1 : -1);
-    }
+    pointerStart.current = null;
+    lastPointerX.current = null;
+    pointerDistance.current = 0;
+    activePointerId.current = null;
   };
 
   const cancelDrag = () => {
-    dragStartX.current = null;
+    pointerStart.current = null;
+    lastPointerX.current = null;
+    pointerDistance.current = 0;
+    activePointerId.current = null;
     didDrag.current = false;
+  };
+
+  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (Math.abs(delta) < 4) return;
+
+    const now = performance.now();
+    if (now - lastWheelTime.current < 220) return;
+
+    lastWheelTime.current = now;
+    moveProject(delta > 0 ? 1 : -1);
   };
 
   useEffect(() => {
@@ -142,9 +175,48 @@ export function CreativeDocument() {
     };
   }, [selectedProject]);
 
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!event.isPrimary) return;
+      startDragAt(event.clientX, event.clientY);
+      activePointerId.current = event.pointerId;
+    };
+    const handlePointerMove = (event: PointerEvent) => {
+      if (activePointerId.current !== event.pointerId) return;
+      updateDragAt(event.clientX, event.clientY);
+      if (didDrag.current && !gallery.hasPointerCapture(event.pointerId)) {
+        gallery.setPointerCapture(event.pointerId);
+      }
+    };
+    const handlePointerUp = (event: PointerEvent) => {
+      if (activePointerId.current !== event.pointerId) return;
+      if (gallery.hasPointerCapture(event.pointerId)) gallery.releasePointerCapture(event.pointerId);
+      finishDrag();
+    };
+
+    gallery.addEventListener("pointerdown", handlePointerDown);
+    gallery.addEventListener("pointermove", handlePointerMove);
+    gallery.addEventListener("pointerup", handlePointerUp);
+    gallery.addEventListener("pointercancel", cancelDrag);
+    return () => {
+      gallery.removeEventListener("pointerdown", handlePointerDown);
+      gallery.removeEventListener("pointermove", handlePointerMove);
+      gallery.removeEventListener("pointerup", handlePointerUp);
+      gallery.removeEventListener("pointercancel", cancelDrag);
+    };
+  });
+
   return (
     <section className={styles.showcase} aria-label="Portfolio showcase">
-      <div className={styles.gallery} aria-live="polite">
+      <div
+        className={styles.gallery}
+        ref={galleryRef}
+        aria-live="polite"
+        onWheel={handleWheel}
+      >
         {projects.map((project, index) => {
           const offset = ((index - activeIndex + projects.length) % projects.length);
           const normalizedOffset = offset > projects.length / 2 ? offset - projects.length : offset;
@@ -164,17 +236,6 @@ export function CreativeDocument() {
             <article
               key={project.title}
               className={`${styles.projectCard} ${isActive ? styles.active : ""} ${isNeighbor ? styles.neighbor : ""}`}
-              onMouseDown={(event) => startDrag(event.clientX)}
-              onMouseMove={(event) => updateDrag(event.clientX)}
-              onMouseUp={(event) => finishDrag(event.clientX)}
-              onMouseLeave={cancelDrag}
-              onTouchStart={(event) => startDrag(event.touches[0].clientX)}
-              onTouchMove={(event) => {
-                updateDrag(event.touches[0].clientX);
-                if (didDrag.current) event.preventDefault();
-              }}
-              onTouchEnd={(event) => finishDrag(event.changedTouches[0].clientX)}
-              onTouchCancel={cancelDrag}
               style={{
                 transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), ${depth}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
                 opacity,
