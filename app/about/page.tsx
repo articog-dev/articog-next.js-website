@@ -74,13 +74,14 @@ export default function AboutPage() {
                 role="CEO & Founder"
                 imageSrc="/sai-teja-inampudi.png"
                 imageAlt="Sai Teja Inampudi"
+                profileHref="/about/founder/sai-teja-inampudi"
               />
               <FounderPreviewCard
                 name="Dr. Harika Govada"
                 role="MD & Co-Founder"
                 imageSrc="/harika-govada.png.png"
                 imageAlt="Dr. Harika Govada"
-                profileHref="/founder-leadership#harika-govada"
+                profileHref="/about/founder/dr-harika-govada"
                 circular
               />
             </div>

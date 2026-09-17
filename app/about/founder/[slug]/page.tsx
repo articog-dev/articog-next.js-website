@@ -1,23 +1,52 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Link } from "@/components/ui/Link";
 import { Container, Heading, Section } from "@/components/ui";
 import { FounderProfile } from "@/components/sections/FounderProfile";
-import { founders } from "@/lib/founders";
+import { founders, getFounderBySlug } from "@/lib/founders";
 
-export const metadata: Metadata = {
-  title: "Founder / Leadership | Articog",
-  description: "Meet the founders and leadership behind Articog.",
-  alternates: { canonical: "https://articog.com/founder-leadership" },
-};
+export function generateStaticParams() {
+  return founders.map((founder) => ({ slug: founder.slug }));
+}
 
-export default function FounderLeadershipPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const founder = getFounderBySlug(slug);
+
+  if (!founder) {
+    return { title: "Founder | Articog" };
+  }
+
+  return {
+    title: `${founder.name} | Articog`,
+    description: `${founder.name}, ${founder.roleLines[0]}.`,
+    alternates: { canonical: `https://articog.com/about/founder/${founder.slug}` },
+  };
+}
+
+export default async function FounderPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const founder = getFounderBySlug(slug);
+
+  if (!founder) {
+    notFound();
+  }
+
   return (
-    <div className="bg-black">
+    <div className="min-h-screen bg-black">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-6xl">
             <Link
-              to="/about"
+              href="/about"
               className="mb-10 inline-flex text-sm text-white/60 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               Back to About
@@ -27,15 +56,10 @@ export default function FounderLeadershipPage() {
                 FOUNDER / LEADERSHIP
               </span>
               <Heading as="h1" size="hero" className="text-white">
-                FOUNDER / LEADERSHIP
+                {founder.name}
               </Heading>
             </div>
-
-            <div className="space-y-16">
-              {founders.map((founder) => (
-                <FounderProfile key={founder.slug} founder={founder} />
-              ))}
-            </div>
+            <FounderProfile founder={founder} />
           </div>
         </Container>
       </Section>
