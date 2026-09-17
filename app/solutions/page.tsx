@@ -36,6 +36,10 @@ export default function SolutionsPage() {
       description: "Production for large organizations with strict security and governance needs.",
       href: "/solutions/enterprise",
     },
+    {
+      title: "Creative Team Extension",
+      href: "/solutions/creative-team-overflow",
+    },
   ];
 
   return (
@@ -43,12 +47,6 @@ export default function SolutionsPage() {
       <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              SOLUTIONS
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               Solutions built around how you work
             </Heading>
@@ -59,13 +57,10 @@ export default function SolutionsPage() {
               <Link
                 key={card.title}
                 href={card.href}
-                className="group flex items-center justify-between rounded-xl p-5 border border-white/[0.08] transition-colors hover:border-white/20"
+                className="group flex min-h-[96px] items-center justify-between rounded-xl border border-white/[0.08] px-5 py-4 transition-colors hover:border-white/20"
               >
-                <div>
-                    <h2 className="type-h3 text-white">{card.title}</h2>
-                  <p className="mt-1 type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
-                    {card.description}
-                  </p>
+                <div className="min-w-0">
+                  <h2 className="type-h3 text-white">{card.title}</h2>
                 </div>
                 <ArrowRight size={18} className="ml-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />
               </Link>
