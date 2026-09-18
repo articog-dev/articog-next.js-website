@@ -1,5 +1,6 @@
 import { Container, Section, Heading } from "@/components/ui";
 import type { Capability } from "@/types";
+import Link from "next/link";
 
 interface CapabilitiesProps {
   capabilities: Capability[];
@@ -15,7 +16,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
 
         <div className="border-t border-white/[0.14]">
           {capabilities.map((cap, index) => (
-            <a
+            <Link
               key={cap.title}
               href="/services"
               className="group grid gap-3 border-b border-white/[0.14] py-7 transition-colors duration-200 hover:border-white/30 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] md:items-start md:gap-10 md:py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16"
@@ -32,7 +33,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
               <span aria-hidden="true" className="justify-self-end text-lg text-white/40 transition-transform duration-200 group-hover:translate-x-1 md:self-center">
                 →
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </Container>

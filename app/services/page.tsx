@@ -35,7 +35,7 @@ const serviceDeliverables = [
   },
 ];
 
-const serviceGroups = [
+export const serviceGroups = [
   {
     category: "Video",
     items: [
@@ -47,37 +47,37 @@ const serviceGroups = [
       },
       {
         title: "Brand Films",
-        href: "/services/ai-video-production",
+        href: "/services/brand-films",
         description:
           "Films with rich detail that define your brand identity.",
       },
       {
         title: "Product Commercials",
-        href: "/services/ai-video-production",
+        href: "/services/product-commercials",
         description:
           "Product showcases built for conversion.",
       },
       {
         title: "Performance Ads",
-        href: "/services/ad-creative",
+        href: "/services/performance-ads",
         description:
           "Direct response video creative for cross channel ROI.",
       },
       {
         title: "Social & Reel Production",
-        href: "/services/social-creative",
+        href: "/services/social-reel-production",
         description:
           "Fast, vertical content for modern platforms.",
       },
       {
         title: "Product Launch Videos",
-        href: "/services/ai-video-production",
+        href: "/services/product-launch-videos",
         description:
           "Announcement films that build momentum.",
       },
       {
         title: "Localization & Variants",
-        href: "/services/ai-video-production",
+        href: "/services/localization-variants",
         description:
           "Adapt campaigns for global markets with localized voice.",
       },
@@ -94,19 +94,19 @@ const serviceGroups = [
       },
       {
         title: "Performance Video Ads",
-        href: "/services/ad-creative",
+        href: "/services/performance-video-ads",
         description:
           "Video testing and production for paid media.",
       },
       {
         title: "Testing & Variants",
-        href: "/services/ad-creative",
+        href: "/services/testing-variants",
         description:
           "Hypothesis-driven testing for paid campaigns.",
       },
       {
         title: "Campaign Key Visuals",
-        href: "/services/ad-creative",
+        href: "/services/campaign-key-visuals",
         description:
           "The core visual system for a campaign across channels.",
       },
@@ -123,13 +123,13 @@ const serviceGroups = [
       },
       {
         title: "Monthly Social Content",
-        href: "/services/social-creative",
+        href: "/services/monthly-social-content",
         description:
           "Consistent content cycles to maintain your brand presence.",
       },
       {
         title: "Creative Repurposing",
-        href: "/services/social-creative",
+        href: "/services/creative-repurposing",
         description:
           "Turn existing content into new formats and channels intelligently.",
       },
@@ -140,25 +140,25 @@ const serviceGroups = [
     items: [
       {
         title: "Product Visual Content",
-        href: "/services/product-visuals",
+        href: "/services/product-visual-content",
         description:
           "Dynamic product imagery for e-commerce and marketing.",
       },
       {
         title: "AI Product Photography",
-        href: "/services/product-visuals",
+        href: "/services/ai-product-photography",
         description:
           "Photorealistic product scenes without the physical studio.",
       },
       {
         title: "Custom Image Libraries",
-        href: "/services/product-visuals",
+        href: "/services/custom-image-libraries",
         description:
           "Build large, consistent libraries of on-brand product images.",
       },
       {
         title: "E-commerce Visuals",
-        href: "/services/product-visuals",
+        href: "/services/ecommerce-visuals",
         description:
           "Visuals built for conversion on your site and global marketplaces.",
       },
@@ -175,13 +175,13 @@ const serviceGroups = [
       },
       {
         title: "AI Voiceover",
-        href: "/services/audio",
+        href: "/services/ai-voiceover",
         description:
           "Hyper-realistic synthetic voice production with full rights clearance.",
       },
       {
         title: "Music & Sound Design",
-        href: "/services/audio",
+        href: "/services/music-sound-design",
         description:
           "Custom scoring and immersive soundscapes for cinematic impact.",
       },
@@ -198,19 +198,19 @@ const serviceGroups = [
       },
       {
         title: "Campaign Strategy",
-        href: "/services/creative-strategy",
+        href: "/services/campaign-strategy",
         description:
           "Planning full campaign systems for cross channel impact.",
       },
       {
         title: "Concept Development",
-        href: "/services/creative-strategy",
+        href: "/services/concept-development",
         description:
           "Exploring multiple creative directions before committing to production.",
       },
       {
         title: "Storyboarding & Previs",
-        href: "/services/creative-strategy",
+        href: "/services/storyboarding-previs",
         description:
           "Visualizing and sequencing every shot before production begins.",
       },
@@ -221,31 +221,31 @@ const serviceGroups = [
     items: [
       {
         title: "AI Post-Production",
-        href: "/services/post-production",
+        href: "/services/ai-post-production",
         description:
           "Professional editing, color grading, and technical finishing.",
       },
       {
         title: "Motion Graphics",
-        href: "/services/post-production",
+        href: "/services/motion-graphics",
         description:
           "Animated titles, callouts, and branded elements for video.",
       },
       {
         title: "Upscaling & Mastering",
-        href: "/services/post-production",
+        href: "/services/upscaling-mastering",
         description:
           "Technical mastering for high-resolution delivery.",
       },
       {
         title: "AI Compositing",
-        href: "/services/post-production",
+        href: "/services/ai-compositing",
         description:
           "Integrating assets seamlessly into complex cinematic scenes.",
       },
       {
         title: "Video Editing",
-        href: "/services/post-production",
+        href: "/services/video-editing",
         description:
           "Smart narrative assembly and sequence optimization.",
       },
@@ -253,41 +253,41 @@ const serviceGroups = [
   },
 ];
 
-const serviceModelGroups = [
+export const serviceModelGroups = [
   {
     title: "Film & Video",
     items: [
-      ["Brand Films", "/services/ai-video-production"],
-      ["Commercials", "/services/ai-video-production"],
-      ["Product Films", "/services/ai-video-production"],
-      ["Explainers", "/services/ai-video-production"],
+      ["Brand Films", "/services/brand-films"],
+      ["Commercials", "/services/commercials"],
+      ["Product Films", "/services/product-films"],
+      ["Explainers", "/services/explainers"],
     ],
   },
   {
     title: "Performance & Social",
     items: [
-      ["Paid Ads", "/services/ad-creative"],
-      ["UGC-style Creative", "/services/social-creative"],
-      ["Reels / Short-form", "/services/social-creative"],
-      ["Creative Variants", "/services/ad-creative"],
+      ["Paid Ads", "/services/paid-ads"],
+      ["UGC-style Creative", "/services/ugc-style-creative"],
+      ["Reels / Short-form", "/services/reels-short-form"],
+      ["Creative Variants", "/services/creative-variants"],
     ],
   },
   {
     title: "Visual Production",
     items: [
       ["Product Visuals", "/services/product-visuals"],
-      ["Campaign Imagery", "/services/ad-creative"],
-      ["OOH / Display", "/services/product-visuals"],
-      ["Social Assets", "/services/social-creative"],
+      ["Campaign Imagery", "/services/campaign-imagery"],
+      ["OOH / Display", "/services/ooh-display"],
+      ["Social Assets", "/services/social-assets"],
     ],
   },
   {
     title: "Production Systems",
     items: [
-      ["Creative Automation", "/how-it-works/ai-creative-pipeline"],
-      ["Localization", "/services/ai-video-production"],
+      ["Creative Automation", "/services/creative-automation"],
+      ["Localization", "/services/localization-variants"],
       ["Post-production", "/services/post-production"],
-      ["Multi-format Adaptation", "/services/post-production"],
+      ["Multi-format Adaptation", "/services/multi-format-adaptation"],
     ],
   },
 ];
