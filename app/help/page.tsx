@@ -127,12 +127,6 @@ export default function HelpCenterPage() {
       <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              SUPPORT
-            </span>
             <Heading as="h1" size="hero" className="mb-8">
               Help Center
             </Heading>

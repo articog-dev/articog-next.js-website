@@ -14,9 +14,6 @@ export default function PrivacyChoicesPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-              Legal
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               Your Privacy Choices
             </Heading>

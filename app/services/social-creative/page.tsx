@@ -16,9 +16,6 @@ export default function SocialCreativePage() {
       <Section size="lg" className="pt-32 md:pt-40 pb-20">
         <Container>
           <div className="max-w-3xl">
-            <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-              SERVICES
-            </span>
             <h1 className="type-h1 mb-6 text-white">
               Social Creative
             </h1>

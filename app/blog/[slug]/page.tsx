@@ -111,9 +111,6 @@ export default async function BlogArticlePage({
           </div>
 
           <div className="mb-8">
-            <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-              {post.category}
-            </span>
             <Heading as="h1" size="hero" className="mb-5">
               {post.title}
             </Heading>

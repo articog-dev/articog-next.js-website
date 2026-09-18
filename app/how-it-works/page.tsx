@@ -59,12 +59,6 @@ export default function HowItWorksPage() {
       <Section size="lg" className="pt-20 md:pt-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              HOW IT WORKS
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               From brief to live in days
             </Heading>

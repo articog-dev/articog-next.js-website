@@ -23,13 +23,6 @@ export default function PricingPage() {
     <Section size="lg" className="pt-20 md:pt-24">
       <Container>
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <span
-            className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-            style={{ color: "rgba(255,255,255,0.40)" }}
-          >
-            WORK WITH US
-          </span>
-
           <Heading as="h1" size="hero" className="mb-6">
             Let’s plan your next creative sprint.
           </Heading>

@@ -123,11 +123,6 @@ export function Hero({ content }: HeroProps) {
       {/* Main Content Area */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4">
         <div className="mx-auto max-w-5xl text-center">
-          {/* Eyebrow */}
-          <p className="mb-6 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40 sm:mb-8 sm:text-xs">
-            {content.eyebrow}
-          </p>
-
           {/* Headline */}
           <h1 className="hero-heading type-h1 text-white">
             {content.headline.split("\n").map((line, i, lines) => (

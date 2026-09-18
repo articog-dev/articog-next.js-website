@@ -437,10 +437,6 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto w-full max-w-[1060px]">
             <header className="mb-14 md:mb-20">
-              <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-                Legal
-              </span>
-
               <Heading as="h1" size="hero" className="mb-6">
                 Privacy Policy
               </Heading>

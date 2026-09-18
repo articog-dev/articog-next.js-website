@@ -33,12 +33,6 @@ export default function ProductionEconomicsPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-20">
-            <span
-              className="mb-5 inline-block type-label uppercase tracking-[0.18em]"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              ECONOMICS
-            </span>
             <Heading as="h1" size="hero" className="mb-6">
               Production Cost & ROI Guide
             </Heading>

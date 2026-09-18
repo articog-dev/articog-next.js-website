@@ -13,7 +13,6 @@ export default function CookiePolicyPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">Legal</span>
             <Heading as="h1" size="hero" className="mb-6">Cookie Policy</Heading>
             <p className="type-small text-muted-safe mb-12 uppercase tracking-widest">Last updated: August 19, 2026</p>
 

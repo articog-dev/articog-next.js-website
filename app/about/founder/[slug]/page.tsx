@@ -52,9 +52,6 @@ export default async function FounderPage({
               Back to About
             </Link>
             <div className="mb-16 max-w-3xl">
-              <span className="mb-5 inline-block type-label uppercase tracking-[0.18em] text-white/40">
-                FOUNDER / LEADERSHIP
-              </span>
               <Heading as="h1" size="hero" className="text-white">
                 {founder.name}
               </Heading>

@@ -93,11 +93,6 @@ export default function IndustriesPage() {
               />
             </video>
             <div className="absolute inset-0 bg-black/12" />
-            <div className="relative flex min-h-[18rem] items-end p-6 md:p-8">
-              <p className="type-label uppercase tracking-[0.2em] text-white/60">
-                Selected work
-              </p>
-            </div>
           </section>
 
           <IndustryDetails />

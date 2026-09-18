@@ -11,9 +11,6 @@ export default function Error({
   return (
     <div className="flex min-h-[80vh] items-center justify-center bg-black px-6">
       <div className="max-w-2xl text-center">
-        <p className="mb-6 type-label uppercase tracking-[0.18em] text-white/40">
-          ERROR
-        </p>
         <h1 className="type-h1 mb-5 text-white">
           Something went wrong. Please try again.
         </h1>
