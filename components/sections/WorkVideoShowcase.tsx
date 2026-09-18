@@ -7,7 +7,7 @@ const videoCards = [
     url: "https://www.youtube.com/watch?v=l5pReVGFVqs",
   },
   {
-    title: "Second video showcase",
+    title: "Articog creative video showcase",
     url: "https://www.youtube.com/watch?v=_0z-6bfJ0zI",
   },
 ] as const;

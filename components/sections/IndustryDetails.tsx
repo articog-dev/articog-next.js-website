@@ -255,7 +255,7 @@ function IndustryCard({
             <div className="relative mb-6 aspect-[21/9] w-full overflow-hidden rounded-xl">
               <Image
                 src={industry.image}
-                alt={industry.imageAlt}
+                alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 800px"
                 className="object-cover"

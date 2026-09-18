@@ -96,7 +96,7 @@ export default function AdLibraryPage() {
             />
             <YouTubeEmbed
               url="https://www.youtube.com/watch?v=_0z-6bfJ0zI"
-              title="Articog YouTube video"
+              title="Articog creative video showcase"
             />
           </div>
 
