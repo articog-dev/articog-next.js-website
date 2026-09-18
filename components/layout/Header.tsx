@@ -183,7 +183,7 @@ function DropdownPanel({
   }
 
   const servicePanelStyle = {
-    left: "50%",
+    left: "calc(50% - 20px)",
     transform: "translateX(-50%)",
     top: "72px",
     width: "min(calc(100vw - 320px), 960px)",
