@@ -118,20 +118,29 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
             return (
               <div key={group.label} className="border-b border-white/[0.04]">
-                <button
-                  type="button"
-                  onClick={() => toggleGroup(group.label)}
-                  aria-expanded={isGroupOpen}
-                  aria-controls={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="w-full flex items-center justify-between rounded-full px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  <span>{group.label}</span>
+                <div className="flex items-center">
+                  <Link
+                    href={groupHubHrefs[group.label]}
+                    onClick={handleClose}
+                    className="flex min-h-12 flex-1 items-center rounded-full px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
+                    {group.label}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => toggleGroup(group.label)}
+                    aria-label={`Open ${group.label} menu`}
+                    aria-expanded={isGroupOpen}
+                    aria-controls={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
                   <ChevronDown
                     size={14}
                     className="opacity-40 transition-transform duration-200"
                     style={{ transform: isGroupOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                   />
-                </button>
+                  </button>
+                </div>
 
                 {isGroupOpen && (
                   group.label === "Services" ? (

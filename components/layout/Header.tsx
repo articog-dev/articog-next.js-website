@@ -121,8 +121,11 @@ export const menuGroups = [
     ],
   },
   {
-    label: "Blog",
-    links: [],
+    label: "Resources",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "AI Ad Library", href: "/ai-ad-library" },
+    ],
   },
   {
     label: "Company",
@@ -142,11 +145,11 @@ export const groupHubHrefs: Record<string, string> = {
   Industries: "/industries",
   Work: "/work",
   "Why Articog": "/why-articog",
-  Blog: "/blog",
+  Resources: "/blog",
   Company: "/about",
 };
 
-export const NO_DROPDOWN_GROUPS = ["Work", "Blog", "Solutions", "Industries"];
+export const NO_DROPDOWN_GROUPS = ["Work"];
 
 // ─── Dropdown Panel ───────────────────────────────────────────────────────────
 

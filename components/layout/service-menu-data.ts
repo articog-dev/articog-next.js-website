@@ -13,7 +13,7 @@ export const primaryServiceCards = [
     number: "02",
     title: "Creator-Style Social Content",
     description: "Scroll-stopping video for every platform",
-    href: "/work/social",
+    href: "/services/social-creative",
     image: "/services/articog-service-02-creator-social.jpg",
     alt: "Creator-style social content production",
     objectPosition: "center 35%",
