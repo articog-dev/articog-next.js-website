@@ -6,6 +6,7 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 import "./globals.css";
 
 const sora = Sora({
@@ -74,6 +75,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <CookieBanner />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
