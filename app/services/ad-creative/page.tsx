@@ -63,7 +63,7 @@ export default function AdCreativePage() {
       </Section>
 
       {/* What We Deliver Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
               <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
@@ -118,7 +118,7 @@ export default function AdCreativePage() {
       <ServiceDetails category="ad-creative" />
 
       {/* Built to Test Section */}
-      <Section className="py-24 border-t border-white/5">
+      <Section size="lg" className="border-t border-white/5">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>

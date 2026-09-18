@@ -71,7 +71,7 @@ export default function ComparisonPage() {
       </Section>
 
       {/* Comparison Table Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="overflow-x-auto">
             <Table className="border-collapse">
@@ -111,7 +111,7 @@ export default function ComparisonPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-24 border-t border-white/5">
+      <Section size="lg" className="border-t border-white/5">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

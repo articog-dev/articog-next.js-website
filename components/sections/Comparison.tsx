@@ -44,7 +44,7 @@ export function Comparison({ rows }: ComparisonProps) {
   }, []);
 
   return (
-    <Section id="why-articog" className="relative overflow-hidden py-24 md:py-32" style={{ background: "#000000" }}>
+    <Section id="why-articog" size="lg" className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* Background Video removed as requested */}
 
 

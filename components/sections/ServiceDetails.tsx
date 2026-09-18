@@ -265,7 +265,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
 
 export function ServiceDetails({ category }: { category: ServiceCategory }) {
   return (
-    <Section className="border-t border-white/5 py-20">
+    <Section size="md" className="border-t border-white/5">
       <Container>
         <div className="mb-12 max-w-3xl">
           <Heading as="h2" size="section" className="mb-4 text-white">

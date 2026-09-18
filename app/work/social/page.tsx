@@ -42,7 +42,7 @@ export default function SocialWorkPage() {
         </Container>
       </Section>
 
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12 max-w-3xl">
             <h2 className="type-h2 mb-4 text-white">A real example</h2>
@@ -82,7 +82,7 @@ export default function SocialWorkPage() {
         </Container>
       </Section>
 
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

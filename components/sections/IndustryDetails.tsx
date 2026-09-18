@@ -176,7 +176,7 @@ export function IndustryDetails() {
   const [openIndustryId, setOpenIndustryId] = useState<string | null>(null);
 
   return (
-    <Section className="border-t border-white/10 py-20 text-left md:py-24">
+    <Section size="lg" className="border-t border-white/10 text-left">
       <Container>
         <div className="mb-12 max-w-2xl md:mb-16">
           <Heading as="h2" size="section" className="text-white">Creative production by industry</Heading>

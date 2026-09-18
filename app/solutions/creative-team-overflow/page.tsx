@@ -43,7 +43,7 @@ export default function CreativeOverflowPage() {
       </Section>
 
       {/* How It Works Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
             <Heading as="h2" size="section" className="mb-4 text-white">How It Works</Heading>
@@ -68,7 +68,7 @@ export default function CreativeOverflowPage() {
       <SolutionDetails category="overflow" />
 
       {/* Comparison Note Section */}
-      <Section className="py-20 border-t border-white/5">
+      <Section size="md" className="border-t border-white/5">
         <Container>
           <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl border-l-4 border-l-white/20">
             <Heading as="h3" size="section" className="mb-4 text-white">A Note on Engagement</Heading>
@@ -80,7 +80,7 @@ export default function CreativeOverflowPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-24 bg-white/[0.02]">
+      <Section size="lg" className="bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <Heading as="h2" size="section" className="mb-8 text-white">Need additional creative capacity?</Heading>

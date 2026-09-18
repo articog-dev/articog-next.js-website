@@ -8,26 +8,17 @@ export const metadata: Metadata = {
     "Articog is an AI Native Film & Production Company producing brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams, with a primary focus on the United States and select global markets.",
 };
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Heading, Text } from "@/components/ui";
+import { Container, Section, Button, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ArrowRight } from "lucide-react";
 
 export default function AboutPage() {
   return (
     <div className="bg-black">
-      {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <Heading as="h1" size="hero" className="mb-6">
-              Production craft. Rebuilt for the AI era.
-            </Heading>
-            <Text as="p" size="lg" className="mx-auto max-w-2xl leading-relaxed text-white/65">
-              Articog is an AI Native Film &amp; Production Company producing brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams, with a primary focus on the United States and select global markets.
-            </Text>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        title="Production craft. Rebuilt for the AI era."
+        subtitle="Articog is an AI Native Film &amp; Production Company producing brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams, with a primary focus on the United States and select global markets."
+      />
 
       <Section size="md" className="border-t border-white/[0.05]">
         <Container>

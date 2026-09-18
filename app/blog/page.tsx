@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { BlogFilterList } from "@/components/blog/BlogFilterList";
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, PageHero } from "@/components/ui";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -13,14 +13,9 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
+      <PageHero title="Blog" />
+      <Section>
         <Container>
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <Heading as="h1" size="hero" className="mb-0">
-              Blog
-            </Heading>
-          </div>
-
           <BlogFilterList posts={blogPosts} />
         </Container>
       </Section>

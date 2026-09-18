@@ -1,8 +1,7 @@
 "use client";
 
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { useState } from "react";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 
@@ -61,16 +60,12 @@ export default function AdLibraryPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
+      <PageHero
+        title="AI Ad Library"
+        subtitle="A curated collection of AI-native creative examples across industries and formats."
+      />
+      <Section>
         <Container>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6">
-              AI Ad Library
-            </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              A curated collection of AI-native creative examples across industries and formats.
-            </p>
-          </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 py-6 border-y border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-3" role="group" aria-label="Filter ad library by category">

@@ -24,7 +24,7 @@ export default function SocialCreativePage() {
         </Container>
       </Section>
 
-      <Section className="py-20 border-t border-white/5">
+      <Section size="md" className="border-t border-white/5">
         <Container>
           <div className="grid md:grid-cols-2 gap-12">
             <div>

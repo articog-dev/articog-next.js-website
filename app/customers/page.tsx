@@ -5,29 +5,17 @@ export const metadata: Metadata = {
   description: "Selected Articog work and client stories, with approved scope and outcome details added as available.",
   alternates: { canonical: "https://articog.com/customers" },
 };
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { siteContent } from "@/lib/content";
 
 export default function CustomersPage() {
   return (
     <div className="bg-black">
-      {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <Heading as="h1" size="hero" className="mb-6">
-              Production examples and client stories.
-            </Heading>
-            <p
-              className="mx-auto max-w-2xl type-body-lg md:text-xl leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              Client stories are published with approved scope, deliverables, timelines, channels, and outcomes.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        title="Production examples and client stories."
+        subtitle="Client stories are published with approved scope, deliverables, timelines, channels, and outcomes."
+      />
 
       {/* Stories Grid */}
       <Section size="md" className="border-t border-white/[0.05]">

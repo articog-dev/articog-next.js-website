@@ -61,7 +61,7 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      <Section className="border-t border-white/5 bg-white/[0.02] py-20">
+      <Section size="md" className="border-t border-white/5 bg-white/[0.02]">
         <Container>
           <div className="max-w-3xl">
             <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
@@ -72,7 +72,7 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
               <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

@@ -46,7 +46,7 @@ export default function AudioPage() {
         </Container>
       </Section>
 
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div>
             <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
@@ -102,7 +102,7 @@ export default function AudioPage() {
 
       <ServiceDetails category="audio" />
 
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <Heading as="h2" size="section" className="mb-8 text-white">Elevate your project's sound</Heading>

@@ -51,7 +51,7 @@ export default function EnterpriseSolutionPage() {
         </Container>
       </Section>
 
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
             <Heading as="h2" size="section" className="mb-4 text-center text-white">What's Included</Heading>
@@ -82,7 +82,7 @@ export default function EnterpriseSolutionPage() {
         </Container>
       </Section>
 
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>

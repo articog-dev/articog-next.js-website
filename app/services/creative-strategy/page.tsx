@@ -44,7 +44,7 @@ export default function CreativeStrategyPage() {
       </Section>
 
       {/* What We Do Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
             <Heading as="h2" size="section" className="mb-4 text-white">What We Do</Heading>
@@ -66,7 +66,7 @@ export default function CreativeStrategyPage() {
       </Section>
 
       {/* Engagement Note Section */}
-      <Section className="py-20 border-t border-white/5">
+      <Section size="md" className="border-t border-white/5">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 mb-8 mx-auto">
@@ -83,7 +83,7 @@ export default function CreativeStrategyPage() {
       <ServiceDetails category="strategy" />
 
       {/* CTA Section */}
-      <Section className="py-24 bg-white/[0.02]">
+      <Section size="lg" className="bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
               <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

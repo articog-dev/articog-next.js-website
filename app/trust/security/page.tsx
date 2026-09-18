@@ -43,7 +43,7 @@ export default function SecurityPage() {
       </Section>
 
       {/* Standards Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {sections.map((section) => (
@@ -63,7 +63,7 @@ export default function SecurityPage() {
       </Section>
 
       {/* Onboarding Note Section */}
-      <Section className="py-20 border-t border-white/5">
+      <Section size="md" className="border-t border-white/5">
         <Container>
           <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl text-center mx-auto">
             <p className="font-sans text-white/70 leading-relaxed">
@@ -74,7 +74,7 @@ export default function SecurityPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-24 bg-white/[0.02]">
+      <Section size="lg" className="bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

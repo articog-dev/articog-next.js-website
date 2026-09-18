@@ -65,7 +65,7 @@ export default function PostProductionPage() {
         </Container>
       </Section>
 
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
             <Heading as="h2" size="section" className="mb-4 text-center text-white">What We Deliver</Heading>
@@ -95,7 +95,7 @@ export default function PostProductionPage() {
         </Container>
       </Section>
 
-      <Section className="py-20">
+      <Section size="md">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {subPages.map((page) => {
@@ -127,7 +127,7 @@ export default function PostProductionPage() {
 
       <ServiceDetails category="post-production" />
 
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
               <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

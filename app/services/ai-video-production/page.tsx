@@ -60,7 +60,7 @@ export default function AIVideoProductionPage() {
       <PageHero title="AI Video Production" />
 
       {/* What We Deliver */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="mb-12">
               <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
@@ -96,7 +96,7 @@ export default function AIVideoProductionPage() {
       </Section>
 
       {/* How It Works & Quality */}
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="space-y-8">
@@ -130,7 +130,7 @@ export default function AIVideoProductionPage() {
       </Section>
 
       {/* FAQ Section */}
-      <Section className="py-20 bg-white/[0.02]">
+      <Section size="md" className="bg-white/[0.02]">
         <Container>
           <div className="max-w-3xl mx-auto">
               <Heading as="h2" size="section" className="mb-12 text-center text-white">Frequently Asked Questions</Heading>
@@ -151,7 +151,7 @@ export default function AIVideoProductionPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-24">
+      <Section size="lg">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />

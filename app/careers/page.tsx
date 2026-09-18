@@ -5,20 +5,16 @@ export const metadata: Metadata = {
   title: "Careers | Articog",
   description: "Join Articog and help build AI-native film and creative production for ambitious growth-stage brands.",
 };
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Button, Heading, PageHero } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { BreezyOpenings } from "@/components/careers/BreezyOpenings";
 
 export default function CareersPage() {
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
+      <PageHero title="Join the future of production" />
+      <Section>
         <Container>
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Heading as="h1" size="hero" className="mb-6">
-              Join the future of production
-            </Heading>
-          </div>
 
           <div className="max-w-4xl mx-auto mb-24">
             <Heading as="h2" size="section" className="mb-8 text-white">Open Roles</Heading>
