@@ -138,6 +138,7 @@ export default async function BlogArticlePage({
               alt={post.title}
               width={1200}
               height={630}
+              sizes="(max-width: 768px) 100vw, 1200px"
               className="h-[360px] w-full object-cover md:h-[480px]"
             />
           </div>

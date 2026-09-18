@@ -356,7 +356,6 @@
   transform: translateZ(var(--visual-depth, -120px)) rotateY(var(--visual-rotation, 0deg)) scale(var(--visual-scale, 0.84));
   opacity: var(--visual-opacity, 0.65);
   transition: transform 180ms ease-out, opacity 180ms ease-out;
-  will-change: transform, opacity;
 }
 
 .showcase-coverflow__item img {

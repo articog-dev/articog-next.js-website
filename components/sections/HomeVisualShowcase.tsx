@@ -284,9 +284,8 @@ export function HomeVisualShowcase() {
                       alt={visual.alt}
                       width={1600}
                       height={2133}
-                      priority={copyIndex === 1 && visualIndex === 0}
-                      quality={100}
-                      loading={copyIndex === 1 && visualIndex === 0 ? "eager" : "lazy"}
+                      quality={80}
+                      loading="lazy"
                       decoding="async"
                     />
                   </button>
