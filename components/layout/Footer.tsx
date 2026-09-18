@@ -83,6 +83,24 @@ const footerNavSections = [
     ],
   },
   {
+    title: "Solutions",
+    links: [
+      { label: "Solutions", href: "/solutions" },
+    ],
+  },
+  {
+    title: "Industries",
+    links: [
+      { label: "Industries", href: "/industries" },
+    ],
+  },
+  {
+    title: "Work",
+    links: [
+      { label: "Work", href: "/work" },
+    ],
+  },
+  {
     title: "Company",
     links: [
       { label: "About Us", href: "/about" },
