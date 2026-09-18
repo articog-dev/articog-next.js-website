@@ -1,36 +1,20 @@
 import { NextResponse } from "next/server";
 import { isRecord, parseJsonBody, validateBoolean, validateEmail, validateEnum, validateString, validateStringArray, validateUrl } from "../../../lib/api-validation";
-
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
-const requestHistory = new Map<string, number[]>();
-
-function isRateLimited(request: Request): boolean {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const clientIp = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip");
-
-  if (!clientIp) return false;
-
-  const now = Date.now();
-  const recentRequests = (requestHistory.get(clientIp) ?? []).filter(
-    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
-  );
-
-  if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
-    requestHistory.set(clientIp, recentRequests);
-    return true;
-  }
-
-  recentRequests.push(now);
-  requestHistory.set(clientIp, recentRequests);
-  return false;
-}
+import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
+import { sendResendEmail } from "../../../lib/resend";
 
 export async function POST(request: Request) {
-  if (isRateLimited(request)) {
+  const rateLimit = await checkPublicFormRateLimit(request, "demo");
+  if (!rateLimit.available) {
+    return NextResponse.json(
+      { success: false, error: "This service is temporarily unavailable. Please try again later." },
+      { status: 503 },
+    );
+  }
+  if (!rateLimit.success) {
     return NextResponse.json(
       { success: false, error: "Too many requests. Please try again later." },
-      { status: 429 }
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
 
@@ -135,41 +119,32 @@ export async function POST(request: Request) {
     );
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || "info@articog.com";
 
-  if (resendApiKey && from) {
-    try {
-      const response = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${resendApiKey}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from,
-          to: [recipient],
-          subject: "New demo request | Articog",
-          text: [
-            "New demo request saved.",
-            "",
-            `Name: ${lead.name}`,
-            `Email: ${lead.email}`,
-            `Company: ${lead.company}`,
-            `Role: ${lead.role}`,
-            `Service interest: ${lead.serviceInterest.join(", ")}`,
-            `Budget: ${lead.budget}`,
-            `Timeline: ${lead.timeline}`,
-            `Project context: ${lead.projectContext}`,
-            `Reference / Website URL: ${lead.referenceUrl}`,
-            `Source: ${lead.attribution.source || ""}`,
-            `Referrer: ${lead.attribution.referrer || ""}`,
-          ].join("\n"),
-          reply_to: lead.email,
-        }),
-      });
-      if (!response.ok) throw new Error(`Email provider returned ${response.status}.`);
-    } catch {
-      // The lead is already persisted; email notification is best effort.
-    }
+  try {
+    const result = await sendResendEmail("demo-internal-notification", {
+      to: recipient,
+      subject: "New demo request | Articog",
+      text: [
+        "New demo request saved.",
+        "",
+        `Name: ${lead.name}`,
+        `Email: ${lead.email}`,
+        `Company: ${lead.company}`,
+        `Role: ${lead.role}`,
+        `Service interest: ${lead.serviceInterest.join(", ")}`,
+        `Budget: ${lead.budget}`,
+        `Timeline: ${lead.timeline}`,
+        `Project context: ${lead.projectContext}`,
+        `Reference / Website URL: ${lead.referenceUrl}`,
+        `Source: ${lead.attribution.source || ""}`,
+        `Referrer: ${lead.attribution.referrer || ""}`,
+      ].join("\n"),
+      replyTo: lead.email,
+    });
+    if (!result.ok) console.error("Demo internal notification was not delivered; lead was already persisted.");
+  } catch {
+    console.error("Demo internal notification failed unexpectedly; lead was already persisted.");
   }
 
   return NextResponse.json({ success: true, message: "Demo request saved." });

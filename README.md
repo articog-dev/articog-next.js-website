@@ -33,6 +33,13 @@ The contact form requires these server-side environment variables:
 - `CONTACT_FROM_EMAIL` is the verified sender address for those emails.
 - `CONTACT_INTERNAL_ALERT_EMAIL` receives an alert when saving to Google Sheets fails. It defaults to `articog.media.01@gmail.com` and can be overridden for deployment.
 
+Public form APIs use Upstash Redis for shared serverless rate limiting. Configure:
+
+- `UPSTASH_REDIS_REST_URL` is the Upstash Redis REST endpoint.
+- `UPSTASH_REDIS_REST_TOKEN` authenticates rate-limit requests.
+
+Requests are limited per platform-provided client IP and route. If the shared store is unavailable or not configured, form APIs fail closed with a temporary-unavailable response rather than falling back to process-local memory.
+
 The site-wide GA4 page-view and interaction tracking uses:
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables Google Analytics 4 and should be set in the deployment environment when analytics are required.

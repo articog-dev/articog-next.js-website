@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { POST as postDemo } from "../app/api/demo/route";
 import { POST as postPrivacyRequest } from "../app/api/privacy-request/route";
+import { resetTestRateLimits } from "../lib/rate-limit";
 
 const validDemoPayload = {
   firstName: "Test",
@@ -41,6 +42,7 @@ describe("public form API validation", () => {
     process.env.CONTACT_FROM_EMAIL = "noreply@example.com";
     process.env.PRIVACY_REQUEST_ALERT_EMAIL = "privacy@example.com";
     vi.restoreAllMocks();
+    resetTestRateLimits();
   });
 
   it("accepts a valid demo request and persists it", async () => {
@@ -51,6 +53,81 @@ describe("public form API validation", () => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({ success: true });
     expect(fetchMock).toHaveBeenCalledWith("https://sheets.test/submit", expect.any(Object));
+  });
+
+  it("logs a failed best-effort demo notification after persistence", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (input === "https://sheets.test/submit") return new Response(null, { status: 200 });
+      return new Response(JSON.stringify({ error: { message: "private provider detail" } }), { status: 422 });
+    });
+
+    const response = await postDemo(request("/api/demo", validDemoPayload, "198.51.100.64"));
+
+    expect(response.status).toBe(200);
+    expect(JSON.stringify(await response.json())).not.toContain("private");
+    expect(log.mock.calls.flat().join(" ")).toContain("Demo internal notification was not delivered");
+  });
+
+  it("limits demo requests and returns Retry-After", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const ip = "198.51.100.60";
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(200);
+    }
+
+    const response = await postDemo(request("/api/demo", validDemoPayload, ip));
+    expect(response.status).toBe(429);
+    expect(response.headers.get("Retry-After")).toMatch(/^[1-9]\d*$/);
+  });
+
+  it("isolates limits by API route for the same client", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const ip = "198.51.100.61";
+
+    expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(200);
+    const response = await postPrivacyRequest(
+      request("/api/privacy-request", { name: "Test User", email: "test@example.com", requestType: "delete" }, ip),
+    );
+
+    expect(response.status).toBe(200);
+  });
+
+  it("does not let arbitrary forwarded headers bypass the limiter", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const makeRequest = (spoofedIp: string) => new Request("http://localhost/api/demo", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": spoofedIp,
+        "x-real-ip": "198.51.100.63",
+      },
+      body: JSON.stringify(validDemoPayload),
+    });
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      expect((await postDemo(makeRequest(`203.0.113.${attempt + 1}`))).status).toBe(200);
+    }
+
+    expect((await postDemo(makeRequest("203.0.113.99"))).status).toBe(429);
+  });
+
+  it("fails closed when shared rate-limit configuration is unavailable", async () => {
+    const originalNodeEnv = process.env.NODE_ENV;
+    const environment = process.env as Record<string, string | undefined>;
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+    environment.NODE_ENV = "production";
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+
+    try {
+      const response = await postDemo(request("/api/demo", validDemoPayload, "198.51.100.62"));
+      expect(response.status).toBe(503);
+      expect(fetchMock).not.toHaveBeenCalled();
+    } finally {
+      environment.NODE_ENV = originalNodeEnv;
+    }
   });
 
   it.each([
@@ -79,6 +156,27 @@ describe("public form API validation", () => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({ success: true });
     expect(fetchMock).toHaveBeenCalledWith("https://api.resend.com/emails", expect.any(Object));
+  });
+
+  it.each([
+    ["provider error", new Response(JSON.stringify({ error: { message: "private provider detail" } }), { status: 422 })],
+    ["network failure", new Error("private network detail")],
+  ])("does not report success when privacy email has a %s", async (_label, failure) => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () => {
+      if (failure instanceof Error) throw failure;
+      return failure;
+    });
+
+    const response = await postPrivacyRequest(
+      request("/api/privacy-request", { name: "Test User", email: "test@example.com", requestType: "delete" }, "198.51.100.45"),
+    );
+
+    expect(response.status).toBe(502);
+    const body = await response.json();
+    expect(body).toEqual({ success: false, error: "We could not submit your request. Please try again later." });
+    expect(JSON.stringify(body)).not.toContain("private");
+    expect(log.mock.calls.flat().join(" ")).not.toContain("private");
   });
 
   it.each([

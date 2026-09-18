@@ -1,35 +1,20 @@
 import { NextResponse } from "next/server";
 import { parseJsonBody, validateEmail, validateEnum, validateString } from "../../../lib/api-validation";
-
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 3;
-const requestHistory = new Map<string, number[]>();
-function isRateLimited(request: Request): boolean {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const clientIp = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip");
-
-  if (!clientIp) return false;
-
-  const now = Date.now();
-  const recentRequests = (requestHistory.get(clientIp) ?? []).filter(
-    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
-  );
-
-  if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
-    requestHistory.set(clientIp, recentRequests);
-    return true;
-  }
-
-  recentRequests.push(now);
-  requestHistory.set(clientIp, recentRequests);
-  return false;
-}
+import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
+import { sendResendEmail } from "../../../lib/resend";
 
 export async function POST(request: Request) {
-  if (isRateLimited(request)) {
+  const rateLimit = await checkPublicFormRateLimit(request, "privacy-request");
+  if (!rateLimit.available) {
+    return NextResponse.json(
+      { success: false, error: "This service is temporarily unavailable. Please try again later." },
+      { status: 503 },
+    );
+  }
+  if (!rateLimit.success) {
     return NextResponse.json(
       { success: false, error: "Too many requests. Please try again later." },
-      { status: 429 }
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
 
@@ -50,11 +35,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
   const recipient = process.env.PRIVACY_REQUEST_ALERT_EMAIL || process.env.CONTACT_INTERNAL_ALERT_EMAIL;
 
-  if (!apiKey || !from || !recipient) {
+  if (!recipient || !process.env.RESEND_API_KEY || !process.env.CONTACT_FROM_EMAIL) {
     return NextResponse.json(
       {
         success: false,
@@ -64,15 +47,10 @@ export async function POST(request: Request) {
     );
   }
 
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from,
-        to: [recipient],
-        subject: `Data rights request: ${requestType.value}`,
-        text: [
+  const result = await sendResendEmail("privacy-request-review", {
+    to: recipient,
+    subject: `Data rights request: ${requestType.value}`,
+    text: [
           "A data rights request was received for review.",
           "",
           `Name: ${name.value}`,
@@ -81,18 +59,11 @@ export async function POST(request: Request) {
           "",
           "Details:",
           details.value || "No additional details provided.",
-        ].join("\n"),
-        reply_to: email.value,
-      }),
-    });
+    ].join("\n"),
+    replyTo: email.value,
+  });
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { success: false, error: "We could not submit your request. Please try again later." },
-        { status: 502 }
-      );
-    }
-  } catch {
+  if (!result.ok) {
     return NextResponse.json(
       { success: false, error: "We could not submit your request. Please try again later." },
       { status: 502 }

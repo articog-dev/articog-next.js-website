@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { parseJsonBody, validateEmail, validateEnum, validateString, validateUrl } from "../../../lib/api-validation";
+import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
+import { sendResendEmail } from "../../../lib/resend";
 
 type ContactData = {
   name: string;
@@ -12,48 +14,6 @@ type ContactData = {
 
 const DEFAULT_INTERNAL_ALERT_EMAIL = "articog.media.01@gmail.com";
 const CONTACT_NOTIFICATION_EMAIL = "info@articog.com";
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
-const requestHistory = new Map<string, number[]>();
-
-function isRateLimited(request: Request): boolean {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const clientIp = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip");
-
-  if (!clientIp) return false;
-
-  const now = Date.now();
-  const recentRequests = (requestHistory.get(clientIp) ?? []).filter(
-    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
-  );
-
-  if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
-    requestHistory.set(clientIp, recentRequests);
-    return true;
-  }
-
-  recentRequests.push(now);
-  requestHistory.set(clientIp, recentRequests);
-  return false;
-}
-
-async function sendEmail(to: string, subject: string, text: string, replyTo?: string) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
-
-  if (!apiKey || !from) {
-    throw new Error("Email is not configured. Set RESEND_API_KEY and CONTACT_FROM_EMAIL.");
-  }
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from, to: [to], subject, text, ...(replyTo ? { reply_to: replyTo } : {}) }),
-  });
-
-  if (!response.ok) throw new Error(`Email provider returned ${response.status}.`);
-}
-
 async function alertSheetFailure(data: ContactData, error: unknown) {
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || DEFAULT_INTERNAL_ALERT_EMAIL;
 
@@ -66,10 +26,10 @@ async function alertSheetFailure(data: ContactData, error: unknown) {
   }
 
   try {
-    await sendEmail(
-      recipient,
-      "Contact form backup alert: Google Sheets submission failed",
-      [
+    const result = await sendResendEmail("contact-sheet-failure-alert", {
+      to: recipient,
+      subject: "Contact form backup alert: Google Sheets submission failed",
+      text: [
         "A contact form lead could not be saved to Google Sheets.",
         "",
         `Name: ${data.name}`,
@@ -80,19 +40,27 @@ async function alertSheetFailure(data: ContactData, error: unknown) {
         `Message: ${data.message}`,
         "",
         `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
-      ].join("\n")
-    );
+      ].join("\n"),
+    });
+    if (!result.ok) console.error("Contact sheet failure alert could not be delivered.");
   } catch (alertError) {
-    console.error("Contact lead backup alert failed:", alertError);
+    console.error("Contact lead backup alert failed unexpectedly.", alertError instanceof Error ? alertError.name : "unknown-error");
   }
 }
 
 export async function POST(request: Request) {
   try {
-    if (isRateLimited(request)) {
+    const rateLimit = await checkPublicFormRateLimit(request, "contact");
+    if (!rateLimit.available) {
+      return NextResponse.json(
+        { success: false, error: "This service is temporarily unavailable. Please try again later." },
+        { status: 503 },
+      );
+    }
+    if (!rateLimit.success) {
       return NextResponse.json(
         { success: false, error: "Too many requests. Please try again later." },
-        { status: 429 }
+        { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
       );
     }
 
@@ -144,10 +112,10 @@ export async function POST(request: Request) {
     }
 
     try {
-      await sendEmail(
-        CONTACT_NOTIFICATION_EMAIL,
-        "New contact form submission | Articog",
-        [
+      const result = await sendResendEmail("contact-internal-notification", {
+        to: CONTACT_NOTIFICATION_EMAIL,
+        subject: "New contact form submission | Articog",
+        text: [
           "New contact form submission received.",
           "",
           `Name: ${name.value}`,
@@ -159,21 +127,23 @@ export async function POST(request: Request) {
           "Message:",
           message.value,
         ].join("\n"),
-        email.value
-      );
+        replyTo: email.value,
+      });
+      if (!result.ok) console.error("Contact internal notification was not delivered.");
     } catch (emailError) {
-      console.error("Contact notification email failed after lead was saved:", emailError);
+      console.error("Contact notification email failed unexpectedly.", emailError instanceof Error ? emailError.name : "unknown-error");
     }
 
     try {
-      await sendEmail(
-        email.value,
-        "We received your message | Articog",
-        [`Hi ${name.value}`, "", "Thanks for reaching out to Articog. We received your message and will follow up within 1 business day.", "", "Best,", "The Articog team"].join("\n"),
-        email.value
-      );
+      const result = await sendResendEmail("contact-confirmation", {
+        to: email.value,
+        subject: "We received your message | Articog",
+        text: [`Hi ${name.value}`, "", "Thanks for reaching out to Articog. We received your message and will follow up within 1 business day.", "", "Best,", "The Articog team"].join("\n"),
+        replyTo: email.value,
+      });
+      if (!result.ok) console.error("Contact confirmation email was not delivered.");
     } catch (emailError) {
-      console.error("Contact confirmation email failed after lead was saved:", emailError);
+      console.error("Contact confirmation email failed unexpectedly.", emailError instanceof Error ? emailError.name : "unknown-error");
     }
 
     return NextResponse.json({

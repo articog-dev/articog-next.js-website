@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { POST } from "../app/api/contact/route";
 import { buildContactPayload } from "../lib/contact-payload";
+import { resetTestRateLimits } from "../lib/rate-limit";
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
@@ -9,6 +10,7 @@ describe("POST /api/contact", () => {
     process.env.RESEND_API_KEY = "test-key";
     process.env.CONTACT_FROM_EMAIL = "noreply@example.com";
     vi.restoreAllMocks();
+    resetTestRateLimits();
   });
 
   it("includes the empty honeypot value in the real form payload", () => {
@@ -68,6 +70,27 @@ describe("POST /api/contact", () => {
     expect(emailPayload).toBeDefined();
     const body = JSON.parse(String(emailPayload?.init?.body));
     expect(body.to).toContain("info@articog.com");
+  });
+
+  it("logs a failed non-blocking email notification without changing persisted-lead success", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (input === "https://sheets.test/submit") return new Response(null, { status: 200 });
+      if (input === "https://api.resend.com/emails") {
+        return new Response(JSON.stringify({ error: { message: "private provider detail" } }), { status: 422 });
+      }
+      return new Response(null, { status: 200 });
+    });
+
+    const response = await POST(new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-real-ip": "198.51.100.16" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    }));
+
+    expect(response.status).toBe(200);
+    expect(JSON.stringify(await response.json())).not.toContain("private");
+    expect(log.mock.calls.flat().join(" ")).toContain("Contact internal notification was not delivered.");
   });
 
   it("short-circuits honeypot submissions successfully without saving or emailing", async () => {
@@ -184,6 +207,7 @@ describe("POST /api/contact", () => {
 
     const limitedResponse = await request();
     expect(limitedResponse.status).toBe(429);
+    expect(limitedResponse.headers.get("Retry-After")).toMatch(/^[1-9]\d*$/);
     await expect(limitedResponse.json()).resolves.toMatchObject({ success: false });
   });
 });
