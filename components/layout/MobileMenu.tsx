@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import { Button } from "@/components/ui";
 import { X, ChevronDown } from "lucide-react";
-import { menuGroups, groupHubHrefs } from "./Header";
+import { menuGroups, groupHubHrefs, NO_DROPDOWN_GROUPS } from "./Header";
 import { ServiceMenuCards } from "./ServiceMenuCards";
 
 interface MobileMenuProps {
@@ -99,7 +99,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <nav className="flex flex-col overflow-y-auto px-4 pb-8">
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
-            const isDirectGroup = group.links.length === 0;
+            const isDirectGroup =
+              group.links.length === 0 ||
+              NO_DROPDOWN_GROUPS.includes(group.label);
 
             if (isDirectGroup) {
               return (

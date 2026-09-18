@@ -115,20 +115,8 @@ export const menuGroups = [
         href: "/how-it-works",
       },
       {
-        label: "AI Creative Pipeline",
-        href: "/how-it-works/ai-creative-pipeline",
-      },
-      {
         label: "Trust Center",
         href: "/trust",
-      },
-      {
-        label: "Responsible AI",
-        href: "/trust/ai-and-ip",
-      },
-      {
-        label: "Security & Data",
-        href: "/trust/security",
       },
     ],
   },
@@ -157,6 +145,8 @@ export const groupHubHrefs: Record<string, string> = {
   Blog: "/blog",
   Company: "/about",
 };
+
+export const NO_DROPDOWN_GROUPS = ["Work", "Blog", "Solutions", "Industries"];
 
 // ─── Dropdown Panel ───────────────────────────────────────────────────────────
 
@@ -417,7 +407,9 @@ export function Header() {
 
           <nav className="hidden items-center gap-0.5 lg:flex">
             {menuGroups.map((group) => {
-              const isDirectGroup = group.links.length === 0;
+              const isDirectGroup =
+                group.links.length === 0 ||
+                NO_DROPDOWN_GROUPS.includes(group.label);
 
               return (
               <div

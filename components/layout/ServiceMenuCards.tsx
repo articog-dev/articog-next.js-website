@@ -18,7 +18,7 @@ export const primaryServiceCards = [
     number: "02",
     title: "Creator-Style Social Content",
     description: "Authentic, scroll-stopping videos for today's platforms.",
-    href: "/work/social",
+    href: "/services/social-creative",
     image: "/services/articog-creator-social.jpg",
     alt: "Creator-style social content production",
     objectPosition: "center 42%",
@@ -34,9 +34,9 @@ export const primaryServiceCards = [
   },
   {
     number: "04",
-    title: "Creative Workflow Automation",
-    description: "Smarter workflows for faster, consistent creative output.",
-    href: "/how-it-works/ai-creative-pipeline",
+    title: "Every Service, One Team",
+    description: "Product visuals, audio, strategy and post-production — all under one roof.",
+    href: "/services",
     image: "/services/articog-creative-workflow.jpg",
     alt: "Creative workflow automation system",
     objectPosition: "center 50%",
@@ -54,7 +54,7 @@ export function ServiceMenuCards({ onClose }: { onClose: () => void }) {
             event.stopPropagation();
             onClose();
           }}
-          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:min-h-[200px] lg:p-4"
+          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:min-h-[200px] lg:p-4"
         >
           <Image
             src={item.image}
