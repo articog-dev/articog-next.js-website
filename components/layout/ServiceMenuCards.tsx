@@ -12,6 +12,7 @@ export const primaryServiceCards = [
     href: "/services/ai-video-production",
     image: "/services/articog-service-01-brand-films-image-only.jpg",
     alt: "Cinematic brand film production",
+    objectPosition: "center 48%",
   },
   {
     number: "02",
@@ -20,6 +21,7 @@ export const primaryServiceCards = [
     href: "/work/social",
     image: "/services/articog-creator-social.jpg",
     alt: "Creator-style social content production",
+    objectPosition: "center 42%",
   },
   {
     number: "03",
@@ -28,6 +30,7 @@ export const primaryServiceCards = [
     href: "/services/ad-creative",
     image: "/services/articog-service-03-performance-creative-image-only.jpg",
     alt: "Performance creative production workspace",
+    objectPosition: "center 44%",
   },
   {
     number: "04",
@@ -36,6 +39,7 @@ export const primaryServiceCards = [
     href: "/how-it-works/ai-creative-pipeline",
     image: "/services/articog-creative-workflow.jpg",
     alt: "Creative workflow automation system",
+    objectPosition: "center 50%",
   },
 ] as const;
 
@@ -59,9 +63,10 @@ export function ServiceMenuCards({ onClose }: { onClose: () => void }) {
             loading="eager"
             unoptimized
             sizes="(max-width: 639px) calc(100vw - 96px), (max-width: 1279px) 50vw, 280px"
-            className="-z-20 object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            className="-z-20 object-cover object-center transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            style={{ objectPosition: item.objectPosition }}
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/55 to-black/5" aria-hidden="true" />
+          <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/20 to-transparent" aria-hidden="true" />
           <div className="relative flex items-center justify-between text-[10px] font-medium tracking-[0.18em] text-white/60">
             <span>{item.number}</span>
             <ArrowUpRight size={16} className="text-white/70 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" aria-hidden="true" />
