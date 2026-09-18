@@ -24,7 +24,7 @@ export default function CaliforniaPrivacyPage() {
 
             <div className="space-y-12">
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">Applicability</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">Applicability</Heading>
                 <div className="type-small leading-relaxed text-white/60">
                   <p>
                     This California Privacy Notice ("Notice") applies as required under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA). 
@@ -33,7 +33,7 @@ export default function CaliforniaPrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">Categories of Personal Information Collected</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">Categories of Personal Information Collected</Heading>
                 <div className="type-small leading-relaxed text-white/60 space-y-4">
                   <p>In the past 12 months, we may have collected the following categories of personal information:</p>
                   <ul className="list-disc pl-5 space-y-2">
@@ -44,7 +44,7 @@ export default function CaliforniaPrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">Purposes of Collection</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">Purposes of Collection</Heading>
                 <div className="type-small leading-relaxed text-white/60 space-y-4">
                   <p>We collect this personal information for the following business purposes:</p>
                   <ul className="list-disc pl-5 space-y-2">
@@ -56,7 +56,7 @@ export default function CaliforniaPrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">Your California Rights</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">Your California Rights</Heading>
                 <div className="type-small leading-relaxed text-white/60 space-y-4">
                   <p>As a California resident, you have the following rights:</p>
                   <ul className="list-disc pl-5 space-y-2">
@@ -70,7 +70,7 @@ export default function CaliforniaPrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">How to Exercise Your Rights</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">How to Exercise Your Rights</Heading>
                 <div className="type-small leading-relaxed text-white/60">
                   <p>
                     To exercise your rights, please visit our <a href="/privacy-choices" className="text-white underline underline-offset-4 hover:text-white/80 transition-colors">Privacy Choices</a> page or submit a request via our specialized intake form.

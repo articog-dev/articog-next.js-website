@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <div className="bg-black">
       {/* Hero Section */}
-      <Section size="lg" className="pt-20 md:pt-24">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <Heading as="h1" size="hero" className="mb-6">
@@ -163,7 +163,7 @@ export default function AboutPage() {
 function ApproachItem({ title, description }: { title: string; description: string }) {
   return (
     <div className="space-y-4 rounded-xl border border-white/[0.05] p-6">
-      <h3 className="type-h3 text-white">{title}</h3>
+      <Heading as="h3" size="card" className="text-white">{title}</Heading>
       <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
         {description}
       </p>
@@ -202,7 +202,7 @@ function FounderPreviewCard({
           />
         </div>
         <div>
-          <h3 className="type-h3 text-white">{name}</h3>
+          <Heading as="h3" size="card" className="text-white">{name}</Heading>
           <p className="mt-2 type-body text-white/60">{role}</p>
           <Button asChild variant="outline" size="sm" className="mt-5">
             <Link to={profileHref}>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-20 md:pt-24">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <Heading as="h1" size="hero" className="mb-0">

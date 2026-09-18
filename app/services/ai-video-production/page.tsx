@@ -12,16 +12,16 @@ import { ShieldCheck, ArrowRight, Zap, Users } from "lucide-react";
 
 export default function AIVideoProductionPage() {
   const deliverables = [
-    { title: "Brand Films", path: null, desc: "High-concept films that tell your brand's story with cinematic quality." },
-    { title: "Product Commercials", path: null, desc: "Dynamic commercial spots showcasing products in stunning environments." },
-    { title: "Performance Ads", path: "/services/ad-creative", desc: "Data-driven creative optimized for conversion across paid social." },
-    { title: "Social & Reels", path: "/services/social-creative", desc: "Fast-paced, native content designed for high engagement on vertical platforms." },
-    { title: "Creator-Style Ads", path: "/services/ad-creative", desc: "Platform-aware content designed to support trust and action." },
-    { title: "Product Launch", path: null, desc: "Complete visual packages to make your next launch unforgettable." },
-    { title: "SaaS & Explainers", path: null, desc: "Clear, engaging product explainer videos built for high conversion." },
-    { title: "Real Estate Films", path: null, desc: "Cinematic property and development films with responsible AI visualization." },
-    { title: "Corporate & Internal", path: null, desc: "Scalable video for training, announcements, and executive communications." },
-    { title: "Localization & Variants", path: null, desc: "Adapt campaigns for global markets with voice localization and cultural QA." },
+    { title: "Brand Films", path: null, desc: "Cinematic brand storytelling." },
+    { title: "Product Commercials", path: null, desc: "Dynamic product commercial spots." },
+    { title: "Performance Ads", path: "/services/ad-creative", desc: "Conversion-focused paid social creative." },
+    { title: "Social & Reels", path: "/services/social-creative", desc: "Native vertical social content." },
+    { title: "Creator-Style Ads", path: "/services/ad-creative", desc: "Platform-native creator advertising." },
+    { title: "Product Launch", path: null, desc: "Complete product launch visuals." },
+    { title: "SaaS & Explainers", path: null, desc: "Clear product explainer videos." },
+    { title: "Real Estate Films", path: null, desc: "Cinematic property development films." },
+    { title: "Corporate & Internal", path: null, desc: "Scalable internal communications video." },
+    { title: "Localization & Variants", path: null, desc: "Localized global campaign variants." },
   ];
 
   const faqs = [
@@ -71,14 +71,14 @@ export default function AIVideoProductionPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-              <h2 className="type-h2 mb-4 text-white">What We Deliver</h2>
+              <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {deliverables.map((item) => {
               const card = (
                 <>
                   <div>
-                    <h3 className="type-h3 text-white group-hover:text-white transition-colors">{item.title}</h3>
+                    <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
                   </div>
                   {item.path && (
                     <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
@@ -111,9 +111,9 @@ export default function AIVideoProductionPage() {
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                 <Zap className="w-6 h-6 text-white" />
               </div>
-              <h2 className="type-h2 text-white">How It Works</h2>
+              <Heading as="h2" size="section" className="text-white">How It Works</Heading>
               <p className="type-body-lg text-white/60 leading-relaxed">
-                Our pipeline is designed for speed without compromising on creative integrity. From brief submission to final delivery, our process is streamlined to get your content live faster.
+                Brief to delivery, built for speed.
               </p>
               <Link href="/how-it-works" className="inline-flex items-center text-sm font-bold tracking-widest text-white hover:opacity-70 transition-opacity uppercase">
                 View the full pipeline <ArrowRight className="ml-2 w-4 h-4" />
@@ -124,9 +124,9 @@ export default function AIVideoProductionPage() {
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6 text-white" />
               </div>
-              <h2 className="type-h2 text-white">Human Oversight & Quality</h2>
+              <Heading as="h2" size="section" className="text-white">Human Oversight &amp; Quality</Heading>
               <p className="type-body-lg text-white/60 leading-relaxed">
-                We don't just "hit generate." Every single asset produced by Articog goes through a rigorous human review process. Our creative directors ensure brand guidelines are met, quality is consistent, and the final output is ready for prime time.
+                Every asset reviewed by a creative director.
               </p>
               <div className="flex items-center gap-4 text-white/40 type-small italic border-l-2 border-white/10 pl-6">
                 <Users className="w-5 h-5 flex-shrink-0" />
@@ -141,7 +141,7 @@ export default function AIVideoProductionPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="max-w-3xl mx-auto">
-              <h2 className="type-h2 mb-12 text-center text-white">Frequently Asked Questions</h2>
+              <Heading as="h2" size="section" className="mb-12 text-center text-white">Frequently Asked Questions</Heading>
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border border-white/10 bg-black/40 rounded-xl px-6">
@@ -162,7 +162,7 @@ export default function AIVideoProductionPage() {
       <Section className="py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

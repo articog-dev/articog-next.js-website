@@ -19,7 +19,7 @@ function getYouTubeId(url: string) {
 export function WorkVideoShowcase() {
   return (
     <section className="mb-16" aria-label="Video showcases">
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid grid-gap-section md:grid-cols-2">
         {videoCards.map((video) => {
           const videoId = video.url ? getYouTubeId(video.url) : null;
           const card = (

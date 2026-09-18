@@ -41,7 +41,7 @@ export default function WorkPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-20 pb-16 md:pt-24">
+      <Section size="lg" className="pt-32 pb-16 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6">
@@ -60,10 +60,10 @@ export default function WorkPage() {
                 href={cat.href}
                 className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20"
               >
-                <h2 className="type-h3 mb-2 text-white flex items-center justify-between">
+                <Heading as="h2" size="card" className="mb-2 flex items-center justify-between text-white">
                   {cat.title}
                   <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
-                </h2>
+                </Heading>
               </Link>
             ))}
           </div>

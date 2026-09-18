@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/components/ui/Link";
+import { Container, Heading } from "@/components/ui";
 
 export default function Error({
   reset,
@@ -10,10 +11,11 @@ export default function Error({
 }) {
   return (
     <div className="flex min-h-[80vh] items-center justify-center bg-black px-6">
+      <Container>
       <div className="max-w-2xl text-center">
-        <h1 className="type-h1 mb-5 text-white">
+        <Heading as="h1" size="hero" className="mb-5 text-white">
           Something went wrong. Please try again.
-        </h1>
+        </Heading>
         <p className="mb-10 type-body leading-relaxed text-white/50">
           We could not load this page right now.
         </p>
@@ -33,6 +35,7 @@ export default function Error({
           </Link>
         </div>
       </div>
+      </Container>
     </div>
   );
 }

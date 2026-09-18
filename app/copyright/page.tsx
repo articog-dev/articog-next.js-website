@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Container } from '@/components/ui/Container';
-import { Section } from '@/components/ui/Section';
+import { Container, Heading, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Copyright Policy | Articog",
@@ -11,22 +10,22 @@ export const metadata: Metadata = {
 export default function CopyrightPage() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col font-sans">
-      <div className="flex-grow pt-32 pb-20">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <h1 className="type-h1 mb-6 text-white">Copyright / DMCA</h1>
-            <p className="text-zinc-400 type-h3 mb-12 max-w-2xl leading-relaxed">
+          <div className="mx-auto max-w-3xl">
+            <Heading as="h1" size="hero" className="mb-6 text-white">Copyright / DMCA</Heading>
+            <p className="type-h3 mb-12 max-w-2xl leading-relaxed text-white/60">
               Articog respects the intellectual property rights of others and expects its users to do the same.
             </p>
 
-            <Section className="py-12 border-t border-zinc-900">
+            <Section className="border-t border-white/[0.08] py-12">
               <div className="prose prose-invert max-w-none space-y-8">
                 <div>
-                  <h2 className="type-h2 mb-4 text-white">Reporting Infringement</h2>
-                  <p className="text-zinc-400 type-body-lg leading-relaxed">
+                  <Heading as="h2" size="section" className="mb-4 text-white">Reporting Infringement</Heading>
+                  <p className="type-body-lg leading-relaxed text-white/60">
                     If you believe that your work has been copied in a way that constitutes copyright infringement, please provide our copyright team with the following information:
                   </p>
-                  <ul className="list-disc pl-6 mt-4 space-y-2 text-zinc-400">
+                  <ul className="mt-4 list-disc space-y-2 pl-6 text-white/60">
                     <li>A description of the copyrighted work that you claim has been infringed.</li>
                     <li>A description of where the material that you claim is infringing is located on the Articog site.</li>
                     <li>Your address, telephone number, and email address.</li>
@@ -35,15 +34,15 @@ export default function CopyrightPage() {
                   </ul>
                 </div>
 
-                <div className="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
-                    <h3 className="type-h3 mb-2 text-white">Contact Our Copyright Team</h3>
-                  <p className="text-zinc-400">
+                <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
+                    <Heading as="h3" size="card" className="mb-2 text-white">Contact Our Copyright Team</Heading>
+                  <p className="text-white/60">
                     Submit your request via email to: <a href="mailto:info@articog.com" className="text-white hover:underline">info@articog.com</a>
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-zinc-500 type-small leading-relaxed">
+                  <p className="type-small leading-relaxed text-white/40">
                     We respond to legitimate copyright concerns promptly. Please note that this process is for reporting copyright infringement only; other inquiries (such as support requests) will not receive a response through this channel.
                   </p>
                 </div>
@@ -51,7 +50,7 @@ export default function CopyrightPage() {
             </Section>
           </div>
         </Container>
-      </div>
+      </Section>
 
     </div>
   );

@@ -44,7 +44,7 @@ export default function SolutionsPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-20 md:pt-24">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6">
@@ -60,7 +60,7 @@ export default function SolutionsPage() {
                 className="group flex min-h-[96px] items-center justify-between rounded-xl border border-white/[0.08] px-5 py-4 transition-colors hover:border-white/20"
               >
                 <div className="min-w-0">
-                  <h2 className="type-h3 text-white">{card.title}</h2>
+                  <Heading as="h2" size="card" className="text-white">{card.title}</Heading>
                 </div>
                 <ArrowRight size={18} className="ml-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />
               </Link>

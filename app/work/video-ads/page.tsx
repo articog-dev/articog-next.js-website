@@ -6,8 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/work/video-ads" },
 };
 import { Link } from "@/components/ui/Link";
-import { Container } from '@/components/ui/Container';
-import { Section } from '@/components/ui/Section';
+import { Container, Heading, Section } from '@/components/ui';
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 
 export default function VideoAdsGalleryPage() {
@@ -22,11 +21,11 @@ export default function VideoAdsGalleryPage() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col font-sans">
-      <div className="flex-grow pt-32 pb-20">
+      <div className="flex-grow pt-32 md:pt-40 pb-20">
         <Container>
           <div className="max-w-6xl mx-auto">
-            <h1 className="type-h1 mb-6 text-white">Video Ad Gallery</h1>
-            <p className="text-zinc-400 type-h3 mb-16 max-w-2xl leading-relaxed">
+            <Heading as="h1" size="hero" className="mb-6 text-white">Video Ad Gallery</Heading>
+            <p className="type-h3 mb-16 max-w-2xl leading-relaxed text-white/60">
               Explore our latest AI generated video creative across industries and formats.
             </p>
 
@@ -41,23 +40,23 @@ export default function VideoAdsGalleryPage() {
               {examples.map((item, idx) => (
                 <div key={idx} className="group">
                   <div className="flex justify-between items-start mb-2">
-                    <h2 className="type-h3">{item.title}</h2>
-                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-zinc-800 text-zinc-400">
+                    <Heading as="h2" size="card">{item.title}</Heading>
+                    <span className="rounded bg-white/[0.03] px-2 py-0.5 text-[10px] font-bold uppercase text-white/60">
                       {item.type}
                     </span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-xs text-zinc-500">{item.industry}</span>
-                    <span className="text-xs text-zinc-500">•</span>
-                    <span className="text-xs text-zinc-500">{item.format}</span>
+                    <span className="text-xs text-white/40">{item.industry}</span>
+                    <span className="text-xs text-white/40">•</span>
+                    <span className="text-xs text-white/40">{item.format}</span>
                   </div>
                 </div>
               ))}
             </div>
 
-            <Section className="mt-20 py-12 border-t border-zinc-900 text-center">
-              <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
-              <p className="text-zinc-500 type-small mb-8 italic">All displayed work is used with appropriate permissions.</p>
+            <Section className="mt-20 border-t border-white/[0.08] py-12 text-center">
+              <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
+              <p className="type-small mb-8 italic text-white/40">All displayed work is used with appropriate permissions.</p>
               <Link to="/book-a-demo" className="text-sm font-medium leading-5 text-white hover:underline underline-offset-4">
                 Book a Demo →
               </Link>

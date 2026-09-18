@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
+import { Container, Heading, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Press & Media Kit | Articog",
@@ -38,35 +37,35 @@ export default function PressPage() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col font-sans">
-      <div className="flex-grow pt-32 pb-20">
+      <div className="flex-grow pt-32 md:pt-40 pb-20">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <h1 className="type-h1 mb-6 text-white">
+          <div className="mx-auto max-w-4xl">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Press & Media Kit
-            </h1>
+            </Heading>
 
-            <p className="text-zinc-400 type-h3 mb-12 max-w-2xl leading-relaxed">
+            <p className="type-h3 mb-12 max-w-2xl leading-relaxed text-white/60">
               Resources and information for journalists and media covering
               Articog&apos;s mission to transform creative production with AI.
             </p>
 
-            <Section className="py-12 border-t border-zinc-900">
-              <h2 className="type-h2 mb-8 text-white">
+            <Section className="border-t border-white/[0.08] py-12">
+              <Heading as="h2" size="section" className="mb-8 text-white">
                 Media Kit
-              </h2>
+              </Heading>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {mediaAssets.slice(0, 2).map((asset) => (
                   <div
                     key={asset.title}
-                    className="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 flex flex-col h-full"
+                    className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
                   >
-                    <h3 className="type-h3 mb-3 text-white">
+                    <Heading as="h3" size="card" className="mb-3 text-white">
                       {asset.title}
-                    </h3>
+                    </Heading>
 
                     {asset.asset ? (
-                      <div className="mb-4 flex items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-black p-6">
+                      <div className="mb-4 flex items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-black p-6">
                         <Image
                           src={asset.asset}
                           alt={asset.alt}
@@ -77,7 +76,7 @@ export default function PressPage() {
                       </div>
                     ) : null}
 
-                    <p className="text-zinc-400 type-small leading-relaxed mb-6 flex-grow">
+                    <p className="type-small mb-6 flex-grow leading-relaxed text-white/60">
                       {asset.description}
                     </p>
 
@@ -86,7 +85,7 @@ export default function PressPage() {
                         href={asset.href}
                         download
                         aria-label={`Download ${asset.title}`}
-                        className="mt-auto inline-flex items-center justify-center rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-zinc-500 hover:bg-zinc-700"
+                        className="mt-auto inline-flex items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-sm font-medium text-white transition-colors hover:border-white/20 hover:bg-white/[0.08]"
                       >
                         {asset.actionLabel}
                       </a>
@@ -99,13 +98,13 @@ export default function PressPage() {
                 {mediaAssets.slice(2).map((asset) => (
                   <div
                     key={asset.title}
-                    className="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 flex flex-col h-full"
+                    className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
                   >
-                    <h3 className="type-h3 mb-3 text-white">
+                    <Heading as="h3" size="card" className="mb-3 text-white">
                       {asset.title}
-                    </h3>
+                    </Heading>
 
-                    <p className="text-zinc-400 type-small leading-relaxed mb-6 flex-grow">
+                    <p className="type-small mb-6 flex-grow leading-relaxed text-white/60">
                       {asset.description}
                     </p>
                   </div>
@@ -113,24 +112,24 @@ export default function PressPage() {
               </div>
             </Section>
 
-            <Section className="py-12 border-t border-zinc-900">
+            <Section className="border-t border-white/[0.08] py-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                  <h2 className="type-h2 mb-6 text-white">
+                  <Heading as="h2" size="section" className="mb-6 text-white">
                     Company Boilerplate
-                  </h2>
+                  </Heading>
 
-                  <div className="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800 text-zinc-300 text-sm leading-relaxed">
+                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 text-sm leading-relaxed text-white/60">
                     Articog is an AI-Native Film &amp; Production Company producing brand films, commercials, performance creative, social content, product visuals and audio for brands and modern marketing teams.
                   </div>
                 </div>
 
                 <div>
-                  <h2 className="type-h2 mb-6 text-white">
+                  <Heading as="h2" size="section" className="mb-6 text-white">
                     Media Contact
-                  </h2>
+                  </Heading>
 
-                  <p className="text-zinc-400 mb-4">
+                  <p className="mb-4 text-white/60">
                     For media inquiries, interviews, or additional assets,
                     please reach out to our communications team.
                   </p>
@@ -145,12 +144,12 @@ export default function PressPage() {
               </div>
             </Section>
 
-            <Section className="py-12 border-t border-zinc-900">
-                  <h2 className="type-h2 mb-4 text-white">
+            <Section className="border-t border-white/[0.08] py-12">
+                  <Heading as="h2" size="section" className="mb-4 text-white">
                 Usage Guidelines
-              </h2>
+              </Heading>
 
-              <p className="text-zinc-400 type-small leading-relaxed max-w-2xl">
+              <p className="type-small max-w-2xl leading-relaxed text-white/60">
                 Articog logos and media materials may be used for editorial
                 coverage according to our brand guidelines. For any other
                 usage or specific permission questions, please contact us.

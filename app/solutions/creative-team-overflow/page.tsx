@@ -46,7 +46,7 @@ export default function CreativeOverflowPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-white">How It Works</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">How It Works</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((item) => (
@@ -57,7 +57,7 @@ export default function CreativeOverflowPage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h4 text-white mb-2">{item.title}</h3>
+                <Heading as="h3" size="subsection" className="mb-2 text-white">{item.title}</Heading>
                 <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -71,7 +71,7 @@ export default function CreativeOverflowPage() {
       <Section className="py-20 border-t border-white/5">
         <Container>
           <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl border-l-4 border-l-white/20">
-            <h3 className="type-h2 text-white mb-4">A Note on Engagement</h3>
+            <Heading as="h3" size="section" className="mb-4 text-white">A Note on Engagement</Heading>
             <p className="font-sans text-white/70 leading-relaxed max-w-2xl">
               Unlike our <Link href="/solutions/monthly-creative-subscription" className="text-white hover:text-white/80 underline underline-offset-4">Monthly Creative Subscription</Link>, this solution is specifically for teams that already have creative resources in-house and need targeted overflow support, rather than a fully outsourced creative engine.
             </p>
@@ -83,7 +83,7 @@ export default function CreativeOverflowPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Need additional creative capacity?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Need additional creative capacity?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Get Overflow Support

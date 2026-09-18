@@ -4,7 +4,7 @@ import type { FounderProfile as FounderProfileData } from "@/lib/founders";
 
 export function FounderProfile({ founder }: { founder: FounderProfileData }) {
   return (
-    <article className="grid gap-10 border-t border-white/[0.08] pt-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-14">
+    <article className="grid grid-gap-loose border-t border-white/[0.08] pt-10 lg:grid-cols-[16rem_minmax(0,1fr)]">
       <div
         className={`mx-auto w-full max-w-xs overflow-hidden border border-white/[0.08] bg-white/[0.02] lg:mx-0 ${founder.circular ? "rounded-full bg-black" : "rounded-2xl"}`}
       >
@@ -44,7 +44,7 @@ export function FounderProfile({ founder }: { founder: FounderProfileData }) {
 
         {founder.sections.map((section) => (
           <div key={section.title} className="space-y-4">
-            <h3 className="type-h3 text-white">{section.title}</h3>
+            <Heading as="h3" size="card" className="text-white">{section.title}</Heading>
             {section.paragraphs?.map((paragraph) => (
               <p key={paragraph} className="whitespace-pre-line">
                 {paragraph}

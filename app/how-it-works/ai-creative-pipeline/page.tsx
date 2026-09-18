@@ -58,7 +58,7 @@ export default function AICreativePipelinePage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-white">Pipeline Stages</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">Pipeline Stages</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {stages.map((stage) => (
@@ -69,7 +69,7 @@ export default function AICreativePipelinePage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <stage.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h3 text-white mb-3">{stage.title}</h3>
+                <Heading as="h3" size="card" className="mb-3 text-white">{stage.title}</Heading>
                 <p className="type-body text-white/50 leading-relaxed">{stage.desc}</p>
               </div>
             ))}
@@ -80,7 +80,7 @@ export default function AICreativePipelinePage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-center text-white">Our QA Standards</h2>
+            <Heading as="h2" size="section" className="mb-4 text-center text-white">Our QA Standards</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {qaStandards.map(([title, description, Icon]) => (
@@ -89,7 +89,7 @@ export default function AICreativePipelinePage() {
                   <Icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="type-h3 text-white mb-2">{title}</h3>
+                  <Heading as="h3" size="card" className="mb-2 text-white">{title}</Heading>
                   <p className="type-small text-white/50 leading-relaxed">{description}</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function AICreativePipelinePage() {
       <Section className="py-20 border-t border-white/5">
         <Container>
           <div className="p-8 md:p-12 rounded-2xl border border-white/10 max-w-4xl">
-            <h3 className="type-h2 text-white mb-4">Custom Calibration</h3>
+            <Heading as="h3" size="section" className="mb-4 text-white">Custom Calibration</Heading>
             <p className="font-sans text-white/70 leading-relaxed max-w-2xl">
               It is important to note that the AI Creative Pipeline is not one size fits all. Every pipeline is calibrated per brand, incorporating your unique visual assets, tone of voice, and industry specific requirements to ensure every output is unmistakably yours.
             </p>
@@ -121,7 +121,7 @@ export default function AICreativePipelinePage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

@@ -21,7 +21,7 @@ export default function CareersPage() {
           </div>
 
           <div className="max-w-4xl mx-auto mb-24">
-            <h2 className="type-h2 mb-8 text-white">Open Roles</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Open Roles</Heading>
 
             <BreezyOpenings />
 

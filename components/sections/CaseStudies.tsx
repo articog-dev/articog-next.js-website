@@ -112,12 +112,12 @@ export function CaseStudies({}: { caseStudies: CaseStudy[] }) {
           Our Approach
         </Heading>
 
-        <ul className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
+        <ul className="grid grid-cols-1 grid-gap-section md:grid-cols-3">
           {approachItems.map((item) => (
             <li key={item}>
-              <h3 className="font-display text-lg font-medium text-white md:text-xl">
+              <Heading as="h3" size="card" className="text-lg font-medium text-white md:text-xl">
                 {item}
-              </h3>
+              </Heading>
             </li>
           ))}
         </ul>

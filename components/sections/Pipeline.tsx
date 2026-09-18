@@ -135,14 +135,16 @@ export function Pipeline({ steps }: PipelineProps) {
                 {step.step}
               </div>
 
-              <h3
-                className="font-display text-base font-bold text-white"
+              <Heading
+                as="h3"
+                size="card"
+                className="text-base font-bold text-white"
                 style={{
                   textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                 }}
               >
                 {step.title}
-              </h3>
+              </Heading>
             </div>
           ))}
         </div>

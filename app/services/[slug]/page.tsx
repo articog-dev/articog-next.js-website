@@ -63,7 +63,7 @@ export default async function ServicePage({
       <Section className="border-t border-white/5 bg-white/[0.02] py-20">
         <Container>
           <div className="max-w-3xl">
-            <h2 className="type-h2 mb-4 text-white">What We Deliver</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
             <p className="type-body-lg text-white/60">
               {service.title}
             </p>
@@ -74,9 +74,9 @@ export default async function ServicePage({
       <Section className="py-24">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="type-h2 mb-8 text-white">
+            <Heading as="h2" size="section" className="mb-8 text-white">
               Ready to transform your production?
-            </h2>
+            </Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="h-14 rounded-full px-8">
                 Book a Demo

@@ -14,17 +14,17 @@ export default function ProductionEconomicsPage() {
     {
       title: "Traditional Cost Structure",
       icon: <BarChart3 className="w-6 h-6 text-white/40" />,
-      description: "Traditional production is heavily weighted toward labor and physical overhead. Retainers, large crews, location fees, and extended post-production cycles create a high floor for project costs that scale linearly with volume.",
+      description: "Labor and overhead scale with every project.",
     },
     {
       title: "Volume Economics",
       icon: <Zap className="w-6 h-6 text-white/40" />,
-      description: "With an AI-native workflow, the relationship between volume and cost changes. As production systems mature and asset libraries are reused, the cost per deliverable can become more flexible across campaign cycles and channel demands.",
+      description: "Cost per deliverable flexes with volume.",
     },
     {
       title: "Time-to-Market Value",
       icon: <Clock className="w-6 h-6 text-white/40" />,
-      description: "Speed is a financial asset. Flexible campaign timelines help brands respond to changing priorities and reduce the opportunity cost of delayed creative testing.",
+      description: "Speed reduces the cost of delay.",
     },
   ];
 
@@ -47,7 +47,7 @@ export default function ProductionEconomicsPage() {
                 <div className="mb-6 w-12 h-12 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center">
                   {section.icon}
                 </div>
-                <h3 className="text-xl font-display font-semibold text-white mb-4">{section.title}</h3>
+                  <Heading as="h3" size="card" className="text-xl font-semibold text-white mb-4">{section.title}</Heading>
                 <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
                   {section.description}
                 </p>
@@ -58,7 +58,7 @@ export default function ProductionEconomicsPage() {
           <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] mb-24">
             <h3 className="text-lg font-display font-semibold text-white mb-4 italic">A Note on Performance</h3>
             <p className="type-small leading-relaxed mb-0" style={{ color: "rgba(255,255,255,0.40)" }}>
-              Disclaimer: Results vary significantly by project scope, complexity, and brand requirements. No specific savings percentage is guaranteed. Actual economic models and potential ROI should be discussed based on your specific use case and historical production benchmarks.
+              Results vary by project scope and complexity.
             </p>
           </div>
 

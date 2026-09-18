@@ -20,9 +20,9 @@ export default function PrivacyChoicesPage() {
 
             <div className="space-y-12 type-small leading-relaxed text-white/60">
               <section>
-                <h2 className="mb-4 type-h3 text-white">
+                <Heading as="h2" size="card" className="mb-4 text-white">
                   Your Rights
-                </h2>
+                </Heading>
                 <p>
                   Depending on applicable law, you may have the right to know
                   about personal information we process, request correction or
@@ -32,9 +32,9 @@ export default function PrivacyChoicesPage() {
               </section>
 
               <section>
-                <h2 className="mb-4 type-h3 text-white">
+                <Heading as="h2" size="card" className="mb-4 text-white">
                   Global Privacy Control
-                </h2>
+                </Heading>
                 <p>
                   We honor Global Privacy Control signals where legally
                   required. Your browser or device must be configured to send
@@ -43,9 +43,9 @@ export default function PrivacyChoicesPage() {
               </section>
 
               <section>
-                <h2 className="mb-4 type-h3 text-white">
+                <Heading as="h2" size="card" className="mb-4 text-white">
                   How to Submit a Request
-                </h2>
+                </Heading>
                 <p>
                   To exercise a privacy right, submit a request through our{" "}
                   <Link

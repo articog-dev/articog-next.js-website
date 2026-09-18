@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Input, Textarea, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
+import { Container, Section, Button, Heading, Input, Textarea, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 
@@ -124,14 +124,14 @@ export default function BookADemoPage() {
   return (
     <Section
       size="lg"
-      className="pt-20 md:pt-24 bg-black min-h-screen"
+      className="pt-32 md:pt-40 bg-black min-h-screen"
     >
       <Container>
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-16">
-            <h1 className="type-h1 mb-6 text-white">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Book a Demo
-            </h1>
+            </Heading>
           </div>
 
           {/* Form */}

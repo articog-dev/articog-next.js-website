@@ -14,27 +14,27 @@ export default function PostProductionPage() {
   const whatWeDeliver = [
     {
       title: "Editing",
-      desc: "Precision narrative assembly and rhythm for maximum viewer retention.",
+      desc: "Precision narrative assembly and rhythm.",
       icon: Scissors,
     },
     {
       title: "Compositing",
-      desc: "Seamlessly blending elements to create impossible or perfect scenes.",
+      desc: "Seamless visual element integration.",
       icon: Layers,
     },
     {
       title: "Color",
-      desc: "Cinematic grading that defines the emotional tone of your visuals.",
+      desc: "Cinematic grading for emotional tone.",
       icon: Palette,
     },
     {
       title: "Audio",
-      desc: "Professional sound design, mixing, and mastering for any platform.",
+      desc: "Professional sound design and finishing.",
       icon: Volume2,
     },
     {
       title: "Cleanup & Upscaling",
-      desc: "Technical refinement and high-resolution finishing for premium output.",
+      desc: "High-resolution technical finishing.",
       icon: Sparkles,
     },
   ];
@@ -67,7 +67,7 @@ export default function PostProductionPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-center text-white">What We Deliver</h2>
+            <Heading as="h2" size="section" className="mb-4 text-center text-white">What We Deliver</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {whatWeDeliver.map((item) => (
@@ -79,7 +79,7 @@ export default function PostProductionPage() {
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="type-h3 text-white">{item.title}</h3>
+                  <Heading as="h3" size="card" className="text-white">{item.title}</Heading>
                 </div>
               </div>
             ))}
@@ -100,7 +100,7 @@ export default function PostProductionPage() {
             {subPages.map((page) => {
               const card = (
                 <>
-                  <h3 className="type-h3 text-white">{page.title}</h3>
+                  <Heading as="h3" size="card" className="text-white">{page.title}</Heading>
                   {page.href && (
                     <span className="inline-flex items-center gap-2 text-sm text-white/80 font-medium group-hover:text-white transition-colors">
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -129,7 +129,7 @@ export default function PostProductionPage() {
       <Section className="py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

@@ -46,7 +46,7 @@ export default function MonthlySubscriptionPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-white">How It Works</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">How It Works</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {steps.map((item) => (
@@ -87,7 +87,7 @@ export default function MonthlySubscriptionPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

@@ -18,15 +18,15 @@ export default function CookiePolicyPage() {
 
             <div className="space-y-12 type-small leading-relaxed text-white/60">
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">1. What are cookies?</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">1. What are cookies?</Heading>
                 <p>Cookies are small text files that are stored on your device when you visit a website. They help the website recognize your device and remember information about your visit.</p>
               </section>
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">2. How we use cookies</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">2. How we use cookies</Heading>
                 <p>We use cookies to enhance your browsing experience, analyze site traffic, and serve personalized content. Some cookies are necessary for the technical operation of our site.</p>
               </section>
               <section>
-                <h2 className="text-xl font-display font-semibold text-white mb-4">3. Managing your preferences</h2>
+                <Heading as="h2" size="card" className="text-xl font-semibold text-white mb-4">3. Managing your preferences</Heading>
                 <p>You can manage your cookie preferences through your browser settings or by visiting our <a href="/privacy-choices" className="text-white underline">Privacy Choices</a> page.</p>
               </section>
             </div>

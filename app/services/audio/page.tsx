@@ -14,22 +14,22 @@ export default function AudioPage() {
   const deliverables = [
     {
       title: "Voiceover",
-      desc: "Professional vocal performances matched to your brand tone, available in multiple languages.",
+      desc: "Professional voice matched to brand tone.",
       icon: Mic2,
     },
     {
       title: "Music",
-      desc: "Custom scores and licensed tracks curated to enhance the emotional impact of your creative.",
+      desc: "Custom scores and licensed tracks.",
       icon: Music,
     },
     {
       title: "Sound Design",
-      desc: "Atmospheric textures, foley, and interface sounds that bring your visuals to life.",
+      desc: "Atmospheric textures and foley design.",
       icon: Waves,
     },
     {
       title: "Mix & Master",
-      desc: "Technical finishing to ensure your audio sounds perfect across all playback devices and platforms.",
+      desc: "Technical finishing for every platform.",
       icon: Speaker,
     },
   ];
@@ -49,7 +49,7 @@ export default function AudioPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div>
-            <h2 className="type-h2 mb-4 text-white">What We Deliver</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliverables.map((item) => (
@@ -60,7 +60,7 @@ export default function AudioPage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h4 text-white">{item.title}</h3>
+                <Heading as="h3" size="subsection" className="text-white">{item.title}</Heading>
               </div>
             ))}
           </div>
@@ -75,7 +75,7 @@ export default function AudioPage() {
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
-              <h3 className="type-h2 text-white mb-2">AI Voiceover</h3>
+              <Heading as="h3" size="section" className="mb-2 text-white">AI Voiceover</Heading>
             </div>
 
             <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
@@ -87,7 +87,7 @@ export default function AudioPage() {
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
-              <h3 className="type-h2 text-white mb-2">Music & Sound Design</h3>
+              <Heading as="h3" size="section" className="mb-2 text-white">Music &amp; Sound Design</Heading>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function AudioPage() {
       <Section className="py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Elevate your project's sound</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Elevate your project's sound</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Add Audio Production

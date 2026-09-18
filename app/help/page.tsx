@@ -124,7 +124,7 @@ export default function HelpCenterPage() {
   return (
     <div className="bg-black min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Section size="lg" className="pt-20 md:pt-24">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
             <Heading as="h1" size="hero" className="mb-8">
@@ -137,7 +137,7 @@ export default function HelpCenterPage() {
             {sections.map((section, idx) => (
               <div key={idx} className="scroll-mt-32" id={section.title.toLowerCase().replace(/\s+/g, '-')}>
                 <div className="flex items-end justify-between mb-6 border-b border-white/[0.1] pb-4">
-                  <h2 className="type-h2 text-white">{section.title}</h2>
+                  <Heading as="h2" size="section" className="text-white">{section.title}</Heading>
                   <div className="flex flex-wrap justify-end gap-2 sm:gap-4">
                     {section.links.map((link, lIdx) => (
                       <Link 
@@ -162,12 +162,12 @@ export default function HelpCenterPage() {
 
             <section id="glossary" className="scroll-mt-32">
               <div className="mb-6 border-b border-white/[0.1] pb-4">
-                <h2 className="type-h2 text-white">Glossary</h2>
+                <Heading as="h2" size="section" className="text-white">Glossary</Heading>
               </div>
               <div className="grid gap-8 md:grid-cols-2">
                 {glossaryTerms.map((item) => (
                   <div key={item.term}>
-                    <h3 className="mb-2 type-h4 text-white">{item.term}</h3>
+                    <Heading as="h3" size="subsection" className="mb-2 text-white">{item.term}</Heading>
                     <p className="mb-3 type-small leading-relaxed text-white/50">{item.definition}</p>
                     <Link href={item.link} className="text-[11px] font-sans font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors">
                       Related Service →

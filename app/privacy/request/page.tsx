@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/components/ui/Link";
-import { Button, Input, Textarea, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
+import { Button, Container, Heading, Input, Textarea, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -46,39 +46,40 @@ export default function PrivacyRequestPage() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col font-sans">
-      <div className="flex-grow pt-32 pb-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="type-h1 mb-6 text-white">Data Rights Request</h1>
-          <p className="text-zinc-400 type-body-lg mb-10">
+      <div className="flex-grow pt-32 md:pt-40 pb-20 px-4">
+        <Container>
+        <div className="mx-auto max-w-2xl">
+          <Heading as="h1" size="hero" className="mb-6 text-white">Data Rights Request</Heading>
+          <p className="type-body-lg mb-10 text-white/60">
             Submit a request to know, delete, or correct your personal information.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-8 bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
+          <form onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-zinc-300">Full Name</Label>
+              <Label htmlFor="name" className="text-white/60">Full Name</Label>
               <Input
                 id="name"
                 name="name"
                 placeholder="John Doe" 
                 required 
-                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white"
+                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-300">Email Address</Label>
+              <Label htmlFor="email" className="text-white/60">Email Address</Label>
               <Input
                 id="email"
                 name="email"
                 type="email" 
                 placeholder="john@example.com" 
                 required 
-                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white"
+                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="type" className="text-zinc-300">Request Type</Label>
+              <Label htmlFor="type" className="text-white/60">Request Type</Label>
               <Select name="type" defaultValue="">
                 <SelectTrigger id="type" className="rounded-lg bg-black px-4 py-3 text-white focus:border-white"><SelectValue placeholder="Select request type" /></SelectTrigger>
                 <SelectContent>
@@ -91,20 +92,20 @@ export default function PrivacyRequestPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="details" className="text-zinc-300">Details / Message</Label>
+              <Label htmlFor="details" className="text-white/60">Details / Message</Label>
               <Textarea
                 id="details"
                 name="details"
                 placeholder="Please provide any additional context for your request..." 
-                className="min-h-[120px] resize-none rounded-lg bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white"
+                className="min-h-[120px] resize-none rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
               />
             </div>
 
             <div className="space-y-4 pt-4">
-              <p className="text-sm text-zinc-500 italic leading-relaxed">
+              <p className="text-sm italic leading-relaxed text-white/40">
                 Note: We may need to verify your identity before processing certain requests. We aim to respond within the timeframe required by applicable law.
               </p>
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-white text-black hover:bg-zinc-200 h-14 text-lg font-semibold rounded-full transition-all">
+              <Button type="submit" disabled={isSubmitting} className="h-14 w-full rounded-full bg-white text-lg font-semibold text-black transition-all hover:bg-white/90">
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </Button>
               {errorMessage ? <p role="alert" className="text-sm text-red-300">{errorMessage}</p> : null}
@@ -112,26 +113,27 @@ export default function PrivacyRequestPage() {
           </form>
 
           <div className="mt-12 space-y-6">
-            <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50">
-              <h2 className="type-h3 mb-2">Alternate Contact Method</h2>
-              <p className="text-zinc-400">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
+              <Heading as="h2" size="card" className="mb-2">Alternate Contact Method</Heading>
+              <p className="text-white/60">
                 You can also reach us at{' '}
-                <a href="mailto:info@articog.com" className="text-white hover:underline underline-offset-4 decoration-zinc-700">
+                <a href="mailto:info@articog.com" className="text-white underline decoration-white/[0.08] underline-offset-4 hover:underline">
                   info@articog.com
                 </a>.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-6 text-sm">
-              <Link to="/privacy-choices" className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4 decoration-zinc-800">
+              <Link to="/privacy-choices" className="text-white/60 underline decoration-white/[0.08] underline-offset-4 transition-colors hover:text-white">
                 ← Back to Privacy Choices
               </Link>
-              <Link to="/privacy/california" className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4 decoration-zinc-800">
+              <Link to="/privacy/california" className="text-white/60 underline decoration-white/[0.08] underline-offset-4 transition-colors hover:text-white">
                 California Privacy Notice
               </Link>
             </div>
           </div>
         </div>
+        </Container>
       </div>
 
     </div>

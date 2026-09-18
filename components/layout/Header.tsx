@@ -148,7 +148,7 @@ export const menuGroups = [
   },
 ];
 
-const groupHubHrefs: Record<string, string> = {
+export const groupHubHrefs: Record<string, string> = {
   Services: "/services",
   Solutions: "/solutions",
   Industries: "/industries",
@@ -417,11 +417,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-0.5 lg:flex">
             {menuGroups.map((group) => {
-              const isDirectGroup =
-                group.label === "Solutions" ||
-                group.label === "Work" ||
-                group.label === "Industries" ||
-                group.label === "Blog";
+              const isDirectGroup = group.links.length === 0;
 
               return (
               <div

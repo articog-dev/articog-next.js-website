@@ -5,7 +5,7 @@ function Badge({ className, variant = "default", ...props }: React.HTMLAttribute
   return (
     <div
       className={cn(
-        "inline-flex w-fit items-center rounded-md border px-2 py-0.5 type-caption font-medium",
+        "inline-flex w-fit items-center radius-sm border px-2 py-0.5 type-caption font-medium",
         variant === "default" && "border-accent/30 bg-accent-muted text-white",
         variant === "secondary" && "border-border bg-surface text-muted",
         variant === "outline" && "border-border text-muted",

@@ -15,17 +15,17 @@ export default function AdCreativePage() {
   const deliverables = [
     {
       title: "Paid Social",
-      desc: "Native feed and story formats for Meta, TikTok, LinkedIn, and more. Optimized for how users actually scroll.",
+      desc: "Native social feed and story formats.",
       icon: Share2,
     },
     {
       title: "Display",
-      desc: "Clean banner ads with high fidelity sized for every placement and programmatic network requirements.",
+      desc: "High-fidelity banners for every placement.",
       icon: Monitor,
     },
     {
       title: "Search",
-      desc: "Creative assets built specifically for search and shopping campaigns to maximize click-through rates.",
+      desc: "Search assets built for click-through.",
       icon: Search,
     },
   ];
@@ -65,7 +65,7 @@ export default function AdCreativePage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-              <h2 className="type-h2 mb-4 text-white">What We Deliver</h2>
+              <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
             <p className="font-sans text-white/50 max-w-2xl">
               From social feeds to global display, we build assets for each channel.
             </p>
@@ -79,7 +79,7 @@ export default function AdCreativePage() {
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-6 h-6" />
                 </div>
-                <h3 className="type-h3 text-white mb-3">{item.title}</h3>
+                <Heading as="h3" size="card" className="mb-3 text-white">{item.title}</Heading>
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export default function AdCreativePage() {
               const card = (
                 <>
                   <div>
-                    <h3 className="type-h3 text-white">{service.title}</h3>
+                    <Heading as="h3" size="card" className="text-white">{service.title}</Heading>
                   </div>
                   {service.href && (
                     <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
@@ -121,7 +121,7 @@ export default function AdCreativePage() {
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="type-h2 mb-6 text-white">Built to Test</h2>
+              <Heading as="h2" size="section" className="mb-6 text-white">Built to Test</Heading>
               <p className="type-body-lg text-white/60 leading-relaxed mb-6">
                 Stop relying on best guesses. We develop on-brand creative variants for structured campaign testing.
               </p>
@@ -153,7 +153,7 @@ export default function AdCreativePage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

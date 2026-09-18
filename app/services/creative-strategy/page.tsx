@@ -14,17 +14,17 @@ export default function CreativeStrategyPage() {
   const capabilities = [
     {
       title: "Concept Development",
-      desc: "Translating your brief into a clear, high impact creative direction that sets the stage for production.",
+      desc: "Clear creative direction from your brief.",
       icon: Lightbulb,
     },
     {
       title: "Brand Direction",
-      desc: "Ensuring every AI generated asset reflects your brand's unique voice, tone, and visual identity perfectly.",
+      desc: "Consistent voice, tone, and visual identity.",
       icon: Palette,
     },
     {
       title: "Campaign Architecture",
-      desc: "Mapping how creative flows seamlessly across formats and channels for a cohesive, single-campaign experience.",
+      desc: "Cohesive creative across every channel.",
       icon: LayoutGrid,
     },
   ];
@@ -46,7 +46,7 @@ export default function CreativeStrategyPage() {
       <Section className="py-20 bg-white/[0.02]">
         <Container>
           <div className="mb-12">
-            <h2 className="type-h2 mb-4 text-white">What We Do</h2>
+            <Heading as="h2" size="section" className="mb-4 text-white">What We Do</Heading>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {capabilities.map((item) => (
@@ -57,7 +57,7 @@ export default function CreativeStrategyPage() {
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="type-h4 text-white">{item.title}</h3>
+                <Heading as="h3" size="subsection" className="text-white">{item.title}</Heading>
               </div>
             ))}
           </div>
@@ -85,7 +85,7 @@ export default function CreativeStrategyPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

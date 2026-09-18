@@ -54,7 +54,7 @@ export function ServiceMenuCards({ onClose }: { onClose: () => void }) {
             event.stopPropagation();
             onClose();
           }}
-          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-zinc-900 p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:min-h-[200px] lg:p-4"
+          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:min-h-[200px] lg:p-4"
         >
           <Image
             src={item.image}

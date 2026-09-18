@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@/components/ui/Link";
 import { Button } from "@/components/ui";
 import { X, ChevronDown } from "lucide-react";
-import { menuGroups } from "./Header";
+import { menuGroups, groupHubHrefs } from "./Header";
 import { ServiceMenuCards } from "./ServiceMenuCards";
 
 interface MobileMenuProps {
@@ -99,25 +99,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <nav className="flex flex-col overflow-y-auto px-4 pb-8">
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
-            const isDirectGroup =
-              group.label === "Solutions" ||
-              group.label === "Work" ||
-              group.label === "Industries" ||
-              group.label === "Blog";
+            const isDirectGroup = group.links.length === 0;
 
             if (isDirectGroup) {
               return (
                 <div key={group.label} className="border-b border-white/[0.04]">
                   <Link
-                    href={
-                      group.label === "Solutions"
-                        ? "/solutions"
-                        : group.label === "Industries"
-                          ? "/industries"
-                          : group.label === "Blog"
-                            ? "/blog"
-                            : "/work"
-                    }
+                    href={groupHubHrefs[group.label]}
                     onClick={handleClose}
                     className="flex w-full items-center rounded-full px-3 py-4 font-sans text-[14px] font-medium text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >

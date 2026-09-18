@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button } from "@/components/ui";
+import { Container, Section, Button, Heading } from "@/components/ui";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -19,9 +19,9 @@ export default function ContactThankYouPage() {
               <CheckCircle2 size={32} />
             </div>
           </div>
-          <h1 className="type-h1 mb-6 text-white">
+          <Heading as="h1" size="hero" className="mb-6 text-white">
             Message received
-          </h1>
+          </Heading>
           <p className="mx-auto mb-10 max-w-md type-body md:text-lg" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>
             Thanks for reaching out. We&apos;ll follow up within 1 business day.
           </p>

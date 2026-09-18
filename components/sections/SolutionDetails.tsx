@@ -1,4 +1,4 @@
-import { Container, Section } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 
 type SolutionCategory = "monthly" | "performance" | "launch" | "overflow";
 
@@ -99,25 +99,25 @@ export function SolutionDetails({ category }: { category: SolutionCategory }) {
     <Section className="border-t border-white/5 py-20">
       <Container>
         <div className="mb-12 max-w-3xl">
-          <h2 className="type-h2 mb-4 text-white">
+          <Heading as="h2" size="section" className="mb-4 text-white">
             Capabilities
-          </h2>
+          </Heading>
         </div>
         <div className="space-y-3">
           {detailGroups[category].map((group) => (
             <details key={group.title} className="group rounded-2xl border border-white/10">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-5 marker:hidden md:p-6">
                 <div className="max-w-3xl">
-                  <h3 className="type-h3 text-white">{group.title}</h3>
+                  <Heading as="h3" size="card" className="text-white">{group.title}</Heading>
                   <p className="mt-2 type-small leading-relaxed text-white/50">{group.description}</p>
                 </div>
                 <span className="shrink-0 type-h2 font-light text-white/40 transition-transform group-open:rotate-45">+</span>
               </summary>
               <div className="border-t border-white/10 p-5 md:p-6">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 grid-gap-card md:grid-cols-2 lg:grid-cols-3">
                   {group.items.map((item) => (
                     <div key={item.title} className="rounded-xl border border-white/10 p-5">
-                      <h4 className="mb-2 type-h4 text-white">{item.title}</h4>
+                      <Heading as="h4" size="subsection" className="mb-2 text-white">{item.title}</Heading>
                       <p className="type-small leading-relaxed text-white/50">{item.description}</p>
                     </div>
                   ))}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { Container, Section } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 
 type IndustryDetail = {
@@ -158,7 +158,7 @@ export function IndustryDetails() {
     <Section className="border-t border-white/10 py-20 text-left md:py-24">
       <Container>
         <div className="mb-12 max-w-2xl md:mb-16">
-          <h2 className="type-h2 text-white">Creative production by industry</h2>
+          <Heading as="h2" size="section" className="text-white">Creative production by industry</Heading>
         </div>
         <div className="space-y-6">
           {industryDetails.map((industry) => (
@@ -203,7 +203,7 @@ function IndustryCard({
         onClick={onToggle}
         className="flex min-h-[88px] w-full items-center justify-between gap-6 px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[112px] md:px-8"
       >
-        <h3 className="type-h3 text-white">{industry.title}</h3>
+        <Heading as="h3" size="card" className="text-white">{industry.title}</Heading>
         {isOpen ? (
           <X className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
         ) : (

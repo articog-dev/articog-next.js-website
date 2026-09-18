@@ -52,7 +52,7 @@ export default function IndustriesPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-20 pb-24 text-center md:pt-24 md:pb-32">
+      <Section size="lg" className="pt-32 pb-24 text-center md:pt-40 md:pb-32">
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading as="h1" size="hero" className="mb-6">
@@ -68,7 +68,7 @@ export default function IndustriesPage() {
                 className="group flex min-h-[88px] items-center border border-white/[0.08] px-5 py-4 transition-colors hover:border-white/[0.16] sm:min-h-[96px] sm:px-6 md:min-h-[112px]"
               >
                 <div className="flex w-full items-center justify-between gap-6">
-                  <h2 className="type-h3 text-white">{industry.title}</h2>
+                  <Heading as="h2" size="card" className="text-white">{industry.title}</Heading>
                   <ArrowRight size={18} className="shrink-0 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white/80" aria-hidden="true" />
                 </div>
               </Link>

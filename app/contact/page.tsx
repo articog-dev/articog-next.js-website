@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
+import { Container, Section, Button, Heading, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { trackContactSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import {
   ArrowRight,
@@ -78,9 +78,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-3xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="type-h1 mb-6 text-white">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Contact Us
-            </h1>
+            </Heading>
           </div>
 
           {/* Contact Form */}
@@ -277,9 +277,9 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 pt-12 border-t border-white/10">
             {/* Direct Contact */}
             <div>
-              <h3 className="font-display font-semibold text-white mb-4">
+              <Heading as="h3" size="card" className="font-display font-semibold text-white mb-4">
                 Direct Contact
-              </h3>
+              </Heading>
 
               <a
                 href="mailto:info@articog.com"

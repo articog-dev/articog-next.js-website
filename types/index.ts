@@ -30,6 +30,7 @@ export interface PipelineStep {
 
 export interface Capability {
   title: string;
+  href: string;
   useCase: string;
   outcome: string;
   icon: string;

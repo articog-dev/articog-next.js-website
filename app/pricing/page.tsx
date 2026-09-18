@@ -20,7 +20,7 @@ export default function PricingPage() {
   ];
 
   return (
-    <Section size="lg" className="pt-20 md:pt-24">
+    <Section size="lg" className="pt-32 md:pt-40">
       <Container>
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Heading as="h1" size="hero" className="mb-6">
@@ -45,7 +45,7 @@ export default function PricingPage() {
               className="rounded-2xl border border-white/[0.08] p-8"
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
-              <h2 className="mb-4 type-h2 text-white">{option.title}</h2>
+              <Heading as="h2" size="section" className="mb-4 text-white">{option.title}</Heading>
               <p className="type-small leading-relaxed text-white/50">{option.description}</p>
             </div>
           ))}
@@ -53,7 +53,7 @@ export default function PricingPage() {
 
         <div className="mb-16 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-white/[0.08] p-8">
-            <h2 className="mb-4 type-h3 text-white">Typical budget range</h2>
+            <Heading as="h2" size="card" className="mb-4 text-white">Typical budget range</Heading>
             <p className="mb-5 type-small leading-relaxed text-white/60">
               Final quotes depend on scope, formats, review cycles, and production requirements.
             </p>
@@ -63,7 +63,7 @@ export default function PricingPage() {
             </ul>
           </div>
           <div className="rounded-2xl border border-white/[0.08] p-8">
-            <h2 className="mb-4 type-h3 text-white">Typical planning horizon</h2>
+            <Heading as="h2" size="card" className="mb-4 text-white">Typical planning horizon</Heading>
             <p className="mb-5 type-small leading-relaxed text-white/60">
               We confirm timing after understanding the brief, approvals, formats, and launch requirements.
             </p>
@@ -75,7 +75,7 @@ export default function PricingPage() {
         </div>
 
         <div className="rounded-2xl border border-white/[0.08] p-8 md:p-10 text-center">
-          <h2 className="mb-4 type-h2 text-white">Ready to transform your production?</h2>
+          <Heading as="h2" size="section" className="mb-4 text-white">Ready to transform your production?</Heading>
           <p className="mx-auto mb-8 max-w-2xl type-small leading-relaxed text-white/50">
             We will review your goals, production needs, timeline, and creative output so we can recommend the best engagement for your team.
           </p>

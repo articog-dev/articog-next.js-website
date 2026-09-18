@@ -116,7 +116,7 @@ export default function HomePage() {
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={homepage.hero.ctaHref}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
           >
             {homepage.hero.ctaLabel}
             <ArrowRight size={16} aria-hidden="true" />

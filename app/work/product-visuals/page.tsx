@@ -31,9 +31,9 @@ export default function ProductVisualsPage() {
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-bold tracking-widest text-muted-safe uppercase">Beauty / Creator-Style Social Content</span>
                 </div>
-                <h2 className="type-h2 mb-4 text-white">
+                  <Heading as="h2" size="section" className="mb-4 text-white">
                   Launch-ready campaign imagery with a structured, fast-turn production workflow
-                </h2>
+                  </Heading>
                 <p className="type-body-lg text-white/60">
                   How a modern beauty brand can move from concept to a multi-platform campaign system through a more efficient visual production process.
                 </p>
@@ -58,7 +58,7 @@ export default function ProductVisualsPage() {
       <Section className="py-24">
         <Container>
           <div className="max-w-2xl mb-16">
-            <h2 className="type-h2 mb-6 text-white">Visual Production at Scale</h2>
+              <Heading as="h2" size="section" className="mb-6 text-white">Visual Production at Scale</Heading>
             <p className="type-body-lg text-white/60">
               We provide a comprehensive suite of visual assets that maintain consistent brand standards across every touchpoint.
             </p>
@@ -72,7 +72,7 @@ export default function ProductVisualsPage() {
               { title: "Print-Ready Assets", desc: "High-resolution files ready for any physical production needs." }
             ].map((item) => (
               <div key={item.title} className="p-8 rounded-2xl border border-white/10">
-                <h3 className="type-h4 text-white mb-3">{item.title}</h3>
+                  <Heading as="h3" size="subsection" className="mb-3 text-white">{item.title}</Heading>
                 <p className="type-small text-white/50 leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -84,7 +84,7 @@ export default function ProductVisualsPage() {
       <Section className="py-24 border-t border-white/5">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+              <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

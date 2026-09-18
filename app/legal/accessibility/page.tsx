@@ -44,9 +44,9 @@ export default function AccessibilityPage() {
             <div className="space-y-12">
               {sections.map((section) => (
                 <div key={section.title}>
-                  <h2 className="type-h3 text-white mb-4">
+                  <Heading as="h2" size="card" className="text-white mb-4">
                     {section.title}
-                  </h2>
+                  </Heading>
                   <p
                     className="type-body leading-relaxed"
                     style={{ color: "rgba(255,255,255,0.65)" }}

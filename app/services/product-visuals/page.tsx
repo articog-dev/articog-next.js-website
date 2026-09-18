@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Product visual content for e-commerce, launch campaigns, and performance marketing created with speed and brand precision.",
 };
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button } from "@/components/ui";
+import { Container, Section, Button, Heading } from "@/components/ui";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 
@@ -16,9 +16,9 @@ export default function ProductVisualsPage() {
       <Section size="lg" className="pt-32 md:pt-40 pb-20">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="type-h1 mb-6 text-white">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Product Visual Content
-            </h1>
+            </Heading>
           </div>
         </Container>
       </Section>
@@ -27,13 +27,13 @@ export default function ProductVisualsPage() {
         <Container>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="type-h2 mb-6 text-white">What We Deliver</h2>
+              <Heading as="h2" size="section" className="mb-6 text-white">What We Deliver</Heading>
               <p className="text-white/60 leading-relaxed">
                 Elevate your product presence without studio logistics. We combine precise rendering with AI environments for scalable visual content.
               </p>
             </div>
             <div>
-              <h2 className="type-h2 mb-6 text-white">Applications</h2>
+              <Heading as="h2" size="section" className="mb-6 text-white">Applications</Heading>
               <ul className="space-y-4">
                 {[
                   "E-commerce product imagery",
@@ -56,7 +56,7 @@ export default function ProductVisualsPage() {
 
       <Section className="py-32">
         <Container className="text-center">
-          <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+          <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
           <Button asChild variant="primary" size="lg">
             <Link href="/book-a-demo">
               Book a Demo <ArrowRight size={15} className="ml-2" />

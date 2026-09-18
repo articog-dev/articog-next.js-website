@@ -60,7 +60,7 @@ export default function AdLibraryPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-20 md:pt-24">
+      <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6">
@@ -129,9 +129,9 @@ export default function AdLibraryPage() {
                       {item.industry}
                     </span>
                   </div>
-                  <h3 className="text-base font-display font-medium text-white group-hover:text-white/80 transition-colors">
+                  <Heading as="h3" size="card" className="text-base font-medium text-white transition-colors group-hover:text-white/80">
                     {item.title}
-                  </h3>
+                  </Heading>
                 </div>
 
               </div>

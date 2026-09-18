@@ -1,6 +1,6 @@
 import { Link } from "@/components/ui/Link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Container, Section, Button } from "@/components/ui";
+import { Container, Section, Button, Heading } from "@/components/ui";
 import type { CTAContent } from "@/types";
 
 interface FinalCTAProps {
@@ -13,9 +13,9 @@ export function FinalCTA({ content }: FinalCTAProps) {
       <Container>
         <div className="mx-auto max-w-xl text-center">
 
-          <h2 className="type-h2 mb-5 text-white">
+          <Heading as="h2" size="section" className="mb-5 text-white">
             Ready to transform your production?
-          </h2>
+          </Heading>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button asChild variant="primary" size="lg">

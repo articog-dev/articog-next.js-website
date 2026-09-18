@@ -2,6 +2,7 @@
 
 import type { HeroContent, ProofStat } from "@/types";
 import { useLayoutEffect, useRef } from "react";
+import { Heading } from "@/components/ui";
 
 interface HeroProps {
   content: HeroContent;
@@ -124,13 +125,13 @@ export function Hero({ content }: HeroProps) {
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4">
         <div className="mx-auto max-w-5xl text-center">
           {/* Headline */}
-          <h1 className="hero-heading type-h1 text-white">
+          <Heading as="h1" size="hero" className="hero-heading text-white">
             {content.headline.split("\n").map((line, i, lines) => (
               <span key={i} className="block">
                 {line}{i < lines.length - 1 ? " " : ""}
               </span>
             ))}
-          </h1>
+          </Heading>
 
         </div>
       </div>

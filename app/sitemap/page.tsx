@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Link } from "@/components/ui/Link";
-import { Container } from '@/components/ui/Container';
+import { Container, Heading } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: "Sitemap | Articog",
@@ -101,23 +101,23 @@ export default function SitemapPage() {
   ];
 
   return (
-    <div className="flex-grow pt-32 pb-20">
+    <div className="flex-grow pt-32 md:pt-40 pb-20">
       <Container>
         <div className="max-w-4xl">
-          <h1 className="type-h1 mb-6 text-white">Sitemap</h1>
+          <Heading as="h1" size="hero" className="mb-6 text-white">Sitemap</Heading>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
             {sitemapData.map((section) => (
               <div key={section.title} className="space-y-6">
-                <h2 className="type-label border-b border-zinc-900 pb-2 text-zinc-500">
+                <Heading as="h2" size="label" className="border-b border-white/[0.08] pb-2 text-white/40">
                   {section.title}
-                </h2>
+                </Heading>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.href}>
                       <Link 
                         to={link.href} 
-                        className="text-zinc-300 hover:text-white transition-colors type-body block w-fit"
+                        className="type-body block w-fit text-white/60 transition-colors hover:text-white"
                       >
                         {link.label}
                       </Link>

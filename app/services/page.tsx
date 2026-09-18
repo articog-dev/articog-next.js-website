@@ -8,29 +8,28 @@ export const metadata: Metadata = {
 };
 
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button } from "@/components/ui";
+import { Container, Section, Button, Heading } from "@/components/ui";
 import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
 
 const serviceDeliverables = [
   {
     title: "Feed Post",
-    description: "High impact square and 4:5 assets built for the main feed.",
+    description: "High-impact square and 4:5 feed assets.",
     Icon: Grid2X2,
   },
   {
     title: "Story Format",
-    description: "Immersive 9:16 vertical content designed for mobile-first consumption.",
+    description: "Immersive 9:16 mobile content.",
     Icon: Smartphone,
   },
   {
     title: "Reel Cover",
-    description: "Custom-designed thumbnail covers that drive higher click-through rates.",
+    description: "Custom thumbnails designed for click-through.",
     Icon: Instagram,
   },
   {
     title: "Organized for Scale",
-    description:
-      "All content is intelligently grouped into thematic series to ensure cross channel consistency. Every asset is meticulously organized by campaign and format, making reference and implementation seamless for your team.",
+    description: "Organized campaign assets for scalable delivery.",
     Icon: Layers3,
   },
 ];
@@ -298,7 +297,7 @@ export default function ServicesPage() {
       {/* Hero */}
       <Section
         size="lg"
-        className="relative flex items-center overflow-hidden py-20 md:py-24"
+        className="relative flex items-center overflow-hidden pt-32 md:pt-40 pb-20 md:pb-24"
       >
         {/* Optimized Background Video */}
         <div className="absolute inset-0 z-0">
@@ -338,9 +337,9 @@ export default function ServicesPage() {
 
         <Container className="relative z-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="type-h1 text-white">
+            <Heading as="h1" size="hero" className="text-white">
               Every creative format, delivered.
-            </h1>
+            </Heading>
 
           </div>
         </Container>
@@ -349,12 +348,12 @@ export default function ServicesPage() {
       <Section className="border-t border-white/[0.05] py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-3xl">
-            <h2 className="type-h2 text-white">One production partner. Every campaign format.</h2>
+            <Heading as="h2" size="section" className="text-white">One production partner. Every campaign format.</Heading>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {serviceModelGroups.map((group) => (
               <div key={group.title} className="rounded-xl border border-white/[0.08] p-6">
-                <h3 className="type-h3 mb-5 text-white">{group.title}</h3>
+                <Heading as="h3" size="card" className="mb-5 text-white">{group.title}</Heading>
                 <ul className="space-y-3">
                   {group.items.map(([label, href]) => (
                     <li key={label}>
@@ -375,9 +374,9 @@ export default function ServicesPage() {
         {serviceGroups.map((group) => (
           <Section key={group.category} size="md" className="py-12">
             <Container>
-              <h2 className="type-h2 mb-10 text-white">
+              <Heading as="h2" size="section" className="mb-10 text-white">
                 {group.category}
-              </h2>
+              </Heading>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {group.items.map((service) => (
@@ -390,9 +389,9 @@ export default function ServicesPage() {
                     }}
                   >
                     <div className="flex w-full min-w-0 items-center gap-4">
-                      <h3 className="min-w-0 flex-1 type-h3 text-white transition-colors duration-200 group-hover:text-white/90">
+                      <Heading as="h3" size="card" className="min-w-0 flex-1 text-white transition-colors duration-200 group-hover:text-white/90">
                         {service.title}
-                      </h3>
+                      </Heading>
                       <ArrowRight
                         size={14}
                         className="ml-auto shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
@@ -416,7 +415,7 @@ export default function ServicesPage() {
                 className={`rounded-xl border border-white/[0.08] p-6 ${index === serviceDeliverables.length - 1 ? "sm:col-span-3" : ""}`}
               >
                 <Icon className="mb-5 h-6 w-6 text-white/70" aria-hidden="true" />
-                <h2 className="type-h3 mb-3 text-white">{title}</h2>
+                <Heading as="h2" size="card" className="mb-3 text-white">{title}</Heading>
                 <p className="type-small leading-relaxed text-white/60">{description}</p>
               </div>
             ))}
@@ -428,9 +427,9 @@ export default function ServicesPage() {
       <Section size="lg" className="border-t border-white/[0.05]">
         <Container>
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="type-h2 mb-6 text-white">
+            <Heading as="h2" size="section" className="mb-6 text-white">
               Ready to transform your production?
-            </h2>
+            </Heading>
 
             <Button asChild variant="primary" size="lg">
               <Link href="/book-a-demo">

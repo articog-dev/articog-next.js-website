@@ -48,7 +48,7 @@ export default function TrustPage() {
               >
                 <Card className="flex-row items-center justify-between rounded-xl border-white/[0.08] bg-transparent p-0 transition-colors group-hover:border-white/20">
                   <CardContent className="flex w-full items-center justify-between p-5">
-                    <h2 className="type-h3 text-white">{card.title}</h2>
+                    <Heading as="h2" size="card" className="text-white">{card.title}</Heading>
                     <ArrowRight size={18} className="ml-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />
                   </CardContent>
                 </Card>

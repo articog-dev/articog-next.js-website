@@ -9,7 +9,7 @@ export function Problems({ problems }: ProblemsProps) {
   return (
     <Section id="problems" style={{ background: 'linear-gradient(to bottom, #000000 0%, #0a0a0a 100%)' }}>
       <Container>
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
+        <div className="grid grid-cols-1 grid-gap-loose lg:grid-cols-12">
 
           {/* Left label */}
           <div className="lg:col-span-4">
@@ -32,9 +32,9 @@ export function Problems({ problems }: ProblemsProps) {
                   {p.number}
                 </span>
                 <div className="space-y-1.5">
-                  <h3 className="type-h4 text-white">
+                  <Heading as="h3" size="subsection" className="text-white">
                     {p.title}
-                  </h3>
+                  </Heading>
                   <p
                     className="type-small leading-relaxed"
                     style={{ color: "rgba(255,255,255,0.50)" }}
