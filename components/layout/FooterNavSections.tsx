@@ -14,7 +14,7 @@ export function FooterNavSections({ sections }: { sections: FooterSection[] }) {
             <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-safe">
               {section.title}
             </p>
-            <nav className="flex flex-col gap-2.5">
+            <nav aria-label={section.title} className="flex flex-col gap-2.5">
               {section.links.map((item) => (
                 <Link key={item.href} href={item.href} className="type-small w-fit text-muted-safe transition-colors hover:text-white/80">
                   {item.label}
@@ -32,7 +32,7 @@ export function FooterNavSections({ sections }: { sections: FooterSection[] }) {
               {section.title}
               <span aria-hidden="true" className="text-base font-normal">+</span>
             </summary>
-            <nav className="flex flex-col gap-3 pt-4">
+            <nav aria-label={section.title} className="flex flex-col gap-3 pt-4">
               {section.links.map((item) => (
                 <Link key={item.href} href={item.href} className="type-small w-fit text-muted-safe transition-colors hover:text-white/80">
                   {item.label}

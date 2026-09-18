@@ -330,10 +330,10 @@ export default function BookADemoPage() {
               </div>
 
               {/* Service Interest */}
-              <div className="flex flex-col gap-4">
-                <label className="type-nav text-white/70">
+              <fieldset className="flex flex-col gap-4">
+                <legend className="type-nav text-white/70">
                   Service Interest
-                </label>
+                </legend>
 
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                   {[
@@ -362,7 +362,7 @@ export default function BookADemoPage() {
                     </label>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
               {/* Budget + Timeline */}
               <div className="grid gap-5 sm:grid-cols-2 sm:gap-8">

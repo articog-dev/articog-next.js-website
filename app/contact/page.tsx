@@ -193,7 +193,7 @@ export default function ContactPage() {
                   Inquiry Type <span className="text-accent">*</span>
                 </label>
 
-                <Select name="inquiryType" defaultValue="">
+                <Select name="inquiryType" defaultValue="" required>
                   <SelectTrigger id="inquiryType" className="h-12 rounded-lg px-4"><SelectValue placeholder="Select an option" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Sales">Sales</SelectItem>

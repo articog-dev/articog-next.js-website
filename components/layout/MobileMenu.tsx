@@ -75,7 +75,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className="fixed right-0 z-50 flex w-80 flex-col"
+        className="fixed right-0 z-50 flex w-full max-w-80 flex-col"
         style={{ top: HEADER_STACK_HEIGHT, height: `calc(100dvh - ${HEADER_STACK_HEIGHT}px)`, background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
         role="dialog"
         aria-modal="true"

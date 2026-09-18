@@ -87,6 +87,8 @@ export function CreativeDocument() {
   const activePointerId = useRef<number | null>(null);
   const didDrag = useRef(false);
   const lastWheelTime = useRef(0);
+  const lightboxRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const moveProject = useCallback((direction: number) => {
     setActiveIndex((current) => (current + direction + projects.length) % projects.length);
@@ -167,11 +169,37 @@ export function CreativeDocument() {
   useEffect(() => {
     if (!selectedProject) return;
 
+    const dialog = lightboxRef.current;
+    if (!dialog) return;
+
+    const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    ));
+    focusable[0]?.focus();
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    const handleTab = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleTab);
+
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleTab);
+      triggerRef.current?.focus();
     };
   }, [selectedProject]);
 
@@ -252,6 +280,7 @@ export function CreativeDocument() {
                     didDrag.current = false;
                     return;
                   }
+                  triggerRef.current = event.currentTarget;
                   setSelectedProject(project);
                 }}
                 aria-label={`Open ${project.alt} in a larger preview`}
@@ -283,7 +312,7 @@ export function CreativeDocument() {
       </div>
 
       {selectedProject && (
-        <div className={styles.modal} role="dialog" aria-modal="true" aria-label={selectedProject.alt} onClick={() => setSelectedProject(null)}>
+        <div ref={lightboxRef} className={styles.modal} role="dialog" aria-modal="true" aria-label={selectedProject.alt} onClick={() => setSelectedProject(null)}>
           <button type="button" className={styles.close} onClick={() => setSelectedProject(null)} aria-label="Close portfolio preview">
             <X size={20} aria-hidden="true" />
           </button>

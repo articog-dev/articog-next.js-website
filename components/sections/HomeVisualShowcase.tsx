@@ -66,6 +66,8 @@ const renderedVisuals = Array.from({ length: LOOP_COPIES }, (_, copyIndex) =>
 
 export function HomeVisualShowcase() {
   const [selectedVisual, setSelectedVisual] = useState<(typeof visuals)[number] | null>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -227,8 +229,30 @@ export function HomeVisualShowcase() {
   useEffect(() => {
     if (!selectedVisual) return;
 
+    const dialog = lightboxRef.current;
+    if (!dialog) return;
+
+    const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    ));
+    focusable[0]?.focus();
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedVisual(null);
+      if (event.key === "Escape") {
+        setSelectedVisual(null);
+        return;
+      }
+      if (event.key !== "Tab" || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     const previousOverflow = document.body.style.overflow;
@@ -238,6 +262,7 @@ export function HomeVisualShowcase() {
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      triggerRef.current?.focus();
     };
   }, [selectedVisual]);
 
@@ -267,12 +292,13 @@ export function HomeVisualShowcase() {
                     ref={(item) => { itemRefs.current[index] = item; }}
                     type="button"
                     className="showcase-coverflow__item"
-                    onClick={() => {
+                    onClick={(event) => {
                       if (suppressClick.current || dragState.current.moved) {
                         suppressClick.current = false;
                         dragState.current.moved = false;
                         return;
                       }
+                      triggerRef.current = event.currentTarget;
                       setSelectedVisual(visual);
                     }}
                     aria-label={`Open ${visual.alt}`}
@@ -319,6 +345,7 @@ export function HomeVisualShowcase() {
 
       {selectedVisual && (
         <div
+          ref={lightboxRef}
           className="showcase-lightbox"
           role="dialog"
           aria-modal="true"

@@ -80,7 +80,7 @@ export default function PrivacyRequestPage() {
 
             <div className="space-y-2">
               <Label htmlFor="type" className="text-white/60">Request Type</Label>
-              <Select name="type" defaultValue="">
+              <Select name="type" defaultValue="" required>
                 <SelectTrigger id="type" className="rounded-lg bg-black px-4 py-3 text-white focus:border-white"><SelectValue placeholder="Select request type" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="know">Right to Know</SelectItem>

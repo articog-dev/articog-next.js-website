@@ -365,6 +365,24 @@ export function Header() {
     setDropdownAnchor(null);
   };
 
+  useEffect(() => {
+    if (!activeGroup) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        if (closeTimer.current) {
+          clearTimeout(closeTimer.current);
+          closeTimer.current = null;
+        }
+        setActiveGroup(null);
+        setDropdownAnchor(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [activeGroup]);
+
   const closeMobileMenu = () => {
     setMobileOpen(false);
     requestAnimationFrame(() => mobileMenuButtonRef.current?.focus());
