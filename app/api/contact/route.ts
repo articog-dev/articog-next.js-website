@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { parseJsonBody, validateEmail, validateEnum, validateString, validateUrl } from "../../../lib/api-validation";
 
 type ContactData = {
   name: string;
@@ -95,15 +96,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const data = await request.json();
+    const body = await parseJsonBody(request, 16 * 1024);
+    if (!body.ok) {
+      return NextResponse.json({ success: false, error: body.error }, { status: 400 });
+    }
 
-    const { name, email, company, companyWebsite, inquiryType, message, website } = data;
-
-    if (website) {
+    const website = validateString(body.value.website, { maxLength: 200 });
+    if (!website.ok) {
+      return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    }
+    if (website.value) {
       return NextResponse.json({ success: true, message: "Message submitted successfully." });
     }
 
-    if (!name || !email || !inquiryType || !message) {
+    const name = validateString(body.value.name, { required: true, maxLength: 160 });
+    const email = validateEmail(body.value.email);
+    const company = validateString(body.value.company, { required: true, maxLength: 160 });
+    const companyWebsite = validateUrl(body.value.companyWebsite, { maxLength: 2_048 });
+    const inquiryType = validateEnum(body.value.inquiryType, ["Sales", "Partnerships", "Press", "Other"] as const, { required: true, maxLength: 32 });
+    const message = validateString(body.value.message, { required: true, maxLength: 5_000 });
+
+    if (!name.ok || !email.ok || !company.ok || !companyWebsite.ok || !inquiryType.ok || !message.ok) {
       return NextResponse.json(
         {
           success: false,
@@ -121,12 +134,12 @@ export async function POST(request: Request) {
       const response = await fetch(googleSheetsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company: company || "", companyWebsite: companyWebsite || "", inquiryType, message }),
+        body: JSON.stringify({ name: name.value, email: email.value, company: company.value, companyWebsite: companyWebsite.value || "", inquiryType: inquiryType.value, message: message.value }),
       });
 
       if (!response.ok) throw new Error("Failed to save data to Google Sheets.");
     } catch (error) {
-      await alertSheetFailure({ name, email, company, companyWebsite, inquiryType, message }, error);
+      await alertSheetFailure({ name: name.value!, email: email.value, company: company.value, companyWebsite: companyWebsite.value, inquiryType: inquiryType.value!, message: message.value! }, error);
       throw error;
     }
 
@@ -137,16 +150,16 @@ export async function POST(request: Request) {
         [
           "New contact form submission received.",
           "",
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Company: ${company}`,
-          `Company website: ${companyWebsite}`,
-          `Inquiry type: ${inquiryType}`,
+          `Name: ${name.value}`,
+          `Email: ${email.value}`,
+          `Company: ${company.value}`,
+          `Company website: ${companyWebsite.value || ""}`,
+          `Inquiry type: ${inquiryType.value}`,
           "",
           "Message:",
-          message,
+          message.value,
         ].join("\n"),
-        email
+        email.value
       );
     } catch (emailError) {
       console.error("Contact notification email failed after lead was saved:", emailError);
@@ -154,10 +167,10 @@ export async function POST(request: Request) {
 
     try {
       await sendEmail(
-        email,
+        email.value,
         "We received your message | Articog",
-        [`Hi ${name},`, "", "Thanks for reaching out to Articog. We received your message and will follow up within 1 business day.", "", "Best,", "The Articog team"].join("\n"),
-        email
+        [`Hi ${name.value}`, "", "Thanks for reaching out to Articog. We received your message and will follow up within 1 business day.", "", "Best,", "The Articog team"].join("\n"),
+        email.value
       );
     } catch (emailError) {
       console.error("Contact confirmation email failed after lead was saved:", emailError);

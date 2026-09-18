@@ -45,6 +45,7 @@ describe("POST /api/contact", () => {
         body: JSON.stringify({
           name: "Test User",
           email: "test@example.com",
+          company: "Example Co",
           inquiryType: "Sales",
           message: "Test message",
         }),
@@ -88,6 +89,48 @@ describe("POST /api/contact", () => {
 
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({ success: true });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("rejects invalid fields before calling downstream integrations", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-forwarded-for": "198.51.100.14" },
+        body: JSON.stringify({
+          name: "Valid User",
+          email: "not-an-email",
+          company: "Example Co",
+          companyWebsite: "not-a-url",
+          inquiryType: "Unknown",
+          message: "Valid-looking submission.",
+        }),
+      }),
+    );
+
+    expect(response.status).toBe(400);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("rejects oversized bodies before calling downstream integrations", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+    const response = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-forwarded-for": "198.51.100.15" },
+        body: JSON.stringify({
+          name: "Valid User",
+          email: "valid@example.com",
+          company: "Example Co",
+          inquiryType: "Sales",
+          message: "x".repeat(16_001),
+        }),
+      }),
+    );
+
+    expect(response.status).toBe(400);
     expect(fetchMock).not.toHaveBeenCalled();
   });
 

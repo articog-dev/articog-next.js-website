@@ -1,27 +1,5 @@
 import { NextResponse } from "next/server";
-
-type DemoPayload = {
-  firstName: string;
-  lastName: string;
-  name: string;
-  email: string;
-  company: string;
-  role: string;
-  serviceInterest: string[];
-  budget: string;
-  timeline: string;
-  projectContext?: string;
-  referenceUrl?: string;
-  consent: boolean;
-  attribution: {
-    source?: string;
-    medium?: string;
-    campaign?: string;
-    content?: string;
-    term?: string;
-    referrer?: string;
-  };
-};
+import { isRecord, parseJsonBody, validateBoolean, validateEmail, validateEnum, validateString, validateStringArray, validateUrl } from "../../../lib/api-validation";
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
@@ -48,10 +26,6 @@ function isRateLimited(request: Request): boolean {
   return false;
 }
 
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
 export async function POST(request: Request) {
   if (isRateLimited(request)) {
     return NextResponse.json(
@@ -60,20 +34,45 @@ export async function POST(request: Request) {
     );
   }
 
-  let data: DemoPayload;
-  try {
-    data = (await request.json()) as DemoPayload;
-  } catch {
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  const body = await parseJsonBody(request);
+  if (!body.ok) {
+    return NextResponse.json({ success: false, error: body.error }, { status: 400 });
   }
 
+  const data = body.value;
+  const firstName = validateString(data.firstName, { required: true, maxLength: 80 });
+  const lastName = validateString(data.lastName, { required: true, maxLength: 80 });
+  const name = validateString(data.name, { required: true, maxLength: 170 });
+  const email = validateEmail(data.email);
+  const company = validateString(data.company, { required: true, maxLength: 160 });
+  const role = validateString(data.role, { maxLength: 160 });
+  const serviceInterest = validateStringArray(data.serviceInterest, {
+    allowed: ["Brand Film", "Commercial/Ad", "Social Content", "Product Visuals", "Audio Ad", "Other"] as const,
+    maxItems: 6,
+    maxItemLength: 40,
+  });
+  const budget = validateEnum(data.budget, ["Under $5k", "$5k $15k", "$15k $50k", "$50k+"] as const, { maxLength: 32 });
+  const timeline = validateEnum(data.timeline, ["Immediately", "Within 1 month", "1-3 months", "Planning for future"] as const, { maxLength: 32 });
+  const projectContext = validateString(data.projectContext, { maxLength: 5_000 });
+  const referenceUrl = validateUrl(data.referenceUrl, { maxLength: 2_048 });
+  const consent = validateBoolean(data.consent, true);
+  const attribution = data.attribution === undefined ? {} : data.attribution;
+  const attributionValid = isRecord(attribution);
+  const attributionValues = attributionValid ? {
+    source: validateString(attribution.source, { maxLength: 200 }),
+    medium: validateString(attribution.medium, { maxLength: 200 }),
+    campaign: validateString(attribution.campaign, { maxLength: 200 }),
+    content: validateString(attribution.content, { maxLength: 200 }),
+    term: validateString(attribution.term, { maxLength: 200 }),
+    referrer: validateUrl(attribution.referrer, { maxLength: 2_048 }),
+  } : null;
+
   if (
-    !data.firstName?.trim() ||
-    !data.lastName?.trim() ||
-    !data.name?.trim() ||
-    !isValidEmail(data.email?.trim() || "") ||
-    !data.company?.trim() ||
-    !data.consent
+    !firstName.ok || !lastName.ok || !name.ok || !email.ok || !company.ok || !role.ok ||
+    !serviceInterest.ok || !budget.ok || !timeline.ok || !projectContext.ok || !referenceUrl.ok ||
+    !consent.ok || !consent.value || !attributionValid || !attributionValues ||
+    !attributionValues.source.ok || !attributionValues.medium.ok || !attributionValues.campaign.ok ||
+    !attributionValues.content.ok || !attributionValues.term.ok || !attributionValues.referrer.ok
   ) {
     return NextResponse.json(
       { success: false, error: "Please complete the required fields and consent." },
@@ -94,19 +93,26 @@ export async function POST(request: Request) {
 
   const lead = {
     formType: "demo",
-    firstName: data.firstName.trim(),
-    lastName: data.lastName.trim(),
-    name: data.name.trim(),
-    email: data.email.trim(),
-    company: data.company.trim(),
-    role: data.role?.trim() || "",
-    serviceInterest: Array.isArray(data.serviceInterest) ? data.serviceInterest : [],
-    budget: data.budget?.trim() || "",
-    timeline: data.timeline?.trim() || "",
-    projectContext: data.projectContext?.trim() || "",
-    referenceUrl: data.referenceUrl?.trim() || "",
+    firstName: firstName.value,
+    lastName: lastName.value,
+    name: name.value,
+    email: email.value,
+    company: company.value,
+    role: role.value || "",
+    serviceInterest: serviceInterest.value,
+    budget: budget.value || "",
+    timeline: timeline.value || "",
+    projectContext: projectContext.value || "",
+    referenceUrl: referenceUrl.value || "",
     consent: true,
-    attribution: data.attribution ?? {},
+    attribution: {
+      source: attributionValues.source.value || "",
+      medium: attributionValues.medium.value || "",
+      campaign: attributionValues.campaign.value || "",
+      content: attributionValues.content.value || "",
+      term: attributionValues.term.value || "",
+      referrer: attributionValues.referrer.value || "",
+    },
   };
 
   try {

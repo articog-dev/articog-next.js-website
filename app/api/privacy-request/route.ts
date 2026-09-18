@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
+import { parseJsonBody, validateEmail, validateEnum, validateString } from "../../../lib/api-validation";
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 3;
 const requestHistory = new Map<string, number[]>();
-const REQUEST_TYPES = new Set(["know", "delete", "correct", "opt-out"]);
-
 function isRateLimited(request: Request): boolean {
   const forwardedFor = request.headers.get("x-forwarded-for");
   const clientIp = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip");
@@ -26,10 +25,6 @@ function isRateLimited(request: Request): boolean {
   return false;
 }
 
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
 export async function POST(request: Request) {
   if (isRateLimited(request)) {
     return NextResponse.json(
@@ -38,19 +33,17 @@ export async function POST(request: Request) {
     );
   }
 
-  let data: { name?: string; email?: string; requestType?: string; details?: string };
-  try {
-    data = await request.json();
-  } catch {
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  const body = await parseJsonBody(request, 16 * 1024);
+  if (!body.ok) {
+    return NextResponse.json({ success: false, error: body.error }, { status: 400 });
   }
 
-  const name = data.name?.trim() || "";
-  const email = data.email?.trim() || "";
-  const requestType = data.requestType?.trim() || "";
-  const details = data.details?.trim() || "";
+  const name = validateString(body.value.name, { required: true, maxLength: 160 });
+  const email = validateEmail(body.value.email);
+  const requestType = validateEnum(body.value.requestType, ["know", "delete", "correct", "opt-out"] as const, { required: true, maxLength: 16 });
+  const details = validateString(body.value.details, { maxLength: 5_000 });
 
-  if (!name || name.length > 160 || !isValidEmail(email) || !REQUEST_TYPES.has(requestType)) {
+  if (!name.ok || !email.ok || !requestType.ok || !details.ok) {
     return NextResponse.json(
       { success: false, error: "Please provide a valid name, email, and request type." },
       { status: 400 }
@@ -78,18 +71,18 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from,
         to: [recipient],
-        subject: `Data rights request: ${requestType}`,
+        subject: `Data rights request: ${requestType.value}`,
         text: [
           "A data rights request was received for review.",
           "",
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Request type: ${requestType}`,
+          `Name: ${name.value}`,
+          `Email: ${email.value}`,
+          `Request type: ${requestType.value}`,
           "",
           "Details:",
-          details || "No additional details provided.",
+          details.value || "No additional details provided.",
         ].join("\n"),
-        reply_to: email,
+        reply_to: email.value,
       }),
     });
 
