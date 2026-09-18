@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "See how Articog combines AI-native production, creative direction, and flexible delivery for growth-stage brands.",
 };
 import { ArrowRight } from "lucide-react";
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Comparison } from "@/components/sections/Comparison";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -57,10 +57,10 @@ export default function WhyArticogPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6">
-              Not a replacement. An upgrade.
+              More speed. More control.
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Creative production, redesigned for speed.
+              A production partner built for campaign volume and brand consistency.
             </p>
           </div>
         </Container>

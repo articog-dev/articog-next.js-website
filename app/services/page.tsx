@@ -43,43 +43,43 @@ export const serviceGroups = [
         title: "AI Video Production",
         href: "/services/ai-video-production",
         description:
-          "Premium cinematic video produced with AI.",
+          "Premium cinematic video for launches and brand storytelling.",
       },
       {
         title: "Brand Films",
         href: "/services/ai-video-production",
         description:
-          "Films with rich detail that define your brand identity.",
+          "Brand-led visuals with depth, tone, and clarity.",
       },
       {
         title: "Product Commercials",
         href: "/services/ai-video-production",
         description:
-          "Product showcases built for conversion.",
+          "Conversion-focused product stories for paid and owned channels.",
       },
       {
         title: "Performance Ads",
         href: "/services/ai-video-production",
         description:
-          "Direct response video creative for cross channel ROI.",
+          "Video creative built for testing and growth.",
       },
       {
         title: "Social & Reel Production",
         href: "/services/ai-video-production",
         description:
-          "Fast, vertical content for modern platforms.",
+          "Vertical content designed for fast-moving platforms.",
       },
       {
         title: "Product Launch Videos",
         href: "/services/ai-video-production",
         description:
-          "Announcement films that build momentum.",
+          "Launch films built to create momentum.",
       },
       {
         title: "Localization & Variants",
         href: "/services/ai-video-production",
         description:
-          "Adapt campaigns for global markets with localized voice.",
+          "Campaign adaptation for new markets and channels.",
       },
     ],
   },
@@ -268,7 +268,7 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        title="Every creative format, delivered."
+        title="Creative services for campaign volume."
         media={
           <>
           <video
@@ -302,7 +302,7 @@ export default function ServicesPage() {
       <Section className="border-t border-white/[0.05] py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-3xl">
-            <Heading as="h2" size="section" className="text-white">One production partner. Every campaign format.</Heading>
+            <Heading as="h2" size="section" className="text-white">One partner for the formats your campaigns need.</Heading>
           </div>
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2">
             {organizedServices.map((service) => (

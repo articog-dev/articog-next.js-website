@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Flexible creative solutions for launches, performance marketing, subscriptions, and scalable production without the overhead of a large agency.",
 };
 import { ArrowRight } from "lucide-react";
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 
@@ -14,31 +14,32 @@ export default function SolutionsPage() {
   const cards = [
     {
       title: "Monthly Creative Subscription",
-      description: "For teams that need steady creative every month.",
+      description: "Steady creative output for recurring campaign demand.",
       href: "/solutions/monthly-creative-subscription",
     },
     {
       title: "Performance Marketing Creative",
-      description: "For growth teams that need high volume, performance focused ad variants.",
+      description: "High-volume creative built for testing and scale.",
       href: "/solutions/performance-marketing",
     },
     {
       title: "Product Launch Campaigns",
-      description: "Creative support for your launch, from timeline to channel rollout.",
+      description: "Launch support from concept to channel rollout.",
       href: "/solutions/product-launch",
     },
     {
       title: "In-House Creative Overflow",
-      description: "Extend your internal team's capacity during peak demand without full-time hires.",
+      description: "Extra production capacity without full-time hiring.",
       href: "/solutions/creative-team-overflow",
     },
     {
       title: "Enterprise Creative Production",
-      description: "Production for large organizations with strict security and governance needs.",
+      description: "Structured production for large teams and governance needs.",
       href: "/solutions/enterprise",
     },
     {
       title: "Creative Team Extension",
+      description: "Flexible creative support for agency and internal teams.",
       href: "/solutions/creative-team-overflow",
     },
   ];
@@ -49,7 +50,7 @@ export default function SolutionsPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6">
-              Solutions built around how you work
+              Production built around your workflow.
             </Heading>
           </div>
 

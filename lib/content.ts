@@ -7,8 +7,8 @@ import type { SiteContent } from "@/types";
 export const siteContent: SiteContent = {
   hero: {
     eyebrow: "AI NATIVE FILM & PRODUCTION",
-    headline: "High-quality campaign creative. Produced at AI speed.",
-    body: "Articog helps marketing teams produce brand films, paid ads, product visuals and social creative through human-directed AI production workflows — without traditional production bottlenecks.",
+    headline: "Campaign creative, without the bottleneck.",
+    body: "Human-directed production for video, social, product visuals, and paid campaigns—built for faster iteration and clearer brand control.",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
     secondaryCtaLabel: "View Work",
