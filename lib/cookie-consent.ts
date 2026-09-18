@@ -6,8 +6,7 @@ export type CookieConsent = {
   analytics: boolean;
 };
 
-export function hasGlobalPrivacyControl(request?: Request): boolean {
-  if (request?.headers.get("Sec-GPC") === "1") return true;
+export function hasGlobalPrivacyControl(): boolean {
   return typeof navigator !== "undefined" &&
     (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
 }
