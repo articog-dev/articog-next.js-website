@@ -5,7 +5,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 
 import { trackCTAClick, trackContentView, trackPageView } from "@/lib/analytics";
-import { readCookieConsentSnapshot, subscribeCookieConsent } from "@/lib/cookie-consent";
+import { hasGlobalPrivacyControl, readCookieConsentSnapshot, saveCookieConsent, subscribeCookieConsent } from "@/lib/cookie-consent";
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -21,6 +21,7 @@ export function GoogleAnalytics() {
   );
 
   useEffect(() => {
+    if (hasGlobalPrivacyControl()) saveCookieConsent(false);
     if (!measurementId || analyticsConsent !== true) return;
 
     trackPageView(pathname);

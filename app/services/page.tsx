@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading, Grid, Card, PageHero, MediaOverlay } from "@/components/ui";
 import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
@@ -267,13 +267,10 @@ const organizedServices = serviceGroups.map((group) => {
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <Section
-        size="lg"
-        className="relative flex items-center overflow-hidden pt-32 md:pt-40 pb-20 md:pb-24"
-      >
-        {/* Optimized Background Video */}
-        <div className="absolute inset-0 z-0">
+      <PageHero
+        title="Every creative format, delivered."
+        media={
+          <>
           <video
             autoPlay
             muted
@@ -285,49 +282,33 @@ export default function ServicesPage() {
             className="h-full w-full object-cover"
             aria-hidden="true"
           >
-            {/* Desktop */}
             <source
               src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1600,dpr_auto,c_limit/v1786976270/web_1_1_1_1.mp4"
               type="video/mp4"
               media="(min-width: 769px)"
             />
 
-            {/* Mobile */}
             <source
               src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_960,dpr_auto,c_limit/v1786976270/web_1_1_1_1.mp4"
               type="video/mp4"
             />
           </video>
-
-          {/* Lightened overlay to preserve brightness while keeping text readable */}
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.14)",
-            }}
-          />
-        </div>
-
-        <Container className="relative z-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <Heading as="h1" size="hero" className="text-white">
-              Every creative format, delivered.
-            </Heading>
-
-          </div>
-        </Container>
-      </Section>
+            <MediaOverlay strength="soft" />
+          </>
+        }
+        className="min-h-[28rem] text-center"
+      />
 
       <Section className="border-t border-white/[0.05] py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-3xl">
             <Heading as="h2" size="section" className="text-white">One production partner. Every campaign format.</Heading>
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2">
             {organizedServices.map((service) => (
-              <article
+              <Card
                 key={service.title}
-                className="flex min-h-[320px] flex-col rounded-2xl border border-white/[0.08] p-8"
+                className="min-h-[320px] border-white/[0.08]"
               >
                 <Heading as="h3" size="card" className="text-white">
                   {service.title}
@@ -352,9 +333,9 @@ export default function ServicesPage() {
                   View service
                   <ArrowRight size={15} aria-hidden="true" />
                 </Link>
-              </article>
+              </Card>
             ))}
-          </div>
+          </Grid>
         </Container>
       </Section>
 

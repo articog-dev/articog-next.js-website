@@ -1,4 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 import { POST } from "../app/api/contact/route";
 
@@ -8,6 +10,13 @@ describe("POST /api/contact", () => {
     process.env.RESEND_API_KEY = "test-key";
     process.env.CONTACT_FROM_EMAIL = "noreply@example.com";
     vi.restoreAllMocks();
+  });
+
+  it("includes the real contact form honeypot in its submitted payload contract", () => {
+    const source = readFileSync(path.join(process.cwd(), "app", "contact", "page.tsx"), "utf8");
+
+    expect(source).toContain('website: formData.get("website")?.toString() || ""');
+    expect(source).toContain('name="website"');
   });
 
   it("saves the lead and sends the internal notification to info@articog.com without exposing form data to analytics", async () => {

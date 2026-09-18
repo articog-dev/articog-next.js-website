@@ -135,7 +135,7 @@ export async function POST(request: Request) {
 
   if (resendApiKey && from) {
     try {
-      await fetch("https://api.resend.com/emails", {
+      const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${resendApiKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -160,6 +160,7 @@ export async function POST(request: Request) {
           reply_to: lead.email,
         }),
       });
+      if (!response.ok) throw new Error(`Email provider returned ${response.status}.`);
     } catch {
       // The lead is already persisted; email notification is best effort.
     }

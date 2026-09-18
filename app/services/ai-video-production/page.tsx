@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "AI Video Production | Articog",
   description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth-stage brands.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading, Grid, Card, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -57,16 +57,7 @@ export default function AIVideoProductionPage() {
   return (
     <div className="bg-black min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <div className="max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6">
-              AI Video Production
-            </Heading>
-          </div>
-        </Container>
-      </Section>
+      <PageHero title="AI Video Production" />
 
       {/* What We Deliver */}
       <Section className="py-20 bg-white/[0.02]">
@@ -74,7 +65,7 @@ export default function AIVideoProductionPage() {
           <div className="mb-12">
               <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => {
               const card = (
                 <>
@@ -88,19 +79,19 @@ export default function AIVideoProductionPage() {
                   )}
                 </>
               );
-              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
+              const className = "group radius-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
 
               return item.path ? (
                 <Link key={item.title} href={item.path} className={className}>
                   {card}
                 </Link>
               ) : (
-                <div key={item.title} className={className}>
+                <Card key={item.title} className={className}>
                   {card}
-                </div>
+                </Card>
               );
             })}
-          </div>
+          </Grid>
         </Container>
       </Section>
 

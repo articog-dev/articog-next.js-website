@@ -1,14 +1,37 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
-
-export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/privacy-choices" },
-  title: "Your Privacy Choices | Articog",
-  description: "Information about your privacy rights and how to exercise them.",
-};
+import { hasGlobalPrivacyControl, readCookieConsent, saveCookieConsent } from "@/lib/cookie-consent";
 
 export default function PrivacyChoicesPage() {
+  const [analyticsConsent, setAnalyticsConsent] = useState<boolean | null>(null);
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (hasGlobalPrivacyControl()) {
+        const consent = saveCookieConsent(false);
+        setAnalyticsConsent(consent.analytics);
+        setShowBanner(false);
+        return;
+      }
+
+      const consent = readCookieConsent();
+      setAnalyticsConsent(consent?.analytics ?? null);
+      setShowBanner(consent === null);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const updateAnalyticsConsent = (analytics: boolean) => {
+    const consent = saveCookieConsent(analytics);
+    setAnalyticsConsent(consent.analytics);
+    setShowBanner(false);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Section size="lg" className="pt-32 md:pt-40">
@@ -19,6 +42,34 @@ export default function PrivacyChoicesPage() {
             </Heading>
 
             <div className="space-y-12 type-small leading-relaxed text-white/60">
+              {showBanner ? (
+                <section className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 text-white/70">
+                  <Heading as="h2" size="card" className="mb-3 text-white">Analytics preferences</Heading>
+                  <p>Choose whether Articog may use analytics to understand site usage.</p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <button type="button" onClick={() => updateAnalyticsConsent(true)} className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90">
+                      Allow analytics
+                    </button>
+                    <button type="button" onClick={() => updateAnalyticsConsent(false)} className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white hover:bg-white/10">
+                      Decline analytics
+                    </button>
+                  </div>
+                </section>
+              ) : null}
+
+              <section className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6">
+                <Heading as="h2" size="card" className="mb-3 text-white">Current analytics setting</Heading>
+                <p>{analyticsConsent === true ? "Analytics is enabled." : analyticsConsent === false ? "Analytics is disabled." : "No analytics preference has been selected."}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <button type="button" onClick={() => updateAnalyticsConsent(true)} className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90">
+                    Allow analytics
+                  </button>
+                  <button type="button" onClick={() => updateAnalyticsConsent(false)} className="rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white hover:bg-white/10">
+                    Decline analytics
+                  </button>
+                </div>
+              </section>
+
               <section>
                 <Heading as="h2" size="card" className="mb-4 text-white">
                   Your Rights

@@ -94,7 +94,6 @@ export default function SitemapPage() {
         { label: "Copyright", href: "/copyright" },
         { label: "Privacy Choices", href: "/privacy-choices" },
         { label: "California Privacy Notice", href: "/privacy/california" },
-        { label: "Email Preferences", href: "/email-preferences" },
         { label: "Data Rights Request", href: "/privacy/request" },
       ]
     }

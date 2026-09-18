@@ -6,8 +6,16 @@ export type CookieConsent = {
   analytics: boolean;
 };
 
+export function hasGlobalPrivacyControl(request?: Request): boolean {
+  if (request?.headers.get("Sec-GPC") === "1") return true;
+  return typeof navigator !== "undefined" &&
+    (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+}
+
 export function readCookieConsent(): CookieConsent | null {
   if (typeof window === "undefined") return null;
+
+  if (hasGlobalPrivacyControl()) return { necessary: true, analytics: false };
 
   try {
     const value = window.localStorage.getItem(COOKIE_CONSENT_KEY);
@@ -23,7 +31,7 @@ export function readCookieConsent(): CookieConsent | null {
 }
 
 export function saveCookieConsent(analytics: boolean): CookieConsent {
-  const consent: CookieConsent = { necessary: true, analytics };
+  const consent: CookieConsent = { necessary: true, analytics: hasGlobalPrivacyControl() ? false : analytics };
   window.localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
   window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_EVENT, { detail: consent }));
   return consent;

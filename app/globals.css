@@ -73,6 +73,10 @@
   --gap-card: 0.75rem;
   --gap-section: 1.5rem;
   --gap-loose: 2.5rem;
+  --spacing-component-gap: var(--gap-card);
+  --spacing-card-gap: var(--gap-card);
+  --spacing-content-gap: var(--gap-section);
+  --spacing-page-x: 1.5rem;
   --header-offset: 100px;
 
   --animate-fade-in: fadeIn 0.5s ease-out forwards;
