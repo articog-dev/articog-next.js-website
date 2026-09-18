@@ -66,7 +66,7 @@ export default function AIVideoProductionPage() {
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => {
               const card = (
-                <div className="flex w-full items-center justify-between gap-4">
+                <div className="flex h-full w-full items-center justify-between gap-4">
                   <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
                   {item.path && (
                     <div className="ml-auto flex shrink-0 items-center text-xs font-bold tracking-widest text-white/30 transition-colors uppercase group-hover:text-white/60">
@@ -75,7 +75,7 @@ export default function AIVideoProductionPage() {
                   )}
                 </div>
               );
-              const className = "group radius-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
+              const className = "group h-full w-full radius-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center";
 
               return item.path ? (
                 <Link key={item.title} href={item.path} className={className}>
