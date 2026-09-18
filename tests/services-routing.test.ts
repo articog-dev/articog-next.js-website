@@ -70,7 +70,9 @@ describe("Services page routing", () => {
       'path: "/services/social-creative"',
       'path: "/services/ad-creative"',
     ]);
-    expect(aiVideoProductionSource).toContain("<div className=\"flex items-center justify-between gap-4\">");
+    expect(aiVideoProductionSource).toContain("<div className=\"flex w-full items-center justify-between gap-4\">");
+    expect(aiVideoProductionSource).toContain("ml-auto flex shrink-0 items-center");
+    expect(aiVideoProductionSource).not.toMatch(/ArrowRight[^\n]*top-/);
 
     for (const [title, href] of expectedLinkedCards) {
       expect(aiVideoProductionSource).toContain(`title: "${title}", path: "${href}"`);
