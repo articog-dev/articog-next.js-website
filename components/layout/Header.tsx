@@ -183,8 +183,8 @@ function DropdownPanel({
   }
 
   const servicePanelStyle = {
-    left: "calc(max(16px, (100vw - 1280px) / 2) + 24px)",
-    right: "calc(max(16px, (100vw - 1280px) / 2) + 144px)",
+    left: "calc(max(16px, (100vw - 1280px) / 2) + 32px)",
+    right: "calc(max(16px, (100vw - 1280px) / 2) + 168px)",
     top: "72px",
     width: "auto",
     maxWidth: "1120px",
