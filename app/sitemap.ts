@@ -12,7 +12,7 @@ const REDIRECTED_ROUTES = new Set([
   "/work/industries",
   "/pricing/faq",
 ]);
-const EXCLUDED_ROUTES = new Set(["/thank-you/demo"]);
+const EXCLUDED_ROUTES = new Set(["/thank-you", "/thank-you/demo", "/sitemap"]);
 
 function collectStaticRoutes(directory: string, segments: string[] = []): string[] {
   const routes: string[] = [];
