@@ -4,6 +4,7 @@ import { POST } from "../app/api/contact/route";
 import { buildContactPayload } from "../lib/contact-payload";
 import { resetTestRateLimits } from "../lib/rate-limit";
 import { resetTestLeadStorage, setTestLeadStorage } from "../lib/lead-storage";
+import { resetTestIdempotency } from "../lib/idempotency";
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
@@ -13,6 +14,7 @@ describe("POST /api/contact", () => {
     vi.restoreAllMocks();
     resetTestRateLimits();
     resetTestLeadStorage();
+    resetTestIdempotency();
   });
 
   it("includes the empty honeypot value in the real form payload", () => {
@@ -74,6 +76,79 @@ describe("POST /api/contact", () => {
     expect(body.to).toContain("info@articog.com");
   });
 
+  it("returns a request ID and does not repeat processing for the same submission", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const makeRequest = () => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-real-ip": "198.51.100.18" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    const first = await POST(makeRequest());
+    const duplicate = await POST(makeRequest());
+
+    expect(first.status).toBe(200);
+    expect(first.headers.get("X-Request-ID")).toMatch(/^[0-9a-f-]{36}$/);
+    expect(duplicate.status).toBe(200);
+    await expect(duplicate.json()).resolves.toEqual({ success: true, message: "This message was already processed." });
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it("handles concurrent duplicate requests with one processing path", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const request = () => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": "concurrent-key", "x-real-ip": "198.51.100.21" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    const responses = await Promise.all([POST(request()), POST(request())]);
+
+    expect(responses.map((response) => response.status).sort()).toEqual([200, 202]);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it("uses a trusted platform request ID and rejects an oversized platform ID", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const makeRequest = (platformId: string) => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-vercel-id": platformId, "x-real-ip": "198.51.100.22" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    const trusted = await POST(makeRequest("iad1::trusted-request"));
+    const generated = await POST(makeRequest("x".repeat(129)));
+
+    expect(trusted.headers.get("X-Request-ID")).toBe("iad1::trusted-request");
+    expect(generated.headers.get("X-Request-ID")).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it("does not consume idempotency after validation failure", async () => {
+    const makeRequest = (email: string) => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": "validation-retry-key", "x-real-ip": "198.51.100.23" },
+      body: JSON.stringify({ name: "Test User", email, company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    expect((await POST(makeRequest("invalid"))).status).toBe(400);
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    expect((await POST(makeRequest("test@example.com"))).status).toBe(200);
+  });
+
+  it("supports independent idempotency keys and ignores malformed oversized keys", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    const makeRequest = (key: string) => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": key, "x-real-ip": "198.51.100.19" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    expect((await POST(makeRequest("first-key"))).status).toBe(200);
+    expect((await POST(makeRequest("second-key"))).status).toBe(200);
+    expect((await POST(makeRequest("bad key with spaces"))).status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(9);
+  });
+
   it("logs a failed non-blocking email notification without changing persisted-lead success", async () => {
     const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
     vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
@@ -108,6 +183,20 @@ describe("POST /api/contact", () => {
     expect(response.status).toBe(503);
     expect(await response.json()).toEqual({ success: false, error: "We could not save your message. Please try again later." });
     expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("allows a retry after durable storage failure without duplicate processing", async () => {
+    setTestLeadStorage({ set: async () => { throw new Error("storage failure"); } });
+    const makeRequest = () => new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": "retryable-key", "x-real-ip": "198.51.100.20" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    });
+
+    expect((await POST(makeRequest())).status).toBe(503);
+    setTestLeadStorage({ set: async () => "OK" });
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+    expect((await POST(makeRequest())).status).toBe(200);
   });
 
   it("short-circuits honeypot submissions successfully without saving or emailing", async () => {

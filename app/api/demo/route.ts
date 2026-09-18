@@ -1,19 +1,22 @@
-import { NextResponse } from "next/server";
 import { isRecord, parseJsonBody, validateBoolean, validateEmail, validateEnum, validateString, validateStringArray, validateUrl } from "../../../lib/api-validation";
+import { acquireIdempotency, completeIdempotency, getIdempotencyFingerprint, releaseIdempotency } from "../../../lib/idempotency";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
+import { getRequestId, withRequestId } from "../../../lib/request-context";
 import { sendResendEmail } from "../../../lib/resend";
 import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
+  const requestId = getRequestId(request);
+  let idempotencyKey: string | undefined;
   const rateLimit = await checkPublicFormRateLimit(request, "demo");
   if (!rateLimit.available) {
-    return NextResponse.json(
+    return withRequestId(requestId,
       { success: false, error: "This service is temporarily unavailable. Please try again later." },
       { status: 503 },
     );
   }
   if (!rateLimit.success) {
-    return NextResponse.json(
+    return withRequestId(requestId,
       { success: false, error: "Too many requests. Please try again later." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
@@ -21,7 +24,7 @@ export async function POST(request: Request) {
 
   const body = await parseJsonBody(request);
   if (!body.ok) {
-    return NextResponse.json({ success: false, error: body.error }, { status: 400 });
+    return withRequestId(requestId, { success: false, error: body.error }, { status: 400 });
   }
 
   const data = body.value;
@@ -59,22 +62,48 @@ export async function POST(request: Request) {
     !attributionValues.source.ok || !attributionValues.medium.ok || !attributionValues.campaign.ok ||
     !attributionValues.content.ok || !attributionValues.term.ok || !attributionValues.referrer.ok
   ) {
-    return NextResponse.json(
+    return withRequestId(requestId,
       { success: false, error: "Please complete the required fields and consent." },
       { status: 400 }
     );
   }
 
-  const sheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
-  if (!sheetsUrl) {
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Demo requests are not configured for submission yet. Please contact info@articog.com.",
-      },
-      { status: 503 }
+  const fingerprint = getIdempotencyFingerprint(request, "demo", {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    name: name.value,
+    email: email.value,
+    company: company.value,
+    role: role.value || "",
+    serviceInterest: serviceInterest.value,
+    budget: budget.value || "",
+    timeline: timeline.value || "",
+    projectContext: projectContext.value || "",
+    referenceUrl: referenceUrl.value || "",
+    consent: true,
+    attribution: {
+      source: attributionValues.source.value || "",
+      medium: attributionValues.medium.value || "",
+      campaign: attributionValues.campaign.value || "",
+      content: attributionValues.content.value || "",
+      term: attributionValues.term.value || "",
+      referrer: attributionValues.referrer.value || "",
+    },
+  });
+  const idempotency = await acquireIdempotency("demo", fingerprint, requestId);
+  if (!idempotency.available) {
+    console.error("Demo idempotency store unavailable.", { requestId });
+    return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
+  }
+  if (!idempotency.acquired) {
+    return withRequestId(requestId,
+      idempotency.state === "completed"
+        ? { success: true, message: "This request was already processed." }
+        : { success: false, error: "This request is already being processed. Please try again later." },
+      { status: idempotency.state === "completed" ? 200 : 202 },
     );
   }
+  idempotencyKey = idempotency.key;
 
   const lead = {
     formType: "demo",
@@ -101,21 +130,30 @@ export async function POST(request: Request) {
   };
 
   const durableResult = await saveLead({
-    id: crypto.randomUUID(),
+    id: `demo-${fingerprint.digest}`,
     type: "demo",
     source: "website",
     submittedAt: new Date().toISOString(),
     fields: lead,
   });
   if (!durableResult.ok) {
-    console.error("Demo durable lead storage failed.", durableResult.reason);
-    return NextResponse.json(
+    console.error("Demo durable lead storage failed.", { requestId, reason: durableResult.reason });
+    await releaseIdempotency(idempotencyKey);
+    idempotencyKey = undefined;
+    return withRequestId(requestId,
       { success: false, error: "We could not save your request. Please try again later." },
       { status: 503 },
     );
   }
 
-  try {
+  if (!await completeIdempotency(idempotencyKey)) {
+    console.error("Demo idempotency completion failed.", { requestId });
+    return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
+  }
+  idempotencyKey = undefined;
+
+  const sheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
+  if (sheetsUrl) try {
     const response = await withPersistenceTimeout(fetch(sheetsUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -126,13 +164,13 @@ export async function POST(request: Request) {
       throw new Error("Google Sheets mirror returned an unsuccessful response.");
     }
   } catch (error) {
-    console.error("Demo Google Sheets mirror failed; durable lead retained.", error instanceof Error ? error.message : "unknown-error");
+    console.error("Demo Google Sheets mirror failed; durable lead retained.", { requestId, error: error instanceof Error ? error.message : "unknown-error" });
   }
 
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || "info@articog.com";
 
   try {
-    const result = await sendResendEmail("demo-internal-notification", {
+    const result = await sendResendEmail(`demo-internal-notification:${requestId}`, {
       to: recipient,
       subject: "New demo request | Articog",
       text: [
@@ -152,10 +190,10 @@ export async function POST(request: Request) {
       ].join("\n"),
       replyTo: lead.email,
     });
-    if (!result.ok) console.error("Demo internal notification was not delivered; lead was already persisted.");
+    if (!result.ok) console.error("Demo internal notification was not delivered; lead was already persisted.", { requestId });
   } catch {
-    console.error("Demo internal notification failed unexpectedly; lead was already persisted.");
+    console.error("Demo internal notification failed unexpectedly; lead was already persisted.", { requestId });
   }
 
-  return NextResponse.json({ success: true, message: "Demo request saved." });
+  return withRequestId(requestId, { success: true, message: "Demo request saved." });
 }

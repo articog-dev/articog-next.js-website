@@ -40,6 +40,8 @@ Public form APIs use Upstash Redis for shared serverless rate limiting and durab
 
 Requests are limited per platform-provided client IP and route. Lead records are stored under the `articog:lead:` keyspace with a generated ID, lead type, source, submission timestamp, and validated form fields. Google Sheets is a secondary mirror. If the shared store is unavailable or not configured, form APIs fail closed with a temporary-unavailable response rather than falling back to process-local memory.
 
+Form retries use route-scoped HMAC fingerprints in the `articog:idempotency:` keyspace. Processing leases expire after 2 minutes; completed submissions are retained for 24 hours. Durable-storage failures release the lease so clients can retry, while successful durable writes prevent duplicate mirrors and notifications.
+
 The site-wide GA4 page-view and interaction tracking uses:
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables Google Analytics 4 and should be set in the deployment environment when analytics are required.

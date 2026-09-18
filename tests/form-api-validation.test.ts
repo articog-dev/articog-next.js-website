@@ -4,6 +4,8 @@ import { POST as postDemo } from "../app/api/demo/route";
 import { POST as postPrivacyRequest } from "../app/api/privacy-request/route";
 import { resetTestRateLimits } from "../lib/rate-limit";
 import { resetTestLeadStorage, setTestLeadStorage } from "../lib/lead-storage";
+import { resetTestIdempotency } from "../lib/idempotency";
+import { getIdempotencyFingerprint } from "../lib/idempotency";
 
 const validDemoPayload = {
   firstName: "Test",
@@ -45,6 +47,7 @@ describe("public form API validation", () => {
     vi.restoreAllMocks();
     resetTestRateLimits();
     resetTestLeadStorage();
+    resetTestIdempotency();
   });
 
   it("accepts a valid demo request and persists it", async () => {
@@ -124,7 +127,7 @@ describe("public form API validation", () => {
       expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(200);
     }
     expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(429);
-    expect(persisted).toHaveLength(5);
+    expect(persisted).toHaveLength(1);
   });
 
   it("isolates limits by API route for the same client", async () => {
@@ -137,6 +140,17 @@ describe("public form API validation", () => {
     );
 
     expect(response.status).toBe(200);
+  });
+
+  it("does not collide across routes or validated idempotency keys", () => {
+    const request = new Request("http://localhost/api/demo", { headers: { "idempotency-key": "same-key" } });
+    const demo = getIdempotencyFingerprint(request, "demo", { value: "same" });
+    const privacy = getIdempotencyFingerprint(request, "privacy-request", { value: "same" });
+    const otherKey = getIdempotencyFingerprint(new Request("http://localhost/api/demo", { headers: { "idempotency-key": "other-key" } }), "demo", { value: "same" });
+
+    expect(demo.key).not.toBe(privacy.key);
+    expect(demo.key).not.toBe(otherKey.key);
+    expect(demo.key).not.toContain("same-key");
   });
 
   it("does not let arbitrary forwarded headers bypass the limiter", async () => {
