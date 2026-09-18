@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
-import { ServiceMenuCards } from "./ServiceMenuCards";
+import { ServiceMenuDesktop } from "./ServiceMenuCards";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
 
@@ -176,7 +176,7 @@ function DropdownPanel({
     left: "calc(50% - 20px)",
     transform: "translateX(-50%)",
     top: "72px",
-    width: "min(calc(100vw - 320px), 960px)",
+    width: "min(calc(100vw - 320px), 880px)",
     maxWidth: "calc(100vw - 320px)",
     paddingTop: "12px",
   } as const;
@@ -221,15 +221,15 @@ function DropdownPanel({
       onMouseEnter={clearTimeoutOnMouseEnter}
     >
       <div
-        className="w-full overflow-hidden rounded-2xl"
+        className="w-full overflow-hidden rounded-2xl motion-safe:animate-[dropdownIn_200ms_ease-out_both]"
         style={{
-          background: "rgba(6,6,6,0.98)",
+          background: "rgba(6,6,6,1)",
           border: "1px solid rgba(255,255,255,0.12)",
           boxShadow:
             "0 20px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.05)",
           backdropFilter: "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
-          padding: isServices ? "20px 20px 18px" : "12px",
+          padding: isServices ? "16px" : "12px",
           maxHeight: "calc(100vh - 88px)",
           overflowY: "auto",
         }}
@@ -266,9 +266,7 @@ function ServicesContent({
 }: {
   onClose: () => void;
 }) {
-  return (
-    <ServiceMenuCards onClose={onClose} />
-  );
+  return <ServiceMenuDesktop onClose={onClose} />;
 }
 
 // ─── Header ───────────────────────────────────────────────────────────────────
@@ -425,7 +423,11 @@ export function Header() {
                       : 1,
                 }}
               >
-                <div className="inline-flex items-center rounded-full px-2 py-2 xl:px-3">
+                <div
+                  className={`inline-flex items-center rounded-full px-2 py-2 transition-colors duration-150 xl:px-3 ${
+                    activeGroup === group.label ? "bg-white/[0.06]" : "bg-transparent"
+                  }`}
+                >
                   <Link
                     href={groupHubHrefs[group.label]}
                     onClick={closeDropdown}
@@ -433,7 +435,7 @@ export function Header() {
                     style={{
                       color:
                         activeGroup === group.label
-                          ? "rgba(255,255,255,0.95)"
+                          ? "rgba(255,255,255,1)"
                           : "rgba(255,255,255,0.55)",
                     }}
                   >

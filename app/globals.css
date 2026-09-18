@@ -100,6 +100,18 @@
     }
   }
 
+  @keyframes dropdownIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes showcaseBackgroundTravel {
     0%, 100% {
       transform: perspective(1400px) translate3d(-1%, 1%, -180px) scale(0.84) rotateX(1deg) rotateY(-1deg);

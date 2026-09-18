@@ -4,7 +4,7 @@ import { Link } from "@/components/ui/Link";
 import { Button } from "@/components/ui";
 import { X, ChevronDown } from "lucide-react";
 import { menuGroups, groupHubHrefs, NO_DROPDOWN_GROUPS } from "./Header";
-import { ServiceMenuCards } from "./ServiceMenuCards";
+import { ServiceMenuMobile } from "./ServiceMenuCards";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -136,8 +136,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
                 {isGroupOpen && (
                   group.label === "Services" ? (
-                    <div id="mobile-menu-services" className="pb-4">
-                      <ServiceMenuCards onClose={handleClose} />
+                    <div id="mobile-menu-services">
+                      <ServiceMenuMobile onClose={handleClose} />
                     </div>
                   ) : (
                     <div id={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pb-4 pl-3">
