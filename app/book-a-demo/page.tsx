@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Input, Textarea, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
+import { isTrustedCalendlyEvent } from "@/lib/calendly";
 
 const CALENDLY_URL = "https://calendly.com/articog-media-01/articog-demo-call";
 
@@ -30,14 +32,23 @@ export default function BookADemoPage() {
 
   useEffect(() => {
     const handleCalendlyMessage = (event: MessageEvent) => {
-      if (event.data?.event === "calendly.event_scheduled" && !hasTrackedCalendlySchedule.current) {
+      if (isTrustedCalendlyEvent(event) && !hasTrackedCalendlySchedule.current) {
         hasTrackedCalendlySchedule.current = true;
         trackCalendlyEventScheduled();
       }
     };
 
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = "https://assets.calendly.com/assets/external/widget.css";
+    stylesheet.dataset.calendlyWidget = "true";
+    document.head.appendChild(stylesheet);
+
     window.addEventListener("message", handleCalendlyMessage);
-    return () => window.removeEventListener("message", handleCalendlyMessage);
+    return () => {
+      window.removeEventListener("message", handleCalendlyMessage);
+      stylesheet.remove();
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -126,6 +137,10 @@ export default function BookADemoPage() {
       size="lg"
       className="pt-32 md:pt-40 bg-black min-h-screen"
     >
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="afterInteractive"
+      />
       <Container>
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-16">
