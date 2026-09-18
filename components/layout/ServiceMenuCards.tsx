@@ -45,7 +45,7 @@ export const primaryServiceCards = [
 
 export function ServiceMenuCards({ onClose }: { onClose: () => void }) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {primaryServiceCards.map((item) => (
         <Link
           key={item.title}
@@ -54,7 +54,7 @@ export function ServiceMenuCards({ onClose }: { onClose: () => void }) {
             event.stopPropagation();
             onClose();
           }}
-          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-zinc-900 p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+          className="group relative isolate flex min-h-[250px] min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-zinc-900 p-5 transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:min-h-[200px] lg:p-4"
         >
           <Image
             src={item.image}

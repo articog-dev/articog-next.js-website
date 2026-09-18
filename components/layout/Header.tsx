@@ -183,10 +183,10 @@ function DropdownPanel({
   }
 
   const servicePanelStyle = {
-    left: "calc(50% - 20px)",
+    left: "50%",
     transform: "translateX(-50%)",
     top: "72px",
-    width: "min(calc(100vw - 320px), 1040px)",
+    width: "min(calc(100vw - 320px), 960px)",
     maxWidth: "calc(100vw - 320px)",
     paddingTop: "12px",
   } as const;
@@ -239,7 +239,7 @@ function DropdownPanel({
             "0 20px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.05)",
           backdropFilter: "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
-          padding: isServices ? "28px 28px 24px" : "12px",
+          padding: isServices ? "20px 20px 18px" : "12px",
           maxHeight: "calc(100vh - 88px)",
           overflowY: "auto",
         }}
