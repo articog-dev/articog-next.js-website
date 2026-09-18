@@ -8,7 +8,7 @@ interface CapabilitiesProps {
 
 export function Capabilities({ capabilities }: CapabilitiesProps) {
   return (
-    <Section id="capabilities" className="relative overflow-hidden bg-[#0a0a0a] py-20 md:py-28">
+    <Section id="capabilities" className="relative overflow-hidden bg-[#000000] py-20 md:py-28">
       <Container className="relative z-20">
         <div className="mb-12 max-w-2xl md:mb-16">
           <Heading as="h2" size="section" className="mb-0 text-white">Every creative format,<br />delivered.</Heading>

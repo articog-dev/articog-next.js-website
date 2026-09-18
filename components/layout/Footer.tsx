@@ -77,27 +77,12 @@ const footerNavSections = [
     ],
   },
   {
-    title: "Blog",
-    links: [
-      { label: "Blog", href: "/blog" },
-    ],
-  },
-  {
-    title: "Solutions",
+    title: "Explore",
     links: [
       { label: "Solutions", href: "/solutions" },
-    ],
-  },
-  {
-    title: "Industries",
-    links: [
       { label: "Industries", href: "/industries" },
-    ],
-  },
-  {
-    title: "Work",
-    links: [
       { label: "Work", href: "/work" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {
@@ -113,6 +98,16 @@ const footerNavSections = [
       { label: "Sitemap", href: "/sitemap" },
     ],
   },
+  {
+    title: "More",
+    links: [
+      { label: "Customer Stories", href: "/customers" },
+      { label: "AI Ad Library", href: "/ai-ad-library" },
+      { label: "How It Works", href: "/how-it-works" },
+      { label: "Why Articog", href: "/why-articog" },
+      { label: "Trust Center", href: "/trust" },
+    ],
+  },
 ];
 
 export function Footer() {
@@ -124,9 +119,9 @@ export function Footer() {
       className="border-t border-white/5 pt-16"
     >
       <Container className="py-14">
-        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-5">
+        <div className="grid gap-12 md:grid-cols-[minmax(15rem,0.8fr)_minmax(0,2.4fr)] md:items-start">
           {/* Brand */}
-          <div className="space-y-4 md:col-span-2">
+          <div className="space-y-4">
             <Link
               href="/"
               className="relative inline-flex h-6 w-20 overflow-hidden transition-opacity hover:opacity-75"
@@ -165,7 +160,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div
-          className="mt-20 grid gap-6 pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
+          className="mt-16 grid gap-6 pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
           style={{ borderTop: `1px solid ${border}` }}
         >
           <div className="flex flex-col gap-1">

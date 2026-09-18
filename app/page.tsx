@@ -112,7 +112,7 @@ export default function HomePage() {
 
       <Hero content={homepage.hero} stats={homepage.proofStats} />
       <Capabilities capabilities={homepage.capabilities} />
-      <div className="bg-[#0a0a0a] px-4 py-8 sm:py-10">
+      <div className="bg-[#000000] px-4 py-8 sm:py-10">
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={homepage.hero.ctaHref}
