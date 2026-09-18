@@ -68,6 +68,33 @@ describe("POST /api/contact", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it("rejects a valid contact submission when the honeypot is filled", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-forwarded-for": "198.51.100.13" },
+        body: JSON.stringify({
+          name: "Valid User",
+          email: "valid@example.com",
+          company: "Example Co",
+          companyWebsite: "https://example.com",
+          inquiryType: "Partnership",
+          message: "A valid-looking submission.",
+          website: "filled-honeypot",
+        }),
+      })
+    );
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      success: true,
+      message: "Message submitted successfully.",
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it("returns 429 after the request limit is reached", async () => {
     const ip = "198.51.100.12";
     const request = () =>
