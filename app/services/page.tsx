@@ -59,13 +59,13 @@ export const serviceGroups = [
       },
       {
         title: "Performance Ads",
-        href: "/services/ai-video-production",
+        href: "/services/ad-creative",
         description:
           "Video creative built for testing and growth.",
       },
       {
         title: "Social & Reel Production",
-        href: "/services/ai-video-production",
+        href: "/services/social-creative",
         description:
           "Vertical content designed for fast-moving platforms.",
       },

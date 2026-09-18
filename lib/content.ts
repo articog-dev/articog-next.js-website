@@ -121,7 +121,7 @@ export const siteContent: SiteContent = {
     },
     {
       title: "Creative Workflow Automation",
-      href: "/services/creative-strategy",
+      href: "/how-it-works/ai-creative-pipeline",
       useCase: "Workflow integration from brief to delivery",
       outcome: "A structured production workflow that keeps review cycles efficient and organized.",
       icon: "cpu",

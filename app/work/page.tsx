@@ -28,7 +28,7 @@ export default function WorkPage() {
     },
     {
       title: "Work by Industry",
-      href: "/work/industries",
+      href: "/industries",
     },
     {
       title: "AI Ad Library",
