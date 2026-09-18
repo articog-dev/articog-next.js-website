@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Heading, Button } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 import { getBlogPostBySlug, getNativeBlogPosts } from "@/lib/blog";
 
@@ -193,14 +194,7 @@ export default async function BlogArticlePage({
             </div>
           </article>
 
-          <div className="mx-auto mt-16 max-w-3xl border-t border-white/10 pt-10 text-center">
-            <Heading as="h2" size="section" className="mb-6">
-              Ready to transform your production?
-            </Heading>
-            <Button asChild variant="primary" size="lg">
-              <Link href="/book-a-demo">Book a Demo</Link>
-            </Button>
-          </div>
+          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </div>

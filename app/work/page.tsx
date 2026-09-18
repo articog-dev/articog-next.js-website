@@ -10,6 +10,7 @@ import { Container, Section, Button, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { CreativeDocument } from "./CreativeDocument";
 import { WorkVideoShowcase } from "@/components/sections/WorkVideoShowcase";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function WorkPage() {
   const categories = [
@@ -68,12 +69,7 @@ export default function WorkPage() {
             ))}
           </div>
 
-          <div className="text-center pt-16 border-t border-white/10">
-            <p className="type-body-lg mb-8 text-white/60">Ready to transform your production?</p>
-            <Button asChild variant="primary" size="lg">
-              <Link href="/book-a-demo">Book a Demo</Link>
-            </Button>
-          </div>
+          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </div>

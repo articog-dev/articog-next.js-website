@@ -1,6 +1,7 @@
 "use client";
 
 import { Container, Section, Button, Heading } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { useState } from "react";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
@@ -147,14 +148,7 @@ export default function AdLibraryPage() {
             </p>
           </div>
 
-          <div className="text-center pt-16 border-t border-white/10">
-            <Heading as="h2" size="section" className="mb-8">
-              Ready to transform your production?
-            </Heading>
-            <Button asChild variant="primary" size="lg">
-              <Link href="/book-a-demo">Book a Demo</Link>
-            </Button>
-          </div>
+          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </div>

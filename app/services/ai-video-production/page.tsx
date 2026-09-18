@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth-stage brands.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ShieldCheck, ArrowRight, Zap, Users } from "lucide-react";
@@ -162,12 +163,7 @@ export default function AIVideoProductionPage() {
       <Section className="py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
+            <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
           </div>
         </Container>
       </Section>

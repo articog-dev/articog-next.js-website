@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Container, Section, Heading, Button } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import {
   dedicatedServicePageBySlug,
@@ -74,14 +75,7 @@ export default async function ServicePage({
       <Section className="py-24">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <Heading as="h2" size="section" className="mb-8 text-white">
-              Ready to transform your production?
-            </Heading>
-            <Link href="/book-a-demo">
-              <Button size="lg" className="h-14 rounded-full px-8">
-                Book a Demo
-              </Button>
-            </Link>
+              <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
           </div>
         </Container>
       </Section>

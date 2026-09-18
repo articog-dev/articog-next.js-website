@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Lightbulb, Palette, LayoutGrid, MessageSquare } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function CreativeStrategyPage() {
   const capabilities = [
@@ -85,12 +86,7 @@ export default function CreativeStrategyPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
+              <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
           </div>
         </Container>
       </Section>

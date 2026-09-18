@@ -9,6 +9,7 @@ import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading } from "@/components/ui";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function ProductVisualsPage() {
   return (
@@ -56,12 +57,7 @@ export default function ProductVisualsPage() {
 
       <Section className="py-32">
         <Container className="text-center">
-          <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
-          <Button asChild variant="primary" size="lg">
-            <Link href="/book-a-demo">
-              Book a Demo <ArrowRight size={15} className="ml-2" />
-            </Link>
-          </Button>
+            <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </>

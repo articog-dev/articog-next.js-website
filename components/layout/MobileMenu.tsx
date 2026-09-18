@@ -6,6 +6,8 @@ import { X, ChevronDown } from "lucide-react";
 import { menuGroups, groupHubHrefs, NO_DROPDOWN_GROUPS } from "./Header";
 import { ServiceMenuMobile } from "./ServiceMenuCards";
 
+const HEADER_STACK_HEIGHT = 100;
+
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -64,8 +66,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-40"
-        style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }}
+        className="fixed inset-x-0 bottom-0 z-40"
+        style={{ top: HEADER_STACK_HEIGHT, background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }}
         onClick={handleClose}
       />
 
@@ -73,17 +75,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className="fixed right-0 top-0 z-50 h-full w-80 flex flex-col"
-        style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
+        className="fixed right-0 z-50 flex w-80 flex-col"
+        style={{ top: HEADER_STACK_HEIGHT, height: `calc(100dvh - ${HEADER_STACK_HEIGHT}px)`, background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
-          <Link href="/" onClick={handleClose} className="type-h4 text-white">
-            Articog
-          </Link>
+        <div className="flex items-center justify-end px-6 pt-3 pb-3 shrink-0">
           <button
             type="button"
             ref={closeButtonRef}

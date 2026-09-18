@@ -61,7 +61,7 @@ export interface Testimonial {
 }
 
 export interface CTAContent {
-  headline: string;
+  headline?: string;
   ctaLabel: string;
   ctaHref: string;
 }

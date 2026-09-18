@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Plus, X } from "lucide-react";
 import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
@@ -8,6 +9,8 @@ import { Link } from "@/components/ui/Link";
 type IndustryDetail = {
   id: string;
   title: string;
+  image: string;
+  imageAlt: string;
   positioning: string;
   considerations: Array<{ title: string; description: string }>;
   serviceLinks?: Array<{ label: string; href: string }>;
@@ -18,6 +21,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "dtc-ecommerce",
     title: "DTC & E-commerce",
+    image: "/industries/dtc-ecommerce.jpg",
+    imageAlt: "DTC and E-commerce creative production",
     positioning: "Performance driven creative for brands that need to convert across crowded digital storefronts.",
     considerations: [
       { title: "Creative Fatigue", description: "Keep fresh variants moving through the funnel so audiences do not see the same creative for too long." },
@@ -33,6 +38,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "saas-technology",
     title: "SaaS & Technology",
+    image: "/industries/saas-technology.jpg",
+    imageAlt: "SaaS and technology creative production",
     positioning: "Accurate UI and clear storytelling for products whose value can be difficult to explain at a glance.",
     considerations: [
       { title: "Abstract Value Propositions", description: "Turn complex software benefits into clear stories that prospects can understand quickly." },
@@ -48,6 +55,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "consumer-electronics",
     title: "Consumer Electronics",
+    image: "/industries/consumer-electronics.jpg",
+    imageAlt: "Consumer electronics creative production",
     positioning: "Product visuals that highlight technical precision, design, and the details customers need to evaluate.",
     considerations: [
       { title: "Product Accuracy", description: "Keep form, materials, color, labeling, and technical details faithful to the real product." },
@@ -60,6 +69,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "beauty-skincare",
     title: "Beauty & Skincare",
+    image: "/industries/beauty-skincare.jpg",
+    imageAlt: "Beauty and skincare creative production",
     positioning: "Premium lifestyle creative that keeps product benefits, visual identity, and market variation consistent.",
     considerations: [
       { title: "Premium Positioning", description: "Build polished visual worlds that support the tone and aspiration of the brand." },
@@ -75,6 +86,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "automotive-mobility",
     title: "Automotive & Mobility",
+    image: "/industries/automotive-mobility.jpg",
+    imageAlt: "Automotive and mobility creative production",
     positioning: "Cinematic vehicle films and marketing visuals produced with careful attention to accuracy and compliance.",
     considerations: [
       { title: "Vehicle Fidelity", description: "Represent the actual model, color, trim, badging, and features accurately." },
@@ -91,6 +104,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "food-beverage",
     title: "Food & Beverage",
+    image: "/industries/food-beverage.jpg",
+    imageAlt: "Food and beverage creative production",
     positioning: "Product visuals and seasonal campaigns that make food and beverage products consistent, appetizing, and ready to scale.",
     considerations: [
       { title: "Visual Variation", description: "Explore appetizing scenes, serving moments, and campaign treatments without repeating one setup." },
@@ -110,6 +125,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "fashion-lifestyle",
     title: "Fashion & Lifestyle",
+    image: "/industries/fashion-lifestyle.jpg",
+    imageAlt: "Fashion and lifestyle creative production",
     positioning: "Campaign visuals and social content for brands balancing trend speed, volume, and a consistent aesthetic.",
     considerations: [
       { title: "Trend Speed", description: "Respond to cultural and platform moments without rebuilding every campaign from scratch." },
@@ -129,6 +146,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "real-estate",
     title: "Real Estate",
+    image: "/industries/real-estate.jpg",
+    imageAlt: "Real estate creative production",
     positioning: "Immersive visuals for listings, developments, and investors while keeping property representation factual.",
     considerations: [
       { title: "Asset Scarcity", description: "Build compelling property narratives when photography, footage, or finished spaces are limited." },
@@ -141,6 +160,8 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "additional-applications",
     title: "Additional Industry Applications",
+    image: "/industries/additional-applications.jpg",
+    imageAlt: "Additional industry creative applications",
     positioning: "Additional vertical considerations can shape production, from product fidelity to localization and booking-focused assets.",
     considerations: [
       { title: "Consumer Goods", description: "Photorealistic product rendering, SKU-scale output, seasonal pivots, and performance-focused testing." },
@@ -203,7 +224,18 @@ function IndustryCard({
         onClick={onToggle}
         className="flex min-h-[88px] w-full items-center justify-between gap-6 px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[112px] md:px-8"
       >
-        <Heading as="h3" size="card" className="text-white">{industry.title}</Heading>
+        <div className="flex min-w-0 items-center gap-4">
+          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+            <Image
+              src={industry.image}
+              alt={industry.imageAlt}
+              fill
+              sizes="56px"
+              className="object-cover"
+            />
+          </div>
+          <Heading as="h3" size="card" className="min-w-0 text-white">{industry.title}</Heading>
+        </div>
         {isOpen ? (
           <X className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
         ) : (
@@ -220,6 +252,15 @@ function IndustryCard({
       >
         <div className="min-h-0 overflow-hidden px-6 pb-6 md:px-8 md:pb-8">
           <div className="border-t border-white/[0.08] pt-6">
+            <div className="relative mb-6 aspect-[21/9] w-full overflow-hidden rounded-xl">
+              <Image
+                src={industry.image}
+                alt={industry.imageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                className="object-cover"
+              />
+            </div>
             <h4 className="type-label text-white/45">Additional Details</h4>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

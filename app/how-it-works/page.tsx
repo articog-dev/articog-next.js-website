@@ -9,6 +9,7 @@ import { Link } from "@/components/ui/Link";
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Button, Heading } from "@/components/ui";
 import { Pipeline } from "@/components/sections/Pipeline";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function HowItWorksPage() {
   const pipelineSteps = [
@@ -120,14 +121,7 @@ export default function HowItWorksPage() {
 
       <Section size="lg" className="pb-32">
         <Container>
-          <div className="text-center pt-16 border-t border-white/10">
-            <Heading as="h2" size="section" className="mb-8">
-              Ready to transform your production?
-            </Heading>
-            <Button asChild variant="primary" size="lg">
-              <Link href="/book-a-demo">Book a Demo</Link>
-            </Button>
-          </div>
+          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </div>

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "How Articog handles AI tool use, ownership, and client intellectual property.",
 };
 import { Container, Section, Heading, Button } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { ShieldCheck, Scale, FileText, UserCheck, Eye, AlertCircle } from "lucide-react";
 
@@ -131,7 +132,7 @@ export default function AIIPPage() {
       <Section className="py-24 bg-white/[0.02]">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="type-h2 mb-8 text-white">Ready to transform your production?</h2>
+            <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
             <Link href="/book-a-demo">
               <Button size="lg" className="rounded-full px-8 h-14">
                 Book a Demo

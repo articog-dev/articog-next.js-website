@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 import { Link } from "@/components/ui/Link";
 import { Container, Heading, Section } from '@/components/ui';
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 
 export default function VideoAdsGalleryPage() {
@@ -55,7 +56,7 @@ export default function VideoAdsGalleryPage() {
             </div>
 
             <Section className="mt-20 border-t border-white/[0.08] py-12 text-center">
-              <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
+              <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
               <p className="type-small mb-8 italic text-white/40">All displayed work is used with appropriate permissions.</p>
               <Link to="/book-a-demo" className="text-sm font-medium leading-5 text-white hover:underline underline-offset-4">
                 Book a Demo →

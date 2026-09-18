@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { siteContent } from "@/lib/content";
 
 export default function CustomersPage() {
   return (
@@ -43,7 +44,7 @@ export default function CustomersPage() {
       {/* CTA Section */}
       <FinalCTA 
         content={{
-          headline: "Ready to transform your production?",
+          headline: siteContent.cta.headline,
           ctaLabel: "Book a Demo",
           ctaHref: "/book-a-demo"
         }} 

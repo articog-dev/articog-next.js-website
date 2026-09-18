@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { ShieldCheck, FileText, Users, Eye, ClipboardList, Info } from "lucide-react";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function EnterpriseSolutionPage() {
   const whatIsIncluded = [
@@ -83,14 +84,7 @@ export default function EnterpriseSolutionPage() {
 
       <Section className="py-24">
         <Container>
-          <div className="text-center max-w-2xl mx-auto">
-            <Heading as="h2" size="section" className="mb-8 text-white">Ready to transform your production?</Heading>
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
-          </div>
+          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
     </div>

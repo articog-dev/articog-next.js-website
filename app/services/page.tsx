@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading } from "@/components/ui";
 import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 const serviceDeliverables = [
   {
@@ -375,32 +376,7 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* CTA */}
-      <Section size="lg" className="border-t border-white/[0.05]">
-        <Container>
-          <div className="mx-auto max-w-xl text-center">
-            <Heading as="h2" size="section" className="mb-6 text-white">
-              Ready to transform your production?
-            </Heading>
-
-            <Button asChild variant="primary" size="lg">
-              <Link href="/book-a-demo">
-                Book a Demo
-                <ArrowRight size={15} />
-              </Link>
-            </Button>
-
-            <p
-              className="mt-8 font-sans text-xs"
-              style={{
-                color: "rgba(255,255,255,0.28)",
-              }}
-            >
-              No commitment required. First conversation is free.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
     </>
   );
 }

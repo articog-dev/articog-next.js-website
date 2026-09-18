@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Text } from "@/components/ui";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ArrowRight } from "lucide-react";
 
 export default function AboutPage() {
@@ -138,24 +139,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section size="lg" className="border-t border-white/[0.05]">
-        <Container>
-          <div
-            className="rounded-2xl border border-white/[0.08] p-12 text-center"
-            style={{ background: "rgba(255,255,255,0.02)" }}
-          >
-            <Heading as="h2" size="section" className="mb-6">
-              Ready to transform your production?
-            </Heading>
-            <Button asChild variant="primary" size="lg">
-              <Link to="/book-a-demo">
-                Book a Demo
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </Container>
-      </Section>
+      <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
     </div>
   );
 }
