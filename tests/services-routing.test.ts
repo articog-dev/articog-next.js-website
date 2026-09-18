@@ -49,20 +49,34 @@ function getRouteHeading(route: string) {
 }
 
 describe("Services page routing", () => {
+  it("keeps the What We Deliver cards in the exact grid order", () => {
+    const expectedCards = [
+      ["Brand Films", null],
+      ["Product Commercials", null],
+      ["Performance Ads", "/services/ad-creative"],
+      ["Social & Reels", "/services/social-creative"],
+      ["Creator-Style Ads", "/services/ad-creative"],
+      ["Product Launch", null],
+      ["SaaS & Explainers", null],
+      ["Real Estate Films", null],
+      ["Corporate & Internal", null],
+      ["Localization & Variants", null],
+    ];
+    const actualCards = Array.from(
+      aiVideoProductionSource.matchAll(/\{ title: "([^"]+)", path: (null|"[^"]+")/g),
+      ([, title, pathValue]) => [title, pathValue === "null" ? null : pathValue.slice(1, -1)],
+    );
+
+    expect(actualCards).toEqual(expectedCards);
+    expect(actualCards).toHaveLength(10);
+    expect(actualCards.filter(([, href]) => href !== null)).toHaveLength(3);
+  });
+
   it("keeps arrows only on the three linked What We Deliver cards", () => {
     const expectedLinkedCards = [
       ["Performance Ads", "/services/ad-creative"],
       ["Social & Reels", "/services/social-creative"],
       ["Creator-Style Ads", "/services/ad-creative"],
-    ];
-    const nonLinkedCards = [
-      "Brand Films",
-      "Product Commercials",
-      "Product Launch",
-      "SaaS & Explainers",
-      "Real Estate Films",
-      "Corporate & Internal",
-      "Localization & Variants",
     ];
 
     expect(aiVideoProductionSource.match(/path: "[^"]+"/g)).toEqual([
@@ -76,9 +90,6 @@ describe("Services page routing", () => {
 
     for (const [title, href] of expectedLinkedCards) {
       expect(aiVideoProductionSource).toContain(`title: "${title}", path: "${href}"`);
-    }
-    for (const title of nonLinkedCards) {
-      expect(aiVideoProductionSource).toContain(`title: "${title}", path: null`);
     }
   });
 
