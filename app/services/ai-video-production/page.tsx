@@ -66,16 +66,14 @@ export default function AIVideoProductionPage() {
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => {
               const card = (
-                <>
-                  <div>
-                    <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
-                  </div>
+                <div className="flex items-center justify-between gap-4">
+                  <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
                   {item.path && (
-                    <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
+                    <div className="flex shrink-0 items-center text-xs font-bold tracking-widest text-white/30 transition-colors uppercase group-hover:text-white/60">
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   )}
-                </>
+                </div>
               );
               const className = "group radius-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
 

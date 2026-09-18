@@ -149,7 +149,7 @@ export const groupHubHrefs: Record<string, string> = {
   Company: "/about",
 };
 
-export const NO_DROPDOWN_GROUPS = ["Work"];
+export const NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"];
 
 // ─── Dropdown Panel ───────────────────────────────────────────────────────────
 

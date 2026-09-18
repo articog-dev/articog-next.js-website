@@ -8,6 +8,18 @@ const serviceMenuSource = readFileSync(path.join(process.cwd(), "components", "l
 const homepageContentSource = readFileSync(path.join(process.cwd(), "lib", "content.ts"), "utf8");
 
 describe("primary navigation", () => {
+  it("keeps Solutions and Industries as direct links without dropdown toggles", () => {
+    expect(headerSource).toContain('Solutions: "/solutions"');
+    expect(headerSource).toContain('Industries: "/industries"');
+    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"]');
+    expect(headerSource).toContain("const isDirectGroup =");
+    expect(headerSource).toContain("!isDirectGroup && (");
+    expect(mobileSource).toContain("NO_DROPDOWN_GROUPS.includes(group.label)");
+    expect(mobileSource).toContain("if (isDirectGroup)");
+    expect(headerSource).toContain('label: "Solutions"');
+    expect(headerSource).toContain('label: "Industries"');
+  });
+
   it("keeps the specification's parent labels directly linked", () => {
     const labels = ["Services", "Solutions", "Industries", "Work", "Why Articog", "Resources", "Company"];
 
@@ -18,7 +30,7 @@ describe("primary navigation", () => {
       );
       expect(headerSource).toContain(`href={groupHubHrefs[group.label]}`);
     }
-    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work"]');
+    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"]');
   });
 
   it("keeps dropdown controls separate from clickable mobile parent links", () => {

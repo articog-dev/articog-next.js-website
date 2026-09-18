@@ -12,6 +12,10 @@ const servicesPageSource = readFileSync(
 const serviceGroupsSource = servicesPageSource.split(
   "const organizedServices =",
 )[0];
+const aiVideoProductionSource = readFileSync(
+  path.join(process.cwd(), "app", "services", "ai-video-production", "page.tsx"),
+  "utf8",
+);
 
 const serviceGroupHrefs = Array.from(
   serviceGroupsSource.matchAll(/href: "([^"]+)"/g),
@@ -45,6 +49,37 @@ function getRouteHeading(route: string) {
 }
 
 describe("Services page routing", () => {
+  it("keeps arrows only on the three linked What We Deliver cards", () => {
+    const expectedLinkedCards = [
+      ["Performance Ads", "/services/ad-creative"],
+      ["Social & Reels", "/services/social-creative"],
+      ["Creator-Style Ads", "/services/ad-creative"],
+    ];
+    const nonLinkedCards = [
+      "Brand Films",
+      "Product Commercials",
+      "Product Launch",
+      "SaaS & Explainers",
+      "Real Estate Films",
+      "Corporate & Internal",
+      "Localization & Variants",
+    ];
+
+    expect(aiVideoProductionSource.match(/path: "[^"]+"/g)).toEqual([
+      'path: "/services/ad-creative"',
+      'path: "/services/social-creative"',
+      'path: "/services/ad-creative"',
+    ]);
+    expect(aiVideoProductionSource).toContain("<div className=\"flex items-center justify-between gap-4\">");
+
+    for (const [title, href] of expectedLinkedCards) {
+      expect(aiVideoProductionSource).toContain(`title: "${title}", path: "${href}"`);
+    }
+    for (const title of nonLinkedCards) {
+      expect(aiVideoProductionSource).toContain(`title: "${title}", path: null`);
+    }
+  });
+
   it("gives every service item a valid category destination", () => {
     const hrefs = serviceGroupHrefs;
 
