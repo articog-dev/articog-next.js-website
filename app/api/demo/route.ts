@@ -2,20 +2,32 @@ import { isRecord, parseJsonBody, validateBoolean, validateEmail, validateEnum, 
 import { acquireIdempotency, completeIdempotency, getIdempotencyFingerprint, releaseIdempotency } from "../../../lib/idempotency";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { getRequestId, withRequestId } from "../../../lib/request-context";
+import { logOperational } from "../../../lib/observability";
 import { sendResendEmail } from "../../../lib/resend";
 import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const requestId = getRequestId(request);
+  try {
+    return await handleDemoRequest(request, requestId);
+  } catch (error) {
+    logOperational("error", "api_unexpected_exception", { requestId, route: "demo", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure" });
+    return withRequestId(requestId, { success: false, error: "Something went wrong. Please try again." }, { status: 500 });
+  }
+}
+
+async function handleDemoRequest(request: Request, requestId: string) {
   let idempotencyKey: string | undefined;
   const rateLimit = await checkPublicFormRateLimit(request, "demo");
   if (!rateLimit.available) {
+    logOperational("error", "rate_limit_unavailable", { requestId, route: "demo", result: "failure" });
     return withRequestId(requestId,
       { success: false, error: "This service is temporarily unavailable. Please try again later." },
       { status: 503 },
     );
   }
   if (!rateLimit.success) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "demo", result: "rate_limited", status: 429 });
     return withRequestId(requestId,
       { success: false, error: "Too many requests. Please try again later." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
@@ -24,6 +36,7 @@ export async function POST(request: Request) {
 
   const body = await parseJsonBody(request);
   if (!body.ok) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "demo", result: "validation", status: 400 });
     return withRequestId(requestId, { success: false, error: body.error }, { status: 400 });
   }
 
@@ -62,6 +75,7 @@ export async function POST(request: Request) {
     !attributionValues.source.ok || !attributionValues.medium.ok || !attributionValues.campaign.ok ||
     !attributionValues.content.ok || !attributionValues.term.ok || !attributionValues.referrer.ok
   ) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "demo", result: "validation", status: 400 });
     return withRequestId(requestId,
       { success: false, error: "Please complete the required fields and consent." },
       { status: 400 }
@@ -92,10 +106,11 @@ export async function POST(request: Request) {
   });
   const idempotency = await acquireIdempotency("demo", fingerprint, requestId);
   if (!idempotency.available) {
-    console.error("Demo idempotency store unavailable.", { requestId });
+    logOperational("error", "idempotency_store_unavailable", { requestId, route: "demo", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
   if (!idempotency.acquired) {
+    logOperational("info", "idempotency_replay", { requestId, route: "demo", result: idempotency.state });
     return withRequestId(requestId,
       idempotency.state === "completed"
         ? { success: true, message: "This request was already processed." }
@@ -135,9 +150,9 @@ export async function POST(request: Request) {
     source: "website",
     submittedAt: new Date().toISOString(),
     fields: lead,
-  });
+  }, { requestId });
   if (!durableResult.ok) {
-    console.error("Demo durable lead storage failed.", { requestId, reason: durableResult.reason });
+    logOperational("error", "lead_storage_failed", { requestId, route: "demo", reason: durableResult.reason, result: "failure" });
     await releaseIdempotency(idempotencyKey);
     idempotencyKey = undefined;
     return withRequestId(requestId,
@@ -147,12 +162,13 @@ export async function POST(request: Request) {
   }
 
   if (!await completeIdempotency(idempotencyKey)) {
-    console.error("Demo idempotency completion failed.", { requestId });
+    logOperational("error", "idempotency_completion_failed", { requestId, route: "demo", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
   idempotencyKey = undefined;
 
   const sheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
+  const mirrorStartedAt = Date.now();
   if (sheetsUrl) try {
     const response = await withPersistenceTimeout(fetch(sheetsUrl, {
         method: "POST",
@@ -164,13 +180,13 @@ export async function POST(request: Request) {
       throw new Error("Google Sheets mirror returned an unsuccessful response.");
     }
   } catch (error) {
-    console.error("Demo Google Sheets mirror failed; durable lead retained.", { requestId, error: error instanceof Error ? error.message : "unknown-error" });
+    logOperational("error", "sheets_mirror_failed", { requestId, route: "demo", operation: "demo-sheets-mirror", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure", durationMs: Date.now() - mirrorStartedAt });
   }
 
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || "info@articog.com";
 
   try {
-    const result = await sendResendEmail(`demo-internal-notification:${requestId}`, {
+    const result = await sendResendEmail("demo-internal-notification", {
       to: recipient,
       subject: "New demo request | Articog",
       text: [
@@ -189,10 +205,10 @@ export async function POST(request: Request) {
         `Referrer: ${lead.attribution.referrer || ""}`,
       ].join("\n"),
       replyTo: lead.email,
-    });
-    if (!result.ok) console.error("Demo internal notification was not delivered; lead was already persisted.", { requestId });
+    }, { requestId, route: "demo" });
+    if (!result.ok) logOperational("error", "resend_notification_failed", { requestId, route: "demo", operation: "demo-internal-notification", result: "failure" });
   } catch {
-    console.error("Demo internal notification failed unexpectedly; lead was already persisted.", { requestId });
+    logOperational("error", "resend_notification_exception", { requestId, route: "demo", operation: "demo-internal-notification", result: "failure" });
   }
 
   return withRequestId(requestId, { success: true, message: "Demo request saved." });

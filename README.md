@@ -42,6 +42,10 @@ Requests are limited per platform-provided client IP and route. Lead records are
 
 Form retries use route-scoped HMAC fingerprints in the `articog:idempotency:` keyspace. Processing leases expire after 2 minutes; completed submissions are retained for 24 hours. Durable-storage failures release the lease so clients can retry, while successful durable writes prevent duplicate mirrors and notifications.
 
+Server-side API and integration failures are emitted as JSON logs with safe event names, route/operation labels, request IDs, result/status fields, and bounded durations. Request bodies, credentials, provider response bodies, email addresses, and stack traces are excluded. No external error-monitoring provider is configured; Vercel/runtime log collection is the current observability target.
+
+GitHub Actions runs `npm ci`, TypeScript checks, `npx eslint .`, `npm test`, and `npm run build` for pull requests and pushes to `main`. The workflow uses test adapters and does not require production credentials.
+
 The site-wide GA4 page-view and interaction tracking uses:
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables Google Analytics 4 and should be set in the deployment environment when analytics are required.

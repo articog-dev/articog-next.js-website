@@ -2,6 +2,7 @@ import { parseJsonBody, validateEmail, validateEnum, validateString, validateUrl
 import { acquireIdempotency, completeIdempotency, getIdempotencyFingerprint, releaseIdempotency } from "../../../lib/idempotency";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { getRequestId, withRequestId } from "../../../lib/request-context";
+import { logOperational } from "../../../lib/observability";
 import { sendResendEmail } from "../../../lib/resend";
 import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
@@ -20,15 +21,12 @@ async function alertSheetFailure(data: ContactData, error: unknown, requestId: s
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || DEFAULT_INTERNAL_ALERT_EMAIL;
 
   if (!recipient) {
-    console.error(
-      "Contact lead backup alert is not configured. Set CONTACT_INTERNAL_ALERT_EMAIL so failed Google Sheets submissions trigger an internal notification.",
-      { requestId, error: error instanceof Error ? error.message : "unknown-error" }
-    );
+    logOperational("error", "sheets_failure_alert_unconfigured", { requestId, route: "contact", operation: "contact-sheet-failure-alert", result: "failure", errorName: error instanceof Error ? error.name : "unknown-error" });
     return;
   }
 
   try {
-    const result = await sendResendEmail(`contact-sheet-failure-alert:${requestId}`, {
+    const result = await sendResendEmail("contact-sheet-failure-alert", {
       to: recipient,
       subject: "Contact form backup alert: Google Sheets submission failed",
       text: [
@@ -43,10 +41,10 @@ async function alertSheetFailure(data: ContactData, error: unknown, requestId: s
         "",
         `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
       ].join("\n"),
-    });
-    if (!result.ok) console.error("Contact sheet failure alert could not be delivered.", { requestId });
+    }, { requestId, route: "contact" });
+    if (!result.ok) logOperational("error", "sheets_failure_alert_failed", { requestId, route: "contact", operation: "contact-sheet-failure-alert", result: "failure" });
   } catch (alertError) {
-    console.error("Contact lead backup alert failed unexpectedly.", { requestId, error: alertError instanceof Error ? alertError.name : "unknown-error" });
+    logOperational("error", "sheets_failure_alert_exception", { requestId, route: "contact", operation: "contact-sheet-failure-alert", errorName: alertError instanceof Error ? alertError.name : "unknown-error", result: "failure" });
   }
 }
 
@@ -56,12 +54,14 @@ export async function POST(request: Request) {
   try {
     const rateLimit = await checkPublicFormRateLimit(request, "contact");
     if (!rateLimit.available) {
+      logOperational("error", "rate_limit_unavailable", { requestId, route: "contact", result: "failure" });
       return withRequestId(requestId,
         { success: false, error: "This service is temporarily unavailable. Please try again later." },
         { status: 503 },
       );
     }
     if (!rateLimit.success) {
+      logOperational("warn", "api_request_rejected", { requestId, route: "contact", result: "rate_limited", status: 429 });
       return withRequestId(requestId,
         { success: false, error: "Too many requests. Please try again later." },
         { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
@@ -70,11 +70,13 @@ export async function POST(request: Request) {
 
     const body = await parseJsonBody(request, 16 * 1024);
     if (!body.ok) {
+      logOperational("warn", "api_request_rejected", { requestId, route: "contact", result: "validation", status: 400 });
       return withRequestId(requestId, { success: false, error: body.error }, { status: 400 });
     }
 
     const website = validateString(body.value.website, { maxLength: 200 });
     if (!website.ok) {
+      logOperational("warn", "api_request_rejected", { requestId, route: "contact", result: "validation", status: 400 });
       return withRequestId(requestId, { success: false, error: "Invalid request body." }, { status: 400 });
     }
     if (website.value) {
@@ -89,6 +91,7 @@ export async function POST(request: Request) {
     const message = validateString(body.value.message, { required: true, maxLength: 5_000 });
 
     if (!name.ok || !email.ok || !company.ok || !companyWebsite.ok || !inquiryType.ok || !message.ok) {
+      logOperational("warn", "api_request_rejected", { requestId, route: "contact", result: "validation", status: 400 });
       return withRequestId(requestId,
         {
           success: false,
@@ -108,10 +111,11 @@ export async function POST(request: Request) {
     });
     const idempotency = await acquireIdempotency("contact", fingerprint, requestId);
     if (!idempotency.available) {
-      console.error("Contact idempotency store unavailable.", { requestId });
+      logOperational("error", "idempotency_store_unavailable", { requestId, route: "contact", result: "failure" });
       return withRequestId(requestId, { success: false, error: "We could not process your message. Please try again later." }, { status: 503 });
     }
     if (!idempotency.acquired) {
+      logOperational("info", "idempotency_replay", { requestId, route: "contact", result: idempotency.state });
       return withRequestId(requestId,
         idempotency.state === "completed"
           ? { success: true, message: "This message was already processed." }
@@ -136,9 +140,9 @@ export async function POST(request: Request) {
       },
     };
 
-    const durableResult = await saveLead(lead);
+    const durableResult = await saveLead(lead, { requestId });
     if (!durableResult.ok) {
-      console.error("Contact durable lead storage failed.", { requestId, reason: durableResult.reason });
+      logOperational("error", "lead_storage_failed", { requestId, route: "contact", reason: durableResult.reason, result: "failure" });
       await releaseIdempotency(idempotencyKey);
       idempotencyKey = undefined;
       return withRequestId(requestId,
@@ -148,11 +152,12 @@ export async function POST(request: Request) {
     }
 
     if (!await completeIdempotency(idempotencyKey)) {
-      console.error("Contact idempotency completion failed.", { requestId });
+      logOperational("error", "idempotency_completion_failed", { requestId, route: "contact", result: "failure" });
       return withRequestId(requestId, { success: false, error: "We could not process your message. Please try again later." }, { status: 503 });
     }
     idempotencyKey = undefined;
 
+    const mirrorStartedAt = Date.now();
     try {
       const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
 
@@ -167,11 +172,11 @@ export async function POST(request: Request) {
       if (!response.ok) throw new Error("Failed to save data to Google Sheets.");
     } catch (error) {
       await alertSheetFailure({ name: name.value!, email: email.value, company: company.value, companyWebsite: companyWebsite.value, inquiryType: inquiryType.value!, message: message.value! }, error, requestId);
-      console.error("Contact Google Sheets mirror failed; durable lead retained.", { requestId, error: error instanceof Error ? error.message : "unknown-error" });
+      logOperational("error", "sheets_mirror_failed", { requestId, route: "contact", operation: "contact-sheets-mirror", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure", durationMs: Date.now() - mirrorStartedAt });
     }
 
     try {
-      const result = await sendResendEmail(`contact-internal-notification:${requestId}`, {
+      const result = await sendResendEmail("contact-internal-notification", {
         to: CONTACT_NOTIFICATION_EMAIL,
         subject: "New contact form submission | Articog",
         text: [
@@ -187,22 +192,22 @@ export async function POST(request: Request) {
           message.value,
         ].join("\n"),
         replyTo: email.value,
-      });
-      if (!result.ok) console.error("Contact internal notification was not delivered.", { requestId });
+      }, { requestId, route: "contact" });
+      if (!result.ok) logOperational("error", "resend_notification_failed", { requestId, route: "contact", operation: "contact-internal-notification", result: "failure" });
     } catch (emailError) {
-      console.error("Contact notification email failed unexpectedly.", { requestId, error: emailError instanceof Error ? emailError.name : "unknown-error" });
+      logOperational("error", "resend_notification_exception", { requestId, route: "contact", operation: "contact-internal-notification", errorName: emailError instanceof Error ? emailError.name : "unknown-error", result: "failure" });
     }
 
     try {
-      const result = await sendResendEmail(`contact-confirmation:${requestId}`, {
+      const result = await sendResendEmail("contact-confirmation", {
         to: email.value,
         subject: "We received your message | Articog",
         text: [`Hi ${name.value}`, "", "Thanks for reaching out to Articog. We received your message and will follow up within 1 business day.", "", "Best,", "The Articog team"].join("\n"),
         replyTo: email.value,
-      });
-      if (!result.ok) console.error("Contact confirmation email was not delivered.", { requestId });
+      }, { requestId, route: "contact" });
+      if (!result.ok) logOperational("error", "resend_notification_failed", { requestId, route: "contact", operation: "contact-confirmation", result: "failure" });
     } catch (emailError) {
-      console.error("Contact confirmation email failed unexpectedly.", { requestId, error: emailError instanceof Error ? emailError.name : "unknown-error" });
+      logOperational("error", "resend_notification_exception", { requestId, route: "contact", operation: "contact-confirmation", errorName: emailError instanceof Error ? emailError.name : "unknown-error", result: "failure" });
     }
 
     return withRequestId(requestId, {
@@ -210,7 +215,7 @@ export async function POST(request: Request) {
       message: "Message submitted successfully.",
     });
   } catch (error) {
-    console.error("Contact form error.", { requestId, error: error instanceof Error ? error.name : "unknown-error" });
+    logOperational("error", "api_unexpected_exception", { requestId, route: "contact", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure" });
     if (idempotencyKey) await releaseIdempotency(idempotencyKey);
 
     return withRequestId(requestId,

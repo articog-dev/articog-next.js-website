@@ -2,19 +2,31 @@ import { parseJsonBody, validateEmail, validateEnum, validateString } from "../.
 import { acquireIdempotency, completeIdempotency, getIdempotencyFingerprint, releaseIdempotency } from "../../../lib/idempotency";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { getRequestId, withRequestId } from "../../../lib/request-context";
+import { logOperational } from "../../../lib/observability";
 import { sendResendEmail } from "../../../lib/resend";
 import { saveLead } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const requestId = getRequestId(request);
+  try {
+    return await handlePrivacyRequest(request, requestId);
+  } catch (error) {
+    logOperational("error", "api_unexpected_exception", { requestId, route: "privacy-request", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure" });
+    return withRequestId(requestId, { success: false, error: "Something went wrong. Please try again." }, { status: 500 });
+  }
+}
+
+async function handlePrivacyRequest(request: Request, requestId: string) {
   const rateLimit = await checkPublicFormRateLimit(request, "privacy-request");
   if (!rateLimit.available) {
+    logOperational("error", "rate_limit_unavailable", { requestId, route: "privacy-request", result: "failure" });
     return withRequestId(requestId,
       { success: false, error: "This service is temporarily unavailable. Please try again later." },
       { status: 503 },
     );
   }
   if (!rateLimit.success) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "privacy-request", result: "rate_limited", status: 429 });
     return withRequestId(requestId,
       { success: false, error: "Too many requests. Please try again later." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
@@ -23,6 +35,7 @@ export async function POST(request: Request) {
 
   const body = await parseJsonBody(request, 16 * 1024);
   if (!body.ok) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "privacy-request", result: "validation", status: 400 });
     return withRequestId(requestId, { success: false, error: body.error }, { status: 400 });
   }
 
@@ -32,6 +45,7 @@ export async function POST(request: Request) {
   const details = validateString(body.value.details, { maxLength: 5_000 });
 
   if (!name.ok || !email.ok || !requestType.ok || !details.ok) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "privacy-request", result: "validation", status: 400 });
     return withRequestId(requestId,
       { success: false, error: "Please provide a valid name, email, and request type." },
       { status: 400 }
@@ -46,10 +60,11 @@ export async function POST(request: Request) {
   });
   const idempotency = await acquireIdempotency("privacy-request", fingerprint, requestId);
   if (!idempotency.available) {
-    console.error("Privacy request idempotency store unavailable.", { requestId });
+    logOperational("error", "idempotency_store_unavailable", { requestId, route: "privacy-request", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
   if (!idempotency.acquired) {
+    logOperational("info", "idempotency_replay", { requestId, route: "privacy-request", result: idempotency.state });
     return withRequestId(requestId,
       idempotency.state === "completed"
         ? { success: true, message: "This request was already processed." }
@@ -81,9 +96,9 @@ export async function POST(request: Request) {
       requestType: requestType.value,
       details: details.value || "",
     },
-  });
+  }, { requestId });
   if (!durableResult.ok) {
-    console.error("Privacy request durable storage failed.", { requestId, reason: durableResult.reason });
+    logOperational("error", "lead_storage_failed", { requestId, route: "privacy-request", reason: durableResult.reason, result: "failure" });
     await releaseIdempotency(idempotency.key);
     return withRequestId(requestId,
       { success: false, error: "We could not submit your request. Please try again later." },
@@ -91,7 +106,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const result = await sendResendEmail(`privacy-request-review:${requestId}`, {
+  const result = await sendResendEmail("privacy-request-review", {
     to: recipient,
     subject: `Data rights request: ${requestType.value}`,
     text: [
@@ -105,7 +120,7 @@ export async function POST(request: Request) {
           details.value || "No additional details provided.",
     ].join("\n"),
     replyTo: email.value,
-  });
+  }, { requestId, route: "privacy-request" });
 
   if (!result.ok) {
     await releaseIdempotency(idempotency.key);
@@ -116,7 +131,7 @@ export async function POST(request: Request) {
   }
 
   if (!await completeIdempotency(idempotency.key)) {
-    console.error("Privacy request idempotency completion failed.", { requestId });
+    logOperational("error", "idempotency_completion_failed", { requestId, route: "privacy-request", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
 

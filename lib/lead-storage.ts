@@ -1,4 +1,5 @@
 import { Redis } from "@upstash/redis";
+import { logOperational } from "./observability";
 
 export type LeadType = "contact" | "demo" | "privacy-request";
 
@@ -42,21 +43,30 @@ export async function withPersistenceTimeout<T>(promise: Promise<T>, timeoutMs =
   }
 }
 
-export async function saveLead(record: LeadRecord): Promise<LeadStorageResult> {
+export async function saveLead(record: LeadRecord, context: { requestId?: string } = {}): Promise<LeadStorageResult> {
+  const startedAt = Date.now();
   const client = process.env.NODE_ENV === "test" ? testClient : getRedisClient();
-  if (!client) return { ok: false, reason: "configuration" };
+  if (!client) {
+    logOperational("error", "lead_storage_failed", { requestId: context.requestId, route: record.type, reason: "configuration", result: "failure", durationMs: Date.now() - startedAt });
+    return { ok: false, reason: "configuration" };
+  }
 
   try {
     const result = await withPersistenceTimeout(
       client.set(`${LEAD_KEY_PREFIX}${record.id}`, JSON.stringify(record)),
       LEAD_STORAGE_TIMEOUT_MS,
     );
-    if (result !== "OK") return { ok: false, reason: "provider" };
+    if (result !== "OK") {
+      logOperational("error", "lead_storage_failed", { requestId: context.requestId, route: record.type, reason: "provider", result: "failure", durationMs: Date.now() - startedAt });
+      return { ok: false, reason: "provider" };
+    }
     return { ok: true, id: record.id };
   } catch (error) {
+    const reason = error instanceof Error && error.message === "Lead storage timed out." ? "timeout" as const : "provider" as const;
+    logOperational("error", "lead_storage_failed", { requestId: context.requestId, route: record.type, reason, result: "failure", durationMs: Date.now() - startedAt });
     return {
       ok: false,
-      reason: error instanceof Error && error.message === "Lead storage timed out." ? "timeout" : "provider",
+      reason,
     };
   }
 }

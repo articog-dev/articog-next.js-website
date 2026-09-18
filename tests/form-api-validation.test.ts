@@ -71,7 +71,10 @@ describe("public form API validation", () => {
 
     expect(response.status).toBe(200);
     expect(JSON.stringify(await response.json())).not.toContain("private");
-    expect(log.mock.calls.flat().join(" ")).toContain("Demo internal notification was not delivered");
+    const entries = log.mock.calls.map(([entry]) => JSON.parse(String(entry)) as Record<string, unknown>);
+    expect(entries).toEqual(expect.arrayContaining([
+      expect.objectContaining({ event: "resend_notification_failed", operation: "demo-internal-notification", route: "demo" }),
+    ]));
   });
 
   it("persists demo leads before tolerating a failed Google Sheets mirror", async () => {
