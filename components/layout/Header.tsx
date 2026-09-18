@@ -139,11 +139,14 @@ export const menuGroups = [
   {
     label: "Company",
     links: [
-      { label: "Help Center", href: "/help" },
       { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
       { label: "Press & Media", href: "/press" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Book a Demo", href: "/book-a-demo" },
+      { label: "Help Center", href: "/help" },
       { label: "Contact", href: "/contact" },
+      { label: "Sitemap", href: "/sitemap" },
     ],
   },
 ];
