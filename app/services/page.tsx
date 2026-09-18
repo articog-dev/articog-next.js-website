@@ -46,37 +46,37 @@ export const serviceGroups = [
       },
       {
         title: "Brand Films",
-        href: "/services/brand-films",
+        href: "/services/ai-video-production",
         description:
           "Films with rich detail that define your brand identity.",
       },
       {
         title: "Product Commercials",
-        href: "/services/product-commercials",
+        href: "/services/ai-video-production",
         description:
           "Product showcases built for conversion.",
       },
       {
         title: "Performance Ads",
-        href: "/services/performance-ads",
+        href: "/services/ai-video-production",
         description:
           "Direct response video creative for cross channel ROI.",
       },
       {
         title: "Social & Reel Production",
-        href: "/services/social-reel-production",
+        href: "/services/ai-video-production",
         description:
           "Fast, vertical content for modern platforms.",
       },
       {
         title: "Product Launch Videos",
-        href: "/services/product-launch-videos",
+        href: "/services/ai-video-production",
         description:
           "Announcement films that build momentum.",
       },
       {
         title: "Localization & Variants",
-        href: "/services/localization-variants",
+        href: "/services/ai-video-production",
         description:
           "Adapt campaigns for global markets with localized voice.",
       },
@@ -93,19 +93,19 @@ export const serviceGroups = [
       },
       {
         title: "Performance Video Ads",
-        href: "/services/performance-video-ads",
+        href: "/services/ad-creative",
         description:
           "Video testing and production for paid media.",
       },
       {
         title: "Testing & Variants",
-        href: "/services/testing-variants",
+        href: "/services/ad-creative",
         description:
           "Hypothesis-driven testing for paid campaigns.",
       },
       {
         title: "Campaign Key Visuals",
-        href: "/services/campaign-key-visuals",
+        href: "/services/ad-creative",
         description:
           "The core visual system for a campaign across channels.",
       },
@@ -122,13 +122,13 @@ export const serviceGroups = [
       },
       {
         title: "Monthly Social Content",
-        href: "/services/monthly-social-content",
+        href: "/services/social-creative",
         description:
           "Consistent content cycles to maintain your brand presence.",
       },
       {
         title: "Creative Repurposing",
-        href: "/services/creative-repurposing",
+        href: "/services/social-creative",
         description:
           "Turn existing content into new formats and channels intelligently.",
       },
@@ -139,25 +139,25 @@ export const serviceGroups = [
     items: [
       {
         title: "Product Visual Content",
-        href: "/services/product-visual-content",
+        href: "/services/product-visuals",
         description:
           "Dynamic product imagery for e-commerce and marketing.",
       },
       {
         title: "AI Product Photography",
-        href: "/services/ai-product-photography",
+        href: "/services/product-visuals",
         description:
           "Photorealistic product scenes without the physical studio.",
       },
       {
         title: "Custom Image Libraries",
-        href: "/services/custom-image-libraries",
+        href: "/services/product-visuals",
         description:
           "Build large, consistent libraries of on-brand product images.",
       },
       {
         title: "E-commerce Visuals",
-        href: "/services/ecommerce-visuals",
+        href: "/services/product-visuals",
         description:
           "Visuals built for conversion on your site and global marketplaces.",
       },
@@ -174,13 +174,13 @@ export const serviceGroups = [
       },
       {
         title: "AI Voiceover",
-        href: "/services/ai-voiceover",
+        href: "/services/audio",
         description:
           "Hyper-realistic synthetic voice production with full rights clearance.",
       },
       {
         title: "Music & Sound Design",
-        href: "/services/music-sound-design",
+        href: "/services/audio",
         description:
           "Custom scoring and immersive soundscapes for cinematic impact.",
       },
@@ -197,19 +197,19 @@ export const serviceGroups = [
       },
       {
         title: "Campaign Strategy",
-        href: "/services/campaign-strategy",
+        href: "/services/creative-strategy",
         description:
           "Planning full campaign systems for cross channel impact.",
       },
       {
         title: "Concept Development",
-        href: "/services/concept-development",
+        href: "/services/creative-strategy",
         description:
           "Exploring multiple creative directions before committing to production.",
       },
       {
         title: "Storyboarding & Previs",
-        href: "/services/storyboarding-previs",
+        href: "/services/creative-strategy",
         description:
           "Visualizing and sequencing every shot before production begins.",
       },
@@ -220,31 +220,31 @@ export const serviceGroups = [
     items: [
       {
         title: "AI Post-Production",
-        href: "/services/ai-post-production",
+        href: "/services/post-production",
         description:
           "Professional editing, color grading, and technical finishing.",
       },
       {
         title: "Motion Graphics",
-        href: "/services/motion-graphics",
+        href: "/services/post-production",
         description:
           "Animated titles, callouts, and branded elements for video.",
       },
       {
         title: "Upscaling & Mastering",
-        href: "/services/upscaling-mastering",
+        href: "/services/post-production",
         description:
           "Technical mastering for high-resolution delivery.",
       },
       {
         title: "AI Compositing",
-        href: "/services/ai-compositing",
+        href: "/services/post-production",
         description:
           "Integrating assets seamlessly into complex cinematic scenes.",
       },
       {
         title: "Video Editing",
-        href: "/services/video-editing",
+        href: "/services/post-production",
         description:
           "Smart narrative assembly and sequence optimization.",
       },
@@ -252,44 +252,16 @@ export const serviceGroups = [
   },
 ];
 
-export const serviceModelGroups = [
-  {
-    title: "Film & Video",
-    items: [
-      ["Brand Films", "/services/brand-films"],
-      ["Commercials", "/services/commercials"],
-      ["Product Films", "/services/product-films"],
-      ["Explainers", "/services/explainers"],
-    ],
-  },
-  {
-    title: "Performance & Social",
-    items: [
-      ["Paid Ads", "/services/paid-ads"],
-      ["UGC-style Creative", "/services/ugc-style-creative"],
-      ["Reels / Short-form", "/services/reels-short-form"],
-      ["Creative Variants", "/services/creative-variants"],
-    ],
-  },
-  {
-    title: "Visual Production",
-    items: [
-      ["Product Visuals", "/services/product-visuals"],
-      ["Campaign Imagery", "/services/campaign-imagery"],
-      ["OOH / Display", "/services/ooh-display"],
-      ["Social Assets", "/services/social-assets"],
-    ],
-  },
-  {
-    title: "Production Systems",
-    items: [
-      ["Creative Automation", "/services/creative-automation"],
-      ["Localization", "/services/localization-variants"],
-      ["Post-production", "/services/post-production"],
-      ["Multi-format Adaptation", "/services/multi-format-adaptation"],
-    ],
-  },
-];
+const organizedServices = serviceGroups.map((group) => {
+  const [primaryService, ...relatedServices] = group.items;
+
+  return {
+    title: primaryService.title,
+    description: primaryService.description,
+    href: primaryService.href,
+    tags: relatedServices.map((service) => service.title),
+  };
+});
 
 export default function ServicesPage() {
   return (
@@ -350,60 +322,40 @@ export default function ServicesPage() {
           <div className="mx-auto mb-10 max-w-3xl">
             <Heading as="h2" size="section" className="text-white">One production partner. Every campaign format.</Heading>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {serviceModelGroups.map((group) => (
-              <div key={group.title} className="rounded-xl border border-white/[0.08] p-6">
-                <Heading as="h3" size="card" className="mb-5 text-white">{group.title}</Heading>
-                <ul className="space-y-3">
-                  {group.items.map(([label, href]) => (
-                    <li key={label}>
-                      <Link href={href} className="type-small text-white/60 transition-colors hover:text-white">
-                        {label}
-                      </Link>
-                    </li>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {organizedServices.map((service) => (
+              <article
+                key={service.title}
+                className="flex min-h-[320px] flex-col rounded-2xl border border-white/[0.08] p-8"
+              >
+                <Heading as="h3" size="card" className="text-white">
+                  {service.title}
+                </Heading>
+                <p className="mt-4 type-small leading-relaxed text-white/60">
+                  {service.description}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/[0.08] px-3 py-1 type-caption text-white/60"
+                    >
+                      {tag}
+                    </span>
                   ))}
-                </ul>
-              </div>
+                </div>
+                <Link
+                  href={service.href}
+                  className="mt-auto inline-flex items-center gap-2 pt-8 type-small font-medium text-white transition-opacity hover:opacity-70"
+                >
+                  View service
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </article>
             ))}
           </div>
         </Container>
       </Section>
-
-      {/* Categorized Services */}
-      <div className="pb-24">
-        {serviceGroups.map((group) => (
-          <Section key={group.category} size="md" className="py-12">
-            <Container>
-              <Heading as="h2" size="section" className="mb-10 text-white">
-                {group.category}
-              </Heading>
-
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {group.items.map((service) => (
-                  <Link
-                    key={`${group.category}-${service.title}`}
-                    href={service.href}
-                    className="group block rounded-xl p-5 transition-colors duration-200 hover:border-white/[0.16]"
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }}
-                  >
-                    <div className="flex w-full min-w-0 items-center gap-4">
-                      <Heading as="h3" size="card" className="min-w-0 flex-1 text-white transition-colors duration-200 group-hover:text-white/90">
-                        {service.title}
-                      </Heading>
-                      <ArrowRight
-                        size={14}
-                        className="ml-auto shrink-0 text-white/35 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/70"
-                      />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </Container>
-          </Section>
-        ))}
-      </div>
 
       {/* Service Deliverables */}
       <Section size="md" className="border-t border-white/[0.05]">
