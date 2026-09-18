@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { ShieldCheck, FileText, Users, Eye, ClipboardList, Info } from "lucide-react";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function EnterpriseSolutionPage() {
   const whatIsIncluded = [
@@ -43,6 +44,7 @@ export default function EnterpriseSolutionPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Enterprise AI Production" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Enterprise AI Production

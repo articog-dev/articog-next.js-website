@@ -5,6 +5,7 @@ import { Section } from "./Section";
 
 type PageHeroProps = {
   title: React.ReactNode;
+  breadcrumbs?: React.ReactNode;
   eyebrow?: React.ReactNode;
   subtitle?: React.ReactNode;
   actions?: React.ReactNode;
@@ -15,6 +16,7 @@ type PageHeroProps = {
 
 export function PageHero({
   title,
+  breadcrumbs,
   eyebrow,
   subtitle,
   actions,
@@ -33,6 +35,7 @@ export function PageHero({
     >
       {media ? <div className="absolute inset-0 z-0">{media}</div> : null}
       <Container className={cn("relative z-10", !media && "text-center")}>
+        {breadcrumbs}
         <div className={cn("max-w-3xl", !media && "mx-auto")}>
           {eyebrow ? <div className="mb-4 type-label text-white/50">{eyebrow}</div> : null}
           <Heading as="h1" size="hero" className="text-white">

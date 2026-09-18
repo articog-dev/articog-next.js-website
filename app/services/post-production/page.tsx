@@ -10,6 +10,7 @@ import { Link } from "@/components/ui/Link";
 import { Scissors, Layers, Palette, Volume2, Sparkles, Info, ArrowRight } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function PostProductionPage() {
   const whatWeDeliver = [
@@ -57,6 +58,7 @@ export default function PostProductionPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Post-Production" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Post-Production

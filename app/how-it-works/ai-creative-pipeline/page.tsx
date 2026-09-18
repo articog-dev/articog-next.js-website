@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { ClipboardList, Cpu, UserCheck, RefreshCw, ShieldCheck, Type, FileSearch, HardDrive, Info } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function AICreativePipelinePage() {
   const stages = [
@@ -47,6 +48,7 @@ export default function AICreativePipelinePage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "How It Works", href: "/how-it-works" }, { label: "The AI Creative Pipeline" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               The AI Creative Pipeline

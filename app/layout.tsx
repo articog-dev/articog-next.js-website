@@ -6,6 +6,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteEntitySchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const sora = Sora({
@@ -71,38 +73,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <CookieBanner />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "@id": "https://articog.com/#organization",
-                  name: "Articog",
-                  url: "https://articog.com",
-                  logo: "https://articog.com/articog-logo-white.png",
-                  sameAs: [
-                    "https://www.linkedin.com/company/articog/",
-                    "https://www.youtube.com/@articogcom",
-                    "https://x.com/articogcom",
-                    "https://www.instagram.com/articogcom/",
-                    "https://medium.com/@articog.com",
-                  ],
-                },
-                {
-                  "@type": "WebSite",
-                  "@id": "https://articog.com/#website",
-                  url: "https://articog.com",
-                  name: "Articog",
-                  publisher: { "@id": "https://articog.com/#organization" },
-                  inLanguage: "en-US",
-                },
-              ],
-            }),
-          }}
-        />
+        <JsonLd data={siteEntitySchema} />
       </body>
     </html>
   );

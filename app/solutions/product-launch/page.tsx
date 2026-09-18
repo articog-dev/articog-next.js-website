@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Calendar, Layout, CheckCircle2, Globe, Share2, Info } from "lucide-react";
 import { SolutionDetails } from "@/components/sections/SolutionDetails";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function ProductLaunchSolutionPage() {
   const howItWorks = [
@@ -44,6 +45,7 @@ export default function ProductLaunchSolutionPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Product Launch Campaigns" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Product Launch Campaigns

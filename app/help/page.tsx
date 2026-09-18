@@ -4,6 +4,9 @@ import { Container, Section, Button, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { useId, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createFAQPageSchema } from "@/lib/structured-data";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 function AccordionItem({ title, children }: { title: string; children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,22 +114,15 @@ export default function HelpCenterPage() {
       link: "/services/creative-strategy",
     },
   ];
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: sections.flatMap((section) => section.faqs).map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
-    })),
-  };
+  const faqSchema = createFAQPageSchema(sections.flatMap((section) => section.faqs));
 
   return (
     <div className="bg-black min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd data={faqSchema} />
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Help Center" }]} />
             <Heading as="h1" size="hero" className="mb-8">
               Help Center
             </Heading>

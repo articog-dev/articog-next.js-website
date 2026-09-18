@@ -10,6 +10,7 @@ import { Link } from "@/components/ui/Link";
 import { Share2, Monitor, Search, ArrowRight } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function AdCreativePage() {
@@ -54,6 +55,7 @@ export default function AdCreativePage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Ad Creative" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Ad Creative

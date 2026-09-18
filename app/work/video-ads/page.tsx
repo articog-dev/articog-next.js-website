@@ -9,6 +9,7 @@ import { Link } from "@/components/ui/Link";
 import { Container, Heading, Section } from '@/components/ui';
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function VideoAdsGalleryPage() {
   const examples = [
@@ -25,6 +26,7 @@ export default function VideoAdsGalleryPage() {
       <div className="flex-grow pt-32 md:pt-40 pb-20">
         <Container>
           <div className="max-w-6xl mx-auto">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: "Video Ad Gallery" }]} />
             <Heading as="h1" size="hero" className="mb-6 text-white">Video Ad Gallery</Heading>
             <p className="type-h3 mb-16 max-w-2xl leading-relaxed text-white/60">
               Explore our latest AI generated video creative across industries and formats.

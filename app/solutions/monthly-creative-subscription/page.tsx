@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Layers, Calendar, UserCheck, ArrowRight } from "lucide-react";
 import { SolutionDetails } from "@/components/sections/SolutionDetails";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function MonthlySubscriptionPage() {
   const steps = [
@@ -35,6 +36,7 @@ export default function MonthlySubscriptionPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Monthly Creative Subscription" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Monthly Creative Subscription

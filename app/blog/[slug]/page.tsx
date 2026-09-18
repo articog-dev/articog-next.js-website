@@ -7,6 +7,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 import { getBlogPostBySlug, getNativeBlogPosts } from "@/lib/blog";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 function formatDate(dateString: string) {
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -38,7 +39,7 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = `https://articog.com/blog/${post.slug}`;
+  const canonicalUrl = post.canonicalUrl;
 
   return {
     title: `${post.title} | Articog Blog`,
@@ -103,6 +104,13 @@ export default async function BlogArticlePage({
       <Section size="lg" className="pt-32 md:pt-40">
         <Container className="max-w-4xl">
           <div className="mb-8">
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Blog", href: "/blog" },
+                { label: post.title },
+              ]}
+            />
             <Link
               href="/blog"
               className="inline-flex items-center text-sm font-sans text-white/60 transition-colors hover:text-white"

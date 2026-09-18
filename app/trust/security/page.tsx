@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Lock, ShieldCheck, Key } from "lucide-react";
 
 export default function SecurityPage() {
@@ -34,6 +35,7 @@ export default function SecurityPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Security & Data Protection" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Security & Confidentiality

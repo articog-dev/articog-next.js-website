@@ -10,6 +10,9 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ShieldCheck, ArrowRight, Zap, Users } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createFAQPageSchema } from "@/lib/structured-data";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function AIVideoProductionPage() {
   const deliverables = [
@@ -44,20 +47,15 @@ export default function AIVideoProductionPage() {
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
-    })),
-  };
+  const faqSchema = createFAQPageSchema(faqs);
 
   return (
     <div className="bg-black min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <PageHero title="AI Video Production" />
+      <JsonLd data={faqSchema} />
+      <PageHero
+        title="AI Video Production"
+        breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "AI Video Production" }]} />}
+      />
 
       {/* What We Deliver */}
       <Section size="md" className="bg-white/[0.02]">

@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Instagram, Smartphone, Grid, Info } from "lucide-react";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function SocialWorkPage() {
   const formats = [
@@ -34,6 +35,7 @@ export default function SocialWorkPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: "Social Creative Work" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Social Creative Work

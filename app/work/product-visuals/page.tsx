@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function ProductVisualsPage() {
   return (
@@ -15,6 +16,7 @@ export default function ProductVisualsPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: "Product Visuals Work" }]} />
           <div className="max-w-3xl mb-16">
             <Heading as="h1" size="hero" className="mb-6">
               Product Visual Content

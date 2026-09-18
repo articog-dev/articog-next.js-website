@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Shield, Clock, Music, ArrowRight } from "lucide-react";
 
 export default function RightsLicensingPage() {
@@ -35,6 +36,7 @@ export default function RightsLicensingPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Rights, Licensing & Ownership" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Rights, Licensing & Ownership

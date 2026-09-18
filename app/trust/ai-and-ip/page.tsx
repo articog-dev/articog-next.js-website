@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { ShieldCheck, Scale, FileText, UserCheck, Eye, AlertCircle } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function AIIPPage() {
   const policies = [
@@ -58,6 +59,7 @@ export default function AIIPPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "AI & Intellectual Property" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               AI & Intellectual Property

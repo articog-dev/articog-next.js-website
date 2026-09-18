@@ -10,12 +10,14 @@ import { Container, Section, Button, Heading } from "@/components/ui";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function ProductVisualsPage() {
   return (
     <>
       <Section size="lg" className="pt-32 md:pt-40 pb-20">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Product Visual Content" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6 text-white">
               Product Visual Content

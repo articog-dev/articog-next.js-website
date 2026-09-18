@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Mic2, Music, Waves, Speaker, Info, ArrowRight, AudioLines } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function AudioPage() {
   const deliverables = [
@@ -38,6 +39,7 @@ export default function AudioPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Audio & Sound" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               Audio & Sound

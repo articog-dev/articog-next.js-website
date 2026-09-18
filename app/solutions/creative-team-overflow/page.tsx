@@ -9,6 +9,7 @@ import { Container, Section, Heading, Button } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Zap, Puzzle, TrendingUp } from "lucide-react";
 import { SolutionDetails } from "@/components/sections/SolutionDetails";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function CreativeOverflowPage() {
   const features = [
@@ -34,6 +35,7 @@ export default function CreativeOverflowPage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "In-House Creative Overflow" }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               In-House Creative Overflow

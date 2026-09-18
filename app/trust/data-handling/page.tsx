@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Button, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Database, Shield, Trash2, HardDrive, RefreshCw, FileText } from "lucide-react";
 
 export default function DataHandlingPage() {
@@ -48,6 +49,7 @@ export default function DataHandlingPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Data Handling & Retention" }]} />
           <div className="mx-auto max-w-3xl text-center mb-20">
             <Heading as="h1" size="hero" className="mb-6">
               Data Handling & Retention

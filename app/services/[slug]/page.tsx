@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Container, Section, Heading, Button } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import {
   dedicatedServicePageBySlug,
   dedicatedServicePages,
@@ -48,6 +49,7 @@ export default async function ServicePage({
     <div className="min-h-screen bg-black">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: service.title }]} />
           <div className="max-w-3xl">
             <Heading as="h1" size="hero" className="mb-6">
               {service.title}
