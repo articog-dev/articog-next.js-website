@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "AI Video Production | Articog",
   description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth-stage brands.",
 };
-import { Container, Section, Heading, Grid, Card, PageHero } from "@/components/ui";
+import { Container, Section, Heading, Grid, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -65,7 +65,8 @@ export default function AIVideoProductionPage() {
           </div>
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => {
-              const card = (
+              const cardClassName = "group flex h-full w-full items-center radius-lg border border-white/10 bg-surface p-6 text-foreground transition-all duration-300 hover:border-white/20";
+              const cardContent = (
                 <div className="flex h-full w-full items-center justify-between gap-4">
                   <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
                   {item.path && (
@@ -75,16 +76,15 @@ export default function AIVideoProductionPage() {
                   )}
                 </div>
               );
-              const className = "group h-full w-full radius-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center";
 
               return item.path ? (
-                <Link key={item.title} href={item.path} className={className}>
-                  {card}
+                <Link key={item.title} href={item.path} className={cardClassName}>
+                  {cardContent}
                 </Link>
               ) : (
-                <Card key={item.title} className={className}>
-                  {card}
-                </Card>
+                <div key={item.title} className={cardClassName}>
+                  {cardContent}
+                </div>
               );
             })}
           </Grid>
