@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { POST as postDemo } from "../app/api/demo/route";
 import { POST as postPrivacyRequest } from "../app/api/privacy-request/route";
 import { resetTestRateLimits } from "../lib/rate-limit";
+import { resetTestLeadStorage, setTestLeadStorage } from "../lib/lead-storage";
 
 const validDemoPayload = {
   firstName: "Test",
@@ -43,6 +44,7 @@ describe("public form API validation", () => {
     process.env.PRIVACY_REQUEST_ALERT_EMAIL = "privacy@example.com";
     vi.restoreAllMocks();
     resetTestRateLimits();
+    resetTestLeadStorage();
   });
 
   it("accepts a valid demo request and persists it", async () => {
@@ -69,6 +71,34 @@ describe("public form API validation", () => {
     expect(log.mock.calls.flat().join(" ")).toContain("Demo internal notification was not delivered");
   });
 
+  it("persists demo leads before tolerating a failed Google Sheets mirror", async () => {
+    const persisted: string[] = [];
+    setTestLeadStorage({
+      set: async (_key, value) => { persisted.push(value); return "OK"; },
+    });
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (input === "https://sheets.test/submit") return new Response(null, { status: 502 });
+      return new Response(JSON.stringify({ id: "email-id" }), { status: 200 });
+    });
+
+    const response = await postDemo(request("/api/demo", validDemoPayload, "198.51.100.65"));
+
+    expect(response.status).toBe(200);
+    expect(persisted).toHaveLength(1);
+    expect(JSON.parse(persisted[0]).type).toBe("demo");
+  });
+
+  it("does not call Sheets or Resend when durable demo storage fails", async () => {
+    setTestLeadStorage({ set: async () => { throw new Error("storage secret detail"); } });
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await postDemo(request("/api/demo", validDemoPayload, "198.51.100.66"));
+
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({ success: false, error: "We could not save your request. Please try again later." });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it("limits demo requests and returns Retry-After", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
     const ip = "198.51.100.60";
@@ -80,6 +110,21 @@ describe("public form API validation", () => {
     const response = await postDemo(request("/api/demo", validDemoPayload, ip));
     expect(response.status).toBe(429);
     expect(response.headers.get("Retry-After")).toMatch(/^[1-9]\d*$/);
+  });
+
+  it("does not persist a rate-limited demo request", async () => {
+    const persisted: string[] = [];
+    setTestLeadStorage({
+      set: async (_key, value) => { persisted.push(value); return "OK"; },
+    });
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ id: "email-id" }), { status: 200 }));
+    const ip = "198.51.100.67";
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(200);
+    }
+    expect((await postDemo(request("/api/demo", validDemoPayload, ip))).status).toBe(429);
+    expect(persisted).toHaveLength(5);
   });
 
   it("isolates limits by API route for the same client", async () => {
@@ -156,6 +201,35 @@ describe("public form API validation", () => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({ success: true });
     expect(fetchMock).toHaveBeenCalledWith("https://api.resend.com/emails", expect.any(Object));
+  });
+
+  it("persists a privacy request before sending its notification", async () => {
+    const persisted: string[] = [];
+    setTestLeadStorage({
+      set: async (_key, value) => { persisted.push(value); return "OK"; },
+    });
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ id: "email-id" }), { status: 200 }));
+
+    const response = await postPrivacyRequest(
+      request("/api/privacy-request", { name: "Test User", email: "test@example.com", requestType: "delete" }, "198.51.100.46"),
+    );
+
+    expect(response.status).toBe(200);
+    expect(persisted).toHaveLength(1);
+    expect(JSON.parse(persisted[0]).type).toBe("privacy-request");
+  });
+
+  it("does not call Resend when durable privacy storage fails", async () => {
+    setTestLeadStorage({ set: async () => { throw new Error("storage secret detail"); } });
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await postPrivacyRequest(
+      request("/api/privacy-request", { name: "Test User", email: "test@example.com", requestType: "delete" }, "198.51.100.47"),
+    );
+
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({ success: false, error: "We could not submit your request. Please try again later." });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it.each([

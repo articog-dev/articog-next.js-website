@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { parseJsonBody, validateEmail, validateEnum, validateString } from "../../../lib/api-validation";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { sendResendEmail } from "../../../lib/resend";
+import { saveLead } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const rateLimit = await checkPublicFormRateLimit(request, "privacy-request");
@@ -32,6 +33,26 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { success: false, error: "Please provide a valid name, email, and request type." },
       { status: 400 }
+    );
+  }
+
+  const durableResult = await saveLead({
+    id: crypto.randomUUID(),
+    type: "privacy-request",
+    source: "website",
+    submittedAt: new Date().toISOString(),
+    fields: {
+      name: name.value,
+      email: email.value,
+      requestType: requestType.value,
+      details: details.value || "",
+    },
+  });
+  if (!durableResult.ok) {
+    console.error("Privacy request durable storage failed.", durableResult.reason);
+    return NextResponse.json(
+      { success: false, error: "We could not submit your request. Please try again later." },
+      { status: 503 },
     );
   }
 

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { parseJsonBody, validateEmail, validateEnum, validateString, validateUrl } from "../../../lib/api-validation";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { sendResendEmail } from "../../../lib/resend";
+import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
 type ContactData = {
   name: string;
@@ -94,21 +95,45 @@ export async function POST(request: Request) {
       );
     }
 
+    const lead = {
+      id: crypto.randomUUID(),
+      type: "contact" as const,
+      source: "website" as const,
+      submittedAt: new Date().toISOString(),
+      fields: {
+        name: name.value,
+        email: email.value,
+        company: company.value,
+        companyWebsite: companyWebsite.value || "",
+        inquiryType: inquiryType.value,
+        message: message.value,
+      },
+    };
+
+    const durableResult = await saveLead(lead);
+    if (!durableResult.ok) {
+      console.error("Contact durable lead storage failed.", durableResult.reason);
+      return NextResponse.json(
+        { success: false, error: "We could not save your message. Please try again later." },
+        { status: 503 },
+      );
+    }
+
     try {
       const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
 
       if (!googleSheetsUrl) throw new Error("Google Sheets URL is not configured.");
 
-      const response = await fetch(googleSheetsUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.value, email: email.value, company: company.value, companyWebsite: companyWebsite.value || "", inquiryType: inquiryType.value, message: message.value }),
-      });
+      const response = await withPersistenceTimeout(fetch(googleSheetsUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name.value, email: email.value, company: company.value, companyWebsite: companyWebsite.value || "", inquiryType: inquiryType.value, message: message.value }),
+        }));
 
       if (!response.ok) throw new Error("Failed to save data to Google Sheets.");
     } catch (error) {
       await alertSheetFailure({ name: name.value!, email: email.value, company: company.value, companyWebsite: companyWebsite.value, inquiryType: inquiryType.value!, message: message.value! }, error);
-      throw error;
+      console.error("Contact Google Sheets mirror failed; durable lead retained.", error instanceof Error ? error.message : "unknown-error");
     }
 
     try {

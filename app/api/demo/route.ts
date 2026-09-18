@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isRecord, parseJsonBody, validateBoolean, validateEmail, validateEnum, validateString, validateStringArray, validateUrl } from "../../../lib/api-validation";
 import { checkPublicFormRateLimit } from "../../../lib/rate-limit";
 import { sendResendEmail } from "../../../lib/resend";
+import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const rateLimit = await checkPublicFormRateLimit(request, "demo");
@@ -99,24 +100,33 @@ export async function POST(request: Request) {
     },
   };
 
-  try {
-    const response = await fetch(sheetsUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(lead),
-    });
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { success: false, error: "We could not save your request. Please try again later." },
-        { status: 502 }
-      );
-    }
-  } catch {
+  const durableResult = await saveLead({
+    id: crypto.randomUUID(),
+    type: "demo",
+    source: "website",
+    submittedAt: new Date().toISOString(),
+    fields: lead,
+  });
+  if (!durableResult.ok) {
+    console.error("Demo durable lead storage failed.", durableResult.reason);
     return NextResponse.json(
       { success: false, error: "We could not save your request. Please try again later." },
-      { status: 502 }
+      { status: 503 },
     );
+  }
+
+  try {
+    const response = await withPersistenceTimeout(fetch(sheetsUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead),
+      }));
+
+    if (!response.ok) {
+      throw new Error("Google Sheets mirror returned an unsuccessful response.");
+    }
+  } catch (error) {
+    console.error("Demo Google Sheets mirror failed; durable lead retained.", error instanceof Error ? error.message : "unknown-error");
   }
 
   const recipient = process.env.CONTACT_INTERNAL_ALERT_EMAIL || "info@articog.com";

@@ -28,17 +28,17 @@ To learn more about Next.js, take a look at the following resources:
 
 The contact form requires these server-side environment variables:
 
-- `GOOGLE_SHEETS_WEB_APP_URL` saves submissions to the existing Google Sheet.
+- `GOOGLE_SHEETS_WEB_APP_URL` mirrors durably stored submissions to the existing Google Sheet.
 - `RESEND_API_KEY` enables confirmation and internal alert emails.
 - `CONTACT_FROM_EMAIL` is the verified sender address for those emails.
 - `CONTACT_INTERNAL_ALERT_EMAIL` receives an alert when saving to Google Sheets fails. It defaults to `articog.media.01@gmail.com` and can be overridden for deployment.
 
-Public form APIs use Upstash Redis for shared serverless rate limiting. Configure:
+Public form APIs use Upstash Redis for shared serverless rate limiting and durable lead storage. Configure:
 
 - `UPSTASH_REDIS_REST_URL` is the Upstash Redis REST endpoint.
 - `UPSTASH_REDIS_REST_TOKEN` authenticates rate-limit requests.
 
-Requests are limited per platform-provided client IP and route. If the shared store is unavailable or not configured, form APIs fail closed with a temporary-unavailable response rather than falling back to process-local memory.
+Requests are limited per platform-provided client IP and route. Lead records are stored under the `articog:lead:` keyspace with a generated ID, lead type, source, submission timestamp, and validated form fields. Google Sheets is a secondary mirror. If the shared store is unavailable or not configured, form APIs fail closed with a temporary-unavailable response rather than falling back to process-local memory.
 
 The site-wide GA4 page-view and interaction tracking uses:
 

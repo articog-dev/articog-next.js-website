@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { POST } from "../app/api/contact/route";
 import { buildContactPayload } from "../lib/contact-payload";
 import { resetTestRateLimits } from "../lib/rate-limit";
+import { resetTestLeadStorage, setTestLeadStorage } from "../lib/lead-storage";
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
@@ -11,6 +12,7 @@ describe("POST /api/contact", () => {
     process.env.CONTACT_FROM_EMAIL = "noreply@example.com";
     vi.restoreAllMocks();
     resetTestRateLimits();
+    resetTestLeadStorage();
   });
 
   it("includes the empty honeypot value in the real form payload", () => {
@@ -91,6 +93,21 @@ describe("POST /api/contact", () => {
     expect(response.status).toBe(200);
     expect(JSON.stringify(await response.json())).not.toContain("private");
     expect(log.mock.calls.flat().join(" ")).toContain("Contact internal notification was not delivered.");
+  });
+
+  it("does not claim success when durable storage fails", async () => {
+    setTestLeadStorage({ set: async () => { throw new Error("storage secret detail"); } });
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await POST(new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-real-ip": "198.51.100.17" },
+      body: JSON.stringify({ name: "Test User", email: "test@example.com", company: "Example Co", inquiryType: "Sales", message: "Test message" }),
+    }));
+
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({ success: false, error: "We could not save your message. Please try again later." });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("short-circuits honeypot submissions successfully without saving or emailing", async () => {
