@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { trackContactSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
+import { buildContactPayload } from "@/lib/contact-payload";
 import {
   ArrowRight,
   Mail,
@@ -24,15 +25,7 @@ export default function ContactPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const data = {
-      name: formData.get("name")?.toString().trim() || "",
-      email: formData.get("email")?.toString().trim() || "",
-      company: formData.get("company")?.toString().trim() || "",
-      companyWebsite: formData.get("companyWebsite")?.toString().trim() || "",
-      website: formData.get("website")?.toString() || "",
-      inquiryType: formData.get("inquiryType")?.toString() || "",
-      message: formData.get("message")?.toString().trim() || "",
-    };
+    const data = buildContactPayload(formData);
 
     trackFormSubmit("contact");
     trackContactSubmit();

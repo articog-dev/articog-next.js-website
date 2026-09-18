@@ -17,7 +17,7 @@ export default function NewsletterPage() {
               <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8">
                 <Heading as="h2" size="card" className="mb-3 text-white">Studio &amp; Service Updates</Heading>
                 <p className="mb-6 text-sm leading-relaxed text-white/60">
-                  Subscribe for production insights and new work. You can manage marketing email preferences separately from this signup.
+                  Subscribe for production insights and new work. Unsubscribe or update your preferences through the Beehiiv link in any newsletter email.
                 </p>
                 <BeehiivForm />
                 <p className="mt-5 text-xs leading-relaxed text-white/40">

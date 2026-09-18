@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { POST } from "../app/api/contact/route";
+import { buildContactPayload } from "../lib/contact-payload";
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
@@ -8,6 +9,28 @@ describe("POST /api/contact", () => {
     process.env.RESEND_API_KEY = "test-key";
     process.env.CONTACT_FROM_EMAIL = "noreply@example.com";
     vi.restoreAllMocks();
+  });
+
+  it("includes the empty honeypot value in the real form payload", () => {
+    const formData = new FormData();
+    formData.set("name", "Test User");
+    formData.set("email", "test@example.com");
+    formData.set("inquiryType", "Sales");
+    formData.set("message", "Test message");
+    formData.set("website", "");
+
+    expect(buildContactPayload(formData).website).toBe("");
+  });
+
+  it("passes a populated honeypot value through the real form payload", () => {
+    const formData = new FormData();
+    formData.set("name", "Bot");
+    formData.set("email", "bot@example.com");
+    formData.set("inquiryType", "Other");
+    formData.set("message", "Bot message");
+    formData.set("website", "filled-honeypot");
+
+    expect(buildContactPayload(formData).website).toBe("filled-honeypot");
   });
 
   it("saves the lead and sends the internal notification to info@articog.com without exposing form data to analytics", async () => {

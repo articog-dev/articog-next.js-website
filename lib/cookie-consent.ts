@@ -47,6 +47,11 @@ export function subscribeCookieConsent(callback: () => void): () => void {
 
 export function readCookieConsentSnapshot(): string | null {
   if (typeof window === "undefined") return null;
+
+  if (hasGlobalPrivacyControl()) {
+    return JSON.stringify({ necessary: true, analytics: false });
+  }
+
   const value = window.localStorage.getItem(COOKIE_CONSENT_KEY);
   if (!value) return null;
 

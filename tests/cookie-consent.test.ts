@@ -5,6 +5,7 @@ import path from "node:path";
 import {
   hasGlobalPrivacyControl,
   readCookieConsent,
+  readCookieConsentSnapshot,
   saveCookieConsent,
 } from "../lib/cookie-consent";
 
@@ -47,7 +48,18 @@ describe("cookie consent", () => {
 
     expect(hasGlobalPrivacyControl()).toBe(true);
     expect(readCookieConsent()?.analytics).toBe(false);
+    expect(JSON.parse(readCookieConsentSnapshot() ?? "{}").analytics).toBe(false);
     expect(saveCookieConsent(true).analytics).toBe(false);
+  });
+
+  it("keeps normal consent behavior when GPC is false or unavailable", () => {
+    saveCookieConsent(true);
+    expect(hasGlobalPrivacyControl()).toBe(false);
+    expect(readCookieConsent()?.analytics).toBe(true);
+
+    Object.defineProperty(globalThis.navigator, "globalPrivacyControl", { value: undefined });
+    expect(hasGlobalPrivacyControl()).toBe(false);
+    expect(readCookieConsent()?.analytics).toBe(true);
   });
 
   it("exposes both consent actions in the privacy choices UI", () => {
