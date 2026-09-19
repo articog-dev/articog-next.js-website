@@ -109,7 +109,6 @@ The catalog pages subsequently exposed usable published component implementation
 
 | Articog file | 21st.dev component | Source | Adaptation |
 |---|---|---|---|
-| `app/pricing/page.tsx`, `components/ui/pricing-card.tsx` | Efferd UI `Pricing Card` | https://21st.dev/@efferd/components/pricing-card | Adopted the published `Card`, `Header`, `Plan`, `PlanName`, `Badge`, `Price`, `MainPrice`, `Period`, `OriginalPrice`, `Body`, `Description`, `List`, and `ListItem` composition. Replaced demo plan data, icons, colors, and action behavior with Articog's existing plans and `/book-a-demo` links. |
 | `components/layout/Footer.tsx` | Tailark `Footer` | https://21st.dev/@meschacirung/components/footer | Adopted the published five-column/grid footer structure and bottom utility row. Preserved Articog's existing logo text, navigation arrays, social URLs, legal links, dark palette, and typography. |
 
 The existing Articog Hero, Header, MobileMenu, media galleries, and CTA behavior were not replaced because they contain site-specific functionality or because no verified source implementation was needed to preserve them safely.
