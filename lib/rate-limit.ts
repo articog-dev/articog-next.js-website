@@ -98,8 +98,8 @@ export async function checkPublicFormRateLimit(
       : typeof errorRecord?.statusCode === "number"
         ? errorRecord.statusCode
         : undefined;
-    const reason = typeof errorRecord?.code === "string"
-      ? errorRecord.code.slice(0, 80)
+    const reason = error instanceof Error
+      ? error.message.split(", command was:", 1)[0].slice(0, 80)
       : undefined;
 
     logOperational("error", "rate_limit_check_failed", {
