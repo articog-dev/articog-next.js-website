@@ -21,7 +21,7 @@ export default function PricingPage() {
     <Section size="lg" className="pt-32 md:pt-40">
       <Container>
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <Heading as="h1" size="hero" className="mb-6">
+          <Heading as="h1" size="hero" className="mb-6 text-white">
             Let’s plan your next creative sprint.
           </Heading>
 

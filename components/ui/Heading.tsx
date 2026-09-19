@@ -32,7 +32,6 @@ export function Heading({
       {...props}
       className={cn(
         sizeMap[size],
-        Tag === "h1" && "page-header-heading text-center",
         gradient && "text-gradient-accent",
         className
       )}

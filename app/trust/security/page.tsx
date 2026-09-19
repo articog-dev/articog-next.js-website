@@ -36,8 +36,8 @@ export default function SecurityPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Security & Data Protection" }]} />
-          <div className="max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Security & Confidentiality
             </Heading>
           </div>

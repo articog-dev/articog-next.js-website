@@ -22,9 +22,11 @@ export default function ThankYouDemoPage() {
               <CheckCircle2 size={32} />
             </div>
           </div>
-          <Heading as="h1" size="hero" className="mb-6 text-white">
-            Thanks we&apos;ve got your request
-          </Heading>
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
+              Thanks we&apos;ve got your request
+            </Heading>
+          </div>
           <p
             className="mx-auto mb-10 max-w-md type-body md:text-lg"
             style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}

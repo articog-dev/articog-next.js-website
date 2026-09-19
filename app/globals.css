@@ -78,8 +78,6 @@
   --spacing-content-gap: var(--gap-section);
   --spacing-page-x: 1.5rem;
   --header-offset: 100px;
-  --page-header-space-top: clamp(4.5rem, 8vw, 7rem);
-  --page-header-space-bottom: clamp(3.5rem, 6vw, 5.5rem);
 
   --animate-fade-in: fadeIn 0.5s ease-out forwards;
   --animate-slide-up: slideUp 0.5s ease-out forwards;
@@ -300,25 +298,6 @@
     font-weight: 600 !important;
     line-height: var(--text-h4--line-height) !important;
     letter-spacing: var(--text-h4--letter-spacing) !important;
-  }
-}
-
-@layer components {
-  .page-header-heading {
-    display: block;
-    width: 100%;
-    margin-inline: auto;
-  }
-
-  main > section:has(.page-header-heading),
-  main > div > section:has(.page-header-heading) {
-    padding-block-start: var(--header-offset) !important;
-    padding-block-end: var(--page-header-space-bottom) !important;
-  }
-
-  .page-header-heading + p {
-    margin-inline: auto;
-    text-align: center;
   }
 }
 

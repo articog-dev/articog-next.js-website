@@ -27,7 +27,9 @@ export default function VideoAdsGalleryPage() {
         <Container>
           <div className="max-w-6xl mx-auto">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: "Video Ad Gallery" }]} />
-            <Heading as="h1" size="hero" className="mb-6 text-white">Video Ad Gallery</Heading>
+            <div className="text-center mb-16">
+              <Heading as="h1" size="hero" className="mb-6 text-white">Video Ad Gallery</Heading>
+            </div>
             <p className="type-h3 mb-16 max-w-2xl leading-relaxed text-white/60">
               Explore our latest AI generated video creative across industries and formats.
             </p>

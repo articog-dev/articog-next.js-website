@@ -28,17 +28,17 @@ export function PageHero({
     <Section
       size={compact ? "sm" : "lg"}
       className={cn(
-        "overflow-hidden pt-[var(--header-offset)]",
-        media && "relative flex items-center",
+        "overflow-hidden pt-32 md:pt-40",
+        media && "relative",
         className,
       )}
     >
       {media ? <div className="absolute inset-0 z-0">{media}</div> : null}
       <Container className="relative z-10 text-center">
         {breadcrumbs}
-        <div className="mx-auto max-w-3xl">
+        <div className="text-center mb-16 mx-auto max-w-3xl">
           {eyebrow ? <div className="mb-4 type-label text-white/50">{eyebrow}</div> : null}
-          <Heading as="h1" size="hero" className="text-white">
+          <Heading as="h1" size="hero" className="mb-6 text-white">
             {title}
           </Heading>
           {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}

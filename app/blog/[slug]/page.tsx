@@ -119,8 +119,8 @@ export default async function BlogArticlePage({
             </Link>
           </div>
 
-          <div className="mb-8">
-            <Heading as="h1" size="hero" className="mb-5">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               {post.title}
             </Heading>
             <div className="flex flex-wrap items-center gap-4 type-small text-white/55">

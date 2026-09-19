@@ -37,8 +37,8 @@ export default function MonthlySubscriptionPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Monthly Creative Subscription" }]} />
-          <div className="max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Monthly Creative Subscription
             </Heading>
           </div>

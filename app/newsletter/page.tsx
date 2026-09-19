@@ -8,7 +8,9 @@ export default function NewsletterPage() {
       <div className="flex-grow pt-32 md:pt-40 pb-20">
         <Container>
           <div className="mx-auto max-w-2xl">
-            <Heading as="h1" size="hero" className="mb-6 text-white">Newsletter</Heading>
+            <div className="text-center mb-16">
+              <Heading as="h1" size="hero" className="mb-6 text-white">Newsletter</Heading>
+            </div>
             <p className="type-h3 mb-12 leading-relaxed text-white/60">
               Get Studio &amp; Service Updates, new production capabilities, selected work, and useful creative production context.
             </p>

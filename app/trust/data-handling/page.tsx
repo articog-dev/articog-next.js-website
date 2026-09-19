@@ -49,8 +49,8 @@ export default function DataHandlingPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Data Handling & Retention" }]} />
-          <div className="mx-auto max-w-3xl text-center mb-20">
-            <Heading as="h1" size="hero" className="mb-6">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Data Handling & Retention
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>

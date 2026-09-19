@@ -35,7 +35,7 @@ export default function ProductionEconomicsPage() {
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Why Articog", href: "/why-articog" }, { label: "Production Cost & ROI Guide" }]} />
           <div className="mx-auto max-w-3xl text-center mb-20">
-            <Heading as="h1" size="hero" className="mb-6">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Production Cost & ROI Guide
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>

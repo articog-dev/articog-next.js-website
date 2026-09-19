@@ -25,8 +25,8 @@ export function PageHeroDetail({
     <Section
       size="lg"
       className={cn(
-        "overflow-hidden pt-[var(--header-offset)]",
-        media && "relative flex items-center",
+        "overflow-hidden pt-32 md:pt-40",
+        media && "relative",
         className,
       )}
     >
@@ -41,8 +41,8 @@ export function PageHeroDetail({
               {backLink.label}
             </Link>
           ) : null}
-          <div className="mx-auto mb-16 max-w-3xl">
-            <Heading as="h1" size="hero" className="text-white">
+          <div className="text-center mb-16 mx-auto max-w-3xl">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               {title}
             </Heading>
             {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}

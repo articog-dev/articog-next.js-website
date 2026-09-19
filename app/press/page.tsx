@@ -40,9 +40,11 @@ export default function PressPage() {
       <div className="flex-grow pt-32 md:pt-40 pb-20">
         <Container>
           <div className="mx-auto max-w-4xl">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
-              Press & Media Kit
-            </Heading>
+            <div className="text-center mb-16">
+              <Heading as="h1" size="hero" className="mb-6 text-white">
+                Press & Media Kit
+              </Heading>
+            </div>
 
             <p className="type-h3 mb-12 max-w-2xl leading-relaxed text-white/60">
               Resources and information for journalists and media covering

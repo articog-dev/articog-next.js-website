@@ -46,8 +46,8 @@ export default function ProductLaunchSolutionPage() {
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Product Launch Campaigns" }]} />
-          <div className="max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Product Launch Campaigns
             </Heading>
           </div>

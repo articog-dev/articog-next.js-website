@@ -121,9 +121,9 @@ export default function HelpCenterPage() {
       <JsonLd data={faqSchema} />
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
-          <div className="mx-auto max-w-3xl text-center mb-12">
+          <div className="mx-auto max-w-3xl text-center mb-16">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Help Center" }]} />
-            <Heading as="h1" size="hero" className="mb-8">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Help Center
             </Heading>
             

@@ -17,7 +17,7 @@ export default function SocialCreativePage() {
       <Section size="lg" className="pt-32 md:pt-40 pb-20">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Social Creative" }]} />
-          <div className="max-w-3xl">
+          <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
               Social Creative
             </Heading>

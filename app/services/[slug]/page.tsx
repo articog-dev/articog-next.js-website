@@ -49,12 +49,12 @@ export default async function ServicePage({
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: service.title }]} />
-          <div className="max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6">
+          <div className="text-center mb-16">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               {service.title}
             </Heading>
             {service.description && (
-              <p className="type-body-lg max-w-2xl text-white/60">
+              <p className="mx-auto max-w-2xl type-body-lg text-white/60">
                 {service.description}
               </p>
             )}

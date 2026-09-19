@@ -42,10 +42,10 @@ export default function WorkPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 pb-16 md:pt-40">
+      <Section size="lg" className="pt-32 md:pt-40 pb-16">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6">
+            <Heading as="h1" size="hero" className="mb-6 text-white">
               Real outcomes. No composites.
             </Heading>
           </div>

@@ -17,7 +17,7 @@ export default function ProductVisualsPage() {
       <Section size="lg" className="pt-32 md:pt-40 pb-20">
         <Container>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Product Visual Content" }]} />
-          <div className="max-w-3xl">
+          <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
               Product Visual Content
             </Heading>
