@@ -75,6 +75,13 @@ async function handlePrivacyRequest(request: Request, requestId: string) {
 
   const recipient = process.env.PRIVACY_REQUEST_ALERT_EMAIL || process.env.CONTACT_INTERNAL_ALERT_EMAIL;
   if (!recipient || !process.env.RESEND_API_KEY || !process.env.CONTACT_FROM_EMAIL) {
+    logOperational("error", "privacy_request_configuration_unavailable", {
+      requestId,
+      route: "privacy-request",
+      operation: "privacy-request-submission",
+      result: "failure",
+      reason: "configuration",
+    });
     await releaseIdempotency(idempotency.key);
     return withRequestId(requestId,
       {
