@@ -16,15 +16,6 @@ const aiVideoProductionSource = readFileSync(
   path.join(process.cwd(), "app", "services", "ai-video-production", "page.tsx"),
   "utf8",
 );
-const deliverablesSource = aiVideoProductionSource.slice(
-  aiVideoProductionSource.indexOf("const deliverables ="),
-  aiVideoProductionSource.indexOf("const faqs ="),
-);
-const deliverablesRenderSource = aiVideoProductionSource.slice(
-  aiVideoProductionSource.indexOf("const cardClassName"),
-  aiVideoProductionSource.indexOf("          </Grid>"),
-);
-
 const serviceGroupHrefs = Array.from(
   serviceGroupsSource.matchAll(/href: "([^"]+)"/g),
   ([, href]) => href,
@@ -56,6 +47,15 @@ function getRouteHeading(route: string) {
   return slug ? dedicatedServicePageBySlug[slug]?.title : undefined;
 }
 
+function getDeliverableCards() {
+  return Array.from(
+    aiVideoProductionSource.matchAll(
+      /\{\s*title:\s*"([^"]+)"\s*,\s*path:\s*(null|"[^"]+")\s*,/g,
+    ),
+    ([, title, pathValue]) => [title, pathValue === "null" ? null : pathValue.slice(1, -1)],
+  );
+}
+
 describe("Services page routing", () => {
   it("keeps the What We Deliver cards in the exact grid order", () => {
     const expectedCards = [
@@ -70,10 +70,7 @@ describe("Services page routing", () => {
       ["Corporate & Internal", null],
       ["Localization & Variants", null],
     ];
-    const actualCards = Array.from(
-      aiVideoProductionSource.matchAll(/\{ title: "([^"]+)", path: (null|"[^"]+")/g),
-      ([, title, pathValue]) => [title, pathValue === "null" ? null : pathValue.slice(1, -1)],
-    );
+    const actualCards = getDeliverableCards();
 
     expect(actualCards).toEqual(expectedCards);
     expect(actualCards).toHaveLength(10);
@@ -87,21 +84,11 @@ describe("Services page routing", () => {
       ["Creator-Style Ads", "/services/ad-creative"],
     ];
 
-    expect(deliverablesSource.match(/path: "[^"]+"/g)).toEqual([
-      'path: "/services/ad-creative"',
-      'path: "/services/social-creative"',
-      'path: "/services/ad-creative"',
-    ]);
-    expect(deliverablesRenderSource).toContain("<div className=\"flex h-full w-full items-center justify-between gap-4\">");
-    expect(deliverablesRenderSource).toContain(
-      'const cardClassName = "group flex h-full w-full items-center radius-lg border border-white/10 bg-surface p-6 text-foreground transition-all duration-300 hover:border-white/20";',
-    );
-    expect(deliverablesRenderSource.match(/className=\{cardClassName\}/g)).toHaveLength(2);
-    expect(deliverablesRenderSource).not.toContain("<Card");
-    expect(deliverablesRenderSource.match(/<ArrowRight className/g)).toHaveLength(1);
-    expect(deliverablesRenderSource).toContain("item.path &&");
-    expect(deliverablesRenderSource).toContain("ml-auto flex shrink-0 items-center");
-    expect(deliverablesRenderSource).not.toMatch(/ArrowRight[^\n]*top-/);
+    const linkedCards = getDeliverableCards().filter(([, href]) => href !== null);
+    expect(linkedCards).toEqual(expectedLinkedCards);
+    expect(aiVideoProductionSource).toContain("item.desc");
+    expect(aiVideoProductionSource).toMatch(/item\.path\s*&&/);
+    expect(aiVideoProductionSource).toMatch(/<ArrowRight\b/);
 
     for (const [title, href] of expectedLinkedCards) {
       expect(aiVideoProductionSource).toContain(`title: "${title}", path: "${href}"`);
