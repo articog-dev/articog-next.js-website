@@ -1,5 +1,4 @@
 import { Link } from "@/components/ui/Link";
-import { ArrowRight } from "lucide-react";
 import { Container, Section, Button, Heading } from "@/components/ui";
 import type { CTAContent } from "@/types";
 
@@ -21,7 +20,6 @@ export function FinalCTA({ content }: FinalCTAProps) {
             <Button asChild variant="primary" size="lg">
               <Link href={content.ctaHref}>
                 {content.ctaLabel}
-                <ArrowRight size={15} />
               </Link>
             </Button>
           </div>
