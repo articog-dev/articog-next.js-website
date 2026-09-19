@@ -91,7 +91,6 @@ const footerNavSections = [
     title: "More",
     links: [
       { label: "Why Articog", href: "/why-articog" },
-      { label: "Trust Center", href: "/trust" },
     ],
   },
 ];

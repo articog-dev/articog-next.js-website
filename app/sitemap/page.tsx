@@ -20,8 +20,6 @@ export default function SitemapPage() {
         { label: "Careers", href: "/careers" },
         { label: "Contact", href: "/contact" },
         { label: "Press & Media", href: "/press" },
-        { label: "Newsletter", href: "/newsletter" },
-        { label: "Pricing", href: "/pricing" },
         { label: "Book a Demo", href: "/book-a-demo" },
       ]
     },
@@ -65,8 +63,6 @@ export default function SitemapPage() {
       title: "Resources",
       links: [
         { label: "Blog", href: "/blog" },
-        { label: "Customer Stories", href: "/customers" },
-        { label: "AI Ad Library", href: "/ai-ad-library" },
         { label: "Help Center", href: "/help" },
       ]
     },
@@ -74,10 +70,9 @@ export default function SitemapPage() {
       title: "Company Trust",
       links: [
         { label: "Why Articog", href: "/why-articog" },
-        { label: "Production Economics", href: "/why-articog/production-economics" },
-        { label: "How It Works", href: "/how-it-works" },
-        { label: "AI Creative Pipeline", href: "/how-it-works/ai-creative-pipeline" },
-        { label: "Trust Center", href: "/trust" },
+        { label: "Production Economics", href: "/why-articog#production-economics" },
+        { label: "How It Works", href: "/why-articog#how-it-works" },
+        { label: "Trust & Security", href: "/why-articog#trust" },
         { label: "AI & IP Ownership", href: "/trust/ai-and-ip" },
         { label: "Security & Data Protection", href: "/trust/security" },
         { label: "Rights, Licensing & Ownership", href: "/trust/rights-licensing" },
