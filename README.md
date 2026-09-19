@@ -61,6 +61,18 @@ After deploying to `https://articog.com`:
 
 Search Console verification is a production-account task and is not configured in this repository.
 
+## Bing Webmaster Tools and IndexNow
+
+After deploying the current production build:
+
+1. Add `https://articog.com` to Bing Webmaster Tools.
+2. Verify ownership using a supported Bing verification method.
+3. Submit `https://articog.com/sitemap.xml` and use URL Inspection for important canonical pages.
+4. To enable IndexNow later, generate a real production key, host the key at the required public URL, and submit changed canonical URLs to the IndexNow endpoint.
+5. Verify IndexNow responses and the public key URL after deployment.
+
+No Bing verification value, IndexNow key, or IndexNow integration is configured in this repository. Do not add one until the production key is generated and securely managed.
+
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
