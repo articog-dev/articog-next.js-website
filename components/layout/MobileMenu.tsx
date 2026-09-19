@@ -6,17 +6,30 @@ import { X, ChevronDown } from "lucide-react";
 import { menuGroups, groupHubHrefs, NO_DROPDOWN_GROUPS } from "./Header";
 import { ServiceMenuMobile } from "./ServiceMenuCards";
 
-const HEADER_STACK_HEIGHT = 100;
-
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const [headerHeight, setHeaderHeight] = useState(100);
   const [openGroups, setOpenGroups] = useState<string[]>([]);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const stack = document.getElementById("site-header-stack");
+    if (!stack) return;
+    const update = () => setHeaderHeight(stack.getBoundingClientRect().height);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(stack);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -67,7 +80,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Backdrop */}
       <div
         className="fixed inset-x-0 bottom-0 z-40"
-        style={{ top: HEADER_STACK_HEIGHT, background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }}
+        style={{ top: headerHeight, background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }}
         onClick={handleClose}
       />
 
@@ -76,7 +89,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         ref={dialogRef}
         id="mobile-navigation"
         className="fixed right-0 z-50 flex w-full max-w-80 flex-col"
-        style={{ top: HEADER_STACK_HEIGHT, height: `calc(100dvh - ${HEADER_STACK_HEIGHT}px)`, background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
+        style={{ top: headerHeight, height: `calc(100dvh - ${headerHeight}px)`, background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"

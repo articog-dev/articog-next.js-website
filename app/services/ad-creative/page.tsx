@@ -90,16 +90,17 @@ export default function AdCreativePage() {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
             {subServices.map((service) => {
               const card = (
-                <>
+                <div className="flex h-full w-full flex-col justify-between gap-4">
                   <div>
                     <Heading as="h3" size="card" className="text-white">{service.title}</Heading>
+                    <p className="type-body mt-2 text-white/50">{service.description}</p>
                   </div>
                   {service.href && (
                     <div className="flex items-center text-xs font-bold tracking-widest text-white/30 group-hover:text-white/60 transition-colors uppercase">
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   )}
-                </>
+                </div>
               );
               const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
 

@@ -4,8 +4,6 @@ import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
 import { FooterNavSections } from "./FooterNavSections";
 
-const border = "rgba(255,255,255,0.08)";
-
 function XIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -115,8 +113,7 @@ export function Footer() {
     /* Adapted from Tailark's Footer component published on 21st.dev:
        https://21st.dev/@meschacirung/components/footer */
     <footer
-      style={{ background: "#000000" }}
-      className="border-t border-white/5 pt-16"
+      className="bg-black border-t border-white/[0.08] pt-16"
     >
       <Container className="py-14">
         <div className="grid gap-12 md:grid-cols-[minmax(15rem,0.8fr)_minmax(0,2.4fr)] md:items-start">
@@ -161,15 +158,14 @@ export function Footer() {
 
         {/* Bottom */}
         <div
-          className="mt-16 grid gap-6 pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
-          style={{ borderTop: `1px solid ${border}` }}
+          className="mt-16 grid gap-6 border-t border-white/[0.08] pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
         >
           <div className="flex flex-col gap-1">
             <p className="font-sans text-xs text-white/60">
               &copy; {new Date().getFullYear()} Articog. All rights reserved.
             </p>
 
-            <p className="font-sans text-[10px] text-white/55 uppercase tracking-widest">
+            <p className="type-small text-white/55 uppercase tracking-widest">
               AI Native Film & Production Company
             </p>
           </div>
@@ -177,30 +173,37 @@ export function Footer() {
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-start-2 md:row-start-1">
             <Link
               href="/legal/terms-of-service"
-              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Terms
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Privacy
             </Link>
 
             <Link
               href="/legal/accessibility"
-              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Accessibility
             </Link>
 
             <Link
               href="/copyright"
-              className="font-sans text-[10px] text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-[11px] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Copyright
+            </Link>
+
+            <Link
+              href="/legal/cookie-policy"
+              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Cookie Policy
             </Link>
 
           </div>
