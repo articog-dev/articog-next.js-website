@@ -1,4 +1,5 @@
 import { Container, Section } from "@/components/ui";
+import { Check, X } from "lucide-react";
 import type { ComparisonRow } from "@/types";
 
 interface ComparisonProps {
@@ -42,15 +43,27 @@ export function Comparison({ rows }: ComparisonProps) {
 
           <div className="sm:hidden">
             {rows.map((row) => (
-              <div key={row.attribute} className="border-b border-white/[0.08] p-5 last:border-b-0">
-                <p className="type-h4 mb-4 text-white">{row.attribute}</p>
-                <div className="flex items-center justify-between border-t border-white/[0.08] py-3">
-                  <span className="type-small uppercase tracking-wide text-white/40">The Old Way</span>
-                  <span className="type-small text-right text-white/60">{row.agency} / {row.inhouse}</span>
+              <div key={row.attribute} className="border-b border-white/[0.08] p-6 last:border-b-0 sm:hidden">
+                <p className="type-h4 mb-5 text-white">{row.attribute}</p>
+
+                <div className="mb-4 flex items-start gap-3">
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20">
+                    <X size={11} className="text-white/40" />
+                  </div>
+                  <div>
+                    <p className="type-small mb-1 uppercase tracking-wide text-white/35">The Old Way</p>
+                    <p className="type-body text-white/55">{row.agency} / {row.inhouse}</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between border-t border-white/[0.08] py-3">
-                  <span className="type-small uppercase tracking-wide text-white">Articog</span>
-                  <span className="type-small text-right font-semibold text-white">{row.articog}</span>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white">
+                    <Check size={11} className="text-black" />
+                  </div>
+                  <div>
+                    <p className="type-small mb-1 uppercase tracking-wide text-white">Articog</p>
+                    <p className="type-body font-semibold text-white">{row.articog}</p>
+                  </div>
                 </div>
               </div>
             ))}

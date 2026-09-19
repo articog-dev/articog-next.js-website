@@ -1,5 +1,5 @@
 import { Link } from "@/components/ui/Link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container, Section, Button, Heading } from "@/components/ui";
 import type { CTAContent } from "@/types";
 
@@ -22,12 +22,6 @@ export function FinalCTA({ content }: FinalCTAProps) {
               <Link href={content.ctaHref}>
                 {content.ctaLabel}
                 <ArrowRight size={15} />
-              </Link>
-            </Button>
-            <Button asChild variant="ghost" size="lg">
-              <Link href="/contact">
-                Contact Us
-                <ArrowUpRight size={14} />
               </Link>
             </Button>
           </div>
