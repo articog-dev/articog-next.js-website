@@ -8,16 +8,19 @@ import { saveLead, withPersistenceTimeout } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const requestId = getRequestId(request);
+  const idempotencyState: { key?: string } = {};
   try {
-    return await handleDemoRequest(request, requestId);
+    return await handleDemoRequest(request, requestId, idempotencyState);
   } catch (error) {
+    if (idempotencyState.key) {
+      await releaseIdempotency(idempotencyState.key);
+    }
     logOperational("error", "api_unexpected_exception", { requestId, route: "demo", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure" });
     return withRequestId(requestId, { success: false, error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }
 
-async function handleDemoRequest(request: Request, requestId: string) {
-  let idempotencyKey: string | undefined;
+async function handleDemoRequest(request: Request, requestId: string, idempotencyState: { key?: string }) {
   const rateLimit = await checkPublicFormRateLimit(request, "demo");
   if (!rateLimit.available) {
     logOperational("error", "rate_limit_unavailable", { requestId, route: "demo", result: "failure" });
@@ -127,7 +130,8 @@ async function handleDemoRequest(request: Request, requestId: string) {
       { status: idempotency.state === "completed" ? 200 : 202 },
     );
   }
-  idempotencyKey = idempotency.key;
+  const idempotencyKey = idempotency.key;
+  idempotencyState.key = idempotencyKey;
 
   const lead = {
     formType: "demo",
@@ -163,7 +167,7 @@ async function handleDemoRequest(request: Request, requestId: string) {
   if (!durableResult.ok) {
     logOperational("error", "lead_storage_failed", { requestId, route: "demo", reason: durableResult.reason, result: "failure" });
     await releaseIdempotency(idempotencyKey);
-    idempotencyKey = undefined;
+    idempotencyState.key = undefined;
     return withRequestId(requestId,
       { success: false, error: "We could not save your request. Please try again later." },
       { status: 503 },
@@ -174,7 +178,7 @@ async function handleDemoRequest(request: Request, requestId: string) {
     logOperational("error", "idempotency_completion_failed", { requestId, route: "demo", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
-  idempotencyKey = undefined;
+  idempotencyState.key = undefined;
 
   const sheetsUrl = process.env.GOOGLE_SHEETS_WEB_APP_URL;
   const mirrorStartedAt = Date.now();

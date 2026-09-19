@@ -8,15 +8,19 @@ import { saveLead } from "../../../lib/lead-storage";
 
 export async function POST(request: Request) {
   const requestId = getRequestId(request);
+  const idempotencyState: { key?: string } = {};
   try {
-    return await handlePrivacyRequest(request, requestId);
+    return await handlePrivacyRequest(request, requestId, idempotencyState);
   } catch (error) {
+    if (idempotencyState.key) {
+      await releaseIdempotency(idempotencyState.key);
+    }
     logOperational("error", "api_unexpected_exception", { requestId, route: "privacy-request", errorName: error instanceof Error ? error.name : "unknown-error", result: "failure" });
     return withRequestId(requestId, { success: false, error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }
 
-async function handlePrivacyRequest(request: Request, requestId: string) {
+async function handlePrivacyRequest(request: Request, requestId: string, idempotencyState: { key?: string }) {
   const rateLimit = await checkPublicFormRateLimit(request, "privacy-request");
   if (!rateLimit.available) {
     logOperational("error", "rate_limit_unavailable", { requestId, route: "privacy-request", result: "failure" });
@@ -72,6 +76,7 @@ async function handlePrivacyRequest(request: Request, requestId: string) {
       { status: idempotency.state === "completed" ? 200 : 202 },
     );
   }
+  idempotencyState.key = idempotency.key;
 
   const recipient = process.env.PRIVACY_REQUEST_ALERT_EMAIL || process.env.CONTACT_INTERNAL_ALERT_EMAIL;
   if (!recipient || !process.env.RESEND_API_KEY || !process.env.CONTACT_FROM_EMAIL) {
@@ -141,6 +146,7 @@ async function handlePrivacyRequest(request: Request, requestId: string) {
     logOperational("error", "idempotency_completion_failed", { requestId, route: "privacy-request", result: "failure" });
     return withRequestId(requestId, { success: false, error: "We could not process your request. Please try again later." }, { status: 503 });
   }
+  idempotencyState.key = undefined;
 
   return withRequestId(requestId, {
     success: true,

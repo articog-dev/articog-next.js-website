@@ -3,6 +3,7 @@ import { Link } from "@/components/ui/Link";
 import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
 import { FooterNavSections } from "./FooterNavSections";
+import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 function XIcon({ size = 16 }: { size?: number }) {
   return (
@@ -65,13 +66,7 @@ const footerNavSections = [
     title: "Services",
     links: [
       { label: "Services", href: "/services" },
-      { label: "AI Video Production", href: "/services/ai-video-production" },
-      { label: "Ad Creative", href: "/services/ad-creative" },
-      { label: "Social Creative", href: "/services/social-creative" },
-      { label: "Product Visuals", href: "/services/product-visuals" },
-      { label: "Audio & Sound", href: "/services/audio" },
-      { label: "Creative Strategy", href: "/services/creative-strategy" },
-      { label: "Post-Production", href: "/services/post-production" },
+      ...topLevelServiceLinks.map(({ label, href }) => ({ label, href })),
     ],
   },
   {

@@ -11,6 +11,7 @@ import { Link } from "@/components/ui/Link";
 import { Container, Section, Heading, Grid, Card, PageHero, MediaOverlay } from "@/components/ui";
 import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 const serviceDeliverables = [
   {
@@ -253,13 +254,14 @@ export const serviceGroups = [
   },
 ];
 
-const organizedServices = serviceGroups.map((group) => {
+const organizedServices = topLevelServiceLinks.map((serviceLink, index) => {
+  const group = serviceGroups[index];
   const [primaryService, ...relatedServices] = group.items;
 
   return {
-    title: primaryService.title,
+    title: serviceLink.pageTitle,
     description: primaryService.description,
-    href: primaryService.href,
+    href: serviceLink.href,
     tags: relatedServices.map((service) => service.title),
   };
 });

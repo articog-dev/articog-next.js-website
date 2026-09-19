@@ -9,6 +9,7 @@ import {
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
 import { ServiceMenuDesktop } from "./ServiceMenuCards";
+import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
 
@@ -17,22 +18,7 @@ export const menuGroups = [
     label: "Services",
     links: [
       { label: "Overview", href: "/services" },
-      {
-        label: "AI Video Production",
-        href: "/services/ai-video-production",
-      },
-      { label: "Ad Creative", href: "/services/ad-creative" },
-      { label: "Social Creative", href: "/services/social-creative" },
-      { label: "Product Visuals", href: "/services/product-visuals" },
-      { label: "Audio & Sound", href: "/services/audio" },
-      {
-        label: "Creative Strategy",
-        href: "/services/creative-strategy",
-      },
-      {
-        label: "Post-Production",
-        href: "/services/post-production",
-      },
+      ...topLevelServiceLinks.map(({ label, href }) => ({ label, href })),
     ],
   },
   {
