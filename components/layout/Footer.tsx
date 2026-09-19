@@ -83,8 +83,8 @@ const footerNavSections = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
-      { label: "Pricing", href: "/pricing" },
       { label: "Contact", href: "/contact" },
+      { label: "Sitemap", href: "/sitemap" },
     ],
   },
   {
