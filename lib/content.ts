@@ -7,7 +7,7 @@ import type { SiteContent } from "@/types";
 export const siteContent: SiteContent = {
   hero: {
     eyebrow: "AI NATIVE FILM & PRODUCTION",
-    headline: "Campaign creative, without the bottleneck.",
+    headline: "High-quality campaign creative. Produced at AI speed.",
     body: "Human-directed production for video, social, product visuals, and paid campaigns—built for faster iteration and clearer brand control.",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
