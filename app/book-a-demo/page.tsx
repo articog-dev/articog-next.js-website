@@ -111,22 +111,31 @@ export default function BookADemoPage() {
 
       const result = (await response.json()) as { success?: boolean; error?: string };
       if (!response.ok || !result.success) {
-        throw new Error(result.error || "We could not save your request. Please try again.");
+        const message = result.error || "We could not save your request. Please try again.";
+        setErrorMessage(message);
+        trackFormError("demo", message);
+        return;
       }
 
-      if (window.Calendly) {
-        trackCalendlyOpen();
-        window.Calendly.initPopupWidget({
-          url: CALENDLY_URL,
-          prefill: { name, email },
-        });
-      } else {
-        trackCalendlyOpen();
-        window.open(fallbackCalendlyUrl, "_blank", "noopener,noreferrer");
+      try {
+        if (window.Calendly) {
+          trackCalendlyOpen();
+          window.Calendly.initPopupWidget({
+            url: CALENDLY_URL,
+            prefill: { name, email },
+          });
+        } else {
+          trackCalendlyOpen();
+          window.open(fallbackCalendlyUrl, "_blank", "noopener,noreferrer");
+        }
+      } catch {
+        const message = "We could not open scheduling. Please try again.";
+        setErrorMessage(message);
+        trackFormError("demo", message);
       }
       trackFormSuccess("demo");
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "We could not save your request. Please try again.";
+    } catch {
+      const message = "We could not save your request. Please try again.";
       setErrorMessage(message);
       trackFormError("demo", message);
     } finally {

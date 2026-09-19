@@ -41,4 +41,12 @@ describe("production security hardening", () => {
     expect(bookingPage).toContain("assets.calendly.com/assets/external/widget.js");
     expect(bookingPage).toContain("assets.calendly.com/assets/external/widget.css");
   });
+
+  it("does not surface raw Calendly or fetch exceptions to demo users", () => {
+    const bookingPage = readFileSync(path.join(process.cwd(), "app", "book-a-demo", "page.tsx"), "utf8");
+
+    expect(bookingPage).toContain('const message = "We could not open scheduling. Please try again.";');
+    expect(bookingPage).toContain('const message = "We could not save your request. Please try again.";');
+    expect(bookingPage).not.toContain("error instanceof Error ? error.message");
+  });
 });
