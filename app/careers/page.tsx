@@ -12,7 +12,7 @@ import { BreezyOpenings } from "@/components/careers/BreezyOpenings";
 export default function CareersPage() {
   return (
     <div className="bg-black min-h-screen">
-      <PageHero title="Join the future of production" />
+      <PageHero title="Join the future of production" compact />
       <Section>
         <Container>
 

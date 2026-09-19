@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="bg-black min-h-screen">
-      <PageHero title="Blog" />
+      <PageHero title="Blog" compact />
       <Section>
         <Container>
           <BlogFilterList posts={blogPosts} />
