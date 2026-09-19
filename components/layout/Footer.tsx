@@ -157,38 +157,38 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-start-3 md:row-start-1 md:justify-end">
+          <div className="flex flex-nowrap justify-center gap-x-3 overflow-x-auto md:col-start-3 md:row-start-1 md:justify-end md:flex-wrap md:overflow-visible">
             <Link
               href="/legal/terms-of-service"
-              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Terms
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Privacy
             </Link>
 
             <Link
               href="/legal/accessibility"
-              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Accessibility
             </Link>
 
             <Link
               href="/copyright"
-              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Copyright
             </Link>
 
             <Link
               href="/legal/cookie-policy"
-              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Cookie Policy
             </Link>
