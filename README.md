@@ -44,6 +44,10 @@ Form retries use route-scoped HMAC fingerprints in the `articog:idempotency:` ke
 
 Server-side API and integration failures are emitted as JSON logs with safe event names, route/operation labels, request IDs, result/status fields, and bounded durations. Request bodies, credentials, provider response bodies, email addresses, and stack traces are excluded. No external error-monitoring provider is configured; Vercel/runtime log collection is the current observability target.
 
+## Production monitoring
+
+Implemented in code: structured operational logs, request IDs, generic API errors, and failure events for rate limits, Redis storage, idempotency, Sheets, and Resend. Available through GitHub Actions: deployment quality checks for install, type-checking, linting, tests, and builds. Configure production alerts manually in Vercel and GitHub for repeated API 5xx responses, Redis/storage failures, privacy notification failures, elevated 429 responses, failed deployments, and failed CI runs. Uptime monitoring and external error tracking are not currently configured.
+
 GitHub Actions runs `npm ci`, TypeScript checks, `npx eslint .`, `npm test`, and `npm run build` for pull requests and pushes to `main`. The workflow uses test adapters and does not require production credentials.
 
 The site-wide GA4 page-view and interaction tracking uses:
