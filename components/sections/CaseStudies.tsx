@@ -2,7 +2,6 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
-import type { CaseStudy } from "@/types";
 
 const approachItems = [
   "01 — Human-Directed",
@@ -10,7 +9,7 @@ const approachItems = [
   "03 — Campaign-Ready",
 ];
 
-export function CaseStudies({}: { caseStudies: CaseStudy[] }) {
+export function CaseStudies() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 

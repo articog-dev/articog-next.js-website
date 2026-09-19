@@ -134,7 +134,7 @@ export default function HomePage() {
       <HomeVisualShowcase />
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
-      <CaseStudies caseStudies={homepage.caseStudies} />
+      <CaseStudies />
       <FinalCTA content={homepage.cta} />
     </div>
   );
