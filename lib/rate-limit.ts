@@ -1,5 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { logOperational } from "./observability";
 
 export type PublicFormRoute = "contact" | "demo" | "privacy-request";
 
@@ -88,7 +89,27 @@ export async function checkPublicFormRateLimit(
       success: false,
       retryAfterSeconds: Math.max(1, Math.ceil((result.reset - Date.now()) / 1000)),
     };
-  } catch {
+  } catch (error) {
+    const errorRecord = typeof error === "object" && error !== null
+      ? error as Record<string, unknown>
+      : undefined;
+    const status = typeof errorRecord?.status === "number"
+      ? errorRecord.status
+      : typeof errorRecord?.statusCode === "number"
+        ? errorRecord.statusCode
+        : undefined;
+    const reason = typeof errorRecord?.code === "string"
+      ? errorRecord.code.slice(0, 80)
+      : undefined;
+
+    logOperational("error", "rate_limit_check_failed", {
+      route,
+      operation: "upstash-rate-limit",
+      result: "failure",
+      errorName: error instanceof Error ? error.name : "unknown-error",
+      providerStatus: status,
+      reason,
+    });
     return { available: false };
   }
 }
