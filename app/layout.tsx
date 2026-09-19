@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "Articog is an AI-native film and creative production company for growth-stage brands and modern marketing teams. We produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
   metadataBase: new URL("https://articog.com"),
   manifest: "/manifest.webmanifest",
+  verification: {
+    google: "Td3Rl6_MP-F3VnYqsXt5T6M3IuO0OIlzz1tfWCQ5hTU",
+  },
   openGraph: {
     type: "website",
     siteName: "Articog",
