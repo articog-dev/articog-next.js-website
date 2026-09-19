@@ -69,7 +69,8 @@ describe("accessibility and responsive behavior", () => {
 
     expect(mediaTest).toContain("poster-backed");
     expect(performanceTest).toContain("stable media sizing");
-    expect(mobileMenu).toContain("w-full max-w-80");
+    expect(mobileMenu).toContain("fixed inset-0 z-[1100]");
+    expect(mobileMenu).toContain("h-[100dvh]");
     expect(announcement).not.toContain("whitespace-nowrap");
   });
 });

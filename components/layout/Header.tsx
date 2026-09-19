@@ -9,7 +9,6 @@ import {
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
 import { ServiceMenuDesktop } from "./ServiceMenuCards";
-import { AnnouncementBar } from "./AnnouncementBar";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
 
@@ -388,14 +387,21 @@ export function Header() {
 
   return (
     <>
-      <div id="site-header-stack" className="fixed inset-x-0 top-0 z-[1000]">
-        <AnnouncementBar />
       <header
         ref={headerRef}
-        className={`relative transition-all duration-300 ${
-          scrolled ? "bg-black/90 backdrop-blur-xl" : "bg-transparent"
+        className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
+          mobileOpen ? "hidden lg:block" : ""
         }`}
         style={{
+          background: scrolled
+            ? "rgba(0,0,0,0.90)"
+            : "transparent",
+          backdropFilter: scrolled
+            ? "blur(16px)"
+            : "none",
+          WebkitBackdropFilter: scrolled
+            ? "blur(16px)"
+            : "none",
           borderBottom: scrolled
             ? "1px solid rgba(255,255,255,0.07)"
             : "1px solid transparent",
@@ -523,7 +529,6 @@ export function Header() {
           </div>
         </Container>
       </header>
-      </div>
 
       <MobileMenu
         isOpen={mobileOpen}
