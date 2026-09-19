@@ -1,8 +1,6 @@
-"use client";
 import { Check } from "lucide-react";
 import { Container, Section } from "@/components/ui";
 import type { ComparisonRow } from "@/types";
-import { useEffect, useRef } from "react";
 
 interface ComparisonProps {
   rows: ComparisonRow[];
@@ -15,34 +13,6 @@ const columns = [
 ] as const;
 
 export function Comparison({ rows }: ComparisonProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Mobile browsers often require an explicit call to .play() even with autoPlay/muted/playsInline
-    // especially after a page load or if there's a low-power mode active.
-    const attemptPlay = () => {
-      video.play().catch((error) => {
-        console.log("Autoplay prevented on mobile for Why Articog video:", error);
-        // We don't want to alert or interrupt the user, just log and wait for potential interaction
-      });
-    };
-
-    attemptPlay();
-
-    // Re-attempt play on visibility change (coming back to tab)
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        attemptPlay();
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
   return (
     <Section id="why-articog" size="lg" className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* Background Video removed as requested */}

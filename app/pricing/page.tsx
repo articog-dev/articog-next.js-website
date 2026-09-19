@@ -1,7 +1,4 @@
-"use client";
-
-import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function PricingPage() {
