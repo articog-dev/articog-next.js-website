@@ -60,6 +60,18 @@ describe("public form API validation", () => {
     expect(fetchMock).toHaveBeenCalledWith("https://sheets.test/submit", expect.any(Object));
   });
 
+  it("short-circuits demo honeypot submissions without persistence or integrations", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+
+    const response = await postDemo(
+      request("/api/demo", { ...validDemoPayload, website: "filled-honeypot" }, "198.51.100.68"),
+    );
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ success: true, message: "Demo request saved." });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it("logs a failed best-effort demo notification after persistence", async () => {
     const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
     vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {

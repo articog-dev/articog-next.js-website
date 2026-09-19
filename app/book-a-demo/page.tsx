@@ -69,6 +69,7 @@ export default function BookADemoPage() {
     const timeline = (formData.get("timeline") as string) || "";
     const projectContext = (formData.get("projectContext") as string) || "";
     const referenceUrl = (formData.get("referenceUrl") as string) || "";
+    const website = (formData.get("website") as string) || "";
     const consent = formData.get("consent") === "on";
     const name = `${firstName} ${lastName}`.trim();
     const fallbackCalendlyUrl = `${CALENDLY_URL}?${new URLSearchParams({
@@ -102,6 +103,7 @@ export default function BookADemoPage() {
           timeline,
           projectContext,
           referenceUrl,
+          website,
           consent,
           attribution,
         }),
@@ -167,6 +169,14 @@ export default function BookADemoPage() {
               }}
               className="flex flex-col gap-5 md:gap-8"
             >
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden"
+              />
               {/* First Name + Last Name */}
               <div className="grid gap-5 sm:grid-cols-2 sm:gap-8">
                 <div className="flex flex-col gap-2.5">

@@ -41,6 +41,15 @@ async function handleDemoRequest(request: Request, requestId: string) {
   }
 
   const data = body.value;
+  const website = validateString(data.website, { maxLength: 200 });
+  if (!website.ok) {
+    logOperational("warn", "api_request_rejected", { requestId, route: "demo", result: "validation", status: 400 });
+    return withRequestId(requestId, { success: false, error: "Invalid request body." }, { status: 400 });
+  }
+  if (website.value) {
+    return withRequestId(requestId, { success: true, message: "Demo request saved." });
+  }
+
   const firstName = validateString(data.firstName, { required: true, maxLength: 80 });
   const lastName = validateString(data.lastName, { required: true, maxLength: 80 });
   const name = validateString(data.name, { required: true, maxLength: 170 });
