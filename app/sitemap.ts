@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { readdirSync } from "node:fs";
 import path from "node:path";
 
-import { getNativeBlogPosts } from "@/lib/blog";
+import { founders } from "../lib/founders";
+import { getNativeBlogPosts } from "../lib/blog";
 
 const SITE_URL = "https://articog.com";
 const REDIRECTED_ROUTES = new Set([
@@ -42,8 +43,9 @@ function collectStaticRoutes(directory: string, segments: string[] = []): string
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = collectStaticRoutes(path.join(process.cwd(), "app"));
+  const founderRoutes = founders.map((founder) => `/about/founder/${founder.slug}`);
   const blogRoutes = getNativeBlogPosts().map((post) => `/blog/${post.slug}`);
-  const routes = new Set([...staticRoutes, ...blogRoutes]);
+  const routes = new Set([...staticRoutes, ...founderRoutes, ...blogRoutes]);
 
   return [...routes].sort().map((route) => ({
     url: `${SITE_URL}${route}`,

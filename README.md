@@ -50,6 +50,17 @@ The site-wide GA4 page-view and interaction tracking uses:
 
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` enables Google Analytics 4 and should be set in the deployment environment when analytics are required.
 
+## Google Search Console
+
+After deploying to `https://articog.com`:
+
+1. Add the production domain or URL-prefix property in Google Search Console.
+2. Verify ownership using a Google-supported method configured for the production environment.
+3. Submit `https://articog.com/sitemap.xml` under Sitemaps.
+4. Use URL Inspection for the homepage and key canonical pages, then request indexing where appropriate.
+
+Search Console verification is a production-account task and is not configured in this repository.
+
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 

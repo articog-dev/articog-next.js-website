@@ -2,12 +2,27 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
+import sitemap from "../app/sitemap";
+
 describe("technical SEO and indexing", () => {
   it("excludes noindex and utility routes from the XML sitemap", () => {
     const sitemapSource = readFileSync(path.join(process.cwd(), "app", "sitemap.ts"), "utf8");
 
     expect(sitemapSource).toContain('const EXCLUDED_ROUTES = new Set(["/thank-you", "/thank-you/demo", "/sitemap"]);');
     expect(sitemapSource).toContain('entry.name === "api"');
+  });
+
+  it("emits unique production URLs for indexable founder profiles", () => {
+    const entries = sitemap();
+    const urls = entries.map((entry) => entry.url);
+
+    expect(new Set(urls).size).toBe(urls.length);
+    expect(urls.every((url) => url.startsWith("https://articog.com/"))).toBe(true);
+    expect(urls).toContain("https://articog.com/about/founder/sai-teja-inampudi");
+    expect(urls).toContain("https://articog.com/about/founder/dr-harika-govada");
+    expect(urls).not.toContain("https://articog.com/thank-you");
+    expect(urls).not.toContain("https://articog.com/thank-you/demo");
+    expect(urls).not.toContain("https://articog.com/sitemap");
   });
 
   it("includes the expected canonical core marketing routes", () => {
