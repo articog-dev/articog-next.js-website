@@ -110,7 +110,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      <Hero content={homepage.hero} stats={homepage.proofStats} />
+      <Hero content={homepage.hero} />
       <Capabilities capabilities={homepage.capabilities} />
       <div className="bg-[#000000] px-4 py-8 sm:py-10">
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

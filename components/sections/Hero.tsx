@@ -1,12 +1,11 @@
 "use client";
 
-import type { HeroContent, ProofStat } from "@/types";
+import type { HeroContent } from "@/types";
 import { useLayoutEffect, useRef } from "react";
 import { Heading } from "@/components/ui";
 
 interface HeroProps {
   content: HeroContent;
-  stats: ProofStat[];
 }
 
 export function Hero({ content }: HeroProps) {
