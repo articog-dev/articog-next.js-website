@@ -121,11 +121,8 @@ export const menuGroups = [
     ],
   },
   {
-    label: "Resources",
-    links: [
-      { label: "Blog", href: "/blog" },
-      { label: "AI Ad Library", href: "/ai-ad-library" },
-    ],
+    label: "Blog",
+    links: [],
   },
   {
     label: "Company",
@@ -145,7 +142,7 @@ export const groupHubHrefs: Record<string, string> = {
   Industries: "/industries",
   Work: "/work",
   "Why Articog": "/why-articog",
-  Resources: "/blog",
+  Blog: "/blog",
   Company: "/about",
 };
 
