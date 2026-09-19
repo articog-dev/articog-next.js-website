@@ -31,7 +31,7 @@ export function PageHeroDetail({
       )}
     >
       {media ? <div className="absolute inset-0 z-0">{media}</div> : null}
-      <Container className="relative z-10">
+      <Container className="relative z-10 text-center">
         <div className="mx-auto max-w-6xl">
           {backLink ? (
             <Link
@@ -41,11 +41,11 @@ export function PageHeroDetail({
               {backLink.label}
             </Link>
           ) : null}
-          <div className="mb-16 max-w-3xl">
+          <div className="mx-auto mb-16 max-w-3xl">
             <Heading as="h1" size="hero" className="text-white">
               {title}
             </Heading>
-            {subtitle ? <p className="mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
+            {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
           </div>
           {detail}
         </div>

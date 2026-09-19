@@ -34,15 +34,15 @@ export function PageHero({
       )}
     >
       {media ? <div className="absolute inset-0 z-0">{media}</div> : null}
-      <Container className={cn("relative z-10", !media && "text-center")}>
+      <Container className="relative z-10 text-center">
         {breadcrumbs}
-        <div className={cn("max-w-3xl", !media && "mx-auto")}>
+        <div className="mx-auto max-w-3xl">
           {eyebrow ? <div className="mb-4 type-label text-white/50">{eyebrow}</div> : null}
           <Heading as="h1" size="hero" className="text-white">
             {title}
           </Heading>
-          {subtitle ? <p className="mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
-          {actions ? <div className="mt-8 flex flex-wrap gap-component-gap">{actions}</div> : null}
+          {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
+          {actions ? <div className="mt-8 flex flex-wrap justify-center gap-component-gap">{actions}</div> : null}
         </div>
       </Container>
     </Section>

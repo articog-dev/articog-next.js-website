@@ -106,8 +106,8 @@ export default function PerformanceMarketingPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <Heading as="h2" size="section" className="mb-8 text-white">Scale your performance creative today</Heading>
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
+            <Link href="/book-a-demo" className="inline-block max-w-full">
+              <Button size="lg" className="max-w-full whitespace-normal rounded-full px-8 h-14">
                 Scale Your Performance Creative
               </Button>
             </Link>

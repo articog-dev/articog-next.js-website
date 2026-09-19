@@ -3,7 +3,6 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 import {
-  createBreadcrumbSchema,
   createFAQPageSchema,
   createVideoObjectSchema,
   organizationSchema,
@@ -25,25 +24,9 @@ describe("structured data and canonical metadata", () => {
     expect(read("app", "layout.tsx")).toContain("<JsonLd data={siteEntitySchema} />");
   });
 
-  it("keeps BreadcrumbList labels identical to the visible breadcrumb items", () => {
-    const items = [
-      { label: "Home", href: "/" },
-      { label: "Services", href: "/services" },
-      { label: "AI Video Production" },
-    ];
-    const schema = createBreadcrumbSchema(items);
-
-    expect(schema.itemListElement.map((item) => item.name)).toEqual(items.map((item) => item.label));
-    expect(schema.itemListElement.map((item) => item.item)).toEqual([
-      "https://articog.com/",
-      "https://articog.com/services",
-      undefined,
-    ]);
-    expect(read("components", "seo", "Breadcrumbs.tsx")).toContain("createBreadcrumbSchema(items)");
-    expect(read("app", "services", "[slug]", "page.tsx")).toContain("<Breadcrumbs items=");
-    expect(read("app", "solutions", "performance-marketing", "page.tsx")).toContain("<Breadcrumbs items=");
-    expect(read("app", "work", "social", "page.tsx")).toContain("<Breadcrumbs items=");
-    expect(read("app", "trust", "ai-and-ip", "page.tsx")).toContain("<Breadcrumbs items=");
+  it("does not emit breadcrumb UI or BreadcrumbList schema", () => {
+    expect(read("components", "seo", "Breadcrumbs.tsx")).toContain("return null");
+    expect(read("components", "seo", "Breadcrumbs.tsx")).not.toContain("createBreadcrumbSchema(items)");
   });
 
   it("generates FAQPage data from the same question and answer objects shown in the UI", () => {
