@@ -100,7 +100,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         {/* Nav */}
-        <nav className="flex flex-col overflow-y-auto px-4 pb-8">
+        <nav className="flex flex-1 min-h-0 flex-col overflow-y-auto px-4 pb-8">
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
             const isDirectGroup =
