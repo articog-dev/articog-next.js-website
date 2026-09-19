@@ -15,42 +15,36 @@ export default function AdLibraryPage() {
       type: "Concept Piece",
       category: "Video",
       industry: "DTC & E-commerce",
-      format: "9:16 Vertical"
     },
     {
       title: "Beauty Campaign Concept",
       type: "Concept Piece",
       category: "Static",
       industry: "Beauty & Skincare",
-      format: "4:5 Portrait"
     },
     {
       title: "SaaS Product Story",
       type: "Concept Piece",
       category: "Video",
       industry: "SaaS & Technology",
-      format: "16:9 Landscape"
     },
     {
       title: "Consumer Electronics Spot",
       type: "Concept Piece",
       category: "Audio",
       industry: "Consumer Electronics",
-      format: "Spot"
     },
     {
       title: "Real Estate Visual Set",
       type: "Concept Piece",
       category: "Static",
       industry: "Real Estate",
-      format: "1:1 Square"
     },
     {
       title: "Performance Social Series",
       type: "Concept Piece",
       category: "Video",
       industry: "DTC & E-commerce",
-      format: "9:16 Vertical"
     }
   ];
 
