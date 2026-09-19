@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/work" },
 };
 import { ArrowRight } from "lucide-react";
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { CreativeDocument } from "./CreativeDocument";
 import { WorkVideoShowcase } from "@/components/sections/WorkVideoShowcase";

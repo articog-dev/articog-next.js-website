@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   title: "Social Creative Production | Articog",
   description: "Social creative for organic and paid campaigns, designed for brand consistency and fast iteration across platforms.",
 };
-import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Heading } from "@/components/ui";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Container, Section, Heading } from "@/components/ui";
+import { CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";

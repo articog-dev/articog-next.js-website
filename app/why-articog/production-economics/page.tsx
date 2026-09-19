@@ -6,8 +6,7 @@ export const metadata: Metadata = {
   title: "Production Economics | Articog",
   description: "Understand the economics of AI-native creative production and how it compares to traditional models for growth-stage brands.",
 };
-import { Container, Section, Button, Heading } from "@/components/ui";
-import { Link } from "@/components/ui/Link";
+import { Container, Section, Heading } from "@/components/ui";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { BarChart3, Clock, Zap } from "lucide-react";
 

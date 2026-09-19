@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import {
   dedicatedServicePageBySlug,

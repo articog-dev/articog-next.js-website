@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Explore how our AI-native production pipeline moves from brief to generation, review, refinement, and final delivery.",
   alternates: { canonical: "https://articog.com/how-it-works/ai-creative-pipeline" },
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { ClipboardList, Cpu, UserCheck, RefreshCw, ShieldCheck, Type, FileSearch, HardDrive, Info } from "lucide-react";

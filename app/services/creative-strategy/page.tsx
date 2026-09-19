@@ -5,8 +5,7 @@ export const metadata: Metadata = {
   title: "Creative Strategy & Concepting | Articog",
   description: "Creative strategy and concepting for growth-stage brands that need sharper positioning, stronger ideas, and campaign clarity.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
-import { Link } from "@/components/ui/Link";
+import { Container, Section, Heading } from "@/components/ui";
 import { Lightbulb, Palette, LayoutGrid, MessageSquare } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";

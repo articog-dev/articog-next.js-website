@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   title: "Data Handling & Retention | Articog",
   description: "Learn how Articog manages, stores, and protects client data throughout the creative production process.",
 };
-import { Container, Section, Button, Heading } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Database, Shield, Trash2, HardDrive, RefreshCw, FileText } from "lucide-react";
 

@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   description: "A comparison of Articog's managed creative engine versus doing it yourself with raw AI tools. Why expertise and consistency matter.",
   alternates: { canonical: "https://articog.com/compare/vs-ai-tools" },
 };
-import { Container, Section, Heading, Button, Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui";
+import { Container, Section, Heading, Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 
 export default function CompareAIToolsPage() {
   const comparisonData = [

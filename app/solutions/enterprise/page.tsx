@@ -5,8 +5,7 @@ export const metadata: Metadata = {
   title: "Enterprise AI Production | Articog",
   description: "Creative production built for large organizations with procurement, security, and governance requirements.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
-import { Link } from "@/components/ui/Link";
+import { Container, Section, Heading } from "@/components/ui";
 import { ShieldCheck, FileText, Users, Eye, ClipboardList, Info } from "lucide-react";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";

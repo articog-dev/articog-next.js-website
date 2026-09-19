@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 
 import { Link } from "@/components/ui/Link";
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 import { getBlogPostBySlug, getNativeBlogPosts } from "@/lib/blog";

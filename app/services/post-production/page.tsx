@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Post-Production | Articog",
   description: "Post-production for video, motion, sound, and finishing, helping brands polish creative for launch and performance.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Scissors, Layers, Palette, Volume2, Sparkles, Info, ArrowRight } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";

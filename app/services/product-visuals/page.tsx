@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   title: "Product Visual Content | Articog",
   description: "Product visual content for e-commerce, launch campaigns, and performance marketing created with speed and brand precision.",
 };
-import { Link } from "@/components/ui/Link";
-import { Container, Section, Button, Heading } from "@/components/ui";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Container, Section, Heading } from "@/components/ui";
+import { CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
