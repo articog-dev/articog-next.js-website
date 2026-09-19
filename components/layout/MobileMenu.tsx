@@ -148,9 +148,17 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
 
                 {isGroupOpen && (
-                  group.label === "Services" ? (
-                    <div id="mobile-menu-services">
+                  group.label === "What We Do" ? (
+                    <div id="mobile-menu-what-we-do">
                       <ServiceMenuMobile onClose={handleClose} />
+                      <div className="border-t border-white/10 pt-3">
+                        <p className="px-3 pb-2 type-caption uppercase tracking-widest text-white/35">Solutions</p>
+                        {group.links.filter((link) => link.href.startsWith("/solutions/")).map((link) => (
+                          <Link key={link.href} href={link.href} onClick={handleClose} className="flex min-h-11 items-center rounded-lg px-3 py-2 font-sans text-[13px] text-white/50 transition-colors hover:text-white/85">
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   ) : (
                     <div id={`mobile-menu-${group.label.toLowerCase().replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pb-4 pl-3">

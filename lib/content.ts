@@ -71,24 +71,17 @@ export const siteContent: SiteContent = {
 
   capabilities: [
     {
-      title: "Brand Films",
+      title: "Brand Films & Storytelling",
       href: "/services/ai-video-production",
-      useCase: "Brand identity, product launches, investor reels",
-      outcome: "Brand films in days, at a fraction of traditional production cost",
+      useCase: "Brand identity, product launches, origin stories, investor reels",
+      outcome: "Cinematic brand content in days, at a fraction of traditional production cost",
       icon: "film",
     },
     {
-      title: "Brand Storytelling",
-      href: "/services/ai-video-production",
-      useCase: "Origin stories, mission narratives, documentary-style content",
-      outcome: "Consistent brand voice across every format and channel",
-      icon: "book-open",
-    },
-    {
-      title: "Commercials & Paid Ads",
+      title: "Commercials & Performance Ads",
       href: "/services/ad-creative",
-      useCase: "TV, pre-roll, OOH, performance video ads",
-      outcome: "Campaign-ready creative delivered without a traditional production crew",
+      useCase: "TV, pre-roll, OOH, paid social, display, search creative testing",
+      outcome: "Campaign-ready creative and iterative test variants without a traditional production crew",
       icon: "monitor",
     },
     {
@@ -111,13 +104,6 @@ export const siteContent: SiteContent = {
       useCase: "Instagram, TikTok, YouTube Shorts, organic feeds",
       outcome: "Platform-native content built for the right channels and campaign rhythm",
       icon: "trending-up",
-    },
-    {
-      title: "Performance Creative Variants",
-      href: "/services/ad-creative",
-      useCase: "Paid social, display, search creative testing",
-      outcome: "Iterative campaign variants designed for testing and optimization",
-      icon: "zap",
     },
     {
       title: "Creative Workflow Automation",

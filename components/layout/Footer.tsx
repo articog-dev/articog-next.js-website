@@ -3,7 +3,6 @@ import { Link } from "@/components/ui/Link";
 import { Linkedin, Youtube, Instagram } from "lucide-react";
 import { Container } from "@/components/ui";
 import { FooterNavSections } from "./FooterNavSections";
-import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 function XIcon({ size = 16 }: { size?: number }) {
   return (
@@ -66,16 +65,17 @@ const footerNavSections = [
     title: "Services",
     links: [
       { label: "Services", href: "/services" },
-      ...topLevelServiceLinks.map(({ label, href }) => ({ label, href })),
+      { label: "AI Video Production", href: "/services/ai-video-production" },
+      { label: "Ad Creative", href: "/services/ad-creative" },
+      { label: "Social Creative", href: "/services/social-creative" },
     ],
   },
   {
     title: "Explore",
     links: [
-      { label: "Solutions", href: "/solutions" },
+      { label: "What We Do", href: "/services" },
       { label: "Industries", href: "/industries" },
       { label: "Work", href: "/work" },
-      { label: "Blog", href: "/blog" },
     ],
   },
   {
@@ -83,20 +83,13 @@ const footerNavSections = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
-      { label: "Press & Media", href: "/press" },
       { label: "Pricing", href: "/pricing" },
-      { label: "Book a Demo", href: "/book-a-demo" },
-      { label: "Help Center", href: "/help" },
       { label: "Contact", href: "/contact" },
-      { label: "Sitemap", href: "/sitemap" },
     ],
   },
   {
     title: "More",
     links: [
-      { label: "Customer Stories", href: "/customers" },
-      { label: "AI Ad Library", href: "/ai-ad-library" },
-      { label: "How It Works", href: "/how-it-works" },
       { label: "Why Articog", href: "/why-articog" },
       { label: "Trust Center", href: "/trust" },
     ],
@@ -165,38 +158,38 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-start-2 md:row-start-1">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-start-3 md:row-start-1 md:justify-end">
             <Link
               href="/legal/terms-of-service"
-              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Terms
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Privacy
             </Link>
 
             <Link
               href="/legal/accessibility"
-              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Accessibility
             </Link>
 
             <Link
               href="/copyright"
-              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Copyright
             </Link>
 
             <Link
               href="/legal/cookie-policy"
-              className="type-small text-white/60 hover:text-white transition-colors uppercase tracking-[0.15em] md:text-white/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="type-small text-white/40 hover:text-white transition-colors uppercase tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Cookie Policy
             </Link>

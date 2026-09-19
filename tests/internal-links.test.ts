@@ -63,8 +63,8 @@ describe("internal link architecture", () => {
   it("preserves the primary navigation's canonical parent routes", () => {
     const source = read("components", "layout", "Header.tsx");
 
-    expect(source).toContain('Services: "/services"');
-    expect(source).toContain('Solutions: "/solutions"');
+    expect(source).toContain('"What We Do": "/services"');
+    expect(source).not.toContain('Solutions: "/solutions"');
     expect(source).toContain('Industries: "/industries"');
     expect(source).toContain('Work: "/work"');
     expect(source).toContain('"Why Articog": "/why-articog"');

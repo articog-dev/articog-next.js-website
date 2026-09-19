@@ -10,20 +10,19 @@ const aiAdLibraryPagePath = path.join(process.cwd(), "app", "ai-ad-library", "pa
 const normalizedHeaderSource = headerSource.replace(/\r\n/g, "\n");
 
 describe("primary navigation", () => {
-  it("keeps Solutions and Industries as direct links without dropdown toggles", () => {
-    expect(headerSource).toContain('Solutions: "/solutions"');
+  it("keeps Industries as a direct link and merges What We Do navigation", () => {
     expect(headerSource).toContain('Industries: "/industries"');
-    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"]');
+    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Industries"]');
     expect(headerSource).toContain("const isDirectGroup =");
     expect(headerSource).toContain("!isDirectGroup && (");
     expect(mobileSource).toContain("NO_DROPDOWN_GROUPS.includes(group.label)");
     expect(mobileSource).toContain("if (isDirectGroup)");
-    expect(headerSource).toContain('label: "Solutions"');
+    expect(headerSource).toContain('label: "What We Do"');
     expect(headerSource).toContain('label: "Industries"');
   });
 
   it("keeps the specification's parent labels directly linked", () => {
-    const labels = ["Services", "Solutions", "Industries", "Work", "Why Articog", "Blog", "Company"];
+    const labels = ["What We Do", "Industries", "Work", "Why Articog", "Blog", "Company"];
 
     expect(labels.every((label) => headerSource.includes(`label: "${label}"`))).toBe(true);
     for (const label of labels) {
@@ -32,7 +31,7 @@ describe("primary navigation", () => {
       );
       expect(headerSource).toContain(`href={groupHubHrefs[group.label]}`);
     }
-    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"]');
+    expect(headerSource).toContain('NO_DROPDOWN_GROUPS = ["Work", "Industries"]');
   });
 
   it("makes Blog a direct link without the removed Resources or AI Ad Library navigation", () => {
@@ -42,7 +41,7 @@ describe("primary navigation", () => {
     expect(normalizedHeaderSource).not.toContain('label: "Resources"');
     expect(normalizedHeaderSource).not.toContain('label: "AI Ad Library"');
     expect(normalizedHeaderSource).not.toContain('href: "/ai-ad-library"');
-    expect(normalizedHeaderSource).toContain('label: "Services"');
+    expect(normalizedHeaderSource).toContain('label: "What We Do"');
     expect(normalizedHeaderSource).toContain('label: "Why Articog"');
     expect(normalizedHeaderSource).toContain('label: "Company"');
     expect(existsSync(aiAdLibraryPagePath)).toBe(true);

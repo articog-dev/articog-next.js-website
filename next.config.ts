@@ -44,6 +44,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/why-articog/production-economics", destination: "/why-articog#production-economics", statusCode: 301 },
+      { source: "/how-it-works", destination: "/why-articog#how-it-works", statusCode: 301 },
+      { source: "/trust", destination: "/why-articog#trust", statusCode: 301 },
       { source: "/services/ai-video-production/automotive", destination: "/services/ai-video-production", statusCode: 301 },
       { source: "/services/ai-video-production/brand-films", destination: "/services/ai-video-production", statusCode: 301 },
       { source: "/services/ai-video-production/corporate-internal", destination: "/services/ai-video-production", statusCode: 301 },

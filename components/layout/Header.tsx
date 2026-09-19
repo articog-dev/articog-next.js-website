@@ -15,16 +15,10 @@ import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 export const menuGroups = [
   {
-    label: "Services",
+    label: "What We Do",
     links: [
       { label: "Overview", href: "/services" },
       ...topLevelServiceLinks.map(({ label, href }) => ({ label, href })),
-    ],
-  },
-  {
-    label: "Solutions",
-    links: [
-      { label: "Overview", href: "/solutions" },
       {
         label: "Monthly Subscription",
         href: "/solutions/monthly-creative-subscription",
@@ -91,20 +85,7 @@ export const menuGroups = [
   },
   {
     label: "Why Articog",
-    links: [
-      {
-        label: "Production Economics",
-        href: "/why-articog/production-economics",
-      },
-      {
-        label: "How It Works",
-        href: "/how-it-works",
-      },
-      {
-        label: "Trust Center",
-        href: "/trust",
-      },
-    ],
+    links: [],
   },
   {
     label: "Blog",
@@ -123,8 +104,7 @@ export const menuGroups = [
 ];
 
 export const groupHubHrefs: Record<string, string> = {
-  Services: "/services",
-  Solutions: "/solutions",
+  "What We Do": "/services",
   Industries: "/industries",
   Work: "/work",
   "Why Articog": "/why-articog",
@@ -132,7 +112,7 @@ export const groupHubHrefs: Record<string, string> = {
   Company: "/about",
 };
 
-export const NO_DROPDOWN_GROUPS = ["Work", "Solutions", "Industries"];
+export const NO_DROPDOWN_GROUPS = ["Work", "Industries"];
 
 // ─── Dropdown Panel ───────────────────────────────────────────────────────────
 
@@ -152,7 +132,7 @@ function DropdownPanel({
   isOpen: boolean;
   anchorElement?: HTMLElement | null;
 }) {
-  const isServices = group.label === "Services";
+  const isServices = group.label === "What We Do";
 
   if (!isOpen) {
     return null;
@@ -221,7 +201,7 @@ function DropdownPanel({
         }}
       >
         {isServices ? (
-          <ServicesContent onClose={onClose} />
+          <ServicesContent onClose={onClose} links={group.links} />
         ) : (
           <div className="flex flex-col gap-1">
             {group.links.map((link) => (
@@ -249,10 +229,26 @@ function clearTimeoutOnMouseEnter() {
 
 function ServicesContent({
   onClose,
+  links,
 }: {
   onClose: () => void;
+  links: { label: string; href: string }[];
 }) {
-  return <ServiceMenuDesktop onClose={onClose} />;
+  return (
+    <>
+      <ServiceMenuDesktop onClose={onClose} />
+      <div className="mt-3 border-t border-white/10 pt-3">
+        <p className="px-3 pb-2 type-caption uppercase tracking-widest text-white/35">Solutions</p>
+        <div className="grid gap-1 sm:grid-cols-2">
+          {links.filter((link) => link.href.startsWith("/solutions/")).map((link) => (
+            <Link key={link.href} href={link.href} onClick={onClose} className="block rounded-lg px-3 py-2 type-nav text-white/60 transition-colors hover:bg-white/[0.04] hover:text-white">
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }
 
 // ─── Header ───────────────────────────────────────────────────────────────────

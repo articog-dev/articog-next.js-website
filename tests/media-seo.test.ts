@@ -36,7 +36,6 @@ describe("media SEO metadata", () => {
   it("keeps decorative native videos poster-backed and explicitly hidden from assistive technology", () => {
     const files = [
       ["components", "sections", "Hero.tsx"],
-      ["components", "sections", "CaseStudies.tsx"],
       ["components", "sections", "Pipeline.tsx"],
       ["app", "industries", "page.tsx"],
       ["app", "services", "page.tsx"],
@@ -54,7 +53,6 @@ describe("media SEO metadata", () => {
     const sourceFiles = [
       ["components", "sections", "HomeVisualShowcase.tsx"],
       ["components", "sections", "Hero.tsx"],
-      ["components", "sections", "CaseStudies.tsx"],
       ["components", "sections", "Pipeline.tsx"],
     ];
 
