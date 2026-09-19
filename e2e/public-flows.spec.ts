@@ -1,0 +1,193 @@
+import { expect, test, type Page } from "@playwright/test";
+
+const publicRoutes = [
+  "/",
+  "/services",
+  "/services/ai-video-production",
+  "/work",
+  "/blog",
+  "/contact",
+  "/book-a-demo",
+  "/ai-ad-library",
+];
+
+const mobileViewports = [320, 390, 768, 1440];
+
+async function expectNoHorizontalOverflow(page: Page) {
+  await expect.poll(() =>
+    page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+  ).toBe(true);
+}
+
+async function fillContactForm(page: Page) {
+  await page.getByLabel("Name").fill("E2E Test User");
+  await page.getByLabel("Email").fill("e2e@example.com");
+  await page.locator("#company").fill("E2E Test Company");
+  await page.locator("#inquiryType").click();
+  await page.getByRole("option", { name: "Sales" }).click();
+  await page.getByLabel("Message").fill("Safe browser-level test submission.");
+}
+
+async function fillDemoForm(page: Page) {
+  await page.getByLabel("First Name").fill("E2E");
+  await page.getByLabel("Last Name").fill("Test");
+  await page.getByLabel("Work Email").fill("e2e@example.com");
+  await page.getByLabel("Company Name").fill("E2E Test Company");
+  await page.getByLabel(/By submitting, you agree/).check();
+}
+
+async function fillPrivacyForm(page: Page) {
+  await page.getByLabel("Full Name").fill("E2E Test User");
+  await page.getByLabel("Email Address").fill("e2e@example.com");
+  await page.locator("#type").click();
+  await page.getByRole("option", { name: "Right to Delete" }).click();
+  await page.getByLabel("Details / Message").fill("Safe browser-level privacy request.");
+}
+
+test.describe("public page smoke coverage", () => {
+  for (const viewportWidth of mobileViewports) {
+    test(`loads key routes without overflow at ${viewportWidth}px`, async ({ page }) => {
+      await page.setViewportSize({ width: viewportWidth, height: 900 });
+
+      for (const route of publicRoutes) {
+        const response = await page.goto(route, { waitUntil: "domcontentloaded" });
+        expect(response?.ok(), `${route} should load successfully`).toBe(true);
+        await expect(page.locator("h1").first()).toBeVisible();
+        await expect(page.getByText(/Application error|Unhandled Runtime Error/i)).toHaveCount(0);
+        await expectNoHorizontalOverflow(page);
+      }
+    });
+  }
+});
+
+test.describe("contact flow", () => {
+  test("submits safely and navigates to the thank-you page", async ({ page }) => {
+    await page.route("**/api/contact", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto("/contact");
+    await expect(page.getByRole("heading", { name: "Contact Us" })).toBeVisible();
+    await expect(page.locator('input[name="website"]')).toHaveCount(1);
+    await fillContactForm(page);
+    await page.getByRole("button", { name: "Send Message" }).click();
+    await expect(page).toHaveURL(/\/thank-you$/);
+  });
+
+  test("shows a safe error when the API fails", async ({ page }) => {
+    await page.route("**/api/contact", async (route) => {
+      await route.fulfill({
+        status: 503,
+        contentType: "application/json",
+        body: JSON.stringify({ success: false, error: "Please try again later." }),
+      });
+    });
+
+    await page.goto("/contact");
+    await fillContactForm(page);
+    await page.getByRole("button", { name: "Send Message" }).click();
+    await expect(page.locator('[role="alert"]:not(#__next-route-announcer__)')).toHaveText("Please try again later.");
+    await expect(page).not.toHaveURL(/\/thank-you$/);
+    await expect(page.getByText(/Upstash|Authorization|command was/i)).toHaveCount(0);
+  });
+
+  test("does not treat a filled honeypot as a normal submission", async ({ page }) => {
+    let submittedPayload: { website?: string } | undefined;
+    await page.route("**/api/contact", async (route) => {
+      submittedPayload = JSON.parse(route.request().postData() ?? "{}");
+      await route.fulfill({
+        status: 400,
+        contentType: "application/json",
+        body: JSON.stringify({ success: false, error: "Invalid request body." }),
+      });
+    });
+
+    await page.goto("/contact");
+    await fillContactForm(page);
+    await page.locator('input[name="website"]').fill("filled-honeypot");
+    await page.getByRole("button", { name: "Send Message" }).click();
+    await expect(page.locator('[role="alert"]:not(#__next-route-announcer__)')).toHaveText("Invalid request body.");
+    expect(submittedPayload?.website).toBe("filled-honeypot");
+    await expect(page).not.toHaveURL(/\/thank-you$/);
+  });
+});
+
+test.describe("book-a-demo flow", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route("**/assets.calendly.com/assets/external/widget.js", async (route) => {
+      await route.fulfill({
+        contentType: "application/javascript",
+        body: "window.Calendly = { initPopupWidget: function () { window.__calendlyOpened = true; } };",
+      });
+    });
+  });
+
+  test("loads the page and makes the Calendly integration available", async ({ page }) => {
+    await page.goto("/book-a-demo");
+    await expect(page.getByRole("heading", { name: "Book a Demo" })).toBeVisible();
+    await expect.poll(() => page.evaluate(() => typeof window.Calendly?.initPopupWidget)).toBe("function");
+  });
+
+  test("handles scheduling failure without exposing raw provider details", async ({ page }) => {
+    await page.route("**/assets.calendly.com/assets/external/widget.js", async (route) => {
+      await route.fulfill({
+        contentType: "application/javascript",
+        body: "window.Calendly = { initPopupWidget: function () { throw new Error('provider secret details'); } };",
+      });
+    });
+    await page.route("**/api/demo", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto("/book-a-demo");
+    await fillDemoForm(page);
+    await page.getByRole("button", { name: "Continue to Scheduling" }).click();
+    await expect(page.locator('p[role="alert"]')).toHaveText("We could not open scheduling. Please try again.");
+    await expect(page.getByText(/provider secret details|Upstash|Authorization/i)).toHaveCount(0);
+  });
+});
+
+test.describe("privacy request flow", () => {
+  test("validates required fields and submits a mocked request", async ({ page }) => {
+    await page.route("**/api/privacy-request", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true, message: "Your request was received for review." }),
+      });
+    });
+
+    await page.goto("/privacy/request");
+    await expect(page.getByRole("heading", { name: "Data Rights Request" })).toBeVisible();
+    await page.getByRole("button", { name: "Submit Request" }).click();
+    await expect(page.getByLabel("Full Name")).toBeFocused();
+    await fillPrivacyForm(page);
+    await page.getByRole("button", { name: "Submit Request" }).click();
+    await expect(page.getByLabel("Full Name")).toHaveValue("");
+    await expect(page.getByLabel("Email Address")).toHaveValue("");
+  });
+
+  test("handles a mocked API failure safely", async ({ page }) => {
+    await page.route("**/api/privacy-request", async (route) => {
+      await route.fulfill({
+        status: 503,
+        contentType: "application/json",
+        body: JSON.stringify({ success: false, error: "We could not submit your request. Please try again later." }),
+      });
+    });
+
+    await page.goto("/privacy/request");
+    await fillPrivacyForm(page);
+    await page.getByRole("button", { name: "Submit Request" }).click();
+    await expect(page.locator('[role="alert"]:not(#__next-route-announcer__)')).toHaveText("We could not submit your request. Please try again later.");
+    await expect(page.getByText(/Upstash|Authorization|command was/i)).toHaveCount(0);
+  });
+});

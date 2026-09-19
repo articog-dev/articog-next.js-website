@@ -13,12 +13,14 @@ interface MobileMenuProps {
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const [openGroups, setOpenGroups] = useState<string[]>([]);
+  const [isRendered, setIsRendered] = useState(false);
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    if (isOpen) closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -47,6 +49,47 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
+    if (isOpen && !isRendered) {
+      const openFrame = requestAnimationFrame(() => {
+        setIsRendered(true);
+        requestAnimationFrame(() => setIsDrawerVisible(true));
+      });
+
+      return () => cancelAnimationFrame(openFrame);
+    } else if (!isOpen && isRendered) {
+      const closeFrame = requestAnimationFrame(() => setIsDrawerVisible(false));
+      closeTimeoutRef.current = setTimeout(() => {
+        setIsRendered(false);
+        closeTimeoutRef.current = null;
+      }, 300);
+
+      return () => {
+        cancelAnimationFrame(closeFrame);
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current);
+          closeTimeoutRef.current = null;
+        }
+      };
+    }
+
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+        closeTimeoutRef.current = null;
+      }
+    };
+  }, [isOpen, isRendered]);
+
+  useEffect(() => {
+    if (isOpen && isRendered) closeButtonRef.current?.focus();
+  }, [isOpen, isRendered]);
+
   const handleClose = () => {
     setOpenGroups([]);
     onClose();
@@ -58,7 +101,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     );
   };
 
-  if (!isOpen) return null;
+  if (!isRendered) return null;
 
   return (
     <>
@@ -73,7 +116,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className="fixed inset-0 z-[1100] flex h-[100dvh] w-full flex-col"
+        className={`fixed right-0 top-0 z-[1100] flex h-[100dvh] w-[85%] max-w-[360px] flex-col transform transition-transform duration-300 ease-out ${
+          isDrawerVisible ? "translate-x-0" : "translate-x-full"
+        }`}
         style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
         role="dialog"
         aria-modal="true"

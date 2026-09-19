@@ -46,9 +46,9 @@ Server-side API and integration failures are emitted as JSON logs with safe even
 
 ## Production monitoring
 
-Implemented in code: structured operational logs, request IDs, generic API errors, and failure events for rate limits, Redis storage, idempotency, Sheets, and Resend. Available through GitHub Actions: deployment quality checks for install, type-checking, linting, tests, and builds. Configure production alerts manually in Vercel and GitHub for repeated API 5xx responses, Redis/storage failures, privacy notification failures, elevated 429 responses, failed deployments, and failed CI runs. Uptime monitoring and external error tracking are not currently configured.
+Implemented in code: structured operational logs, request IDs, generic API errors, and failure events for rate limits, Redis/storage, idempotency, Sheets, and Resend. Vercel runtime logs are the current production log destination; no Vercel alert rules or external incident integration are configured in this repository. Configure production alerts manually in the Vercel project for repeated API 5xx responses, Redis/storage failures, privacy notification failures, elevated 429 responses, and failed deployments. Configure GitHub notifications or repository rules separately for failed CI runs. Uptime monitoring and external error tracking are not currently configured.
 
-GitHub Actions runs `npm ci`, TypeScript checks, `npx eslint .`, `npm test`, and `npm run build` for pull requests and pushes to `main`. The workflow uses test adapters and does not require production credentials.
+GitHub Actions runs `npm ci`, installs the Playwright Chromium browser, `npm run test:e2e`, TypeScript checks, `npx eslint .`, `npm test`, and `npm run build` for pull requests and pushes to `main`. The workflow uses mocked test integrations and does not require production credentials.
 
 The site-wide GA4 page-view and interaction tracking uses:
 
@@ -65,6 +65,8 @@ After deploying to `https://articog.com`:
 
 Search Console verification is a production-account task and is not configured in this repository.
 
+Repository readiness includes `app/sitemap.ts`, `app/robots.ts`, route metadata with canonical URLs, founder profile static params, and structured data. Dynamic `/services/[slug]` pages are not discovered by the filesystem sitemap collector; the static service category pages are included. Decide separately whether those dynamic service pages should become sitemap entries before adding them.
+
 ## Bing Webmaster Tools and IndexNow
 
 After deploying the current production build:
@@ -76,6 +78,8 @@ After deploying the current production build:
 5. Verify IndexNow responses and the public key URL after deployment.
 
 No Bing verification value, IndexNow key, or IndexNow integration is configured in this repository. Do not add one until the production key is generated and securely managed.
+
+Bing verification, sitemap submission, URL inspection, and any IndexNow key hosting or submission remain manual production-account tasks.
 
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
