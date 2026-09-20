@@ -1,4 +1,5 @@
 import { Container, Section, Heading } from "@/components/ui";
+import { ScrollReveal } from "@/components/animations";
 import type { Capability } from "@/types";
 import Link from "next/link";
 
@@ -11,7 +12,9 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
     <Section id="capabilities" size="lg" className="relative overflow-hidden bg-background">
       <Container className="relative z-20">
         <div className="mb-section-sm max-w-2xl">
-          <Heading as="h2" size="section" className="mb-0 text-white">Every creative format,<br />delivered.</Heading>
+          <ScrollReveal>
+            <Heading as="h2" size="section" className="mb-0 text-white">Every creative format,<br />delivered.</Heading>
+          </ScrollReveal>
         </div>
 
         <div className="border-t border-white/[0.14]">

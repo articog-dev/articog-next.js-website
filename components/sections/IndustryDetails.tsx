@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Plus, X } from "lucide-react";
 import { Container, Section, Heading } from "@/components/ui";
+import { ScrollReveal } from "@/components/animations";
 import { Link } from "@/components/ui/Link";
 
 type IndustryDetail = {
@@ -179,7 +180,9 @@ export function IndustryDetails() {
     <Section size="lg" className="border-t border-white/10 text-left">
       <Container>
         <div className="mb-12 max-w-2xl md:mb-16">
-          <Heading as="h2" size="section" className="text-white">Creative production by industry</Heading>
+          <ScrollReveal>
+            <Heading as="h2" size="section" className="text-white">Creative production by industry</Heading>
+          </ScrollReveal>
         </div>
         <div className="space-y-6">
           {industryDetails.map((industry) => (
