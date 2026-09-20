@@ -173,7 +173,7 @@ function FounderPreviewCard({
             width={603}
             height={603}
             className={`h-full w-full object-cover ${circular ? "rounded-full" : ""}`}
-            sizes="7rem"
+            sizes="(max-width: 639px) 5.5rem, 7rem"
           />
         </div>
         <div>

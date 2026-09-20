@@ -202,7 +202,7 @@ export function HomeVisualShowcase() {
                       setSelectedVisual(visual);
                     }}
                   >
-                    <NextImage src={visual.src} sizes="(max-width: 640px) 66vw, (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
+                    <NextImage src={visual.src} sizes="(max-width: 640px) min(66vw, 15rem), (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
                   </button>
                 </div>
               );

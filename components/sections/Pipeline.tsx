@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import type { PipelineStep } from "@/types";
@@ -11,9 +12,21 @@ interface PipelineProps {
 
 export function Pipeline({ steps }: PipelineProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useLayoutEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (isMobile !== false) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -29,25 +42,40 @@ export function Pipeline({ steps }: PipelineProps) {
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
 
-  useBufferedAutoplay(videoRef, { enabled: shouldLoad, waitForBuffer: false });
+  useBufferedAutoplay(videoRef, {
+    enabled: shouldLoad && isMobile === false,
+    waitForBuffer: false,
+  });
 
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          loop
-          controls={false}
-          preload={shouldLoad ? "auto" : "none"}
-          src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
-          className="h-full w-full object-cover"
-          aria-hidden="true"
-        />
+        {isMobile === false ? (
+          <video
+            ref={videoRef}
+            muted
+            playsInline
+            loop
+            controls={false}
+            preload={shouldLoad ? "auto" : "none"}
+            poster="/pipeline-poster.jpg"
+            src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+          />
+        ) : (
+          <Image
+            src="/pipeline-poster.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            aria-hidden="true"
+          />
+        )}
 
         {/* Subtle base overlay */}
         <div className="absolute inset-0 z-10 bg-black/6" />

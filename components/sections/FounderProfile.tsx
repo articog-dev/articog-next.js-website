@@ -14,7 +14,7 @@ export function FounderProfile({ founder }: { founder: FounderProfileData }) {
           width={603}
           height={603}
           className={`h-auto w-full ${founder.circular ? "rounded-full" : ""}`}
-          sizes="(max-width: 1024px) 16rem, 16rem"
+          sizes="(max-width: 1023px) min(calc(100vw - 3rem), 20rem), 16rem"
         />
       </div>
       <div className="space-y-8 text-[1.05rem] leading-[1.9] text-white/60">

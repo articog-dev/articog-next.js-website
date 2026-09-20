@@ -17,12 +17,12 @@ describe("performance boundaries", () => {
     expect(analytics).toContain('strategy="afterInteractive"');
   });
 
-  it("keeps the poster-first hero and lazy below-fold gallery loading", () => {
+  it("keeps the responsive poster-backed hero and lazy below-fold gallery loading", () => {
     const hero = read("components", "sections", "Hero.tsx");
     const gallery = read("components", "sections", "HomeVisualShowcase.tsx");
 
-    expect(hero).toContain('preload="auto"');
-    expect(hero).not.toContain("poster");
+    expect(hero).toContain('preload={isMobile ? "metadata" : "auto"}');
+    expect(hero).toContain('poster="/hero-poster.jpg"');
     // Playback is gated on buffering (useBufferedAutoplay), not the autoPlay attribute.
     expect(hero).toContain("useBufferedAutoplay");
     expect(hero).not.toContain("autoPlay");
@@ -31,12 +31,12 @@ describe("performance boundaries", () => {
     expect(gallery).not.toContain("quality={100}");
   });
 
-  it("starts home videos immediately without poster reveals", () => {
+  it("keeps home videos poster-backed and autoplay-gated", () => {
     const files = ["Hero.tsx", "Pipeline.tsx"];
 
     for (const file of files) {
       const source = read("components", "sections", file);
-      expect(source).not.toContain("poster");
+      expect(source).toContain("poster=");
       expect(source).not.toContain("autoPlay");
       expect(source).toContain("useBufferedAutoplay");
       expect(source).toContain("waitForBuffer: false");

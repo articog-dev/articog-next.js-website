@@ -33,7 +33,7 @@ function BlogCard({ post }: { post: BlogEntry }) {
               src={post.featuredImage}
               alt={post.title}
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) calc((100vw - 5rem) / 2), 384px"
               className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
@@ -74,7 +74,7 @@ function BlogCard({ post }: { post: BlogEntry }) {
             src={post.featuredImage}
             alt={post.title}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) calc((100vw - 5rem) / 2), 384px"
             className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
         ) : (

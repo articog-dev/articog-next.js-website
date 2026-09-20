@@ -6,7 +6,7 @@ const read = (...segments: string[]) =>
   readFileSync(path.join(process.cwd(), ...segments), "utf8");
 
 describe("media SEO metadata", () => {
-  // Home videos are intentionally no longer poster-backed; they start black and play directly.
+  // Home videos are poster-backed while their decorative playback loads.
   it("keeps meaningful image alt text descriptive and avoids generic placeholders", () => {
     const showcaseSource = read("components", "sections", "HomeVisualShowcase.tsx");
     const industrySource = read("components", "sections", "IndustryDetails.tsx");

@@ -175,7 +175,7 @@ const industryDetails: IndustryDetail[] = [
 
 const IMAGE_WIDTH = 900;
 const IMAGE_HEIGHT = 1200;
-const IMAGE_SIZES = "(min-width: 1280px) 356px, (min-width: 768px) 40vw, 100vw";
+const IMAGE_SIZES = "(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 38vw, 490px";
 
 export function IndustryDetails() {
   const [activeId, setActiveId] = useState(industryDetails[0].id);

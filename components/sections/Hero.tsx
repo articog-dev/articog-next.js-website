@@ -1,7 +1,7 @@
 "use client";
 
 import type { HeroContent } from "@/types";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
@@ -11,6 +11,16 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
 
   useBufferedAutoplay(videoRef, { keepPlaying: true, waitForBuffer: false });
 
@@ -35,7 +45,8 @@ export function Hero({ content }: HeroProps) {
           playsInline
           loop
           controls={false}
-          preload="auto"
+          preload={isMobile ? "metadata" : "auto"}
+          poster="/hero-poster.jpg"
           className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden="true"
         >

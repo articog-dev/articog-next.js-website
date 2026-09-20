@@ -73,6 +73,7 @@ export default function PressPage() {
                           alt={asset.alt}
                           width={400}
                           height={200}
+                          sizes="min(360px, 100%)"
                           className="h-auto w-full max-w-[360px] object-contain"
                         />
                       </div>

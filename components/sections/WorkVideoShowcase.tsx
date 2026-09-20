@@ -29,7 +29,7 @@ export function WorkVideoShowcase() {
                   src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
                   alt={video.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 767px) calc(100vw - 3rem), min(50vw, 38rem)"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
