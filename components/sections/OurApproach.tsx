@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
@@ -25,21 +24,9 @@ const approachItems = [
 
 export function OurApproach() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useLayoutEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
-
-    updateIsMobile();
-    mediaQuery.addEventListener("change", updateIsMobile);
-    return () => mediaQuery.removeEventListener("change", updateIsMobile);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (isMobile !== false) return;
-
     const video = videoRef.current;
     if (!video) return;
 
@@ -55,9 +42,9 @@ export function OurApproach() {
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, [isMobile]);
+  }, []);
 
-  useBufferedAutoplay(videoRef, { enabled: shouldLoad && isMobile === false });
+  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
 
   return (
     <Section size="md" className="border-t border-white/[0.05]">
@@ -78,35 +65,24 @@ export function OurApproach() {
 
       {/* Edge-to-edge video: full width, no rounded corners, no border */}
       <div className="relative mb-16 h-[70vh] w-full overflow-hidden bg-black sm:h-[min(100svh,56.25vw)]">
-        {isMobile === false ? (
-          <video
-            ref={(video) => {
-              videoRef.current = video;
-              if (video) {
-                video.defaultMuted = true;
-                video.muted = true;
-              }
-            }}
-            muted
-            playsInline
-            loop
-            controls={false}
-            preload={shouldLoad ? "auto" : "none"}
-            poster="/our-approach-poster.jpg"
-            src={shouldLoad ? "/videos/our-approach.mp4" : undefined}
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            aria-hidden="true"
-          />
-        ) : (
-          <Image
-            src="/our-approach-poster.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover"
-            aria-hidden="true"
-          />
-        )}
+        <video
+          ref={(video) => {
+            videoRef.current = video;
+            if (video) {
+              video.defaultMuted = true;
+              video.muted = true;
+            }
+          }}
+          muted
+          playsInline
+          loop
+          controls={false}
+          preload={shouldLoad ? "auto" : "none"}
+          poster="/our-approach-poster.jpg"
+          src={shouldLoad ? "/videos/our-approach.mp4" : undefined}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          aria-hidden="true"
+        />
       </div>
 
       <Container>

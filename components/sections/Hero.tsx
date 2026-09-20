@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import type { HeroContent } from "@/types";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
@@ -12,19 +11,8 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useLayoutEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
-
-    updateIsMobile();
-    mediaQuery.addEventListener("change", updateIsMobile);
-    return () => mediaQuery.removeEventListener("change", updateIsMobile);
-  }, []);
 
   useBufferedAutoplay(videoRef, {
-    enabled: isMobile === false,
     keepPlaying: true,
     waitForBuffer: false,
   });
@@ -38,35 +26,24 @@ export function Hero({ content }: HeroProps) {
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
-        {isMobile === false ? (
-          <video
-            ref={(video) => {
-              videoRef.current = video;
-              if (video) {
-                video.defaultMuted = true;
-                video.muted = true;
-              }
-            }}
-            muted
-            playsInline
-            loop
-            controls={false}
-            preload="auto"
-            poster="/hero-poster.jpg"
-            src="/videos/hero.mp4"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            aria-hidden="true"
-          />
-        ) : (
-          <Image
-            src="/hero-poster.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            aria-hidden="true"
-          />
-        )}
+        <video
+          ref={(video) => {
+            videoRef.current = video;
+            if (video) {
+              video.defaultMuted = true;
+              video.muted = true;
+            }
+          }}
+          muted
+          playsInline
+          loop
+          controls={false}
+          preload="auto"
+          poster="/hero-poster.jpg"
+          src="/videos/hero.mp4"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          aria-hidden="true"
+        />
 
         {/* Light vignette for text readability without washing out the video */}
         <div
