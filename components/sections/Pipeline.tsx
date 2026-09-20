@@ -86,7 +86,7 @@ export function Pipeline({ steps }: PipelineProps) {
               : undefined
           }
           poster="https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           aria-hidden="true"
         />
 

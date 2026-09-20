@@ -86,7 +86,7 @@ export function Hero({ content }: HeroProps) {
           controls={false}
           preload="metadata"
           poster="https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           aria-hidden="true"
         >
           <source
