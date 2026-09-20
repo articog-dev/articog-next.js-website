@@ -71,7 +71,7 @@ test.describe("contact flow", () => {
     });
 
     await page.goto("/contact");
-    await expect(page.getByRole("heading", { name: "Contact Us" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Build your next brand story with Articog." })).toBeVisible();
     await expect(page.locator('input[name="website"]')).toHaveCount(1);
     await fillContactForm(page);
     await page.getByRole("button", { name: "Send Message" }).click();
@@ -128,7 +128,7 @@ test.describe("book-a-demo flow", () => {
 
   test("loads the page and makes the Calendly integration available", async ({ page }) => {
     await page.goto("/book-a-demo");
-    await expect(page.getByRole("heading", { name: "Book a Demo" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Tell us what your brand needs every month." })).toBeVisible();
     await expect.poll(() => page.evaluate(() => typeof window.Calendly?.initPopupWidget)).toBe("function");
   });
 
