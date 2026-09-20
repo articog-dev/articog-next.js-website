@@ -32,7 +32,7 @@ export default function AboutPage() {
             </div>
             <div className="space-y-7 text-[1.05rem] leading-[1.9] text-white/60 lg:max-w-[54rem]">
               <p>
-                <span className="font-bold text-white">Articog</span> is an AI Native Film &amp; Production Company. We produce brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams.
+                <span className="font-bold text-white">Articog</span> is an AI-Native Film &amp; Production Company. We produce brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams.
               </p>
               <p>
                 The name says it all: <span className="font-bold text-white">Artificial + Cognition.</span>

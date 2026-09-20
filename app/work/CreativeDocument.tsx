@@ -20,7 +20,7 @@ type WorkFilter = "Video" | "Product" | "Social" | "Industries";
 const projects: PortfolioProject[] = [
   {
     title: "Product Film — Footwear",
-    category: "Visual Study · Product film · Post-production",
+    category: "AI product visualization · Cinematic product film · Post-production",
     filters: ["Video", "Product"],
     description: "Cinematic product storytelling shaped for premium positioning and campaign use.",
     number: "01",
@@ -29,7 +29,7 @@ const projects: PortfolioProject[] = [
   },
   {
     title: "Beauty Campaign Visual",
-    category: "Visual Study · Product fidelity · Social adaptation",
+    category: "Product fidelity · AI environment creation · Social adaptation",
     filters: ["Product", "Social"],
     description: "Product-focused campaign imagery developed for visual consistency across formats.",
     number: "02",
@@ -38,7 +38,7 @@ const projects: PortfolioProject[] = [
   },
   {
     title: "Real Estate Cinematic",
-    category: "Concept Film · AI environments · Film finishing",
+    category: "Architectural visualization · AI environments · Film finishing",
     filters: ["Video", "Industries"],
     description: "Architectural visualization with cinematic environments and a finished-film sensibility.",
     number: "03",
@@ -47,7 +47,7 @@ const projects: PortfolioProject[] = [
   },
   {
     title: "Fashion Film Study",
-    category: "Visual Study · Art direction · Styling · Motion",
+    category: "AI talent · Art direction · Styling · Motion",
     filters: ["Video", "Social"],
     description: "Fashion-led visual direction exploring styling, movement, and cinematic composition.",
     number: "04",
@@ -56,7 +56,7 @@ const projects: PortfolioProject[] = [
   },
   {
     title: "Consumer Tech Product Film",
-    category: "Articog Original · Product storytelling · Multi-format delivery",
+    category: "Product storytelling · AI production · Multi-format delivery",
     filters: ["Video", "Product"],
     description: "Product storytelling designed to carry a clear visual idea across campaign formats.",
     number: "05",

@@ -26,7 +26,7 @@ export default function AIIPPage() {
     },
     {
       title: "Third-Party Rights",
-      desc: "We take rigorous care to ensure that all generated content avoids infringing upon third-party intellectual property. Our quality review process includes checks to maintain brand integrity and legal safety.",
+      desc: "Our review process is designed to reduce intellectual-property risk and identify potential third-party rights concerns before delivery.",
       icon: FileText,
     },
   ];
