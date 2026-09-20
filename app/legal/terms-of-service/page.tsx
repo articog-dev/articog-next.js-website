@@ -37,7 +37,7 @@ export default function TermsOfServicePage() {
     {
       title: "Governing Law",
       content:
-        "These Terms of Service shall be governed by and construed in accordance with the laws of the jurisdiction in which Articog operates, without regard to conflict of law principles. The specific governing jurisdiction will be finalized in client service agreements.",
+        "These Terms of Service shall be governed by and construed in accordance with the laws of India. Courts in Hyderabad, Telangana shall have exclusive jurisdiction over any disputes arising from these Terms, without regard to conflict of law principles.",
     },
     {
       title: "Contact Us",

@@ -611,7 +611,8 @@ export default function PrivacyPolicyPage() {
                       </p>
 
                       <p className="mt-1 type-small text-white/50">
-                        Hyderabad, Telangana, India
+                        Articog HQ, Plot No. 125, 1st Floor, Road No. 6, Venkat Rao Nagar
+                        Colony, Kukatpally, Hyderabad, Telangana 500072
                       </p>
 
                       <p className="mt-4 min-w-0 break-words type-small text-white/60">
