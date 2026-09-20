@@ -42,7 +42,7 @@ export default async function FounderPage({
   return (
     <div className="min-h-screen bg-black">
       <PageHeroDetail
-        title={founder.name}
+        title={null}
         backLink={{ href: "/about", label: "Back to About" }}
         detail={<FounderProfile founder={founder} />}
       />
