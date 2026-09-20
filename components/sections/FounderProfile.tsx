@@ -19,9 +19,6 @@ export function FounderProfile({ founder }: { founder: FounderProfileData }) {
       </div>
       <div className="space-y-8 text-[1.05rem] leading-[1.9] text-white/60">
         <div>
-          <Heading as="h2" size="section" className="mb-3 text-white">
-            {founder.name}
-          </Heading>
           <p>
             {founder.roleLines.map((line) => (
               <span key={line} className="block">
