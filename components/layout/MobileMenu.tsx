@@ -116,10 +116,12 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className={`fixed right-0 top-0 z-[1100] flex max-h-[100dvh] w-[85%] max-w-[360px] flex-col transform transition-transform duration-300 ease-out ${
-          isDrawerVisible ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
+        className="fixed inset-x-0 top-0 z-[1100] flex max-h-[100dvh] w-full flex-col overflow-hidden transition-[clip-path] duration-400 ease-out"
+        style={{
+          background: "#060606",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          clipPath: isDrawerVisible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+        }}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"

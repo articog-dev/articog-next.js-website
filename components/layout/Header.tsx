@@ -482,7 +482,7 @@ export function Header() {
               asChild
               variant="primary"
               size="sm"
-              className="hidden sm:flex"
+              className="flex px-4 text-[13px] sm:px-6 sm:text-sm"
             >
               <Link
                 href="/book-a-demo"
