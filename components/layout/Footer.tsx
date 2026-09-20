@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/components/ui/Link";
-import { Linkedin, Youtube, Instagram } from "lucide-react";
+import { Linkedin, Youtube } from "lucide-react";
 import { Container } from "@/components/ui";
 import { FooterNavSections } from "./FooterNavSections";
 
@@ -18,25 +18,29 @@ function XIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-function MediumIcon({ size = 16 }: { size?: number }) {
+function BookmarkIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+      <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
     </svg>
   );
 }
 
 const socialLinks = [
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/articog/",
-    Icon: Linkedin,
+    label: "Blog",
+    href: "/blog",
+    Icon: BookmarkIcon,
   },
   {
     label: "YouTube",
@@ -49,14 +53,9 @@ const socialLinks = [
     Icon: XIcon,
   },
   {
-    label: "Instagram",
-    href: "https://www.instagram.com/articogcom/",
-    Icon: Instagram,
-  },
-  {
-    label: "Medium",
-    href: "https://medium.com/@articog.com",
-    Icon: MediumIcon,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/articog/",
+    Icon: Linkedin,
   },
 ];
 
