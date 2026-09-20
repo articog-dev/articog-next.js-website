@@ -259,7 +259,7 @@ export const serviceGroups = [
 const organizedServices = topLevelServiceLinks.map((serviceLink, index) => {
   const group = serviceGroups[index];
   const [primaryService, ...relatedServices] = group.items;
-  const image = {
+  const images: Record<string, { src: string; alt: string }> = {
     "/services/ai-video-production": {
       src: "/services/articog-service-01-brand-films.jpg",
       alt: "Brand films and commercial production",
@@ -272,7 +272,8 @@ const organizedServices = topLevelServiceLinks.map((serviceLink, index) => {
       src: "/services/articog-service-02-creator-social.jpg",
       alt: "Creator-style social content production",
     },
-  }[serviceLink.href];
+  };
+  const image = images[serviceLink.href];
 
   return {
     title: serviceLink.pageTitle,
