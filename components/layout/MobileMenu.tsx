@@ -148,7 +148,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         {/* Nav */}
         <nav
-          className="mobile-nav-scroll flex flex-1 min-h-0 flex-col overflow-y-auto px-4 pb-8"
+          className="mobile-nav-scroll flex flex-col overflow-y-auto px-4 pb-8"
           style={{ maxHeight: "calc(100dvh - 4rem)", scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.25) transparent" }}
         >
           {menuGroups.map((group) => {
