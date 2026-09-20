@@ -1,5 +1,8 @@
+"use client";
+
+import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
-import { LazyVideo } from "@/components/ui/LazyVideo";
+import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 const approachItems = [
   {
@@ -20,6 +23,29 @@ const approachItems = [
 ];
 
 export function OurApproach() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useLayoutEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
+
   return (
     <Section size="md" className="border-t border-white/[0.05]">
       <Container>
@@ -35,15 +61,22 @@ export function OurApproach() {
           </p>
         </div>
 
-        <div className="relative mb-16 w-full aspect-video overflow-hidden rounded-2xl border border-white/[0.08]">
-          <LazyVideo
-            autoPlay
+        {/* Never taller than 85% of the screen (or 16:9 on small screens); fills without black bars */}
+        <div className="relative mb-16 h-[min(85svh,56.25vw)] overflow-hidden rounded-2xl border border-white/[0.08] bg-black">
+          <video
+            ref={(video) => {
+              videoRef.current = video;
+              if (video) {
+                video.defaultMuted = true;
+                video.muted = true;
+              }
+            }}
             muted
             playsInline
             loop
             controls={false}
-            preload="none"
-            src="https://media.articog.com/videos/backgrounds/Web%202.mp4"
+            preload={shouldLoad ? "auto" : "none"}
+            src={shouldLoad ? "https://media.articog.com/videos/backgrounds/Web%202.mp4" : undefined}
             className="absolute inset-0 h-full w-full object-cover"
             aria-hidden="true"
           />

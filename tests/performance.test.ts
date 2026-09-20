@@ -23,6 +23,9 @@ describe("performance boundaries", () => {
 
     expect(hero).toContain('preload="auto"');
     expect(hero).toContain("poster=");
+    // Playback is gated on buffering (useBufferedAutoplay), not the autoPlay attribute.
+    expect(hero).toContain("useBufferedAutoplay");
+    expect(hero).not.toContain("autoPlay");
     expect(gallery).toContain('loading="lazy"');
     expect(gallery).not.toContain("priority={");
     expect(gallery).not.toContain("quality={100}");

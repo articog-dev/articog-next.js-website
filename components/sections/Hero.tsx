@@ -1,8 +1,9 @@
 "use client";
 
 import type { HeroContent } from "@/types";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Heading } from "@/components/ui";
+import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 interface HeroProps {
   content: HeroContent;
@@ -13,56 +14,7 @@ export function Hero({ content }: HeroProps) {
   const [isVideoReady, setIsVideoReady] = useState(false);
   const posterUrl = "https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png";
 
-  useLayoutEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      video.pause();
-      return;
-    }
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.autoplay = true;
-    video.setAttribute("muted", "");
-
-    const playVideo = () => {
-      if (video.paused && video.readyState >= HTMLMediaElement.HAVE_METADATA) {
-        void video.play().catch(() => {
-          if (document.visibilityState === "visible") {
-            window.setTimeout(() => {
-              if (video.paused && document.visibilityState === "visible") {
-                void video.play().catch(() => undefined);
-              }
-            }, 250);
-          }
-        });
-      }
-    };
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        playVideo();
-      }
-    };
-
-    playVideo();
-    video.addEventListener("loadedmetadata", playVideo);
-    video.addEventListener("loadeddata", playVideo);
-    video.addEventListener("canplay", playVideo);
-    video.addEventListener("pause", playVideo);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      video.removeEventListener("loadedmetadata", playVideo);
-      video.removeEventListener("loadeddata", playVideo);
-      video.removeEventListener("canplay", playVideo);
-      video.removeEventListener("pause", playVideo);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
+  useBufferedAutoplay(videoRef, { keepPlaying: true });
 
   return (
     <section
@@ -86,15 +38,13 @@ export function Hero({ content }: HeroProps) {
               video.muted = true;
             }
           }}
-          autoPlay
           muted
           playsInline
           loop
           controls={false}
           preload="auto"
           poster={posterUrl}
-          onCanPlay={() => setIsVideoReady(true)}
-          onLoadedData={() => setIsVideoReady(true)}
+          onCanPlayThrough={() => setIsVideoReady(true)}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${isVideoReady ? "opacity-100" : "opacity-0"}`}
           aria-hidden="true"
         >

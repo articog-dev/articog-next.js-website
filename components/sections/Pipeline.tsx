@@ -1,27 +1,50 @@
 "use client";
 
+import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import type { PipelineStep } from "@/types";
-import { LazyVideo } from "@/components/ui/LazyVideo";
+import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 interface PipelineProps {
   steps: PipelineStep[];
 }
 
 export function Pipeline({ steps }: PipelineProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useLayoutEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
 
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
       <div className="absolute inset-x-0 top-0 z-0 aspect-video w-full">
-        <LazyVideo
-          autoPlay
+        <video
+          ref={videoRef}
           muted
           playsInline
           loop
           controls={false}
-          preload="none"
-          src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
+          preload={shouldLoad ? "auto" : "none"}
+          src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
           poster="https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png"
           className="h-full w-full object-contain"
           aria-hidden="true"
