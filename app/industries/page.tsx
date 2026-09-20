@@ -29,7 +29,7 @@ export default function IndustriesPage() {
               controls={false}
               preload="metadata"
               poster="https://media.articog.com/images/industries/hf_20260821_145134_975711a2-9355-45d5-bee6-c98937fb8031.png"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-contain"
               aria-hidden="true"
             >
               <source

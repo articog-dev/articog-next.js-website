@@ -43,7 +43,7 @@ export function OurApproach() {
             controls={false}
             preload="metadata"
             src="https://media.articog.com/videos/backgrounds/Web%202.mp4"
-            className="aspect-video w-full object-cover"
+            className="aspect-video w-full object-contain"
             aria-hidden="true"
           />
         </div>

@@ -281,7 +281,7 @@ export default function ServicesPage() {
             controls={false}
             preload="metadata"
             poster="https://media.articog.com/images/services/hf_20260820_165439_f355b7b5-fc30-4852-9c69-cb8433145326.png"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
             aria-hidden="true"
           >
             <source
