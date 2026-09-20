@@ -13,7 +13,7 @@ export function Pipeline({ steps }: PipelineProps) {
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-x-0 top-0 z-0 aspect-video w-full">
         <LazyVideo
           autoPlay
           muted
