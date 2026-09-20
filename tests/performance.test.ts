@@ -22,13 +22,25 @@ describe("performance boundaries", () => {
     const gallery = read("components", "sections", "HomeVisualShowcase.tsx");
 
     expect(hero).toContain('preload="auto"');
-    expect(hero).toContain("poster=");
+    expect(hero).not.toContain("poster");
     // Playback is gated on buffering (useBufferedAutoplay), not the autoPlay attribute.
     expect(hero).toContain("useBufferedAutoplay");
     expect(hero).not.toContain("autoPlay");
     expect(gallery).toContain('loading="lazy"');
     expect(gallery).not.toContain("priority={");
     expect(gallery).not.toContain("quality={100}");
+  });
+
+  it("starts home videos immediately without poster reveals", () => {
+    const files = ["Hero.tsx", "Pipeline.tsx"];
+
+    for (const file of files) {
+      const source = read("components", "sections", file);
+      expect(source).not.toContain("poster");
+      expect(source).not.toContain("autoPlay");
+      expect(source).toContain("useBufferedAutoplay");
+      expect(source).toContain("waitForBuffer: false");
+    }
   });
 
   it("keeps stable media sizing and avoids blanket showcase will-change", () => {

@@ -11,6 +11,8 @@ interface Options {
   enabled?: boolean;
   /** Restart playback if the browser pauses the video while the tab is visible. */
   keepPlaying?: boolean;
+  /** false = start playing right away instead of waiting for canplaythrough. */
+  waitForBuffer?: boolean;
 }
 
 /**
@@ -25,7 +27,7 @@ interface Options {
  */
 export function useBufferedAutoplay(
   videoRef: RefObject<HTMLVideoElement | null>,
-  { enabled = true, keepPlaying = false }: Options = {},
+  { enabled = true, keepPlaying = false, waitForBuffer = true }: Options = {},
 ) {
   useEffect(() => {
     const video = videoRef.current;
@@ -70,7 +72,7 @@ export function useBufferedAutoplay(
       if (keepPlaying && started && document.visibilityState === "visible") play();
     };
 
-    if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+    if (!waitForBuffer || video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
       start();
     } else {
       video.addEventListener("canplaythrough", start, { once: true });
@@ -87,5 +89,5 @@ export function useBufferedAutoplay(
       video.removeEventListener("pause", handlePause);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [videoRef, enabled, keepPlaying]);
+  }, [videoRef, enabled, keepPlaying, waitForBuffer]);
 }

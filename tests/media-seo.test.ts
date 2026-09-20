@@ -6,6 +6,7 @@ const read = (...segments: string[]) =>
   readFileSync(path.join(process.cwd(), ...segments), "utf8");
 
 describe("media SEO metadata", () => {
+  // Home videos are intentionally no longer poster-backed; they start black and play directly.
   it("keeps meaningful image alt text descriptive and avoids generic placeholders", () => {
     const showcaseSource = read("components", "sections", "HomeVisualShowcase.tsx");
     const industrySource = read("components", "sections", "IndustryDetails.tsx");
@@ -34,22 +35,22 @@ describe("media SEO metadata", () => {
     expect(embedSource).toContain('loading="lazy"');
   });
 
-  it("keeps decorative native videos poster-backed and explicitly hidden from assistive technology", () => {
+  it("keeps decorative home videos muted and hidden from assistive technology", () => {
     const files = [
       ["components", "sections", "Hero.tsx"],
+      ["components", "sections", "Pipeline.tsx"],
     ];
 
     for (const file of files) {
       const source = read(...file);
       expect(source).toContain("<video");
-      expect(source).toContain("poster=");
+      expect(source).toContain("muted");
       expect(source).toContain('aria-hidden="true"');
     }
 
     const lazyVideo = read("components", "ui", "LazyVideo.tsx");
     expect(lazyVideo).toContain("<video");
     expect(lazyVideo).toContain("IntersectionObserver");
-    expect(read("components", "sections", "Pipeline.tsx")).toContain("LazyVideo");
     expect(read("app", "services", "page.tsx")).toContain("poster=");
   });
 

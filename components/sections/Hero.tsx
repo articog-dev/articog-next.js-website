@@ -1,7 +1,7 @@
 "use client";
 
 import type { HeroContent } from "@/types";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
@@ -11,10 +11,8 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoReady, setIsVideoReady] = useState(false);
-  const posterUrl = "https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png";
 
-  useBufferedAutoplay(videoRef, { keepPlaying: true });
+  useBufferedAutoplay(videoRef, { keepPlaying: true, waitForBuffer: false });
 
   return (
     <section
@@ -24,12 +22,7 @@ export function Hero({ content }: HeroProps) {
       }}
     >
       {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${posterUrl})` }}
-          aria-hidden="true"
-        />
+      <div className="absolute inset-0 z-0 bg-black">
         <video
           ref={(video) => {
             videoRef.current = video;
@@ -43,9 +36,7 @@ export function Hero({ content }: HeroProps) {
           loop
           controls={false}
           preload="auto"
-          poster={posterUrl}
-          onCanPlayThrough={() => setIsVideoReady(true)}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${isVideoReady ? "opacity-100" : "opacity-0"}`}
+          className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden="true"
         >
           <source
@@ -69,7 +60,7 @@ export function Hero({ content }: HeroProps) {
       <div
         className="pointer-events-none absolute inset-0 z-1"
         style={{
-          backgroundImage:
+          background:
             "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           maskImage:

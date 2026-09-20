@@ -31,12 +31,12 @@ export function Pipeline({ steps }: PipelineProps) {
     return () => observer.disconnect();
   }, []);
 
-  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
+  useBufferedAutoplay(videoRef, { enabled: shouldLoad, waitForBuffer: false });
 
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
-      <div className="absolute inset-x-0 top-0 z-0 aspect-video w-full">
+      <div className="absolute inset-x-0 top-0 z-0 aspect-video w-full bg-black">
         <video
           ref={videoRef}
           muted
@@ -45,7 +45,6 @@ export function Pipeline({ steps }: PipelineProps) {
           controls={false}
           preload={shouldLoad ? "auto" : "none"}
           src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
-          poster="https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png"
           className="h-full w-full object-contain"
           aria-hidden="true"
         />
