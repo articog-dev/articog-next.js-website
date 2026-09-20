@@ -13,6 +13,7 @@ import { ShieldCheck, ArrowRight, Zap, Users } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createFAQPageSchema } from "@/lib/structured-data";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { ServiceDeviceShowcase } from "@/components/sections/ServiceDeviceShowcase";
 
 export default function AIVideoProductionPage() {
   const deliverables = [
@@ -55,6 +56,7 @@ export default function AIVideoProductionPage() {
       <PageHero
         title="Brand films and commercials at AI speed."
         breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "AI Video Production" }]} />}
+        showcase={<ServiceDeviceShowcase href="/services/ai-video-production" />}
       />
 
       {/* What We Deliver */}

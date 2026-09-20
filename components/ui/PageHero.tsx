@@ -10,6 +10,7 @@ type PageHeroProps = {
   subtitle?: React.ReactNode;
   actions?: React.ReactNode;
   media?: React.ReactNode;
+  showcase?: React.ReactNode;
   compact?: boolean;
   className?: string;
 };
@@ -21,6 +22,7 @@ export function PageHero({
   subtitle,
   actions,
   media,
+  showcase,
   compact = false,
   className,
 }: PageHeroProps) {
@@ -44,6 +46,7 @@ export function PageHero({
           {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
           {actions ? <div className="mt-8 flex flex-wrap justify-center gap-component-gap">{actions}</div> : null}
         </div>
+        {showcase}
       </Container>
     </Section>
   );

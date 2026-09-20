@@ -10,6 +10,7 @@ import { CheckCircle2 } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { ServiceDeviceShowcase } from "@/components/sections/ServiceDeviceShowcase";
 
 export default function SocialCreativePage() {
   return (
@@ -22,6 +23,7 @@ export default function SocialCreativePage() {
               Monthly social content, produced faster.
             </Heading>
           </div>
+          <ServiceDeviceShowcase href="/services/social-creative" />
         </Container>
       </Section>
 

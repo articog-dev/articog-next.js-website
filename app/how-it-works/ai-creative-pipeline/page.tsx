@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { ClipboardList, Cpu, UserCheck, RefreshCw, ShieldCheck, Type, FileSearch, HardDrive, Info } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { ServiceDeviceShowcase } from "@/components/sections/ServiceDeviceShowcase";
 
 export default function AICreativePipelinePage() {
   const stages = [
@@ -54,6 +55,7 @@ export default function AICreativePipelinePage() {
               The AI Creative Pipeline
             </Heading>
           </div>
+          <ServiceDeviceShowcase href="/how-it-works/ai-creative-pipeline" />
         </Container>
       </Section>
 

@@ -12,6 +12,7 @@ import { ServiceDetails } from "@/components/sections/ServiceDetails";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { ServiceDeviceShowcase } from "@/components/sections/ServiceDeviceShowcase";
 
 export default function AdCreativePage() {
   const deliverables = [
@@ -61,6 +62,7 @@ export default function AdCreativePage() {
               More ad creative. Less production cost.
             </Heading>
           </div>
+          <ServiceDeviceShowcase href="/services/ad-creative" />
         </Container>
       </Section>
 
