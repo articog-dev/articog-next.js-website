@@ -433,7 +433,7 @@ export function Header() {
                     onClick={closeDropdown}
                     className={`type-nav transition-colors duration-150 ${activeGroup === group.label ? "text-white" : "text-white/55"}`}
                   >
-                    {group.label}
+                    {group.label === "What We Do" ? "Services" : group.label}
                   </Link>
                   {!isDirectGroup && (
                     <button
