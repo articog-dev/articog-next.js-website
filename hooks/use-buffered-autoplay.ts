@@ -45,9 +45,10 @@ export function useBufferedAutoplay(
     let started = false;
     let fallbackTimer: number | undefined;
     let retryTimer: number | undefined;
+    let stallTimer: number | undefined;
 
-    const play = () => {
-      if (!video.paused) return;
+    const play = (force = false) => {
+      if (!force && !video.paused) return;
       void video.play().catch(() => {
         if (document.visibilityState !== "visible") return;
         retryTimer = window.setTimeout(() => {
@@ -72,6 +73,21 @@ export function useBufferedAutoplay(
       if (keepPlaying && started && document.visibilityState === "visible") play();
     };
 
+    const handleStall = (event: Event) => {
+      if (!started || document.visibilityState !== "visible") return;
+
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(`[useBufferedAutoplay] video ${event.type}; attempting recovery`);
+      }
+
+      window.clearTimeout(stallTimer);
+      stallTimer = window.setTimeout(() => {
+        if (document.visibilityState !== "visible") return;
+        video.load();
+        play(true);
+      }, 250);
+    };
+
     if (!waitForBuffer || video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
       start();
     } else {
@@ -80,13 +96,18 @@ export function useBufferedAutoplay(
     }
 
     video.addEventListener("pause", handlePause);
+    video.addEventListener("waiting", handleStall);
+    video.addEventListener("stalled", handleStall);
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.clearTimeout(fallbackTimer);
       window.clearTimeout(retryTimer);
+      window.clearTimeout(stallTimer);
       video.removeEventListener("canplaythrough", start);
       video.removeEventListener("pause", handlePause);
+      video.removeEventListener("waiting", handleStall);
+      video.removeEventListener("stalled", handleStall);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [videoRef, enabled, keepPlaying, waitForBuffer]);

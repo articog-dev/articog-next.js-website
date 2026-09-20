@@ -189,7 +189,19 @@ export function HomeVisualShowcase() {
               const isActive = index === activeIndex;
               return (
                 <div key={visual.alt} ref={(slot) => { slotRefs.current[index] = slot; }} className="showcase-slot">
-                  <button ref={(item) => { itemRefs.current[index] = item; }} type="button" className="showcase-item" tabIndex={isActive ? 0 : -1} aria-current={isActive ? "true" : undefined} aria-label={isActive ? `Open ${visual.alt}` : `Show ${visual.alt}`} onClick={(event) => { if (!isActive) { goTo(index); return; } triggerRef.current = event.currentTarget; setSelectedVisual(visual); }}>
+                  <button
+                    ref={(item) => { itemRefs.current[index] = item; }}
+                    type="button"
+                    className="showcase-item"
+                    tabIndex={isActive ? 0 : -1}
+                    aria-current={isActive ? "true" : undefined}
+                    aria-label={`Open ${visual.alt}`}
+                    onClick={(event) => {
+                      if (!isActive) goTo(index);
+                      triggerRef.current = event.currentTarget;
+                      setSelectedVisual(visual);
+                    }}
+                  >
                     <NextImage src={visual.src} sizes="(max-width: 640px) 66vw, (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
                   </button>
                 </div>
