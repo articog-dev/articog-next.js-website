@@ -32,45 +32,6 @@ function MediumIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-function OpenAIIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M22.28 9.82a5.98 5.98 0 00-.52-4.91 6.05 6.05 0 00-6.51-2.9A6.07 6.07 0 0010.85 0a6.05 6.05 0 00-5.78 4.2 6.02 6.02 0 00-4.02 2.92 6.07 6.07 0 00.74 7.12 5.98 5.98 0 00.52 4.91 6.05 6.05 0 006.51 2.9A6.02 6.02 0 0013.15 24a6.05 6.05 0 005.78-4.2 6.02 6.02 0 004.02-2.92 6.07 6.07 0 00-.67-7.06zm-9.13 12.76a4.47 4.47 0 01-2.87-1.04l.14-.08 4.77-2.75a.78.78 0 00.39-.68v-6.72l2.02 1.16a.07.07 0 01.04.06v5.57a4.5 4.5 0 01-4.49 4.48zM4.06 18a4.46 4.46 0 01-.54-3l.14.08 4.77 2.75a.77.77 0 00.78 0l5.82-3.36v2.33a.08.08 0 01-.03.07l-4.82 2.78A4.5 4.5 0 014.06 18zM2.87 7.68a4.48 4.48 0 012.34-1.97v5.68a.76.76 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.84 13.8a4.5 4.5 0 01-.97-6.12zm16.55 3.85l-5.82-3.37 2.02-1.16a.07.07 0 01.07 0l4.66 2.69a4.49 4.49 0 01-.68 8.1v-5.68a.77.77 0 00-.25-.58zm2.01-3.02l-.14-.09-4.77-2.76a.78.78 0 00-.78 0l-5.82 3.36V6.7a.07.07 0 01.03-.06l4.82-2.78a4.5 4.5 0 016.66 4.65zm-12.6 4.15l-2.02-1.16a.08.08 0 01-.04-.06V5.87a4.5 4.5 0 017.38-3.45l-.14.08-4.77 2.75a.78.78 0 00-.39.68zm1.1-2.35l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z" />
-    </svg>
-  );
-}
-
-function ClaudeIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2c.8 2.8 2.2 4.2 5 5-2.8.8-4.2 2.2-5 5-.8-2.8-2.2-4.2-5-5 2.8-.8 4.2-2.2 5-5z" transform="rotate(0 12 12)" />
-      <path d="M12 2c.8 2.8 2.2 4.2 5 5-2.8.8-4.2 2.2-5 5-.8-2.8-2.2-4.2-5-5 2.8-.8 4.2-2.2 5-5z" transform="rotate(90 12 12)" />
-    </svg>
-  );
-}
-
-function GrokIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <path
-          key={i}
-          d="M12 12L12.6 2.2c-.2-.3-1-.3-1.2 0z"
-          transform={`rotate(${i * 36} 12 12)`}
-        />
-      ))}
-    </svg>
-  );
-}
-
-function GeminiIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 3c0 4.97 4.03 9 9 9-4.97 0-9 4.03-9 9 0-4.97-4.03-9-9-9 4.97 0 9-4.03 9-9z" />
-    </svg>
-  );
-}
-
 const socialLinks = [
   {
     label: "LinkedIn",
@@ -96,29 +57,6 @@ const socialLinks = [
     label: "Medium",
     href: "https://medium.com/@articog.com",
     Icon: MediumIcon,
-  },
-];
-
-const aiLinks = [
-  {
-    label: "ChatGPT",
-    href: "https://chat.openai.com/?q=" + encodeURIComponent("Tell me about Articog, an AI-native film and production company: https://articog.com"),
-    Icon: OpenAIIcon,
-  },
-  {
-    label: "Claude",
-    href: "https://claude.ai/new?q=" + encodeURIComponent("Tell me about Articog, an AI-native film and production company: https://articog.com"),
-    Icon: ClaudeIcon,
-  },
-  {
-    label: "Grok",
-    href: "https://grok.com/?q=" + encodeURIComponent("Tell me about Articog, an AI-native film and production company: https://articog.com"),
-    Icon: GrokIcon,
-  },
-  {
-    label: "Gemini",
-    href: "https://gemini.google.com/app?q=" + encodeURIComponent("Tell me about Articog, an AI-native film and production company: https://articog.com"),
-    Icon: GeminiIcon,
   },
 ];
 
@@ -185,22 +123,6 @@ export function Footer() {
             <p className="type-small leading-relaxed max-w-xs text-white/60">
               AI-native film and creative production for brands and modern marketing teams.
             </p>
-
-            <p className="type-small mb-2 text-white/40">Ask AI about Articog</p>
-            <div className="relative z-10 mb-4 flex gap-2">
-              {aiLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
-                >
-                  <s.Icon size={16} />
-                </a>
-              ))}
-            </div>
 
             <div className="flex items-center gap-3.5 pt-4">
               {socialLinks.map((s) => (

@@ -70,13 +70,13 @@ export default function AIVideoProductionPage() {
                 <div className="flex h-full w-full flex-col justify-between gap-4">
                   <div>
                     <Heading as="h3" size="card" className="text-white transition-colors group-hover:text-white">{item.title}</Heading>
-                    <p className="type-body mt-2 text-white/50">{item.desc}</p>
+                    <p className={`type-body mt-2 text-white/50 ${item.path ? "flex items-center justify-between gap-4" : ""}`}>
+                      <span>{item.desc}</span>
+                      {item.path && (
+                        <ArrowRight className="w-3 h-3 shrink-0 font-bold tracking-widest text-white/30 transition-colors group-hover:translate-x-1 group-hover:text-white/60" aria-hidden="true" />
+                      )}
+                    </p>
                   </div>
-                  {item.path && (
-                    <div className="flex shrink-0 items-center text-xs font-bold tracking-widest text-white/30 transition-colors uppercase group-hover:text-white/60">
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                    </div>
-                  )}
                 </div>
               );
 
