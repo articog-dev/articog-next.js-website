@@ -116,7 +116,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className={`fixed right-0 top-0 z-[1100] flex h-[100dvh] w-[85%] max-w-[360px] flex-col transform transition-transform duration-300 ease-out ${
+        className={`fixed right-0 top-0 z-[1100] flex max-h-[100dvh] w-[85%] max-w-[360px] flex-col transform transition-transform duration-300 ease-out ${
           isDrawerVisible ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ background: "#060606", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
@@ -147,7 +147,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Nav */}
         <nav
           className="mobile-nav-scroll flex flex-1 min-h-0 flex-col overflow-y-auto px-4 pb-8"
-          style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.25) transparent" }}
+          style={{ maxHeight: "calc(100dvh - 4rem)", scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.25) transparent" }}
         >
           {menuGroups.map((group) => {
             const isGroupOpen = openGroups.includes(group.label);
