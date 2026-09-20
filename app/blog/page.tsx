@@ -14,7 +14,7 @@ export default function BlogPage() {
   return (
     <div className="bg-black min-h-screen">
       <PageHero title="Blog" compact />
-      <Section>
+      <Section className="pt-0">
         <Container>
           <BlogFilterList posts={blogPosts} />
         </Container>

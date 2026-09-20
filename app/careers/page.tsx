@@ -13,7 +13,7 @@ export default function CareersPage() {
   return (
     <div className="bg-black min-h-screen">
       <PageHero title="Join the future of production" compact />
-      <Section>
+      <Section className="pt-0">
         <Container>
 
           <div className="max-w-4xl mx-auto mb-24">
