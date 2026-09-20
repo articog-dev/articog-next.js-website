@@ -12,12 +12,12 @@ export default function TermsOfServicePage() {
     {
       title: "Acceptance of Terms",
       content:
-        "By accessing or using the Articog website, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our site.",
+        "By accessing or using the Articog Tech LLP website, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our site.",
     },
     {
       title: "Description of Services",
       content:
-        "This website describes Articog's AI-powered creative production services, including video production, ad creative, social content, product visuals, and related creative strategy. Specific client engagements are governed by separate service agreements executed between Articog and the client.",
+        'Articog refers to Articog Tech LLP ("Articog", "we", "us", or "our"). This website describes Articog\'s AI-powered creative production services, including video production, ad creative, social content, product visuals, and related creative strategy. Specific client engagements are governed by separate service agreements executed between Articog and the client.',
     },
     {
       title: "Intellectual Property",

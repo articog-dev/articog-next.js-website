@@ -149,7 +149,7 @@ export function Footer() {
         >
           <div className="flex flex-col gap-1">
             <p className="font-sans text-xs text-white/60">
-              &copy; {new Date().getFullYear()} Articog. All rights reserved.
+              &copy; {new Date().getFullYear()} Articog Tech LLP. All rights reserved.
             </p>
 
             <p className="type-small mb-2 text-white/55 uppercase tracking-widest">
