@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { getImageProps } from "next/image";
 import Image from "next/image";
-import { Plus, X } from "lucide-react";
-import { Container, Section, Heading } from "@/components/ui";
-import { ScrollReveal } from "@/components/animations";
+import { Plus } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
+import { Button, Container, Section, Heading } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 
 type IndustryDetail = {
@@ -173,144 +173,211 @@ const industryDetails: IndustryDetail[] = [
   },
 ];
 
+const IMAGE_WIDTH = 900;
+const IMAGE_HEIGHT = 1200;
+const IMAGE_SIZES = "(min-width: 1280px) 356px, (min-width: 768px) 40vw, 100vw";
+
 export function IndustryDetails() {
-  const [openIndustryId, setOpenIndustryId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState(industryDetails[0].id);
+  const [scrollRequest, setScrollRequest] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const tablistRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const prefetchedIds = useRef(new Set<string>());
+
+  const validIndustryId = (id: string | null) =>
+    id && industryDetails.some((industry) => industry.id === id) ? id : null;
+
+  const scrollActiveTabIntoView = useCallback((id: string) => {
+    const tab = tabRefs.current[industryDetails.findIndex((industry) => industry.id === id)];
+    tab?.scrollIntoView({ block: "nearest", inline: "center" });
+  }, []);
+
+  const selectIndustry = useCallback((id: string, updateHash = true) => {
+    setActiveId(id);
+    setHasInteracted(true);
+    if (updateHash && window.location.hash !== `#${id}`) {
+      window.history.replaceState(null, "", `#${id}`);
+    }
+    const panel = document.getElementById(id);
+    if (panel && panel.getBoundingClientRect().top < 100) {
+      setScrollRequest((current) => current + 1);
+    }
+    scrollActiveTabIntoView(id);
+  }, [scrollActiveTabIntoView]);
+
+  useEffect(() => {
+    const applyLocation = () => {
+      const id = validIndustryId(window.location.hash.slice(1));
+      if (id) {
+        setActiveId(id);
+        setScrollRequest((current) => current + 1);
+      }
+    };
+    const handleDocumentClick = (event: MouseEvent) => {
+      const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#"]');
+      if (!anchor || new URL(anchor.href, window.location.href).pathname !== window.location.pathname) return;
+      const id = validIndustryId(new URL(anchor.href, window.location.href).hash.slice(1));
+      if (id) selectIndustry(id, false);
+    };
+
+    applyLocation();
+    window.addEventListener("hashchange", applyLocation);
+    window.addEventListener("popstate", applyLocation);
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      window.removeEventListener("hashchange", applyLocation);
+      window.removeEventListener("popstate", applyLocation);
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [selectIndustry]);
+
+  useEffect(() => {
+    if (!scrollRequest) return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(activeId)?.scrollIntoView({ block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [activeId, scrollRequest]);
+
+  const prefetchImage = (industry: IndustryDetail) => {
+    if (prefetchedIds.current.has(industry.id)) return;
+    prefetchedIds.current.add(industry.id);
+    const { props } = getImageProps({
+      src: industry.image,
+      alt: industry.imageAlt,
+      width: IMAGE_WIDTH,
+      height: IMAGE_HEIGHT,
+      sizes: IMAGE_SIZES,
+    });
+    const image = new window.Image();
+    image.sizes = props.sizes ?? IMAGE_SIZES;
+    image.srcset = props.srcSet ?? "";
+    image.src = props.src;
+  };
+
+  const handleTabKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === "Home" ? 0 : event.key === "End" ? industryDetails.length - 1 : index + (event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 1);
+    const nextIndex = (direction + industryDetails.length) % industryDetails.length;
+    const nextId = industryDetails[nextIndex].id;
+    selectIndustry(nextId);
+    tabRefs.current[nextIndex]?.focus();
+  };
 
   return (
     <Section size="lg" className="border-t border-white/10 text-left">
       <Container>
-        <div className="mb-12 max-w-2xl md:mb-16">
-          <ScrollReveal>
-            <Heading as="h2" size="section" className="text-white">Creative production by industry</Heading>
-          </ScrollReveal>
-        </div>
-        <div className="space-y-6">
-          {industryDetails.map((industry) => (
-            <IndustryCard
-              key={industry.id}
-              industry={industry}
-              isOpen={openIndustryId === industry.id}
-              onToggle={() =>
-                setOpenIndustryId((currentId) =>
-                  currentId === industry.id ? null : industry.id,
-                )
-              }
-            />
-          ))}
+        <div className="grid gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
+          <div
+            ref={tablistRef}
+            role="tablist"
+            aria-label="Industries"
+            className="sticky top-[100px] z-30 relative -mx-[var(--spacing-page-x)] mb-10 flex gap-2 overflow-x-auto border-y border-white/10 bg-black/90 px-[var(--spacing-page-x)] py-3 backdrop-blur xl:top-28 xl:mx-0 xl:mb-0 xl:flex-col xl:gap-0 xl:self-start xl:overflow-visible xl:border-y-0 xl:border-l xl:border-white/20 xl:bg-transparent xl:p-0 xl:pl-0"
+          >
+            {industryDetails.map((industry, index) => {
+              const isActive = activeId === industry.id;
+              return (
+                <button
+                  key={industry.id}
+                  ref={(tab) => { tabRefs.current[index] = tab; }}
+                  id={`tab-${industry.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={industry.id}
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => selectIndustry(industry.id)}
+                  onMouseEnter={() => prefetchImage(industry)}
+                  onFocus={() => prefetchImage(industry)}
+                  onKeyDown={(event) => handleTabKeyDown(event, index)}
+                  className={`shrink-0 rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white xl:-ml-px xl:w-full xl:rounded-none xl:border-y-0 xl:border-r-0 xl:border-l-2 xl:px-4 xl:py-3 xl:text-left ${
+                    isActive ? "border-white bg-white text-black xl:bg-transparent xl:text-white" : "border-white/15 text-white/60 hover:text-white xl:border-transparent xl:hover:border-white/60"
+                  }`}
+                >
+                  {industry.title}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="min-w-0 space-y-16">
+            {industryDetails.map((industry, index) => {
+              const isActive = activeId === industry.id;
+              const eagerImage = index === 0;
+              return (
+                <section
+                  key={industry.id}
+                  id={industry.id}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${industry.id}`}
+                  hidden={!isActive}
+                  className={`scroll-mt-40 xl:scroll-mt-28 md:grid md:grid-cols-[5fr_7fr] md:gap-10 ${hasInteracted ? "motion-safe:animate-fade-in" : ""}`}
+                >
+                  <div className="relative mb-8 aspect-[4/3] self-start rounded-xl bg-white/[0.04] ring-1 ring-white/10 md:sticky md:top-28 md:mb-0 md:aspect-[3/4]">
+                    <Image
+                      src={industry.image}
+                      alt={industry.imageAlt}
+                      fill
+                      width={IMAGE_WIDTH}
+                      height={IMAGE_HEIGHT}
+                      sizes={IMAGE_SIZES}
+                      loading={eagerImage ? "eager" : "lazy"}
+                      fetchPriority={eagerImage ? "high" : undefined}
+                      className="rounded-xl object-cover"
+                    />
+                  </div>
+
+                  <div className="min-w-0">
+                    <Heading as="h2" size="card" className="type-h3 text-[1.75rem] leading-tight text-white md:text-[2rem]">
+                      {industry.title}
+                    </Heading>
+                    <p className="mt-4 max-w-[46ch] type-body-lg text-white/70">{industry.positioning}</p>
+
+                    <h3 className="mt-10 type-label text-white/60">Key considerations</h3>
+                    <dl className="mt-4 divide-y divide-white/10">
+                      {industry.considerations.map((consideration) => (
+                        <div key={consideration.title} className="grid gap-2 py-5 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] sm:gap-6">
+                          <dt className="type-body font-medium text-white">{consideration.title}</dt>
+                          <dd className="type-small leading-relaxed text-white/55">{consideration.description}</dd>
+                        </div>
+                      ))}
+                    </dl>
+
+                    {industry.serviceLinks ? (
+                      <div className="mt-8 flex flex-wrap gap-3">
+                        {industry.serviceLinks.map((service) => (
+                          <Button key={service.href} asChild variant="secondary" size="md">
+                            <Link href={service.href}>{service.label}</Link>
+                          </Button>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {industry.faqs ? (
+                      <div className="mt-10 border-t border-white/10 pt-6">
+                        <h3 className="type-label text-white/60">Frequently asked questions</h3>
+                        <div className="mt-4 divide-y divide-white/10">
+                          {industry.faqs.map((faq) => (
+                            <details key={faq.question} className="group py-4">
+                              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left type-body font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                                {faq.question}
+                                <Plus className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true" />
+                              </summary>
+                              <p className="mt-3 max-w-[60ch] type-small leading-relaxed text-white/55">{faq.answer}</p>
+                            </details>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </section>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </Section>
-  );
-}
-
-function IndustryCard({
-  industry,
-  isOpen,
-  onToggle,
-}: {
-  industry: IndustryDetail;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  const detailsId = `${industry.id}-details`;
-
-  return (
-    <section
-      id={industry.id}
-      className="scroll-mt-28 overflow-hidden rounded-2xl border border-white/[0.1] transition-colors hover:border-white/[0.16]"
-    >
-      <button
-        type="button"
-        aria-controls={detailsId}
-        aria-expanded={isOpen}
-        aria-label={`${isOpen ? "Collapse" : "Expand"} ${industry.title}`}
-        onClick={onToggle}
-        className="flex min-h-[88px] w-full items-center justify-between gap-6 px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white md:min-h-[112px] md:px-8"
-      >
-        <div className="flex min-w-0 items-center gap-4">
-          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
-            <Image
-              src={industry.image}
-              alt={industry.imageAlt}
-              fill
-              sizes="56px"
-              className="object-contain"
-            />
-          </div>
-          <Heading as="h3" size="card" className="min-w-0 text-white">{industry.title}</Heading>
-        </div>
-        {isOpen ? (
-          <X className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
-        ) : (
-          <Plus className="h-5 w-5 shrink-0 text-white/55" aria-hidden="true" />
-        )}
-      </button>
-
-      <div
-        id={detailsId}
-        aria-hidden={!isOpen}
-        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="min-h-0 overflow-hidden px-6 pb-6 md:px-8 md:pb-8">
-          <div className="border-t border-white/[0.08] pt-6">
-            <div className="relative mb-6 w-full overflow-hidden rounded-xl">
-              <Image
-                src={industry.image}
-                alt=""
-                width={1600}
-                height={1200}
-                sizes="(max-width: 768px) 100vw, 800px"
-                className="h-auto w-full object-contain"
-              />
-            </div>
-            <h4 className="type-label text-white/45">Additional Details</h4>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {industry.considerations.map((consideration) => (
-                <div
-                  key={consideration.title}
-                  className="h-full rounded-xl border border-white/[0.08] p-5"
-                >
-                  <h5 className="type-h4 text-white">{consideration.title}</h5>
-                  <p className="mt-2 type-small leading-relaxed text-white/50">
-                    {consideration.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {industry.serviceLinks && (
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/[0.08] pt-5">
-                {industry.serviceLinks.map((service) => (
-                  <Link
-                    key={service.href}
-                    href={service.href}
-                    className="type-small text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
-                  >
-                    {service.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {industry.faqs && (
-              <div className="mt-8 border-t border-white/[0.08] pt-5">
-                <h4 className="type-label text-white/45">Frequently Asked Questions</h4>
-                <div className="mt-4 space-y-5">
-                  {industry.faqs.map((faq) => (
-                    <div key={faq.question}>
-                      <h5 className="type-small font-semibold text-white/80">{faq.question}</h5>
-                      <p className="mt-1 type-small leading-relaxed text-white/50">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }

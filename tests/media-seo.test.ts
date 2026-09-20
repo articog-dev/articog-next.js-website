@@ -17,10 +17,11 @@ describe("media SEO metadata", () => {
     expect(showcaseSource).not.toMatch(/alt:\s*["'](?:image|photo|visual|banner|placeholder)["']/i);
   });
 
-  it("uses empty alt text for the repeated decorative industry detail image", () => {
+  it("uses the industry alt text for its single panel image", () => {
     const source = read("components", "sections", "IndustryDetails.tsx");
 
-    expect(source).toMatch(/src=\{industry\.image\}\s+alt=""/);
+    expect(source).toMatch(/src=\{industry\.image\}\s+alt=\{industry\.imageAlt\}/);
+    expect(source.match(/<Image\b/g)).toHaveLength(1);
   });
 
   it("keeps important video thumbnails and embeds accessible", () => {
@@ -49,7 +50,6 @@ describe("media SEO metadata", () => {
     expect(lazyVideo).toContain("<video");
     expect(lazyVideo).toContain("IntersectionObserver");
     expect(read("components", "sections", "Pipeline.tsx")).toContain("LazyVideo");
-    expect(read("app", "industries", "page.tsx")).toContain("poster=");
     expect(read("app", "services", "page.tsx")).toContain("poster=");
   });
 

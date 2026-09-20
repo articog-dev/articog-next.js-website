@@ -37,6 +37,18 @@ describe("performance boundaries", () => {
     expect(styles).not.toContain("will-change: transform, opacity");
   });
 
+  it("loads one responsive industry image per active panel", () => {
+    const industries = read("components", "sections", "IndustryDetails.tsx");
+    const industriesPage = read("app", "industries", "page.tsx");
+
+    expect(industries.match(/<Image\b/g)).toHaveLength(1);
+    expect(industries).toContain('loading={eagerImage ? "eager" : "lazy"}');
+    expect(industries).toContain("hidden={!isActive}");
+    expect(industries).toContain("const IMAGE_SIZES");
+    expect(industries).not.toContain("width={1600}");
+    expect(industriesPage).not.toContain("<video");
+  });
+
   it("removes hydration from stateless global layout components", () => {
     expect(read("components", "layout", "AnnouncementBar.tsx")).not.toContain('"use client"');
     expect(read("components", "layout", "FooterNavSections.tsx")).not.toContain('"use client"');
