@@ -35,7 +35,7 @@ export function OurApproach() {
           </p>
         </div>
 
-        <div className="relative mb-16 aspect-video w-full overflow-hidden rounded-2xl border border-white/[0.08]">
+        <div className="mb-16 w-full overflow-hidden rounded-2xl border border-white/[0.08]">
           <LazyVideo
             autoPlay
             muted
@@ -44,7 +44,7 @@ export function OurApproach() {
             controls={false}
             preload="metadata"
             src="https://media.articog.com/videos/backgrounds/Web%202.mp4"
-            className="h-full w-full object-contain"
+            className="block w-full h-auto object-contain"
             aria-hidden="true"
           />
         </div>
