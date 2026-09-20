@@ -22,7 +22,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "dtc-ecommerce",
     title: "DTC & E-commerce",
-    image: "https://media.articog.com/images/industries/hf_20260818_214821_48f2e6b1-ba70-44f8-ad42-6be016116cce.png",
+    image: "https://media.articog.com/images/industries/hf_20260824_113929_29d338fa-48bb-42e7-a9b7-3df9b4f9f696.png",
     imageAlt: "DTC and E-commerce creative production",
     positioning: "Performance driven creative for brands that need to convert across crowded digital storefronts.",
     considerations: [
@@ -39,7 +39,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "saas-technology",
     title: "SaaS & Technology",
-    image: "https://media.articog.com/images/industries/hf_20260820_141918_ca92d85c-8d99-49d9-b1d3-8074f1781fe1.png",
+    image: "https://media.articog.com/images/industries/hf_20260821_140424_ce9065bf-18b5-4ced-b351-d15c768fa9ef.png",
     imageAlt: "SaaS and technology creative production",
     positioning: "Accurate UI and clear storytelling for products whose value can be difficult to explain at a glance.",
     considerations: [
@@ -56,7 +56,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "consumer-electronics",
     title: "Consumer Electronics",
-    image: "https://media.articog.com/images/industries/hf_20260820_235708_42e28d52-6747-4770-9165-759f885b31e9.png",
+    image: "https://media.articog.com/images/industries/hf_20260821_140506_857b5698-f96f-4c82-a82a-30b58ef048af.png",
     imageAlt: "Consumer electronics creative production",
     positioning: "Product visuals that highlight technical precision, design, and the details customers need to evaluate.",
     considerations: [
@@ -87,7 +87,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "automotive-mobility",
     title: "Automotive & Mobility",
-    image: "https://media.articog.com/images/industries/hf_20260821_140424_ce9065bf-18b5-4ced-b351-d15c768fa9ef.png",
+    image: "https://media.articog.com/images/industries/hf_20260820_141918_ca92d85c-8d99-49d9-b1d3-8074f1781fe1.png",
     imageAlt: "Automotive and mobility creative production",
     positioning: "Cinematic vehicle films and marketing visuals produced with careful attention to accuracy and compliance.",
     considerations: [
@@ -105,7 +105,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "food-beverage",
     title: "Food & Beverage",
-    image: "https://media.articog.com/images/industries/hf_20260821_140506_857b5698-f96f-4c82-a82a-30b58ef048af.png",
+    image: "https://media.articog.com/images/industries/hf_20260824_074616_9560ae97-37a1-45ab-82dc-cb6087d9e2f6.png",
     imageAlt: "Food and beverage creative production",
     positioning: "Product visuals and seasonal campaigns that make food and beverage products consistent, appetizing, and ready to scale.",
     considerations: [
@@ -126,7 +126,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "fashion-lifestyle",
     title: "Fashion & Lifestyle",
-    image: "https://media.articog.com/images/industries/hf_20260824_074616_9560ae97-37a1-45ab-82dc-cb6087d9e2f6.png",
+    image: "https://media.articog.com/images/industries/hf_20260818_214821_48f2e6b1-ba70-44f8-ad42-6be016116cce.png",
     imageAlt: "Fashion and lifestyle creative production",
     positioning: "Campaign visuals and social content for brands balancing trend speed, volume, and a consistent aesthetic.",
     considerations: [
@@ -147,7 +147,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "real-estate",
     title: "Real Estate",
-    image: "https://media.articog.com/images/industries/hf_20260824_113929_29d338fa-48bb-42e7-a9b7-3df9b4f9f696.png",
+    image: "https://media.articog.com/images/industries/hf_20260820_235708_42e28d52-6747-4770-9165-759f885b31e9.png",
     imageAlt: "Real estate creative production",
     positioning: "Immersive visuals for listings, developments, and investors while keeping property representation factual.",
     considerations: [
@@ -161,7 +161,7 @@ const industryDetails: IndustryDetail[] = [
   {
     id: "additional-applications",
     title: "Additional Industry Applications",
-    image: "/industries/additional-applications.jpg",
+    image: "https://media.articog.com/images/industries/hf_20260824_093331_32e45f5b-915d-4fa8-850b-6d53f87f3d3d.png",
     imageAlt: "Additional industry creative applications",
     positioning: "Additional vertical considerations can shape production, from product fidelity to localization and booking-focused assets.",
     considerations: [
@@ -234,7 +234,7 @@ function IndustryCard({
               alt={industry.imageAlt}
               fill
               sizes="56px"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <Heading as="h3" size="card" className="min-w-0 text-white">{industry.title}</Heading>
@@ -255,13 +255,14 @@ function IndustryCard({
       >
         <div className="min-h-0 overflow-hidden px-6 pb-6 md:px-8 md:pb-8">
           <div className="border-t border-white/[0.08] pt-6">
-            <div className="relative mb-6 aspect-[21/9] w-full overflow-hidden rounded-xl">
+            <div className="relative mb-6 w-full overflow-hidden rounded-xl">
               <Image
                 src={industry.image}
                 alt=""
-                fill
+                width={1600}
+                height={1200}
                 sizes="(max-width: 768px) 100vw, 800px"
-                className="object-cover"
+                className="h-auto w-full object-contain"
               />
             </div>
             <h4 className="type-label text-white/45">Additional Details</h4>

@@ -28,7 +28,7 @@ export default function IndustriesPage() {
               loop
               controls={false}
               preload="metadata"
-              poster="https://media.articog.com/images/industries/hf_20260818_214821_48f2e6b1-ba70-44f8-ad42-6be016116cce.png"
+              poster="https://media.articog.com/images/industries/hf_20260821_145134_975711a2-9355-45d5-bee6-c98937fb8031.png"
               className="absolute inset-0 h-full w-full object-cover"
               aria-hidden="true"
             >
