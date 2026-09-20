@@ -14,7 +14,7 @@ const visuals = [
   { src: "https://media.articog.com/images/home/hf_20260821_090327_a7cb6c2d-ed73-4de2-a1ff-498adbad1cf5.png", alt: "Articog creative visual study 06" },
   { src: "https://media.articog.com/images/home/hf_20260821_131535_0ae95932-a02b-4b7c-95b3-3e2675785418.png", alt: "Articog creative visual study 07" },
   { src: "https://media.articog.com/images/home/hf_20260821_192021_c1548334-e857-427a-987e-89212111b9b8.png", alt: "Articog creative visual study 08" },
-  { src: "https://media.articog.com/images/home/hf_20260821_214952_8c65be78-37b4-4595-a53b-f902d3cfbd.png", alt: "Articog creative visual study 09" },
+  { src: "https://media.articog.com/images/home/hf_20260821_214952_8c65be78-37b4-4595-a53b-f90254d3cfbd.png", alt: "Articog creative visual study 09" },
 ];
 
 type Visual = (typeof visuals)[number];
@@ -200,9 +200,6 @@ export function HomeVisualShowcase() {
         <Container>
           <div className="showcase-navigation" aria-label="Visual gallery navigation">
             <button type="button" onClick={() => goTo(currentIndex() - 1)} disabled={activeIndex === 0} aria-label="Previous image" className="showcase-navigation__button"><ChevronLeft size={18} strokeWidth={1.5} /></button>
-            <div className="showcase-dots" role="group" aria-label="Choose an image">
-              {visuals.map((visual, index) => <button key={visual.alt} type="button" className="showcase-dot" aria-label={`Show image ${index + 1} of ${visuals.length}`} aria-current={index === activeIndex ? "true" : undefined} onClick={() => goTo(index)} />)}
-            </div>
             <button type="button" onClick={() => goTo(currentIndex() + 1)} disabled={activeIndex === visuals.length - 1} aria-label="Next image" className="showcase-navigation__button"><ChevronRight size={18} strokeWidth={1.5} /></button>
           </div>
           <p className="sr-only" aria-live="polite">Image {activeIndex + 1} of {visuals.length}</p>
