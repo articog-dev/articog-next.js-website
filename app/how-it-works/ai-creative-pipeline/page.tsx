@@ -14,23 +14,23 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export default function AICreativePipelinePage() {
   const stages = [
     {
-      title: "Brief Intake & Direction Mapping",
-      desc: "Creative direction is set before any generation begins. We translate your goals into a technical blueprint that guides the entire pipeline.",
+      title: "Direction",
+      desc: "Define the product, brand story and visual direction.",
       icon: ClipboardList,
     },
     {
-      title: "Multi Model Generation",
-      desc: "Our pipeline runs across multiple specialized AI models and iteration loops, selecting and blending the best outputs for your specific brand.",
+      title: "AI Production",
+      desc: "Produce faster with the right AI workflows.",
       icon: Cpu,
     },
     {
-      title: "Human Curation & Quality Review",
-      desc: "Every output is reviewed by a human creative lead against your brand guidelines for fidelity, style, and quality before it ever reaches you.",
+      title: "Review",
+      desc: "Keep only the strongest, on-brand outputs.",
       icon: UserCheck,
     },
     {
-      title: "Feedback Driven Refinement",
-      desc: "Your feedback is incorporated in fast, automated iteration cycles, moving at the speed of software rather than slow, manual revision rounds.",
+      title: "Refine",
+      desc: "Edit, finish and protect brand consistency.",
       icon: RefreshCw,
     },
   ];

@@ -19,7 +19,7 @@ export default function SocialCreativePage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Social Creative" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Social Creative
+              Monthly social content, produced faster.
             </Heading>
           </div>
         </Container>

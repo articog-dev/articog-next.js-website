@@ -24,7 +24,7 @@ const industryDetails: IndustryDetail[] = [
     title: "DTC & E-commerce",
     image: "https://media.articog.com/images/industries/hf_20260824_113929_29d338fa-48bb-42e7-a9b7-3df9b4f9f696.png",
     imageAlt: "DTC and E-commerce creative production",
-    positioning: "Performance driven creative for brands that need to convert across crowded digital storefronts.",
+    positioning: "More product ads, visuals and social content with less repeated production.",
     considerations: [
       { title: "Creative Fatigue", description: "Keep fresh variants moving through the funnel so audiences do not see the same creative for too long." },
       { title: "Production Pressure", description: "Scale output without letting production costs and studio logistics constrain campaign velocity." },
@@ -58,7 +58,7 @@ const industryDetails: IndustryDetail[] = [
     title: "Consumer Electronics",
     image: "https://media.articog.com/images/industries/hf_20260821_140506_857b5698-f96f-4c82-a82a-30b58ef048af.png",
     imageAlt: "Consumer electronics creative production",
-    positioning: "Product visuals that highlight technical precision, design, and the details customers need to evaluate.",
+    positioning: "Product films and feature stories produced faster with AI.",
     considerations: [
       { title: "Product Accuracy", description: "Keep form, materials, color, labeling, and technical details faithful to the real product." },
       { title: "Feature Complexity", description: "Show how features work through clear product storytelling and visual explanation." },
@@ -72,7 +72,7 @@ const industryDetails: IndustryDetail[] = [
     title: "Beauty & Skincare",
     image: "https://media.articog.com/images/industries/hf_20260821_065459_75e8a226-bee0-4740-bcc4-75bad6fd3f96.png",
     imageAlt: "Beauty and skincare creative production",
-    positioning: "Premium lifestyle creative that keeps product benefits, visual identity, and market variation consistent.",
+    positioning: "Product stories, visuals and monthly campaign content with lower shoot dependency.",
     considerations: [
       { title: "Premium Positioning", description: "Build polished visual worlds that support the tone and aspiration of the brand." },
       { title: "Scalable Production", description: "Extend product and campaign imagery across a larger content calendar without repeating one treatment." },
@@ -128,7 +128,7 @@ const industryDetails: IndustryDetail[] = [
     title: "Fashion & Lifestyle",
     image: "https://media.articog.com/images/industries/hf_20260818_214821_48f2e6b1-ba70-44f8-ad42-6be016116cce.png",
     imageAlt: "Fashion and lifestyle creative production",
-    positioning: "Campaign visuals and social content for brands balancing trend speed, volume, and a consistent aesthetic.",
+    positioning: "Faster monthly campaign and social content with less traditional production.",
     considerations: [
       { title: "Trend Speed", description: "Respond to cultural and platform moments without rebuilding every campaign from scratch." },
       { title: "Content Volume", description: "Keep social and campaign channels active with a repeatable stream of relevant creative." },
@@ -149,7 +149,7 @@ const industryDetails: IndustryDetail[] = [
     title: "Real Estate",
     image: "https://media.articog.com/images/industries/hf_20260820_235708_42e28d52-6747-4770-9165-759f885b31e9.png",
     imageAlt: "Real estate creative production",
-    positioning: "Immersive visuals for listings, developments, and investors while keeping property representation factual.",
+    positioning: "Cinematic property stories with reduced physical production where suitable.",
     considerations: [
       { title: "Asset Scarcity", description: "Build compelling property narratives when photography, footage, or finished spaces are limited." },
       { title: "Geographic Constraints", description: "Create visual coverage for properties and developments that are difficult to access or not yet complete." },

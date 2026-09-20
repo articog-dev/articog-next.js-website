@@ -13,8 +13,8 @@ export default function CustomersPage() {
   return (
     <div className="bg-black">
       <PageHero
-        title="Production examples and client stories."
-        subtitle="Client stories are published with approved scope, deliverables, timelines, channels, and outcomes."
+        title="How brands produce more with Articog."
+        subtitle="Approved stories can show the product story, deliverables, production approach, timeline and outcomes."
       />
 
       {/* Stories Grid */}

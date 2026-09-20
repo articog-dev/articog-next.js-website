@@ -61,7 +61,7 @@ export default function PostProductionPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Post-Production" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Post-Production
+              Final polish, ready for every channel.
             </Heading>
           </div>
         </Container>

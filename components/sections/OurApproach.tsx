@@ -6,9 +6,9 @@ import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 const approachItems = [
   {
-    title: "Creative Direction First",
+    title: "AI-native production",
     description:
-      "Every project starts with the idea, audience, brand, visual language, and campaign objective. We set the direction before generation begins.",
+      "Less shooting, less production time and lower production budget where suitable.",
   },
   {
     title: "AI-Native Production",
@@ -51,13 +51,13 @@ export function OurApproach() {
       <Container>
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <Heading as="h2" size="section" className="mb-6">
-            Human-directed. AI-native.
+            Brand storytelling
           </Heading>
           <p
             className="type-body md:text-lg leading-relaxed"
             style={{ color: "rgba(255,255,255,0.65)" }}
           >
-            AI expands what can be produced and how quickly it can move. Human creative direction decides what should be made, how it should feel, and whether it is right for the brand. Every project combines both.
+            AI speeds up production; people protect the brand, story and final quality.
           </p>
         </div>
 

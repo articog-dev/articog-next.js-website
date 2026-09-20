@@ -46,7 +46,7 @@ export default function WorkPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Real outcomes. No composites.
+              Brand stories and product creative produced with Articog.
             </Heading>
           </div>
 

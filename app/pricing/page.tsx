@@ -22,7 +22,7 @@ export default function PricingPage() {
       <Container>
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Heading as="h1" size="hero" className="mb-6 text-white">
-            Let’s plan your next creative sprint.
+            Production budget built around monthly output.
           </Heading>
 
           <p
@@ -32,7 +32,7 @@ export default function PricingPage() {
               lineHeight: 1.65,
             }}
           >
-            Tell us what you are building, how fast you need it, and what success looks like.
+            Monthly subscription and project pricing depend on output, formats and complexity, with AI-native production designed to reduce production overhead where suitable.
           </p>
         </div>
 

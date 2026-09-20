@@ -48,7 +48,7 @@ export default function ProductLaunchSolutionPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Product Launch Campaigns" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Product Launch Campaigns
+              Every product needs a story. Build it once, scale it everywhere.
             </Heading>
           </div>
         </Container>

@@ -63,7 +63,7 @@ export default function CompareAIToolsPage() {
         <Container>
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Articog vs AI Tools Only
+              AI gives speed. Articog gives the brand story and finished production.
             </Heading>
           </div>
         </Container>

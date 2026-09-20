@@ -225,7 +225,7 @@ export const serviceGroups = [
         title: "AI Post-Production",
         href: "/services/post-production",
         description:
-          "Professional editing, color grading, and technical finishing.",
+            "Brand films, commercials, launches and social video with less traditional production.",
       },
       {
         title: "Motion Graphics",
@@ -305,7 +305,7 @@ export default function ServicesPage() {
       <Section className="border-t border-white/[0.05] py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-3xl">
-            <Heading as="h2" size="section" className="text-white">One production partner. Every campaign format.</Heading>
+            <Heading as="h2" size="section" className="text-white">Film, video, image and audio—produced faster with AI.</Heading>
           </div>
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2">
             {organizedServices.map((service) => (

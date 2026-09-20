@@ -14,27 +14,27 @@ export default function SolutionsPage() {
   const cards = [
     {
       title: "Monthly Creative Subscription",
-      description: "Steady creative output for recurring campaign demand.",
+      description: "Ongoing film, video, image, social and audio production with lower production overhead.",
       href: "/solutions/monthly-creative-subscription",
     },
     {
       title: "Performance Marketing Creative",
-      description: "High-volume creative built for testing and scale.",
+      description: "Produce recurring video and static variants faster with AI through the same monthly production model.",
       href: "/solutions/performance-marketing",
     },
     {
       title: "Product Launch Campaigns",
-      description: "Launch support from concept to channel rollout.",
+      description: "Create the product story, then scale it into film, social, visuals, audio and campaign variations with AI-native production.",
       href: "/solutions/product-launch",
     },
     {
       title: "In-House Creative Overflow",
-      description: "Extra production capacity without full-time hiring.",
+      description: "Extend your team with faster AI-native production without adding a larger traditional production setup.",
       href: "/solutions/creative-team-overflow",
     },
     {
       title: "Enterprise Creative Production",
-      description: "Structured production for large teams and governance needs.",
+      description: "Structured monthly or project-based production for teams that need more content, lower production overhead and consistent brand control.",
       href: "/solutions/enterprise",
     },
     {
@@ -50,7 +50,7 @@ export default function SolutionsPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Production built around your workflow.
+              Production built around your monthly content needs.
             </Heading>
           </div>
 

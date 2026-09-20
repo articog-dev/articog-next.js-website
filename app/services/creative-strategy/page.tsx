@@ -38,7 +38,7 @@ export default function CreativeStrategyPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Creative Strategy & Concepting" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Creative Strategy & Concepting
+              Start with the product. Build the story.
             </Heading>
           </div>
         </Container>

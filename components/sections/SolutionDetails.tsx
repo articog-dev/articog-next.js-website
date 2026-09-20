@@ -12,7 +12,7 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
   monthly: [
     {
       title: "Always On Content",
-      description: "Continuous cross channel production for brands that need a steady flow of organic and paid content without more headcount.",
+      description: "Ongoing film, video, image, social and audio production with lower production overhead.",
       items: [
         { title: "Continuous Production", description: "An ongoing content engine that keeps video, social, and visual channels active across campaign cycles." },
         { title: "Scalable Volume", description: "Output can flex with your needs while maintaining a consistent brand system and delivery cadence." },
@@ -23,7 +23,7 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
   performance: [
     {
       title: "Testing & Optimization",
-      description: "A structured performance system that turns creative production into a repeatable learning loop.",
+      description: "Produce recurring video and static variants faster with AI through the same monthly production model.",
       items: [
         { title: "Testing Hypotheses", description: "Each test begins with a clear question rather than random variation." },
         { title: "Variant Matrices", description: "Organize hooks, visual changes, copy, and CTAs so each result is actionable." },
@@ -52,7 +52,7 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
   launch: [
     {
       title: "Multi-Format Campaigns",
-      description: "Extend one modular campaign concept across every format and channel with coordinated delivery.",
+      description: "Create the product story, then scale it into film, social, visuals, audio and campaign variations with AI-native production.",
       items: [
         { title: "Modular Concept", description: "Build a campaign idea that can flex across video, static, audio, and social outputs." },
         { title: "Asset Map", description: "Plan every required asset and its destination before production begins." },
@@ -83,7 +83,7 @@ const detailGroups: Record<SolutionCategory, DetailGroup[]> = {
   overflow: [
     {
       title: "Creative Team Extension",
-      description: "Confidential production support that extends agency capacity while remaining invisible to the end client.",
+      description: "Extend your team with faster AI-native production without adding a larger traditional production setup.",
       items: [
         { title: "Confidentiality", description: "NDA-backed collaboration and confidential handling of agency and client materials." },
         { title: "White-Label Communication", description: "Work can be delivered under the agency's brand and communication model." },

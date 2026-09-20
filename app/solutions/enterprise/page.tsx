@@ -46,7 +46,7 @@ export default function EnterpriseSolutionPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Enterprise AI Production" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Enterprise AI Production
+              AI-native production for high-volume brand teams.
             </Heading>
           </div>
         </Container>

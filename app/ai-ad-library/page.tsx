@@ -56,7 +56,7 @@ export default function AdLibraryPage() {
     <div className="bg-black min-h-screen">
       <PageHero
         title="AI Ad Library"
-        subtitle="A curated collection of AI-native creative examples across industries and formats."
+        subtitle="A curated collection of work created with faster, lower-overhead AI-native production."
       />
       <Section>
         <Container>

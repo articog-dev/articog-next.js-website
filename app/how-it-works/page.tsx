@@ -16,25 +16,25 @@ export default function HowItWorksPage() {
     {
       step: 1,
       title: "Brief",
-      description: "Share your goal and references. We align on-brand voice, visual direction, and performance objectives before production.",
+      description: "Brief — Share the product, brand story, goal and references.",
       tag: "Day 1",
     },
     {
       step: 2,
       title: "Generate",
-      description: "Our AI pipeline calibrated to the brand explores creative directions and delivers first outputs within hours.",
+      description: "Create — We build the story and produce faster with AI.",
       tag: "Day 1 to 2",
     },
     {
       step: 3,
       title: "Refine",
-      description: "Review a curated selection. Creative directors refine each asset through fast feedback cycles.",
+      description: "Refine — Human direction keeps the work on-brand.",
       tag: "Day 2 to 3",
     },
     {
       step: 4,
       title: "Deliver",
-      description: "Receive assets ready for production in the formats, aspect ratios, and language variants your campaign needs.",
+      description: "Deliver — Receive finished content for every required channel and format.",
       tag: "Day 3 to 4",
     },
   ];

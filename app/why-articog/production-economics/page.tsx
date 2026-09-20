@@ -36,10 +36,10 @@ export default function ProductionEconomicsPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Why Articog", href: "/why-articog" }, { label: "Production Cost & ROI Guide" }]} />
           <div className="mx-auto max-w-3xl text-center mb-20">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Production Cost & ROI Guide
+              Less production. Less time. Less budget.
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Understanding the potential cost and time considerations of AI-native production. Any engagement model depends on scope, cadence, and deliverables.
+              AI-native production can reduce traditional production requirements, turnaround time and production cost for suitable creative. Final budget depends on scope, complexity and deliverables.
             </p>
           </div>
 

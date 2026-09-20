@@ -19,7 +19,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   "ai-video": [
     {
       title: "Brand Films & Storytelling",
-      description: "High craft brand storytelling with narrative depth and state of the art AI visuals.",
+      description: "Create brand stories, commercials, product videos, launches and social content faster, with lower production overhead and less dependence on traditional shoots.",
       items: [
         { title: "Story Development", description: "Concept and narrative direction aligned to your brand voice and goals." },
         { title: "Cinematic Direction", description: "Visual style, pacing, and emotional tone curated to match your aesthetic." },
@@ -69,7 +69,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   "ad-creative": [
     {
       title: "Static Ads & Key Visuals",
-      description: "High volume static creative and campaign visual systems for paid social, display, and broader channel rollouts.",
+      description: "Video and static ad creative for every product, produced faster with AI for recurring testing and campaigns.",
       items: [
         { title: "Platform Coverage", description: "Optimized creative for Meta, LinkedIn, and display network formats." },
         { title: "Templates + Net-New", description: "A strategic mix of fast template variants and net-new custom concepts." },
@@ -101,7 +101,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   social: [
     {
       title: "Monthly Social Content",
-      description: "A predictable stream of on-brand social content delivered around your calendar and campaign priorities.",
+      description: "Recurring reels, short-form video, creator-style content and social assets through one monthly subscription.",
       items: [
         { title: "Calendar Tailored Posts", description: "Posts and graphics planned around your content calendar and priorities." },
         { title: "Consistent Brand Voice", description: "Every asset matches your brand voice and visual identity." },
@@ -130,7 +130,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   "product-visuals": [
     {
       title: "AI Product Photography",
-      description: "Photorealistic product shots without a physical studio shoot, built from your actual product assets.",
+      description: "Create product imagery, campaign visuals and e-commerce content faster with AI, reducing repeated studio production while protecting product and brand accuracy.",
       items: [
         { title: "E-commerce Listings", description: "Clean, consistent catalog imagery for Shopify, Amazon, and your own store." },
         { title: "Lifestyle Shots", description: "Products placed in on-brand interiors and outdoor environments." },
@@ -162,7 +162,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   strategy: [
     {
       title: "Campaign Creative Strategy",
-      description: "Plan a full campaign system, not just a single asset, with an integrated framework for every channel.",
+      description: "Concepts, scripts, storyboards and visual direction built around the product and brand before AI production begins.",
       items: [
         { title: "Campaign Idea", description: "A unifying creative idea that ties the campaign across touchpoints." },
         { title: "Audience & Message", description: "Clear definition of who the campaign speaks to and what it says." },
@@ -194,7 +194,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   "post-production": [
     {
       title: "Video Editing",
-      description: "Turn raw footage into polished, on-brand final cuts for modern attention spans and platform requirements.",
+      description: "Editing, motion, compositing, cleanup, sound and mastering for the final brand-ready output.",
       items: [
         { title: "Editorial Assembly", description: "Structure raw footage into a compelling, high-retention narrative cut." },
         { title: "Multiple Versions", description: "Cutdowns and alternate lengths for different platform requirements." },
@@ -233,7 +233,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   audio: [
     {
       title: "AI Voiceover",
-      description: "Clear, professional narration for video, ads, and explainers with responsible AI voice production.",
+      description: "Audio for films, ads, social and campaigns—produced as part of the same ongoing brand content system.",
       items: [
         { title: "Voice Rights & Consent", description: "Synthetic voices are properly licensed or consented to and never unauthorized clones." },
         { title: "No Impersonation", description: "We do not produce content that impersonates a real individual without authorization." },

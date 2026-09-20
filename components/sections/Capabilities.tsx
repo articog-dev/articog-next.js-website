@@ -13,7 +13,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
       <Container className="relative z-20">
         <div className="mb-section-sm max-w-2xl">
           <ScrollReveal>
-            <Heading as="h2" size="section" className="mb-0 text-white">Every creative format,<br />delivered.</Heading>
+            <Heading as="h2" size="section" className="mb-0 text-white">One monthly production partner for every product.</Heading>
           </ScrollReveal>
         </div>
 

@@ -73,7 +73,7 @@ export default function ContactPage() {
           {/* Header */}
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Contact Us
+              Build your next brand story with Articog.
             </Heading>
           </div>
 

@@ -7,8 +7,8 @@ import type { SiteContent } from "@/types";
 export const siteContent: SiteContent = {
   hero: {
     eyebrow: "AI NATIVE FILM & PRODUCTION",
-    headline: "High-quality campaign creative. Produced at AI speed.",
-    body: "Human-directed production for video, social, product visuals, and paid campaigns—built for faster iteration and clearer brand control.",
+    headline: "More brand content. Lower production cost. Faster with AI.",
+    body: "Articog is an AI Native Film & Production Company for brands. We create stories around every product through AI-native production—reducing traditional production, production time and budget. One monthly subscription can cover brand films, commercials, social content, product visuals and audio.",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
     secondaryCtaLabel: "View Work",
@@ -43,28 +43,28 @@ export const siteContent: SiteContent = {
       step: 1,
       title: "Brief",
       description:
-        "Share your goal and references. We set direction first.",
+        "Brief — Share the product, brand story, goal and references.",
       tag: "Typical workflow",
     },
     {
       step: 2,
       title: "Generate",
       description:
-        "Our production team uses brand references and AI workflows to create a curated first round for review.",
+        "Create — We build the story and produce faster with AI.",
       tag: "Typical workflow",
     },
     {
       step: 3,
       title: "Refine",
       description:
-        "Review a curated selection. We refine it from your feedback in fast, low-overhead cycles.",
+        "Refine — Human direction keeps the work on-brand.",
       tag: "Typical workflow",
     },
     {
       step: 4,
       title: "Deliver",
       description:
-        "Receive launch-ready masters and platform versions, organized for your campaign.",
+        "Deliver — Receive finished content for every required channel and format.",
       tag: "Typical workflow",
     },
   ],

@@ -19,7 +19,7 @@ export default function ProductVisualsPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Product Visual Content" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Product Visual Content
+              Every product, without a new shoot every time.
             </Heading>
           </div>
         </Container>

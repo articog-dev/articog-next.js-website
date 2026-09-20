@@ -15,13 +15,13 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 export default function MonthlySubscriptionPage() {
   const steps = [
     {
-      title: "Flexible Scope",
-      desc: "A mix of formats video, social, and visual tailored specifically to your monthly needs and goals.",
+      title: "Flexible Mix",
+      desc: "Use the monthly scope across products, campaigns and formats.",
       icon: Layers,
     },
     {
-      title: "Consistent Cadence",
-      desc: "Assets delivered on a predictable monthly schedule, ensuring your channels never go dark.",
+      title: "Scalable Output",
+      desc: "Create more content without scaling traditional production every time.",
       icon: Calendar,
     },
     {
@@ -39,7 +39,7 @@ export default function MonthlySubscriptionPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Monthly Creative Subscription" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Monthly Creative Subscription
+              Your monthly AI-native production partner.
             </Heading>
           </div>
         </Container>

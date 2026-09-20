@@ -16,8 +16,8 @@ export default function AboutPage() {
   return (
     <div className="bg-black">
       <PageHero
-        title="Production craft. Rebuilt for the AI era."
-        subtitle="Articog is an AI Native Film &amp; Production Company producing brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams, with a primary focus on the United States and select global markets."
+        title="Brand production, rebuilt with AI."
+        subtitle="Articog is an AI Native Film &amp; Production Company helping brands create stories for every product with faster AI-native production and lower production overhead."
       />
 
       <Section size="md" className="border-t border-white/[0.05]">
@@ -32,7 +32,7 @@ export default function AboutPage() {
             </div>
             <div className="space-y-7 text-[1.05rem] leading-[1.9] text-white/60 lg:max-w-[54rem]">
               <p>
-                <span className="font-bold text-white">Articog</span> is an AI-Native Film &amp; Production Company. We produce brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams.
+                <span className="font-bold text-white">Articog</span> is an AI Native Film &amp; Production Company helping brands create stories for every product with faster AI-native production and lower production overhead.
               </p>
               <p>
                 The name says it all: <span className="font-bold text-white">Artificial + Cognition.</span>
@@ -41,10 +41,10 @@ export default function AboutPage() {
                 <span className="font-bold text-white">Articog</span> builds on production experience from <span className="font-bold text-white">Govada Creative Productions</span>, with a focus on craft, review discipline, finishing, rights, and delivery.
               </p>
               <p>
-                Clients can engage Articog through project-based work, ongoing creative support, or strategic production partnerships, depending on scope, cadence, and volume. Our human-directed, AI-native workflow keeps creative direction, review, and delivery connected.
+                We reduce traditional production, production time and budget through AI—while keeping brand direction, storytelling and final quality human-led.
               </p>
               <p className="italic font-medium text-white/75">
-                Ongoing creative support is one engagement option for brands with recurring demand. The model flexes around campaign scope, cadence, and volume while keeping one consistent production standard.
+                Brands can use Articog monthly for recurring film, video, image, social and audio production, or engage us for individual projects.
               </p>
             </div>
           </div>

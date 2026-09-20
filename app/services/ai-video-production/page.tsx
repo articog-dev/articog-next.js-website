@@ -53,7 +53,7 @@ export default function AIVideoProductionPage() {
     <div className="bg-black min-h-screen">
       <JsonLd data={faqSchema} />
       <PageHero
-        title="AI Video Production"
+        title="Brand films and commercials at AI speed."
         breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "AI Video Production" }]} />}
       />
 

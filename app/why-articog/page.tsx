@@ -91,10 +91,10 @@ export default function WhyArticogPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              More speed. More control.
+              More output. Less production cost. Faster production.
             </Heading>
             <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
-              A production partner built for campaign volume and brand consistency.
+              Articog uses AI-native production to reduce traditional shoots, production time and budget—helping brands create more content around every product without losing the story or brand direction.
             </p>
           </div>
         </Container>

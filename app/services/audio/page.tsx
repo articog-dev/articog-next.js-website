@@ -42,7 +42,7 @@ export default function AudioPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Audio & Sound" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Audio & Sound
+              Voice, music and sound in the same monthly workflow.
             </Heading>
           </div>
         </Container>

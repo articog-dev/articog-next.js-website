@@ -63,7 +63,7 @@ export default function ComparisonPage() {
         <Container>
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Articog vs Traditional Production
+              Less traditional production. More AI-native production.
             </Heading>
           </div>
         </Container>

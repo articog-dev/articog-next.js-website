@@ -156,7 +156,7 @@ export default function BookADemoPage() {
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
-              Book a Demo
+              Tell us what your brand needs every month.
             </Heading>
           </div>
 
@@ -239,7 +239,7 @@ export default function BookADemoPage() {
 
               <div className="flex flex-col gap-2.5">
                 <label htmlFor="projectContext" className="type-nav text-white/70">
-                  Tell us about your project
+                  Tell us what your brand needs every month.
                 </label>
                 <Textarea
                   id="projectContext"
