@@ -42,8 +42,8 @@ function OpenAIIcon({ size = 16 }: { size?: number }) {
 
 function ClaudeIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2l1.3 5.6L18 5l-3.2 4.6 5.6 1.3L15.5 12l4.9 1.1-5.6 1.3L18 19l-4.7-2.6L12 22l-1.3-5.6L6 19l3.2-4.6-5.6-1.3L8.5 12l-4.9-1.1 5.6-1.3L6 5l4.7 2.6z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+      <path d="M12 2v6M12 16v6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M2 12h6M16 12h6M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2" />
     </svg>
   );
 }
@@ -51,7 +51,7 @@ function ClaudeIcon({ size = 16 }: { size?: number }) {
 function GrokIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" />
+      <path d="M12 1.5l2.7 8.3 8.3 2.7-8.3 2.7L12 23l-2.7-8.3L1 12l8.3-2.7z" />
     </svg>
   );
 }
@@ -59,7 +59,7 @@ function GrokIcon({ size = 16 }: { size?: number }) {
 function GeminiIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2c0 5.523 4.477 10 10 10-5.523 0-10 4.477-10 10 0-5.523-4.477-10-10-10 5.523 0 10-4.477 10-10z" />
+      <path d="M12 3c0 4.97 4.03 9 9 9-4.97 0-9 4.03-9 9 0-4.97-4.03-9-9-9 4.97 0 9-4.03 9-9z" />
     </svg>
   );
 }
