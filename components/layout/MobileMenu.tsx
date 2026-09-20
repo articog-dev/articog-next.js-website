@@ -116,10 +116,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className="fixed inset-x-0 top-0 z-[1100] flex max-h-[100dvh] w-screen flex-col overflow-hidden transition-[clip-path] duration-400 ease-out"
+        className="fixed inset-x-0 top-0 z-[1100] flex h-[100dvh] w-[85%] max-w-[360px] flex-col overflow-hidden transition-[clip-path] duration-400 ease-out"
         style={{
           background: "#060606",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          borderRight: "1px solid rgba(255,255,255,0.08)",
           clipPath: isDrawerVisible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
         }}
         role="dialog"
@@ -148,7 +148,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         {/* Nav */}
         <nav
-          className="mobile-nav-scroll flex flex-col overflow-y-auto px-4 pb-8"
+          className="mobile-nav-scroll flex flex-1 min-h-0 flex-col overflow-y-auto px-4 pb-8"
           style={{ maxHeight: "calc(100dvh - 4rem)", scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.25) transparent" }}
         >
           {menuGroups.map((group) => {
