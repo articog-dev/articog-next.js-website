@@ -43,7 +43,7 @@ describe("performance boundaries", () => {
     expect(read("components", "layout", "FooterNavSections.tsx")).not.toContain('"use client"');
   });
 
-  it("does not introduce master media or remove established Cloudinary assets", () => {
+  it("does not introduce master media or legacy media hosts", () => {
     const sources = [
       read("components", "sections", "Hero.tsx"),
       read("components", "sections", "HomeVisualShowcase.tsx"),
@@ -51,9 +51,9 @@ describe("performance boundaries", () => {
       read("components", "sections", "Pipeline.tsx"),
     ];
 
-    expect(sources.join("\n")).toContain("https://res.cloudinary.com/");
+    expect(sources.join("\n")).toContain("https://media.articog.com/");
+    expect(sources.join("\n")).not.toMatch(/https:\/\/res\.[^/]+\.com\//);
     expect(sources.join("\n")).not.toMatch(/\b(?:4k|master|production-master)\b/i);
-    expect(sources.join("\n")).not.toContain("media.articog.com");
   });
 
   it("preserves critical SEO/schema output while optimizing media", () => {

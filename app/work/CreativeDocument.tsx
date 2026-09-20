@@ -24,7 +24,7 @@ const projects: PortfolioProject[] = [
     filters: ["Video", "Product"],
     description: "Cinematic product storytelling shaped for premium positioning and campaign use.",
     number: "01",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795062/hf_20260821_063718_d5d2aeb0-64d1-4655-ac8a-ba9e4f5e6c02.png",
+    src: "https://media.articog.com/images/work/hf_20260819_002024_6e675e1e-9283-48e5-ab4e-c2a4abd3b20d.png",
     alt: "Articog product film visual study for footwear",
   },
   {
@@ -33,7 +33,7 @@ const projects: PortfolioProject[] = [
     filters: ["Product", "Social"],
     description: "Product-focused campaign imagery developed for visual consistency across formats.",
     number: "02",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795062/hf_20260821_055524_1a0e7292-1148-46c0-a291-3d9e153b9bb0.png",
+    src: "https://media.articog.com/images/work/hf_20260820_002828_19680ddc-75c5-40e3-a968-f11dfd4f0cdf.png",
     alt: "Articog beauty campaign visual study",
   },
   {
@@ -42,7 +42,7 @@ const projects: PortfolioProject[] = [
     filters: ["Video", "Industries"],
     description: "Architectural visualization with cinematic environments and a finished-film sensibility.",
     number: "03",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_075104_3836aa7f-4399-4256-9bc3-022992543e67.png",
+    src: "https://media.articog.com/images/work/hf_20260820_212101_1b0feafa-521a-438c-b845-04a078aaf4bc.png",
     alt: "Articog real estate cinematic visual study",
   },
   {
@@ -51,7 +51,7 @@ const projects: PortfolioProject[] = [
     filters: ["Video", "Social"],
     description: "Fashion-led visual direction exploring styling, movement, and cinematic composition.",
     number: "04",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_083052_c34ee14c-6e9a-4c17-8f3b-34e90869a8c4.png",
+    src: "https://media.articog.com/images/work/hf_20260821_060749_04cf9ead-df82-4dad-b7f9-451505044554.png",
     alt: "Articog fashion film visual study",
   },
   {
@@ -60,7 +60,7 @@ const projects: PortfolioProject[] = [
     filters: ["Video", "Product"],
     description: "Product storytelling designed to carry a clear visual idea across campaign formats.",
     number: "05",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795060/hf_20260821_081708_9bf57f26-425b-47f7-b199-bad796e7f256.png",
+    src: "https://media.articog.com/images/work/hf_20260821_184517_d7cc6079-08da-4f26-a875-856a57a37e9f%20(1).png",
     alt: "Articog consumer technology product film study",
   },
   {
@@ -69,13 +69,10 @@ const projects: PortfolioProject[] = [
     filters: ["Video"],
     description: "An original visual study exploring art direction, depth, and campaign composition.",
     number: "06",
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788795059/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png",
+    src: "https://media.articog.com/images/work/hf_20260821_215341_1bb116bb-4c22-4a9e-ab3a-58b22905b47c.png",
     alt: "Articog original visual study",
   },
 ];
-
-const getCloudinaryUrl = (src: string, width: number) =>
-  src.replace("/image/upload/", `/image/upload/f_auto,q_auto:good,dpr_auto,w_${width},c_limit/`);
 
 export function CreativeDocument() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -286,7 +283,7 @@ export function CreativeDocument() {
                 aria-label={`Open ${project.alt} in a larger preview`}
               >
                 <Image
-                  src={getCloudinaryUrl(project.src, 1200)}
+                  src={project.src}
                   alt={project.alt}
                   fill
                   sizes="(max-width: 640px) 88vw, (max-width: 1024px) 72vw, 58vw"
@@ -318,7 +315,7 @@ export function CreativeDocument() {
           </button>
           <div className={styles.modalFrame}>
             <Image
-              src={getCloudinaryUrl(selectedProject.src, 1800)}
+                src={selectedProject.src}
               alt={selectedProject.alt}
               fill
               sizes="(max-width: 768px) 90vw, 70vw"

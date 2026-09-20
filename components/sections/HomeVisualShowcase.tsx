@@ -7,56 +7,51 @@ import { Container, Section } from "@/components/ui";
 
 const visuals = [
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789713/hf_20260821_065643_6976e0a6-c34e-406a-bd95-c7e797053c7f.png",
+    src: "https://media.articog.com/images/home/hf_20260819_130252_867ce98c-7c62-4093-aa2a-9940160ef6be.png",
     alt: "Articog creative visual study 01",
     slot: "showcase-slot showcase-slot--left",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789712/hf_20260821_084936_75678ff3-a64b-4a52-8282-9f4ba50ff8ee.png",
+    src: "https://media.articog.com/images/home/hf_20260820_141918_ca92d85c-8d99-49d9-b1d3-8074f1781fe1.png",
     alt: "Articog creative visual study 02",
     slot: "showcase-slot showcase-slot--center",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789712/hf_20260821_143722_0fdbe9fd-0d85-40e9-a33a-08a4801eb7bf.png",
+    src: "https://media.articog.com/images/home/hf_20260820_211043_2067285a-ec62-4784-bdfc-c4861f418d96.png",
     alt: "Articog creative visual study 03",
     slot: "showcase-slot showcase-slot--right",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789710/hf_20260824_074433_da1464ea-2e00-45ae-bf12-e5590296e0b4.png",
+    src: "https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png",
     alt: "Articog creative visual study 04",
     slot: "showcase-slot showcase-slot--left",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789709/hf_20260824_093120_776966e5-5a3b-42f8-91b7-f4a8644b915b.png",
+    src: "https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png",
     alt: "Articog creative visual study 05",
     slot: "showcase-slot showcase-slot--center",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789708/hf_20260824_092558_3f5c4ba3-c830-439e-8eb4-dbd9f6a85296.png",
+    src: "https://media.articog.com/images/home/hf_20260821_090327_a7cb6c2d-ed73-4de2-a1ff-498adbad1cf5.png",
     alt: "Articog creative visual study 06",
     slot: "showcase-slot showcase-slot--right",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789708/hf_20260824_093331_32e45f5b-915d-4fa8-850b-6d53f87f3d3d.png",
+    src: "https://media.articog.com/images/home/hf_20260821_131535_0ae95932-a02b-4b7c-95b3-3e2675785418.png",
     alt: "Articog creative visual study 07",
     slot: "showcase-slot showcase-slot--left-lower",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789710/hf_20260824_075254_b3fcf38d-1bc9-463d-9a13-2aaf2ceeed8e.png",
+    src: "https://media.articog.com/images/home/hf_20260821_192021_c1548334-e857-427a-987e-89212111b9b8.png",
     alt: "Articog creative visual study 08",
     slot: "showcase-slot showcase-slot--center-lower",
   },
   {
-    src: "https://res.cloudinary.com/hmy5ctzy/image/upload/v1788789718/hf_20260821_140321_73af4c8f-f252-4c41-8f83-de3d906fbcba.png",
+    src: "https://media.articog.com/images/home/hf_20260821_214952_8c65be78-37b4-4595-a53b-f90254d3cfbd.png",
     alt: "Articog creative visual study 09",
     slot: "showcase-slot showcase-slot--right-lower",
   },
 ];
-
-const getCloudinaryUrl = (src: string, width: number) =>
-  src.replace("/image/upload/", `/image/upload/f_auto,dpr_auto,w_${width},c_limit/`);
-
-const getModalImageUrl = (src: string) => getCloudinaryUrl(src, 2400);
 
 const LOOP_COPIES = 3;
 const LOOP_START_INDEX = visuals.length;
@@ -305,7 +300,7 @@ export function HomeVisualShowcase() {
                     aria-current={activeIndex === visualIndex ? "true" : undefined}
                   >
                     <NextImage
-                      src={getCloudinaryUrl(visual.src, 1600)}
+                      src={visual.src}
                       sizes="(max-width: 640px) 68vw, (max-width: 1024px) 36vw, 25vw"
                       alt={visual.alt}
                       width={1600}
@@ -361,7 +356,7 @@ export function HomeVisualShowcase() {
             <X size={20} />
           </button>
           <NextImage
-            src={getModalImageUrl(selectedVisual.src)}
+            src={selectedVisual.src}
             alt={selectedVisual.alt}
             width={2400}
             height={3200}

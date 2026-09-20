@@ -280,18 +280,18 @@ export default function ServicesPage() {
             loop
             controls={false}
             preload="metadata"
-            poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:good,f_auto,w_1600,so_0/v1786976270/web_1_1_1_1.jpg"
+            poster="https://media.articog.com/images/services/hf_20260820_165439_f355b7b5-fc30-4852-9c69-cb8433145326.png"
             className="h-full w-full object-cover"
             aria-hidden="true"
           >
             <source
-              src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1600,dpr_auto,c_limit/v1786976270/web_1_1_1_1.mp4"
+              src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
               type="video/mp4"
               media="(min-width: 769px)"
             />
 
             <source
-              src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_960,dpr_auto,c_limit/v1786976270/web_1_1_1_1.mp4"
+              src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
               type="video/mp4"
             />
           </video>

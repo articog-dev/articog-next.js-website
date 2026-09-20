@@ -28,12 +28,12 @@ export default function IndustriesPage() {
               loop
               controls={false}
               preload="metadata"
-              poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:good,f_auto,w_1600,so_0/v1786974706/Web_2.jpg"
+              poster="https://media.articog.com/images/industries/hf_20260818_214821_48f2e6b1-ba70-44f8-ad42-6be016116cce.png"
               className="absolute inset-0 h-full w-full object-cover"
               aria-hidden="true"
             >
               <source
-                src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1600,dpr_auto,c_limit/v1786974706/Web_2.mp4"
+                src="https://media.articog.com/videos/Web%202.mp4"
                 type="video/mp4"
               />
             </video>

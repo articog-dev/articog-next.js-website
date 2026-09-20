@@ -64,14 +64,14 @@ export default function AboutPage() {
               <FounderPreviewCard
                 name="Sai Teja Inampudi"
                 role="CEO & Founder"
-                imageSrc="/sai-teja-inampudi.png"
+                imageSrc="https://media.articog.com/images/about/Sai%20Teja%20Inampudi.png"
                 imageAlt="Sai Teja Inampudi"
                 profileHref="/about/founder/sai-teja-inampudi"
               />
               <FounderPreviewCard
                 name="Dr. Harika Govada"
                 role="MD & Co-Founder"
-                imageSrc="/harika-govada.png.png"
+                imageSrc="https://media.articog.com/images/about/harika-govada.png.png"
                 imageAlt="Dr. Harika Govada"
                 profileHref="/about/founder/dr-harika-govada"
                 circular

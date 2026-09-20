@@ -16,6 +16,7 @@ import {
   CaseStudies,
   FinalCTA,
   HomeVisualShowcase,
+  OurApproach,
   
 } from "@/components/sections";
 
@@ -132,6 +133,7 @@ export default function HomePage() {
         </div>
       </div>
       <HomeVisualShowcase />
+      <OurApproach />
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
       <CaseStudies />

@@ -82,10 +82,10 @@ export function Pipeline({ steps }: PipelineProps) {
           preload={shouldLoad ? "auto" : "none"}
           src={
             shouldLoad
-              ? "https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:eco,w_1920/v1786976270/web_1_1_1_1.mp4"
+                ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4"
               : undefined
           }
-          poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:eco,f_auto,w_1920,so_0/v1786976270/web_1_1_1_1.jpg"
+          poster="https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png"
           className="h-full w-full object-cover"
           aria-hidden="true"
         />

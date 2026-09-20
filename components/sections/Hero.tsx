@@ -85,12 +85,12 @@ export function Hero({ content }: HeroProps) {
           loop
           controls={false}
           preload="metadata"
-          poster="https://res.cloudinary.com/hmy5ctzy/video/upload/q_auto:good,f_auto,w_1280,so_0/v1786961383/Web_3.jpg"
+          poster="https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png"
           className="h-full w-full object-cover"
           aria-hidden="true"
         >
           <source
-            src="https://res.cloudinary.com/hmy5ctzy/video/upload/f_mp4,vc_h264,q_auto:good,w_1280,dpr_auto,c_limit/v1786961383/Web_3.mp4"
+            src="https://media.articog.com/videos/backgrounds/Web%203.mp4"
             type="video/mp4"
           />
         </video>

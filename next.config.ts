@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.56.1"],
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "media.articog.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "img.youtube.com" },
@@ -27,8 +26,8 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://assets.calendly.com https://articog.breezy.hr https://subscribe-forms.beehiiv.com",
               "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
               "font-src 'self' data:",
-              "img-src 'self' data: blob: https://res.cloudinary.com https://media.articog.com https://images.unsplash.com https://img.youtube.com https://miro.medium.com",
-              "media-src 'self' https://res.cloudinary.com https://media.articog.com",
+              "img-src 'self' data: blob: https://media.articog.com https://images.unsplash.com https://img.youtube.com https://miro.medium.com",
+              "media-src 'self' https://media.articog.com",
               "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.resend.com https://*.googleapis.com https://articog.breezy.hr https://calendly.com https://*.calendly.com https://assets.calendly.com",
               "frame-src 'self' https://calendly.com https://*.calendly.com https://www.youtube.com https://www.youtube-nocookie.com",
               "form-action 'self'",

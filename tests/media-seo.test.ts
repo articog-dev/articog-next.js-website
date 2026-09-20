@@ -49,7 +49,7 @@ describe("media SEO metadata", () => {
     }
   });
 
-  it("preserves existing Cloudinary media and does not introduce guessed or master URLs", () => {
+  it("uses Hostinger media without guessed or master URLs", () => {
     const sourceFiles = [
       ["components", "sections", "HomeVisualShowcase.tsx"],
       ["components", "sections", "Hero.tsx"],
@@ -58,12 +58,12 @@ describe("media SEO metadata", () => {
 
     for (const file of sourceFiles) {
       const source = read(...file);
-      expect(source).not.toContain("media.articog.com");
+      expect(source).not.toMatch(/https:\/\/res\.[^/]+\.com\//);
       expect(source).not.toMatch(/\b(?:4k|master|production-master)\b/i);
     }
 
     expect(read("components", "sections", "HomeVisualShowcase.tsx")).toContain(
-      "https://res.cloudinary.com/hmy5ctzy/image/upload/",
+      "https://media.articog.com/images/home/",
     );
   });
 
