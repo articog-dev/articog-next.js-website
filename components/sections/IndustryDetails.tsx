@@ -320,8 +320,6 @@ export function IndustryDetails() {
                       src={industry.image}
                       alt={industry.imageAlt}
                       fill
-                      width={IMAGE_WIDTH}
-                      height={IMAGE_HEIGHT}
                       sizes={IMAGE_SIZES}
                       loading={eagerImage ? "eager" : "lazy"}
                       fetchPriority={eagerImage ? "high" : undefined}

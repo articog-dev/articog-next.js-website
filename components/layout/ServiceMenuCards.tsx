@@ -41,8 +41,9 @@ export function ServiceMenuDesktop({ onClose }: ServiceMenuProps) {
               />
             </div>
             <div className="relative z-10">
-              <h3 className="mb-1 text-[14.5px] font-medium leading-snug text-white">{item.title}</h3>
-              <p className="line-clamp-2 text-[12px] leading-relaxed text-white/55">{item.description}</p>
+              <h3 className="mb-1 min-h-[44px] text-[14.5px] font-medium leading-snug text-white line-clamp-2">
+                {item.title}
+              </h3>
             </div>
           </Link>
         ))}
