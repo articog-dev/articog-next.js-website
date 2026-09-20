@@ -124,7 +124,7 @@ export function Footer() {
               AI-native film and creative production for brands and modern marketing teams.
             </p>
 
-            <div className="flex items-center gap-3.5 pt-4">
+            <div className="flex items-center gap-2 pt-4">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
@@ -132,9 +132,9 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
                 >
-                  <s.Icon size={16} />
+                  <s.Icon size={14} />
                 </a>
               ))}
             </div>
