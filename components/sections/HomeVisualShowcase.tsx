@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import NextImage from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Container, Section } from "@/components/ui";
+import { ScrollReveal } from "@/components/animations";
 
 const visuals = [
   { src: "https://media.articog.com/images/home/hf_20260819_130252_867ce98c-7c62-4093-aa2a-9940160ef6be.png", alt: "Articog creative visual study 01" },
@@ -183,32 +184,34 @@ export function HomeVisualShowcase() {
   return (
     <>
       <Section className="overflow-hidden border-y border-white/[0.06] bg-[#080808] py-10 md:py-14">
-        <div className="showcase-stage" role="group" aria-roledescription="carousel" aria-label="Selected Articog visual studies" tabIndex={0} onKeyDown={handleKeyDown}>
-          <div ref={scrollRef} className="showcase-track" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerEnd} onPointerCancel={handlePointerEnd}>
-            {visuals.map((visual, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <div key={visual.alt} ref={(slot) => { slotRefs.current[index] = slot; }} className="showcase-slot">
-                  <button
-                    ref={(item) => { itemRefs.current[index] = item; }}
-                    type="button"
-                    className="showcase-item"
-                    tabIndex={isActive ? 0 : -1}
-                    aria-current={isActive ? "true" : undefined}
-                    aria-label={`Open ${visual.alt}`}
-                    onClick={(event) => {
-                      if (!isActive) goTo(index);
-                      triggerRef.current = event.currentTarget;
-                      setSelectedVisual(visual);
-                    }}
-                  >
-                    <NextImage src={visual.src} sizes="(max-width: 640px) min(66vw, 15rem), (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
-                  </button>
-                </div>
-              );
-            })}
+        <ScrollReveal>
+          <div className="showcase-stage" role="group" aria-roledescription="carousel" aria-label="Selected Articog visual studies" tabIndex={0} onKeyDown={handleKeyDown}>
+            <div ref={scrollRef} className="showcase-track" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerEnd} onPointerCancel={handlePointerEnd}>
+              {visuals.map((visual, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <div key={visual.alt} ref={(slot) => { slotRefs.current[index] = slot; }} className="showcase-slot">
+                    <button
+                      ref={(item) => { itemRefs.current[index] = item; }}
+                      type="button"
+                      className="showcase-item transition-transform duration-200 hover:scale-[1.02]"
+                      tabIndex={isActive ? 0 : -1}
+                      aria-current={isActive ? "true" : undefined}
+                      aria-label={`Open ${visual.alt}`}
+                      onClick={(event) => {
+                        if (!isActive) goTo(index);
+                        triggerRef.current = event.currentTarget;
+                        setSelectedVisual(visual);
+                      }}
+                    >
+                      <NextImage src={visual.src} sizes="(max-width: 640px) min(66vw, 15rem), (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
         <Container>
           <div className="showcase-navigation" aria-label="Visual gallery navigation">
             <button type="button" onClick={() => goTo(currentIndex() - 1)} disabled={activeIndex === 0} aria-label="Previous image" className="showcase-navigation__button"><ChevronLeft size={18} strokeWidth={1.5} /></button>

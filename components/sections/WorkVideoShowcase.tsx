@@ -23,7 +23,7 @@ export function WorkVideoShowcase() {
         {videoCards.map((video) => {
           const videoId = video.url ? getYouTubeId(video.url) : null;
           const card = (
-            <div className="group relative aspect-video overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.03]">
+            <div className="group relative aspect-video overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.03] transition-transform duration-200 hover:-translate-y-1">
               {videoId ? (
                 <Image
                   src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}

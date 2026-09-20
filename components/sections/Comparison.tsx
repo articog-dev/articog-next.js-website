@@ -1,4 +1,5 @@
 import { Container, Section } from "@/components/ui";
+import { ScrollReveal } from "@/components/animations";
 import { Check, X } from "lucide-react";
 import type { ComparisonRow } from "@/types";
 
@@ -16,7 +17,8 @@ export function Comparison({ rows }: ComparisonProps) {
         {/* Heading removed from comparison section to avoid duplication with hero */}
 
 
-        <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
+        <ScrollReveal>
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08] transition-transform duration-200 hover:-translate-y-1">
           <div className="hidden overflow-x-auto sm:block">
             <div>
               <div className="grid grid-cols-1 border-b border-white/[0.08] sm:grid-cols-2">
@@ -68,7 +70,8 @@ export function Comparison({ rows }: ComparisonProps) {
               </div>
             ))}
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
 
         <p className="mt-5 text-center font-sans text-xs text-muted-safe">
           Engagement fit depends on scope, formats, and delivery requirements.

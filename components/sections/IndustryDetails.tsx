@@ -315,7 +315,7 @@ export function IndustryDetails() {
                   hidden={!isActive}
                   className={`scroll-mt-40 xl:scroll-mt-28 md:grid md:grid-cols-[5fr_7fr] md:gap-10 ${hasInteracted ? "motion-safe:animate-fade-in" : ""}`}
                 >
-                  <div className="relative mb-8 aspect-[4/3] self-start rounded-xl bg-white/[0.04] ring-1 ring-white/10 md:sticky md:top-28 md:mb-0 md:aspect-[3/4]">
+                  <div className="relative mb-8 aspect-[4/3] self-start rounded-xl bg-white/[0.04] ring-1 ring-white/10 transition-transform duration-200 hover:-translate-y-1 md:sticky md:top-28 md:mb-0 md:aspect-[3/4]">
                     <Image
                       src={industry.image}
                       alt={industry.imageAlt}

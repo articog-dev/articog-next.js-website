@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
+import { ScrollReveal } from "@/components/animations";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 const approachItems = [
@@ -49,17 +50,19 @@ export function OurApproach() {
   return (
     <Section size="md" className="border-t border-white/[0.05]">
       <Container>
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <Heading as="h2" size="section" className="mb-6">
-            Brand storytelling
-          </Heading>
-          <p
-            className="type-body md:text-lg leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.65)" }}
-          >
-            AI speeds up production; people protect the brand, story and final quality.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="mx-auto mb-16 max-w-3xl text-center">
+            <Heading as="h2" size="section" className="mb-6">
+              Brand storytelling
+            </Heading>
+            <p
+              className="type-body md:text-lg leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.65)" }}
+            >
+              AI speeds up production; people protect the brand, story and final quality.
+            </p>
+          </div>
+        </ScrollReveal>
 
       </Container>
 
@@ -87,15 +90,17 @@ export function OurApproach() {
 
       <Container>
         <div className="grid gap-10 md:grid-cols-3">
-          {approachItems.map((item) => (
-            <div key={item.title} className="space-y-4 rounded-xl border border-white/[0.05] p-6">
-              <Heading as="h3" size="card" className="text-white">
-                {item.title}
-              </Heading>
-              <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
-                {item.description}
-              </p>
-            </div>
+          {approachItems.map((item, index) => (
+            <ScrollReveal key={item.title} delay={index * 0.1}>
+              <div className="space-y-4 rounded-xl border border-white/[0.05] p-6 transition-transform duration-200 hover:-translate-y-1">
+                <Heading as="h3" size="card" className="text-white">
+                  {item.title}
+                </Heading>
+                <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
+                  {item.description}
+                </p>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </Container>
