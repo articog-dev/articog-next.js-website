@@ -59,7 +59,7 @@ export function LazyVideo({ sources, src, preload = "none", ...props }: LazyVide
     <video
       ref={videoRef}
       {...props}
-      preload={shouldLoad ? "auto" : preload}
+      preload={shouldLoad ? preload : "none"}
       src={shouldLoad ? src : undefined}
     >
       {shouldLoad
