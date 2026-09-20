@@ -61,27 +61,30 @@ export function OurApproach() {
           </p>
         </div>
 
-        {/* Never taller than 85% of the screen (or 16:9 on small screens); fills without black bars */}
-        <div className="relative mb-16 h-[min(85svh,56.25vw)] overflow-hidden rounded-2xl border border-white/[0.08] bg-black">
-          <video
-            ref={(video) => {
-              videoRef.current = video;
-              if (video) {
-                video.defaultMuted = true;
-                video.muted = true;
-              }
-            }}
-            muted
-            playsInline
-            loop
-            controls={false}
-            preload={shouldLoad ? "auto" : "none"}
-            src={shouldLoad ? "https://media.articog.com/videos/backgrounds/Web%202.mp4" : undefined}
-            className="absolute inset-0 h-full w-full object-cover"
-            aria-hidden="true"
-          />
-        </div>
+      </Container>
 
+      {/* Edge-to-edge video: full width, no rounded corners, no border */}
+      <div className="relative mb-16 h-[min(100svh,56.25vw)] w-full overflow-hidden bg-black">
+        <video
+          ref={(video) => {
+            videoRef.current = video;
+            if (video) {
+              video.defaultMuted = true;
+              video.muted = true;
+            }
+          }}
+          muted
+          playsInline
+          loop
+          controls={false}
+          preload={shouldLoad ? "auto" : "none"}
+          src={shouldLoad ? "https://media.articog.com/videos/backgrounds/Web%202.mp4" : undefined}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          aria-hidden="true"
+        />
+      </div>
+
+      <Container>
         <div className="grid gap-10 md:grid-cols-3">
           {approachItems.map((item) => (
             <div key={item.title} className="space-y-4 rounded-xl border border-white/[0.05] p-6">
