@@ -42,8 +42,9 @@ function OpenAIIcon({ size = 16 }: { size?: number }) {
 
 function ClaudeIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-      <path d="M12 2v6M12 16v6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M2 12h6M16 12h6M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2c.8 2.8 2.2 4.2 5 5-2.8.8-4.2 2.2-5 5-.8-2.8-2.2-4.2-5-5 2.8-.8 4.2-2.2 5-5z" transform="rotate(0 12 12)" />
+      <path d="M12 2c.8 2.8 2.2 4.2 5 5-2.8.8-4.2 2.2-5 5-.8-2.8-2.2-4.2-5-5 2.8-.8 4.2-2.2 5-5z" transform="rotate(90 12 12)" />
     </svg>
   );
 }
@@ -51,7 +52,13 @@ function ClaudeIcon({ size = 16 }: { size?: number }) {
 function GrokIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 1.5l2.7 8.3 8.3 2.7-8.3 2.7L12 23l-2.7-8.3L1 12l8.3-2.7z" />
+      {Array.from({ length: 10 }).map((_, i) => (
+        <path
+          key={i}
+          d="M12 12L12.6 2.2c-.2-.3-1-.3-1.2 0z"
+          transform={`rotate(${i * 36} 12 12)`}
+        />
+      ))}
     </svg>
   );
 }
@@ -188,7 +195,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-white/60 transition-colors hover:border-white/20 hover:text-white"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
                 >
                   <s.Icon size={16} />
                 </a>
@@ -203,7 +210,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="text-white/60 hover:text-white transition-colors"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-colors hover:bg-white/[0.12]"
                 >
                   <s.Icon size={16} />
                 </a>
