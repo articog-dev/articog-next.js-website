@@ -310,99 +310,163 @@
 .showcase-stage {
   position: relative;
   width: 100%;
-  min-height: 32rem;
-  overflow: hidden;
-  perspective: 1600px;
-  transform-style: preserve-3d;
-  cursor: grab;
-  touch-action: pan-y;
   outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+
+.showcase-stage:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: -2px;
 }
 
 .showcase-stage::before {
   position: absolute;
-  inset: 12% 16% 18%;
+  inset: 8% 22%;
   content: "";
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.09), transparent 75%);
   pointer-events: none;
 }
 
-.showcase-coverflow {
+.showcase-track {
+  --item-w: clamp(13rem, 24vw, 21rem);
+  position: relative;
   display: flex;
-  width: 100%;
-  height: 28rem;
   align-items: center;
-  gap: 1.5rem;
-  padding-inline: max(calc((100% - 20rem) / 2), 1.5rem);
+  gap: 1.25rem;
+  padding: 3rem calc(50% - var(--item-w) / 2);
   overflow-x: auto;
   overflow-y: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
   scrollbar-width: none;
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: 50%;
-  transform-style: preserve-3d;
-  touch-action: pan-y;
 }
 
-.showcase-coverflow::-webkit-scrollbar {
+.showcase-track::-webkit-scrollbar {
   display: none;
 }
 
-.showcase-coverflow__item {
-  position: relative;
-  flex: 0 0 min(24vw, 20rem);
-  width: min(24vw, 20rem);
-  margin-right: -5rem;
-  aspect-ratio: 3 / 4;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  overflow: hidden;
-  cursor: zoom-in;
-  scroll-snap-align: center;
-  transform-style: preserve-3d;
-  transform: translateZ(var(--visual-depth, -120px)) rotateY(var(--visual-rotation, 0deg)) scale(var(--visual-scale, 0.84));
-  opacity: var(--visual-opacity, 0.65);
-  transition: transform 180ms ease-out, opacity 180ms ease-out;
+.showcase-track[data-dragging="true"] {
+  scroll-snap-type: none;
+  cursor: grabbing;
 }
 
-.showcase-coverflow__item img {
+.showcase-slot {
+  position: relative;
+  flex: 0 0 var(--item-w);
+  width: var(--item-w);
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: center;
+  transform-style: preserve-3d;
+}
+
+.showcase-item {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  background: #111;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 34px 70px -28px rgba(0, 0, 0, 0.95);
+}
+
+.showcase-item[aria-current="true"] {
+  cursor: zoom-in;
+}
+
+.showcase-item:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.showcase-item img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.showcase-item::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: #000;
+  opacity: var(--shade, 0);
+  pointer-events: none;
 }
 
 .showcase-navigation {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  max-width: none;
-  margin: 0.5rem auto 0;
-}
-
-.showcase-navigation__buttons {
-  display: flex;
-  gap: 0.35rem;
+  gap: 1.25rem;
+  margin: 0.25rem auto 0;
 }
 
 .showcase-navigation__button {
   display: grid;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+
+.showcase-navigation__button:hover:not(:disabled),
+.showcase-navigation__button:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.showcase-navigation__button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.showcase-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.showcase-dot {
+  position: relative;
+  width: 0.4rem;
+  height: 0.4rem;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.62);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.28);
   cursor: pointer;
-  transition: color 250ms ease, transform 250ms ease;
+  transition: width 250ms ease, background-color 250ms ease;
 }
 
-.showcase-navigation__button:hover,
-.showcase-navigation__button:focus-visible {
-  color: white;
-  transform: translateY(-2px);
+.showcase-dot::before {
+  position: absolute;
+  inset: -0.75rem -0.25rem;
+  content: "";
+}
+
+.showcase-dot[aria-current="true"] {
+  width: 1.5rem;
+  background: #fff;
+}
+
+.showcase-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .showcase-lightbox {
@@ -441,54 +505,23 @@
   cursor: pointer;
 }
 
-@media (max-width: 1024px) {
-  .showcase-stage {
-    min-height: 26rem;
-  }
-
-  .showcase-coverflow {
-    height: 23rem;
-    padding-inline: max(calc((100% - 16rem) / 2), 1.25rem);
-  }
-
-  .showcase-coverflow__item {
-    flex-basis: min(31vw, 16rem);
-    width: min(31vw, 16rem);
-    margin-right: -4rem;
-  }
-}
-
 @media (max-width: 640px) {
-  .showcase-stage {
-    min-height: 22rem;
-    perspective: 1200px;
-  }
-
-  .showcase-coverflow {
-    height: 19rem;
+  .showcase-track {
+    --item-w: min(66vw, 15rem);
     gap: 1rem;
-    padding-inline: max(calc((100% - 13rem) / 2), 1rem);
+    padding-block: 2rem;
+    perspective: 1100px;
   }
 
-  .showcase-coverflow__item {
-    flex-basis: min(68vw, 13rem);
-    width: min(68vw, 13rem);
-    margin-right: -3rem;
-  }
-
-  .showcase-navigation {
-    margin-top: 0.5rem;
+  .showcase-stage::before {
+    inset: 8% 10%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .showcase-coverflow__item,
-  .showcase-coverflow__item img {
+  .showcase-dot,
+  .showcase-navigation__button {
     transition: none;
-  }
-
-  .showcase-coverflow__item {
-    transform: translateZ(0) rotateY(0deg) scale(1);
   }
 }
 
