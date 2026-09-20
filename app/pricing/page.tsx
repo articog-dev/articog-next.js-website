@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+
+export const metadata: Metadata = {
+  title: "Pricing | Articog",
+  description:
+    "Articog's pricing covers monthly subscription and project work based on output, formats, and complexity, with AI-native production designed to reduce production overhead where suitable. We review your goals, production needs, timeline, and creative output to recommend the best engagement.",
+};
 
 export default function PricingPage() {
   const engagementOptions = [

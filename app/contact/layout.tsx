@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Articog | AI Native Film & Production Company",
-  description: "Talk with Articog about AI-native film, creative production, campaigns, and production support for your next launch.",
+  title: "Contact | Articog",
+  description:
+    "Get in touch with Articog about your project, goals, timeline, and deliverables. Submit an inquiry and our team will review your needs.",
   alternates: { canonical: "https://articog.com/contact" },
 };
 
