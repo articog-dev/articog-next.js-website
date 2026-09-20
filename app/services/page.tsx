@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://articog.com/services" },
@@ -258,12 +259,27 @@ export const serviceGroups = [
 const organizedServices = topLevelServiceLinks.map((serviceLink, index) => {
   const group = serviceGroups[index];
   const [primaryService, ...relatedServices] = group.items;
+  const image = {
+    "/services/ai-video-production": {
+      src: "/services/articog-service-01-brand-films.jpg",
+      alt: "Brand films and commercial production",
+    },
+    "/services/ad-creative": {
+      src: "/services/articog-service-03-performance-creative.jpg",
+      alt: "Performance creative production",
+    },
+    "/services/social-creative": {
+      src: "/services/articog-service-02-creator-social.jpg",
+      alt: "Creator-style social content production",
+    },
+  }[serviceLink.href];
 
   return {
     title: serviceLink.pageTitle,
     description: primaryService.description,
     href: serviceLink.href,
     tags: relatedServices.map((service) => service.title),
+    image,
   };
 });
 
@@ -313,6 +329,17 @@ export default function ServicesPage() {
                 key={service.title}
                 className="min-h-[320px] border-white/[0.08]"
               >
+                {service.image ? (
+                  <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-xl">
+                    <Image
+                      src={service.image.src}
+                      alt={service.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
                 <Heading as="h3" size="card" className="text-white">
                   {service.title}
                 </Heading>
