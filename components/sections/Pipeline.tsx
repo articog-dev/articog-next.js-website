@@ -62,7 +62,7 @@ export function Pipeline({ steps }: PipelineProps) {
             controls={false}
             preload={shouldLoad ? "auto" : "none"}
             poster="/pipeline-poster.jpg"
-            src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
+            src={shouldLoad ? "/videos/pipeline.mp4" : undefined}
             className="h-full w-full object-cover"
             aria-hidden="true"
           />

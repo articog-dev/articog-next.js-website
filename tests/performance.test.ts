@@ -21,7 +21,7 @@ describe("performance boundaries", () => {
     const hero = read("components", "sections", "Hero.tsx");
     const gallery = read("components", "sections", "HomeVisualShowcase.tsx");
 
-    expect(hero).toContain('preload={isMobile ? "metadata" : "auto"}');
+    expect(hero).toContain('preload="auto"');
     expect(hero).toContain('poster="/hero-poster.jpg"');
     // Playback is gated on buffering (useBufferedAutoplay), not the autoPlay attribute.
     expect(hero).toContain("useBufferedAutoplay");
