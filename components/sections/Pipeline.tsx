@@ -36,7 +36,7 @@ export function Pipeline({ steps }: PipelineProps) {
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
-      <div className="absolute inset-x-0 top-0 z-0 h-[70vh] w-full bg-black sm:aspect-video sm:h-auto">
+      <div className="absolute inset-0 z-0 bg-black">
         <video
           ref={videoRef}
           muted
