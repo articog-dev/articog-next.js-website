@@ -12,16 +12,11 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 export default function IndustriesPage() {
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 pb-10 md:pt-36 md:pb-12">
+      <Section size="md" className="pt-32 pb-10 md:pt-36 md:pb-12">
         <Container>
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
-            <Heading as="h1" size="hero" className="text-white">
-              Industries We Serve
-            </Heading>
-            <p className="max-w-2xl type-body-lg text-white/70 lg:pb-2">
-              Every category has its own creative pressures, from product accuracy and compliance to seasonal speed. Choose an industry to see how we produce for it.
-            </p>
-          </div>
+          <Heading as="h1" size="hero" className="text-center text-white">
+            Industries We Serve
+          </Heading>
         </Container>
       </Section>
 
