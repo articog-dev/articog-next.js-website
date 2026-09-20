@@ -36,7 +36,7 @@ export function Pipeline({ steps }: PipelineProps) {
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
-      <div className="absolute inset-x-0 top-0 z-0 aspect-video w-full bg-black">
+      <div className="absolute inset-x-0 top-0 z-0 h-[70vh] w-full bg-black sm:aspect-video sm:h-auto">
         <video
           ref={videoRef}
           muted
@@ -45,7 +45,7 @@ export function Pipeline({ steps }: PipelineProps) {
           controls={false}
           preload={shouldLoad ? "auto" : "none"}
           src={shouldLoad ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4" : undefined}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-cover"
           aria-hidden="true"
         />
 

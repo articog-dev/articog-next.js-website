@@ -64,7 +64,7 @@ export function OurApproach() {
       </Container>
 
       {/* Edge-to-edge video: full width, no rounded corners, no border */}
-      <div className="relative mb-16 h-[min(100svh,56.25vw)] w-full overflow-hidden bg-black">
+      <div className="relative mb-16 h-[70vh] w-full overflow-hidden bg-black sm:h-[min(100svh,56.25vw)]">
         <video
           ref={(video) => {
             videoRef.current = video;
