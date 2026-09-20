@@ -116,10 +116,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         ref={dialogRef}
         id="mobile-navigation"
-        className="fixed inset-x-0 top-0 z-[1100] flex h-[100dvh] w-[85%] max-w-[360px] flex-col overflow-hidden transition-[clip-path] duration-400 ease-out"
+        className="fixed right-0 top-0 z-[1100] flex h-[100dvh] w-[85%] max-w-[360px] flex-col overflow-hidden transition-[clip-path] duration-400 ease-out"
         style={{
           background: "#060606",
-          borderRight: "1px solid rgba(255,255,255,0.08)",
+          borderLeft: "1px solid rgba(255,255,255,0.08)",
           clipPath: isDrawerVisible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
         }}
         role="dialog"
