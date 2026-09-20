@@ -187,7 +187,7 @@ export function Footer() {
             </p>
 
             <p className="type-small mb-2 text-white/40">Ask AI about Articog</p>
-            <div className="mb-4 flex gap-2">
+            <div className="relative z-10 mb-4 flex gap-2">
               {aiLinks.map((s) => (
                 <a
                   key={s.label}
