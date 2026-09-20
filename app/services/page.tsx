@@ -12,6 +12,7 @@ import { Container, Section, Heading, Grid, Card, PageHero, MediaOverlay } from 
 import { ArrowRight, Grid2X2, Instagram, Layers3, Smartphone } from "lucide-react";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { topLevelServiceLinks } from "@/lib/service-navigation";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 const serviceDeliverables = [
   {
@@ -273,7 +274,7 @@ export default function ServicesPage() {
         title="Creative services for campaign volume."
         media={
           <>
-          <video
+          <LazyVideo
             autoPlay
             muted
             playsInline
@@ -283,18 +284,18 @@ export default function ServicesPage() {
             poster="https://media.articog.com/images/services/hf_20260820_165439_f355b7b5-fc30-4852-9c69-cb8433145326.png"
             className="h-full w-full object-contain"
             aria-hidden="true"
-          >
-            <source
-              src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
-              type="video/mp4"
-              media="(min-width: 769px)"
-            />
-
-            <source
-              src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
-              type="video/mp4"
-            />
-          </video>
+            sources={[
+              {
+                src: "https://media.articog.com/videos/backgrounds/web%201_1.mp4",
+                type: "video/mp4",
+                media: "(min-width: 769px)",
+              },
+              {
+                src: "https://media.articog.com/videos/backgrounds/web%201_1.mp4",
+                type: "video/mp4",
+              },
+            ]}
+          />
             <MediaOverlay strength="soft" />
           </>
         }

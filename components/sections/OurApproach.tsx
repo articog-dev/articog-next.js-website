@@ -1,4 +1,5 @@
 import { Container, Section, Heading } from "@/components/ui";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 const approachItems = [
   {
@@ -35,7 +36,7 @@ export function OurApproach() {
         </div>
 
         <div className="mb-16 overflow-hidden rounded-2xl border border-white/[0.08]">
-          <video
+          <LazyVideo
             autoPlay
             muted
             playsInline

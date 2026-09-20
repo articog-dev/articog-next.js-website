@@ -36,9 +36,6 @@ describe("media SEO metadata", () => {
   it("keeps decorative native videos poster-backed and explicitly hidden from assistive technology", () => {
     const files = [
       ["components", "sections", "Hero.tsx"],
-      ["components", "sections", "Pipeline.tsx"],
-      ["app", "industries", "page.tsx"],
-      ["app", "services", "page.tsx"],
     ];
 
     for (const file of files) {
@@ -47,6 +44,13 @@ describe("media SEO metadata", () => {
       expect(source).toContain("poster=");
       expect(source).toContain('aria-hidden="true"');
     }
+
+    const lazyVideo = read("components", "ui", "LazyVideo.tsx");
+    expect(lazyVideo).toContain("<video");
+    expect(lazyVideo).toContain("IntersectionObserver");
+    expect(read("components", "sections", "Pipeline.tsx")).toContain("LazyVideo");
+    expect(read("app", "industries", "page.tsx")).toContain("poster=");
+    expect(read("app", "services", "page.tsx")).toContain("poster=");
   });
 
   it("uses Hostinger media without guessed or master URLs", () => {

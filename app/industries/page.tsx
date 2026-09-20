@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 import { Container, Section, Heading } from "@/components/ui";
 import { IndustryDetails } from "@/components/sections/IndustryDetails";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 export default function IndustriesPage() {
   return (
@@ -21,7 +22,7 @@ export default function IndustriesPage() {
           </div>
 
           <section className="relative mx-auto mb-20 min-h-[18rem] max-w-6xl overflow-hidden rounded-2xl border border-white/[0.08] text-left">
-            <video
+            <LazyVideo
               autoPlay
               muted
               playsInline
@@ -31,12 +32,8 @@ export default function IndustriesPage() {
               poster="https://media.articog.com/images/industries/hf_20260821_145134_975711a2-9355-45d5-bee6-c98937fb8031.png"
               className="absolute inset-0 h-full w-full object-contain"
               aria-hidden="true"
-            >
-              <source
-                src="https://media.articog.com/videos/Web%202.mp4"
-                type="video/mp4"
-              />
-            </video>
+              sources={[{ src: "https://media.articog.com/videos/Web%202.mp4", type: "video/mp4" }]}
+            />
             <div className="absolute inset-0 bg-black/12" />
           </section>
 

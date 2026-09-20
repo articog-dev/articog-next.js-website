@@ -2,89 +2,26 @@
 
 import { Container, Section, Heading } from "@/components/ui";
 import type { PipelineStep } from "@/types";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 interface PipelineProps {
   steps: PipelineStep[];
 }
 
 export function Pipeline({ steps }: PipelineProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useLayoutEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    observer.observe(video);
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !shouldLoad) return;
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.autoplay = true;
-    video.setAttribute("muted", "");
-
-    const playVideo = () => {
-      if (video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        void video.play().catch(() => undefined);
-      }
-    };
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        playVideo();
-      }
-    };
-
-    playVideo();
-    video.addEventListener("canplay", playVideo, { once: true });
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      video.removeEventListener("canplay", playVideo);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [shouldLoad]);
 
   return (
     <Section id="pipeline" className="relative overflow-hidden p-0">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={(video) => {
-            videoRef.current = video;
-            if (video) {
-              video.defaultMuted = true;
-              video.muted = true;
-            }
-          }}
+        <LazyVideo
           autoPlay
           muted
           playsInline
           loop
           controls={false}
-          preload={shouldLoad ? "auto" : "none"}
-          src={
-            shouldLoad
-                ? "https://media.articog.com/videos/backgrounds/web%201_1.mp4"
-              : undefined
-          }
+          preload="none"
+          src="https://media.articog.com/videos/backgrounds/web%201_1.mp4"
           poster="https://media.articog.com/images/home/hf_20260821_083339_49c07db6-34ef-4c24-9479-eba4ece0cc6f.png"
           className="h-full w-full object-contain"
           aria-hidden="true"
@@ -116,14 +53,11 @@ export function Pipeline({ steps }: PipelineProps) {
               key={step.step}
               className="group relative flex cursor-default flex-col items-center justify-center gap-4 border-b p-7 text-center transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"
             >
-              {/* Hover accent top line */}
               <div
                 className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                 style={{ background: "#ffffff" }}
               />
-
               <div className="absolute bottom-[-1.5rem] left-[2.15rem] top-14 w-px bg-white/[0.18] last:hidden sm:hidden" aria-hidden="true" />
-
               <div
                 className="flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold"
                 style={{
@@ -134,7 +68,6 @@ export function Pipeline({ steps }: PipelineProps) {
               >
                 {step.step}
               </div>
-
               <Heading
                 as="h3"
                 size="card"

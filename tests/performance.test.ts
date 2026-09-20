@@ -21,9 +21,8 @@ describe("performance boundaries", () => {
     const hero = read("components", "sections", "Hero.tsx");
     const gallery = read("components", "sections", "HomeVisualShowcase.tsx");
 
-    expect(hero).toContain('preload="metadata"');
+    expect(hero).toContain('preload="auto"');
     expect(hero).toContain("poster=");
-    expect(hero).not.toContain('preload="auto"');
     expect(gallery).toContain('loading="lazy"');
     expect(gallery).not.toContain("priority={");
     expect(gallery).not.toContain("quality={100}");

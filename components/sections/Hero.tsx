@@ -1,7 +1,7 @@
 "use client";
 
 import type { HeroContent } from "@/types";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Heading } from "@/components/ui";
 
 interface HeroProps {
@@ -10,6 +10,8 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const posterUrl = "https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png";
 
   useLayoutEffect(() => {
     const video = videoRef.current;
@@ -71,6 +73,11 @@ export function Hero({ content }: HeroProps) {
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${posterUrl})` }}
+          aria-hidden="true"
+        />
         <video
           ref={(video) => {
             videoRef.current = video;
@@ -84,9 +91,11 @@ export function Hero({ content }: HeroProps) {
           playsInline
           loop
           controls={false}
-          preload="metadata"
-          poster="https://media.articog.com/images/home/hf_20260820_232841_55351427-e470-43bc-b674-3abedc6b19a7.png"
-          className="h-full w-full object-contain"
+          preload="auto"
+          poster={posterUrl}
+          onCanPlay={() => setIsVideoReady(true)}
+          onLoadedData={() => setIsVideoReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${isVideoReady ? "opacity-100" : "opacity-0"}`}
           aria-hidden="true"
         >
           <source
