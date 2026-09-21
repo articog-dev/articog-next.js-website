@@ -56,7 +56,6 @@ describe("internal link architecture", () => {
 
     for (const source of [workSource, servicesSource, homepageSource]) {
       expect(source).not.toContain('"/work/industries"');
-      expect(source).not.toContain('"/pricing/faq"');
     }
   });
 

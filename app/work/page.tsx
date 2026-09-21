@@ -30,14 +30,6 @@ export default function WorkPage() {
       title: "Work by Industry",
       href: "/industries",
     },
-    {
-      title: "AI Ad Library",
-      href: "/ai-ad-library",
-    },
-    {
-      title: "Customer Stories",
-      href: "/customers",
-    },
   ];
 
   return (

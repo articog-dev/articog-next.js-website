@@ -43,9 +43,8 @@ Body text is predominantly Inter and ranges from `text-sm` through `text-xl`, mo
 ## Heading Structure Findings
 
 - The home page H1 is supplied by the shared `Hero` component rather than `app/page.tsx`.
-- Redirect-only routes such as `app/pricing/faq/page.tsx` do not need a heading.
 - Eyebrow labels in shared sections such as `Capabilities`, `Problems`, `CaseStudies`, and `HomeVisualShowcase` are visual labels and should not create extra H2s.
-- Card grids on Customers, Industries, Solutions, Trust, Work, and Video Ads need section context so card titles do not appear as orphaned H3s.
+- Card grids on Industries, Solutions, Trust, Work, and Video Ads need section context so card titles do not appear as orphaned H3s.
 - The How It Works feature card and Blog related-content block require careful semantic treatment because their source order can place H3 content before the main section H2.
 - Existing copy and content hierarchy should remain unchanged; fixes should use the correct semantic element or configurable heading level.
 

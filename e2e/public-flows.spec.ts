@@ -8,7 +8,6 @@ const publicRoutes = [
   "/blog",
   "/contact",
   "/book-a-demo",
-  "/ai-ad-library",
 ];
 
 const mobileViewports = [320, 390, 768, 1440];

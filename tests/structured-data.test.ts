@@ -65,7 +65,6 @@ describe("structured data and canonical metadata", () => {
       thumbnailUrl: "https://example.com/thumbnail.jpg",
     })).toBeNull();
     expect(read("app", "work", "video-ads", "page.tsx")).not.toContain("VideoObject");
-    expect(read("app", "ai-ad-library", "page.tsx")).not.toContain("VideoObject");
   });
 
   it("keeps canonical URLs absolute and avoids duplicate canonical declarations", () => {

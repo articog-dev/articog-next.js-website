@@ -28,8 +28,6 @@ export function GoogleAnalytics() {
 
     if (pathname === "/work" || pathname.startsWith("/work/")) {
       trackContentView("work_view");
-    } else if (pathname === "/pricing") {
-      trackContentView("pricing_view");
     } else if (pathname === "/trust" || pathname.startsWith("/trust/")) {
       trackContentView("trust_view");
     }

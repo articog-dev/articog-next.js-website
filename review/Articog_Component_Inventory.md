@@ -27,8 +27,8 @@ Use the official shadcn/ui component patterns for generic UI primitives and use 
 |---|---|---|---|---|---|
 | Button | `components/ui/Button.tsx` | Button | Button patterns | Keep and align with shadcn API/classes | Site-wide |
 | Accordion/FAQ | `components/ui/accordion.tsx` using Radix | Accordion | FAQ/accordion blocks | Keep; already shadcn/Radix-derived | Help, service FAQ |
-| Card | Route-local bordered divs | Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter | Cards & grids | Add shadcn Card primitives; migrate high-value repeated card surfaces incrementally | Pricing, blog, trust, work, capabilities |
-| Badge/label | Route-local spans and paragraphs | Badge | Badge/chip patterns | Add shadcn Badge; use for status/category metadata where appropriate | Pricing, blog, work, careers |
+| Card | Route-local bordered divs | Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter | Cards & grids | Add shadcn Card primitives; migrate high-value repeated card surfaces incrementally | Blog, trust, work, capabilities |
+| Badge/label | Route-local spans and paragraphs | Badge | Badge/chip patterns | Add shadcn Badge; use for status/category metadata where appropriate | Blog, work, careers |
 | Alert | Route-local status/error blocks | Alert | Alert blocks | Add shadcn Alert primitives for reusable status messaging | Forms, error states |
 | Input | Route-local `<input>` classes | Input | Form field patterns | Add shadcn Input and use in shared contact/privacy form controls | Contact, privacy request |
 | Textarea | Route-local `<textarea>` classes | Textarea | Form field patterns | Add shadcn Textarea and use in shared contact form | Contact |
@@ -43,7 +43,6 @@ Use the official shadcn/ui component patterns for generic UI primitives and use 
 | Text/body | `Text.tsx` plus route-local classes | Typography patterns | 21st.dev type scale patterns | Keep wrapper and global tokens; migrate repeated body classes over time | Site-wide |
 | Container/Section | `Container.tsx`, `Section.tsx` | Layout primitives are not official shadcn components | 21st.dev section/container patterns | Retain because they are layout foundations, not replaceable widgets | Site-wide |
 | Header/footer | `Header.tsx`, `Footer.tsx` | Navigation Menu, Sheet, separator patterns | 21st.dev navigation/footer blocks | Retain Articog-specific IA and links; normalize typography and primitive usage without changing routes | Site-wide |
-| Pricing cards | Route-local markup | Card + Badge + Button | 21st.dev pricing blocks | Keep content/layout, migrate repeated card shell to Card primitives where low risk | Pricing |
 | Feature sections | Shared sections and route-local markup | Card/Accordion/Button as applicable | 21st.dev feature sections | Retain Articog compositions; normalize primitives and type tokens | Services, solutions, trust |
 | CTA | `FinalCTA.tsx` and route-local CTAs | Button/Card patterns | 21st.dev CTA blocks | Retain Articog CTA destinations and copy; use shared Button and typography | Site-wide |
 | Blog | `BlogFilterList.tsx`, blog route components | Card, Badge, Input if filtering expands | 21st.dev editorial/card patterns | Keep content logic; use Card/Badge primitives for repeated post surfaces | Blog |
@@ -126,4 +125,4 @@ The existing Articog Hero, Header, MobileMenu, media galleries, and CTA behavior
 - Header mega-menu and MobileMenu remain custom because their route grouping, hover persistence, and responsive behavior are Articog-specific.
 - Home visual lightbox, CreativeDocument modal, YouTube embeds, BlogFilterList, WorkVideoShowcase, BreezyOpenings, BeehiivForm, GoogleAnalytics, Calendly, and related provider integrations remain custom/provider-specific.
 - Native hidden honeypots remain intentionally native.
-- Complex service, solution, comparison-grid, pricing, work, blog, and case-study surfaces still contain route-local card markup and are not forced into Card where doing so would alter their current structure.
+ - Complex service, solution, comparison-grid, work, blog, and case-study surfaces still contain route-local card markup and are not forced into Card where doing so would alter their current structure.

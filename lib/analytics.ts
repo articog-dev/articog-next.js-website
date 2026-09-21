@@ -21,7 +21,6 @@ type EventName =
   | "demo_form_submit"
   | "contact_submit"
   | "work_view"
-  | "pricing_view"
   | "trust_view"
   | "section_view";
 
@@ -98,6 +97,6 @@ export function trackContactSubmit(): void {
   track({ name: "contact_submit" });
 }
 
-export function trackContentView(name: "work_view" | "pricing_view" | "trust_view"): void {
+export function trackContentView(name: "work_view" | "trust_view"): void {
   track({ name });
 }
