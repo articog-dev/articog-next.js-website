@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/about" },
+  alternates: { canonical: "https://www.articog.com/about" },
   title: "About Articog | AI Native Film & Production Company",
   description:
     "Articog is an AI Native Film & Production Company producing brand films, commercials, product visuals, creator-style social content, campaign creative, and audio for growth-stage brands and modern marketing teams, with a primary focus on the United States and select global markets.",

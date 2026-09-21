@@ -92,10 +92,10 @@ export default async function BlogArticlePage({
       name: "Articog",
       logo: {
         "@type": "ImageObject",
-        url: "https://articog.com/articog-logo-white.png",
+        url: "https://www.articog.com/articog-logo-white.png",
       },
     },
-    mainEntityOfPage: `https://articog.com/blog/${post.slug}`,
+    mainEntityOfPage: `https://www.articog.com/blog/${post.slug}`,
   };
 
   return (

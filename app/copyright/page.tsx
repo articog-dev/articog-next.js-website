@@ -4,7 +4,7 @@ import { Container, Heading, Section } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Copyright Policy | Articog",
   description: "Articog's copyright policy: ownership of creative assets, usage rights, and how to report a copyright concern.",
-  alternates: { canonical: "https://articog.com/copyright" },
+  alternates: { canonical: "https://www.articog.com/copyright" },
 };
 
 export default function CopyrightPage() {

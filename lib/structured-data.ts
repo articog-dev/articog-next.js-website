@@ -1,4 +1,4 @@
-const SITE_URL = "https://articog.com";
+const SITE_URL = "https://www.articog.com";
 
 export const organizationSchema = {
   "@type": "Organization",

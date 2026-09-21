@@ -6,7 +6,7 @@ import { founders } from "../lib/founders";
 import { getNativeBlogPosts } from "../lib/blog";
 import { dedicatedServicePages } from "../lib/service-pages";
 
-const SITE_URL = "https://articog.com";
+const SITE_URL = "https://www.articog.com";
 const REDIRECTED_ROUTES = new Set([
   "/accessibility",
   "/privacy",

@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: ["/"],
       },
     ],
-    sitemap: "https://articog.com/sitemap.xml",
+    sitemap: "https://www.articog.com/sitemap.xml",
   };
 }

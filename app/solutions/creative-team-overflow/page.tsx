@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/solutions/creative-team-overflow" },
+  alternates: { canonical: "https://www.articog.com/solutions/creative-team-overflow" },
   title: "Creative Team Extension | Articog",
   description: "Extend your internal team without full-time hires.",
 };

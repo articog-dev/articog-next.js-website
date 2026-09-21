@@ -6,7 +6,7 @@ import { Container, Heading } from '@/components/ui';
 export const metadata: Metadata = {
   title: "Sitemap | Articog",
   description: "Explore Articog's company, service, trust, and creative production pages.",
-  alternates: { canonical: "https://articog.com/sitemap" },
+  alternates: { canonical: "https://www.articog.com/sitemap" },
 };
 
 export default function SitemapPage() {

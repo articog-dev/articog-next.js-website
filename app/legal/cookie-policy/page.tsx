@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/legal/cookie-policy" },
+  alternates: { canonical: "https://www.articog.com/legal/cookie-policy" },
   title: "Cookie Policy | Articog",
   description: "Information about how Articog uses cookies and similar technologies.",
 };

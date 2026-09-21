@@ -5,7 +5,7 @@ import { Container, Section, PageHero } from "@/components/ui";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/blog" },
+  alternates: { canonical: "https://www.articog.com/blog" },
   title: "AI-Native Production Insights | Articog",
   description: "Insights on AI-native production, creative strategy, brand storytelling, and growth marketing for modern teams.",
 };

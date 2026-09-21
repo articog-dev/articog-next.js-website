@@ -88,6 +88,6 @@ describe("performance boundaries", () => {
 
     expect(layout).toContain("siteEntitySchema");
     expect(home).toContain('type="application/ld+json"');
-    expect(home).toContain('canonical: "https://articog.com/"');
+    expect(home).toContain('canonical: "https://www.articog.com/"');
   });
 });

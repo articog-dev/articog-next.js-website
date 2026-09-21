@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/trust/ai-and-ip" },
+  alternates: { canonical: "https://www.articog.com/trust/ai-and-ip" },
   title: "AI & Intellectual Property | Articog",
   description: "How Articog handles AI tool use, ownership, and client intellectual property.",
 };

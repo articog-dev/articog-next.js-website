@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/services/audio" },
+  alternates: { canonical: "https://www.articog.com/services/audio" },
   title: "Audio & Sound Production | Articog",
   description: "Audio and sound production for video campaigns, ads, and brand storytelling, including voice, music, and finishing.",
 };

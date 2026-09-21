@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/privacy/california" },
+  alternates: { canonical: "https://www.articog.com/privacy/california" },
   title: "California Privacy Notice | Articog",
   description: "Supplemental privacy notice for California residents under CCPA/CPRA.",
 };

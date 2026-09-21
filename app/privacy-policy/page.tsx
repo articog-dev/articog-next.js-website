@@ -3,7 +3,7 @@ import { Heading } from "@/components/ui";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/privacy-policy" },
+  alternates: { canonical: "https://www.articog.com/privacy-policy" },
   title: "Privacy Policy | Articog",
   description:
     "How Articog collects, uses, shares, retains, and protects personal information when you use our website and services.",

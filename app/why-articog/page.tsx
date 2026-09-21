@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/why-articog" },
+  alternates: { canonical: "https://www.articog.com/why-articog" },
   title: "Why Articog | AI Native Film & Production Company",
   description: "See how Articog combines AI-native production, creative direction, and flexible delivery for growth-stage brands.",
 };

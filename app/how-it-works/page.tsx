@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "How AI-Native Production Works | Articog",
   description: "See how AI-native production combines creative direction, generation, review, and final delivery for growth-stage brands.",
-  alternates: { canonical: "https://articog.com/how-it-works" },
+  alternates: { canonical: "https://www.articog.com/how-it-works" },
 };
 import { Link } from "@/components/ui/Link";
 import { ArrowRight } from "lucide-react";

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Creative Production Work | Articog",
   description: "See AI-native creative production across video ads, social content, product visuals, and campaign storytelling for growth-stage brands.",
-  alternates: { canonical: "https://articog.com/work" },
+  alternates: { canonical: "https://www.articog.com/work" },
 };
 import { ArrowRight } from "lucide-react";
 import { Container, Section, Heading } from "@/components/ui";

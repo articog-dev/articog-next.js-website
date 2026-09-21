@@ -17,12 +17,12 @@ describe("technical SEO and indexing", () => {
     const urls = entries.map((entry) => entry.url);
 
     expect(new Set(urls).size).toBe(urls.length);
-    expect(urls.every((url) => url.startsWith("https://articog.com/"))).toBe(true);
-    expect(urls).toContain("https://articog.com/about/founder/sai-teja-inampudi");
-    expect(urls).toContain("https://articog.com/about/founder/dr-harika-govada");
-    expect(urls).not.toContain("https://articog.com/thank-you");
-    expect(urls).not.toContain("https://articog.com/thank-you/demo");
-    expect(urls).not.toContain("https://articog.com/sitemap");
+    expect(urls.every((url) => url.startsWith("https://www.articog.com/"))).toBe(true);
+    expect(urls).toContain("https://www.articog.com/about/founder/sai-teja-inampudi");
+    expect(urls).toContain("https://www.articog.com/about/founder/dr-harika-govada");
+    expect(urls).not.toContain("https://www.articog.com/thank-you");
+    expect(urls).not.toContain("https://www.articog.com/thank-you/demo");
+    expect(urls).not.toContain("https://www.articog.com/sitemap");
   });
 
   it("includes the expected canonical core marketing routes", () => {
@@ -33,12 +33,12 @@ describe("technical SEO and indexing", () => {
     const workSource = readFileSync(path.join(process.cwd(), "app", "work", "page.tsx"), "utf8");
     const blogSource = readFileSync(path.join(process.cwd(), "app", "blog", "page.tsx"), "utf8");
 
-    expect(homeSource).toContain('canonical: "https://articog.com/"');
-    expect(aboutSource).toContain('canonical: "https://articog.com/about"');
-    expect(servicesSource).toContain('canonical: "https://articog.com/services"');
-    expect(solutionsSource).toContain('canonical: "https://articog.com/solutions"');
-    expect(workSource).toContain('canonical: "https://articog.com/work"');
-    expect(blogSource).toContain('canonical: "https://articog.com/blog"');
+    expect(homeSource).toContain('canonical: "https://www.articog.com/"');
+    expect(aboutSource).toContain('canonical: "https://www.articog.com/about"');
+    expect(servicesSource).toContain('canonical: "https://www.articog.com/services"');
+    expect(solutionsSource).toContain('canonical: "https://www.articog.com/solutions"');
+    expect(workSource).toContain('canonical: "https://www.articog.com/work"');
+    expect(blogSource).toContain('canonical: "https://www.articog.com/blog"');
   });
 
   it("keeps representative canonical URLs aligned with their public routes", () => {
@@ -46,9 +46,9 @@ describe("technical SEO and indexing", () => {
     const servicesSource = readFileSync(path.join(process.cwd(), "app", "services", "page.tsx"), "utf8");
     const privacySource = readFileSync(path.join(process.cwd(), "app", "privacy-policy", "page.tsx"), "utf8");
 
-    expect(homeSource).toContain('canonical: "https://articog.com/"');
-    expect(servicesSource).toContain('canonical: "https://articog.com/services"');
-    expect(privacySource).toContain('canonical: "https://articog.com/privacy-policy"');
+    expect(homeSource).toContain('canonical: "https://www.articog.com/"');
+    expect(servicesSource).toContain('canonical: "https://www.articog.com/services"');
+    expect(privacySource).toContain('canonical: "https://www.articog.com/privacy-policy"');
   });
 
   it("does not block essential crawlers or public route access in robots.txt", () => {
@@ -56,7 +56,7 @@ describe("technical SEO and indexing", () => {
 
     expect(robotsSource).toContain('userAgent: "*"');
     expect(robotsSource).toContain('allow: ["/"]');
-    expect(robotsSource).toContain('sitemap: "https://articog.com/sitemap.xml"');
+    expect(robotsSource).toContain('sitemap: "https://www.articog.com/sitemap.xml"');
     expect(robotsSource).not.toContain("disallow");
   });
 });

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/trust" },
+  alternates: { canonical: "https://www.articog.com/trust" },
   title: "Trust Center | Articog",
   description: "A factual overview of Articog's approach to AI, rights, data handling, and project security.",
 };

@@ -6,7 +6,7 @@ import { founders } from "@/lib/founders";
 export const metadata: Metadata = {
   title: "Founder / Leadership | Articog",
   description: "Meet the founders and leadership behind Articog.",
-  alternates: { canonical: "https://articog.com/founder-leadership" },
+  alternates: { canonical: "https://www.articog.com/founder-leadership" },
 };
 
 export default function FounderLeadershipPage() {

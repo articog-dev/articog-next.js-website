@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/solutions/product-launch" },
+  alternates: { canonical: "https://www.articog.com/solutions/product-launch" },
   title: "Product Launch Campaigns | Articog",
   description: "Full creative support for your product launch, from strategy and timeline to every channel-specific asset.",
 };

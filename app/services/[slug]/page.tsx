@@ -28,7 +28,7 @@ export async function generateMetadata({
   return {
     title: `${service.title} | Articog`,
     description: service.description,
-    alternates: { canonical: `https://articog.com/services/${service.slug}` },
+    alternates: { canonical: `https://www.articog.com/services/${service.slug}` },
   };
 }
 

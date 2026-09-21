@@ -18,9 +18,9 @@ describe("structured data and canonical metadata", () => {
   it("keeps Organization and WebSite schema on approved repository facts", () => {
     expect(siteEntitySchema["@graph"]).toEqual([organizationSchema, websiteSchema]);
     expect(organizationSchema.name).toBe("Articog");
-    expect(organizationSchema.url).toBe("https://articog.com");
+    expect(organizationSchema.url).toBe("https://www.articog.com");
     expect(organizationSchema.sameAs).toContain("https://www.linkedin.com/company/articog/");
-    expect(websiteSchema.publisher["@id"]).toBe("https://articog.com/#organization");
+    expect(websiteSchema.publisher["@id"]).toBe("https://www.articog.com/#organization");
     expect(read("app", "layout.tsx")).toContain("<JsonLd data={siteEntitySchema} />");
   });
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/services" },
+  alternates: { canonical: "https://www.articog.com/services" },
   title: "Creative Services | Articog",
   description:
     "AI video production, ad creative, social creative, product visuals, creative strategy, and post-production for growth-stage brands.",

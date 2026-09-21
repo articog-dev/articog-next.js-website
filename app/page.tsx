@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/" },
+  alternates: { canonical: "https://www.articog.com/" },
   title: "Articog | AI Native Film & Production Company",
   description:
     "Articog is an AI-native film and creative production company for growth-stage brands and modern marketing teams. We produce brand films, commercials, performance creative, product visuals, creator-style social content, audio, and campaign assets through human-directed AI production workflows.",
@@ -27,11 +27,11 @@ import {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://articog.com/#service",
+  "@id": "https://www.articog.com/#service",
   name: "AI Native Film & Production Company",
   provider: {
     "@type": "Organization",
-    "@id": "https://articog.com/#organization",
+    "@id": "https://www.articog.com/#organization",
   },
   serviceType: "Creative Production",
   description:
@@ -85,11 +85,11 @@ const serviceSchema = {
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://articog.com/#webpage",
-  url: "https://articog.com",
+  "@id": "https://www.articog.com/#webpage",
+  url: "https://www.articog.com",
   name: "Articog | AI Native Film & Production Company",
-  isPartOf: { "@id": "https://articog.com/#website" },
-  about: { "@id": "https://articog.com/#organization" },
+  isPartOf: { "@id": "https://www.articog.com/#website" },
+  about: { "@id": "https://www.articog.com/#organization" },
   description:
     "AI-native film and creative production for growth-stage brands and modern marketing teams. Brand films, commercials, performance creative, product visuals, and social content produced through human-directed AI workflows.",
   inLanguage: "en-US",

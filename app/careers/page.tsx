@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/careers" },
+  alternates: { canonical: "https://www.articog.com/careers" },
   title: "Careers | Articog",
   description: "Join Articog and help build AI-native film and creative production for ambitious growth-stage brands.",
 };

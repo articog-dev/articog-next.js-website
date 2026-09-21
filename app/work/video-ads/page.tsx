@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Video Ad Creative | Articog",
   description: "High-volume video ads for every platform, developed for structured creative testing.",
-  alternates: { canonical: "https://articog.com/work/video-ads" },
+  alternates: { canonical: "https://www.articog.com/work/video-ads" },
 };
 import { Link } from "@/components/ui/Link";
 import { Container, Heading, Section } from '@/components/ui';

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/legal/terms-of-service" },
+  alternates: { canonical: "https://www.articog.com/legal/terms-of-service" },
   title: "Terms of Service | Articog",
   description: "The terms and conditions governing your use of Articog's website and services.",
 };

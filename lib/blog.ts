@@ -47,7 +47,7 @@ export const blogPosts: BlogEntry[] = [
     author: "Articog Editorial",
     readTime: "6 min read",
     canonicalUrl:
-      "https://articog.com/blog/how-ai-creative-teams-ship-faster-without-sacrificing-brand-quality",
+      "https://www.articog.com/blog/how-ai-creative-teams-ship-faster-without-sacrificing-brand-quality",
     content: [
       {
         type: "paragraph",
@@ -112,7 +112,7 @@ export const blogPosts: BlogEntry[] = [
     author: "Articog Editorial",
     readTime: "5 min read",
     canonicalUrl:
-      "https://articog.com/blog/the-4-systems-behind-high-velocity-campaign-production",
+      "https://www.articog.com/blog/the-4-systems-behind-high-velocity-campaign-production",
     content: [
       {
         type: "paragraph",

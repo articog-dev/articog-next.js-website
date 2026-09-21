@@ -23,7 +23,7 @@ export async function generateMetadata({
   return {
     title: `${founder.name} | Articog`,
     description: `${founder.name}, ${founder.roleLines[0]}.`,
-    alternates: { canonical: `https://articog.com/about/founder/${founder.slug}` },
+    alternates: { canonical: `https://www.articog.com/about/founder/${founder.slug}` },
   };
 }
 

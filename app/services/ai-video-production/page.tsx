@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/services/ai-video-production" },
+  alternates: { canonical: "https://www.articog.com/services/ai-video-production" },
   title: "AI Video Production | Articog",
   description: "AI video production for brand films, product commercials, launch campaigns, and performance creative built for growth-stage brands.",
 };

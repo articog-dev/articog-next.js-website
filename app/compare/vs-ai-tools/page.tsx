@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Articog vs AI Tools | Articog",
   description: "A comparison of Articog's managed creative engine versus doing it yourself with raw AI tools. Why expertise and consistency matter.",
-  alternates: { canonical: "https://articog.com/compare/vs-ai-tools" },
+  alternates: { canonical: "https://www.articog.com/compare/vs-ai-tools" },
 };
 import { Container, Section, Heading, Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";

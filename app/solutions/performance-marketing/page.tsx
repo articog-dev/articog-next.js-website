@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/solutions/performance-marketing" },
+  alternates: { canonical: "https://www.articog.com/solutions/performance-marketing" },
   title: "Performance Marketing Creative | Articog",
   description: "High volume, testable creative for growth and performance teams who need constant new variants to beat ad fatigue.",
 };

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/services/creative-strategy" },
+  alternates: { canonical: "https://www.articog.com/services/creative-strategy" },
   title: "Creative Strategy & Concepting | Articog",
   description: "Creative strategy and concepting for growth-stage brands that need sharper positioning, stronger ideas, and campaign clarity.",
 };

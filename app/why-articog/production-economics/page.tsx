@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://articog.com/why-articog/production-economics" },
+  alternates: { canonical: "https://www.articog.com/why-articog/production-economics" },
   title: "Production Economics | Articog",
   description: "Understand the economics of AI-native creative production and how it compares to traditional models for growth-stage brands.",
 };
