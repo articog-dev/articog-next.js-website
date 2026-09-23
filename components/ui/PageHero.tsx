@@ -5,32 +5,37 @@ import { Section } from "./Section";
 
 type PageHeroProps = {
   title: React.ReactNode;
+  id?: string;
   breadcrumbs?: React.ReactNode;
   eyebrow?: React.ReactNode;
   subtitle?: React.ReactNode;
   actions?: React.ReactNode;
   media?: React.ReactNode;
   showcase?: React.ReactNode;
+  children?: React.ReactNode;
   compact?: boolean;
   className?: string;
 };
 
 export function PageHero({
   title,
+  id,
   breadcrumbs,
   eyebrow,
   subtitle,
   actions,
   media,
   showcase,
+  children,
   compact = false,
   className,
 }: PageHeroProps) {
   return (
     <Section
-      size={compact ? "sm" : "lg"}
+      id={id}
+      size={compact ? "sm" : "md"}
       className={cn(
-        "overflow-hidden pt-32 md:pt-40",
+        "relative w-full overflow-hidden bg-black pt-[calc(var(--header-offset)+var(--spacing-title-gap))] pb-0",
         media && "relative",
         className,
       )}
@@ -38,15 +43,16 @@ export function PageHero({
       {media ? <div className="absolute inset-0 z-0">{media}</div> : null}
       <Container className="relative z-10 text-center">
         {breadcrumbs}
-        <div className="text-center mb-16 mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           {eyebrow ? <div className="mb-4 type-label text-white/50">{eyebrow}</div> : null}
-          <Heading as="h1" size="hero" className="mb-6 text-white">
+          <Heading as="h1" size="hero" className="text-white">
             {title}
           </Heading>
-          {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
-          {actions ? <div className="mt-8 flex flex-wrap justify-center gap-component-gap">{actions}</div> : null}
+          {subtitle ? <p className="mx-auto mt-[var(--gap-heading-to-text)] max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
+          {actions ? <div className="mt-[var(--gap-heading-to-text)] flex flex-wrap justify-center gap-component-gap">{actions}</div> : null}
         </div>
-        {showcase}
+        {children ? <div className="mt-[var(--spacing-title-gap)]">{children}</div> : null}
+        {showcase ? <div className="mt-[var(--spacing-title-gap)]">{showcase}</div> : null}
       </Container>
     </Section>
   );

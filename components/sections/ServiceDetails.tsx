@@ -233,7 +233,7 @@ const serviceGroups: Record<ServiceCategory, ServiceGroup[]> = {
   audio: [
     {
       title: "AI Voiceover",
-      description: "Audio for films, ads, social and campaigns—produced as part of the same ongoing brand content system.",
+      description: "Audio for films, ads, social and campaigns, produced as part of the same ongoing brand content system.",
       items: [
         { title: "Voice Rights & Consent", description: "Synthetic voices are properly licensed or consented to and never unauthorized clones." },
         { title: "No Impersonation", description: "We do not produce content that impersonates a real individual without authorization." },
@@ -283,7 +283,7 @@ export function ServiceDetails({ category }: { category: ServiceCategory }) {
                 <span className="shrink-0 type-h2 font-light text-white/40 transition-transform group-open:rotate-45">+</span>
               </summary>
               <div className="border-t border-white/10 p-5 md:p-6">
-                <div className="grid grid-cols-1 grid-gap-card md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {group.items.map((item) => (
                     <div key={item.title} className="rounded-xl border border-white/10 p-5">
                       <Heading as="h4" size="subsection" className="mb-2 text-white">{item.title}</Heading>

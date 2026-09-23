@@ -56,30 +56,30 @@ export default function PrivacyRequestPage() {
 
           <form onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white/60">Full Name</Label>
+              <Label htmlFor="name" className="text-white">Full Name</Label>
               <Input
                 id="name"
                 name="name"
                 placeholder="John Doe" 
                 required 
-                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
+                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white placeholder:opacity-100 focus:border-white"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white/60">Email Address</Label>
+              <Label htmlFor="email" className="text-white">Email Address</Label>
               <Input
                 id="email"
                 name="email"
                 type="email" 
                 placeholder="john@example.com" 
                 required 
-                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
+                className="rounded-lg bg-black px-4 py-3 text-white placeholder:text-white placeholder:opacity-100 focus:border-white"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="type" className="text-white/60">Request Type</Label>
+              <Label htmlFor="type" className="text-white">Request Type</Label>
               <Select name="type" defaultValue="" required>
                 <SelectTrigger id="type" className="rounded-lg bg-black px-4 py-3 text-white focus:border-white"><SelectValue placeholder="Select request type" /></SelectTrigger>
                 <SelectContent>
@@ -92,12 +92,12 @@ export default function PrivacyRequestPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="details" className="text-white/60">Details / Message</Label>
+              <Label htmlFor="details" className="text-white">Details / Message</Label>
               <Textarea
                 id="details"
                 name="details"
                 placeholder="Please provide any additional context for your request..." 
-                className="min-h-[120px] resize-none rounded-lg bg-black px-4 py-3 text-white placeholder:text-white/40 focus:border-white"
+                className="min-h-[120px] resize-none rounded-lg bg-black px-4 py-3 text-white placeholder:text-white placeholder:opacity-100 focus:border-white"
               />
             </div>
 

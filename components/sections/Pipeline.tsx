@@ -8,9 +8,10 @@ import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
 interface PipelineProps {
   steps: PipelineStep[];
+  align?: "left" | "center";
 }
 
-export function Pipeline({ steps }: PipelineProps) {
+export function Pipeline({ steps, align = "left" }: PipelineProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -38,7 +39,7 @@ export function Pipeline({ steps }: PipelineProps) {
   });
 
   return (
-    <Section id="pipeline" className="relative overflow-hidden p-0">
+    <Section id="pipeline" className="relative overflow-hidden" style={{ padding: 0 }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
@@ -61,7 +62,7 @@ export function Pipeline({ steps }: PipelineProps) {
       <Container className="relative z-20 py-16 md:py-24">
         {/* Header */}
         <ScrollReveal>
-          <div className="mb-16 max-w-lg">
+          <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-lg"}>
             <Heading
               as="h2"
               size="section"

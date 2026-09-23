@@ -5,11 +5,12 @@ import type { ComparisonRow } from "@/types";
 
 interface ComparisonProps {
   rows: ComparisonRow[];
+  size?: "md" | "lg";
 }
 
-export function Comparison({ rows }: ComparisonProps) {
+export function Comparison({ rows, size = "lg" }: ComparisonProps) {
   return (
-    <Section id="why-articog" size="lg" className="relative overflow-hidden" style={{ background: "#000000" }}>
+    <Section id="why-articog" size={size} className="relative overflow-hidden" style={{ background: "#000000" }}>
       {/* Background Video removed as requested */}
 
 

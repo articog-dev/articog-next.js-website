@@ -195,7 +195,7 @@ function DropdownPanel({
             "0 20px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.05)",
           backdropFilter: "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
-          padding: isServices ? "16px" : "12px",
+          padding: "1.5rem",
           maxHeight: "calc(100vh - 88px)",
           overflowY: "auto",
         }}
@@ -238,10 +238,10 @@ function ServicesContent({
     <>
       <ServiceMenuDesktop onClose={onClose} />
       <div className="mt-3 border-t border-white/10 pt-3">
-        <p className="px-3 pb-2 type-caption uppercase tracking-widest text-white/35">Solutions</p>
-        <div className="grid gap-1 sm:grid-cols-2">
+        <p className="px-3 pb-4 type-caption uppercase tracking-widest text-white/35">Solutions</p>
+        <div className="grid gap-y-1 sm:grid-cols-2">
           {links.filter((link) => link.href.startsWith("/solutions/")).map((link) => (
-            <Link key={link.href} href={link.href} onClick={onClose} className="block rounded-lg px-3 py-2 type-nav text-white/60 transition-colors hover:bg-white/[0.04] hover:text-white">
+            <Link key={link.href} href={link.href} onClick={onClose} className="block rounded-lg px-3 py-2.5 type-nav text-white/60 transition-colors hover:bg-white/[0.04] hover:text-white">
               {link.label}
             </Link>
           ))}

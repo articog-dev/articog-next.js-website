@@ -16,25 +16,25 @@ export default function HowItWorksPage() {
     {
       step: 1,
       title: "Brief",
-      description: "Brief — Share the product, brand story, goal and references.",
+      description: "Brief: Share the product, brand story, goal and references.",
       tag: "Day 1",
     },
     {
       step: 2,
       title: "Generate",
-      description: "Create — We build the story and produce faster with AI.",
+      description: "Create: We build the story and produce faster with AI.",
       tag: "Day 1 to 2",
     },
     {
       step: 3,
       title: "Refine",
-      description: "Refine — Human direction keeps the work on-brand.",
+      description: "Refine: Human direction keeps the work on-brand.",
       tag: "Day 2 to 3",
     },
     {
       step: 4,
       title: "Deliver",
-      description: "Deliver — Receive finished content for every required channel and format.",
+      description: "Deliver: Receive finished content for every required channel and format.",
       tag: "Day 3 to 4",
     },
   ];
@@ -63,7 +63,7 @@ export default function HowItWorksPage() {
             <Heading as="h1" size="hero" className="mb-6 text-white">
               From brief to live in days
             </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "#ffffff" }}>
               We replace rigid timelines and overhead with a high velocity engine powered by AI and directed by humans.
             </p>
           </div>
@@ -83,7 +83,7 @@ export default function HowItWorksPage() {
               AI Creative Pipeline
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
             </h3>
-            <p className="type-small" style={{ color: "rgba(255,255,255,0.50)" }}>
+            <p className="type-small" style={{ color: "#ffffff" }}>
               Take a deeper technical look at our internal creative engine.
             </p>
           </Link>
@@ -112,7 +112,7 @@ export default function HowItWorksPage() {
             <Heading as="h2" size="section" className="mb-6">
               Human oversight, every step
             </Heading>
-            <p className="type-body leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.60)" }}>
+            <p className="type-body leading-relaxed mb-8" style={{ color: "#ffffff" }}>
               A Creative Director reviews every project for brand safety, legal compliance, and quality.
             </p>
           </div>

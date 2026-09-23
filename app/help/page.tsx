@@ -54,7 +54,7 @@ export default function HelpCenterPage() {
     },
     {
       title: "Workflow",
-      links: [{ label: "Explore how it works", href: "/how-it-works" }],
+      links: [{ label: "Explore how it works", href: "/why-articog#how-it-works" }],
       faqs: [
         {
           q: "How does a project move from brief to delivery?",
@@ -96,7 +96,7 @@ export default function HelpCenterPage() {
     {
       term: "Brand Consistency at Scale",
       definition: "A structured production process using brand references, creative direction, review checkpoints and production controls to maintain consistency across formats and variants.",
-      link: "/why-articog/production-economics",
+      link: "/why-articog#production-economics",
     },
     {
       term: "Post-Production",

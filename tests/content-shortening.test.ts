@@ -11,7 +11,7 @@ describe("content reduction regression checks", () => {
 
     const body = heroMatch?.[1] ?? "";
     expect(body).toBe(
-      "Articog is an AI Native Film & Production Company for brands. We create stories around every product through AI-native production—reducing traditional production, production time and budget. One monthly subscription can cover brand films, commercials, social content, product visuals and audio.",
+      "Articog is an AI Native Film & Production Company for brands. We create stories around every product through AI-native production, reducing traditional production, production time and budget. One monthly subscription can cover brand films, commercials, social content, product visuals and audio.",
     );
   });
 });

@@ -108,7 +108,7 @@ export default function AIVideoProductionPage() {
               <p className="type-body-lg text-white/60 leading-relaxed">
                 Brief to delivery, built for speed.
               </p>
-              <Link href="/how-it-works" className="inline-flex items-center text-sm font-bold tracking-widest text-white hover:opacity-70 transition-opacity uppercase">
+              <Link href="/why-articog#how-it-works" className="inline-flex items-center text-sm font-bold tracking-widest text-white hover:opacity-70 transition-opacity uppercase">
                 View the full pipeline <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>

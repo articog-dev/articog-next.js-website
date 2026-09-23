@@ -17,15 +17,18 @@ export function Section({
   size = "md",
   style,
 }: SectionProps) {
+  const isLegacyHero = className?.includes("pt-32") ?? false;
+
   return (
     <Tag
       id={id}
       style={style}
+      data-spacing-hero={isLegacyHero ? "true" : undefined}
       className={cn(
         "relative w-full",
-        size === "sm" && "py-section-sm",
-        size === "md" && "py-section",
-        size === "lg" && "py-section-lg",
+        (isLegacyHero ? "md" : size) === "sm" && "py-section-sm",
+        (isLegacyHero ? "md" : size) === "md" && "py-section",
+        (isLegacyHero ? "md" : size) === "lg" && "py-section-lg",
         className
       )}
     >

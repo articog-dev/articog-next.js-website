@@ -63,20 +63,20 @@ export const founders: FounderProfile[] = [
       {
         title: "Experience",
         items: [
-          "Articog, Co-Founder, Mar 2025 – Present",
-          "Govada Creations, Vice President, Oct 2022 – Present",
-          "Govada Creations, Social Media Director, Mar 2020 – Present",
-          "Govada Creations, Activities Coordinator, Feb 2014 – Present",
-          "Govada Creations, Intern, 2013 – 2014",
-          "Clinical Observer, Chelsea and Westminster Hospital NHS Foundation Trust, Jun 2025 – Jul 2025",
-          "Duty Medical Officer, Sri Sai Balaji Hospital, Nov 2022 – Mar 2023",
-          "Clinical Observer, Mid and South Essex NHS Foundation Trust, Jun 2025 – Jul 2025",
+          "Articog, Co-Founder, Mar 2025 to Present",
+          "Govada Creations, Vice President, Oct 2022 to Present",
+          "Govada Creations, Social Media Director, Mar 2020 to Present",
+          "Govada Creations, Activities Coordinator, Feb 2014 to Present",
+          "Govada Creations, Intern, 2013 to 2014",
+          "Clinical Observer, Chelsea and Westminster Hospital NHS Foundation Trust, Jun 2025 to Jul 2025",
+          "Duty Medical Officer, Sri Sai Balaji Hospital, Nov 2022 to Mar 2023",
+          "Clinical Observer, Mid and South Essex NHS Foundation Trust, Jun 2025 to Jul 2025",
         ],
       },
       {
         title: "Education",
         paragraphs: [
-          "Kamineni Academy of Medical Sciences and Research Centre\nBachelor of Medicine, Bachelor of Surgery (MBBS), 2016 – 2022",
+          "Kamineni Academy of Medical Sciences and Research Centre\nBachelor of Medicine, Bachelor of Surgery (MBBS), 2016 to 2022",
         ],
       },
       {

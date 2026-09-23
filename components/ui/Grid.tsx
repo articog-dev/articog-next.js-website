@@ -6,7 +6,7 @@ type GridProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const gapMap = {
-  compact: "grid-gap-card",
+  compact: "gap-6",
   standard: "grid-gap-section",
   spacious: "grid-gap-loose",
 };

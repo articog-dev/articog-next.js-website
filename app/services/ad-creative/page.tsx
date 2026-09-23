@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Ad Creative Production | Articog",
   description: "Ad creative built for paid social, display, search, and campaign testing across channels and growth-stage teams.",
 };
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Share2, Monitor, Search, ArrowRight } from "lucide-react";
 import { ServiceDetails } from "@/components/sections/ServiceDetails";
@@ -53,33 +53,27 @@ export default function AdCreativePage() {
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Ad Creative" }]} />
-          <div className="text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
-              More ad creative. Less production cost.
-            </Heading>
-          </div>
-          <ServiceDeviceShowcase href="/services/ad-creative" />
-        </Container>
-      </Section>
+      <PageHero
+        breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: "Ad Creative" }]} />}
+        title="More ad creative. Less production cost."
+      >
+        <ServiceDeviceShowcase href="/services/ad-creative" />
+      </PageHero>
 
       {/* What We Deliver Section */}
       <Section size="md" className="bg-white/[0.02]">
         <Container>
-          <div className="mb-12">
-              <Heading as="h2" size="section" className="mb-4 text-white">What We Deliver</Heading>
+            <div className="mb-[var(--gap-header-to-content)]">
+              <Heading as="h2" size="section" className="text-white">What We Deliver</Heading>
             <p className="font-sans text-white/50 max-w-2xl">
               From social feeds to global display, we build assets for each channel.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {deliverables.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl border border-white/10"
+                className="rounded-2xl border border-white/10 p-6 md:p-8"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-6 h-6" />
@@ -89,7 +83,7 @@ export default function AdCreativePage() {
             ))}
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="mt-[var(--gap-header-to-content)] grid grid-cols-1 gap-6 md:grid-cols-2">
             {subServices.map((service) => {
               const card = (
                 <div className="flex h-full w-full flex-col justify-between gap-4">

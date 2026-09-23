@@ -38,7 +38,7 @@ export default function ProductionEconomicsPage() {
             <Heading as="h1" size="hero" className="mb-6 text-white">
               Less production. Less time. Less budget.
             </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "#ffffff" }}>
               AI-native production can reduce traditional production requirements, turnaround time and production cost for suitable creative. Final budget depends on scope, complexity and deliverables.
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function ProductionEconomicsPage() {
                   {section.icon}
                 </div>
                   <Heading as="h3" size="card" className="text-xl font-semibold text-white mb-4">{section.title}</Heading>
-                <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
+                <p className="type-small leading-relaxed" style={{ color: "#ffffff" }}>
                   {section.description}
                 </p>
               </div>
@@ -59,7 +59,7 @@ export default function ProductionEconomicsPage() {
 
           <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] mb-24">
             <h3 className="text-lg font-display font-semibold text-white mb-4 italic">A Note on Performance</h3>
-            <p className="type-small leading-relaxed mb-0" style={{ color: "rgba(255,255,255,0.40)" }}>
+                <p className="type-small leading-relaxed mb-0" style={{ color: "#ffffff" }}>
               Results vary by project scope and complexity.
             </p>
           </div>

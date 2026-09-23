@@ -8,6 +8,9 @@ import { dedicatedServicePages } from "../lib/service-pages";
 
 const SITE_URL = "https://www.articog.com";
 const REDIRECTED_ROUTES = new Set([
+  "/how-it-works",
+  "/trust",
+  "/why-articog/production-economics",
   "/accessibility",
   "/privacy",
   "/legal/privacy-policy",

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Flexible creative solutions for launches, performance marketing, subscriptions, and scalable production without the overhead of a large agency.",
 };
 import { ArrowRight } from "lucide-react";
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 
@@ -46,15 +46,8 @@ export default function SolutionsPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
-              Production built around your monthly content needs.
-            </Heading>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2 mb-24">
+      <PageHero title="Production built around your monthly content needs.">
+        <div className="grid gap-6 md:grid-cols-2">
             {cards.map((card) => (
               <Link
                 key={card.title}
@@ -67,8 +60,10 @@ export default function SolutionsPage() {
                 <ArrowRight size={18} className="ml-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5 group-hover:text-white/70" />
               </Link>
             ))}
-          </div>
-
+        </div>
+      </PageHero>
+      <Section size="lg">
+        <Container>
           <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>

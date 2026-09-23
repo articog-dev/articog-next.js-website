@@ -98,8 +98,8 @@ export function SolutionDetails({ category }: { category: SolutionCategory }) {
   return (
     <Section size="md" className="border-t border-white/5">
       <Container>
-        <div className="mb-12 max-w-3xl">
-          <Heading as="h2" size="section" className="mb-4 text-white">
+        <div className="mb-[var(--gap-header-to-content)] max-w-3xl">
+          <Heading as="h2" size="section" className="text-white">
             Capabilities
           </Heading>
         </div>
@@ -114,7 +114,7 @@ export function SolutionDetails({ category }: { category: SolutionCategory }) {
                 <span className="shrink-0 type-h2 font-light text-white/40 transition-transform group-open:rotate-45">+</span>
               </summary>
               <div className="border-t border-white/10 p-5 md:p-6">
-                <div className="grid grid-cols-1 grid-gap-card md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {group.items.map((item) => (
                     <div key={item.title} className="rounded-xl border border-white/10 p-5">
                       <Heading as="h4" size="subsection" className="mb-2 text-white">{item.title}</Heading>

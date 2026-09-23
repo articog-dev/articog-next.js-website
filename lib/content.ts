@@ -8,7 +8,7 @@ export const siteContent: SiteContent = {
   hero: {
     eyebrow: "AI NATIVE FILM & PRODUCTION",
     headline: "More brand content. Lower production cost. Faster with AI.",
-    body: "Articog is an AI Native Film & Production Company for brands. We create stories around every product through AI-native production—reducing traditional production, production time and budget. One monthly subscription can cover brand films, commercials, social content, product visuals and audio.",
+    body: "Articog is an AI Native Film & Production Company for brands. We create stories around every product through AI-native production, reducing traditional production, production time and budget. One monthly subscription can cover brand films, commercials, social content, product visuals and audio.",
     ctaLabel: "Book a Demo",
     ctaHref: "/book-a-demo",
     secondaryCtaLabel: "View Work",
@@ -43,28 +43,28 @@ export const siteContent: SiteContent = {
       step: 1,
       title: "Brief",
       description:
-        "Brief — Share the product, brand story, goal and references.",
+        "Brief: Share the product, brand story, goal and references.",
       tag: "Typical workflow",
     },
     {
       step: 2,
       title: "Generate",
       description:
-        "Create — We build the story and produce faster with AI.",
+        "Create: We build the story and produce faster with AI.",
       tag: "Typical workflow",
     },
     {
       step: 3,
       title: "Refine",
       description:
-        "Refine — Human direction keeps the work on-brand.",
+        "Refine: Human direction keeps the work on-brand.",
       tag: "Typical workflow",
     },
     {
       step: 4,
       title: "Deliver",
       description:
-        "Deliver — Receive finished content for every required channel and format.",
+        "Deliver: Receive finished content for every required channel and format.",
       tag: "Typical workflow",
     },
   ],

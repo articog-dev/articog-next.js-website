@@ -5,6 +5,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+[data-spacing-hero="true"] {
+  padding-top: calc(var(--header-offset) + var(--spacing-title-gap)) !important;
+  padding-bottom: 0 !important;
+}
+
+[data-spacing-hero="true"] h1 {
+  margin-bottom: 0 !important;
+}
+
+[data-spacing-hero="true"] h1 + p {
+  margin-top: var(--gap-heading-to-text) !important;
+}
+
+[data-spacing-hero="true"] .mb-16 {
+  margin-bottom: var(--spacing-title-gap) !important;
+}
+
 :root {
   --font-primary: var(--font-sora);
 }
@@ -17,9 +34,9 @@
   --color-accent-hover: #e4e4e4;
   --color-accent-muted: rgba(255, 255, 255, 0.1);
 
-  --color-muted: rgba(255, 255, 255, 0.55);
-  --color-muted-safe: rgba(255, 255, 255, 0.55);
-  --color-muted-foreground: rgba(255, 255, 255, 0.38);
+  --color-muted: #ffffff;
+  --color-muted-safe: #ffffff;
+  --color-muted-foreground: #ffffff;
 
   --color-border: rgba(255, 255, 255, 0.08);
 
@@ -61,6 +78,13 @@
   --spacing-section-sm: clamp(2.5rem, 6vw, 4.5rem);
   --spacing-section: clamp(3.5rem, 8vw, 7rem);
   --spacing-section-lg: clamp(4.5rem, 10vw, 9rem);
+  --spacing-title-gap: var(--spacing-section);
+  --gap-heading-to-text: 1rem;
+  --gap-header-to-content: 2.5rem;
+  --gap-card-grid: 1.5rem;
+  --gap-card-inner: 1.5rem;
+  --gap-card-title-text: 0.5rem;
+  --spacing-card-pad: 2rem;
 
   --container-container: 1280px;
 
@@ -254,11 +278,58 @@
   }
 }
 
+@layer utilities {
+  .text-white\/40,
+  .text-white\/50,
+  .text-white\/60,
+  .text-white\/70,
+  .text-muted,
+  .text-muted-safe,
+  .text-muted-foreground,
+  .text-foreground\/70,
+  .text-foreground\/80 {
+    color: #ffffff !important;
+  }
+}
+
 @layer base {
   html,
   body {
     background-color: #000000;
     font-family: var(--font-primary);
+  }
+
+  label,
+  legend {
+    color: #ffffff;
+  }
+
+  input,
+  textarea,
+  select {
+    color: #ffffff;
+    caret-color: #ffffff;
+    color-scheme: dark;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  select option {
+    color: #ffffff;
+    background-color: #0a0a0a;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff;
+    caret-color: #ffffff;
+    transition: background-color 9999s ease-in-out 0s;
   }
 
   h1:not(.type-label) {

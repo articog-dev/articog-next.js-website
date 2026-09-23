@@ -23,9 +23,9 @@ export function PageHeroDetail({
 }: PageHeroDetailProps) {
   return (
     <Section
-      size="lg"
+      size="md"
       className={cn(
-        "overflow-hidden pt-32 md:pt-40",
+        "relative w-full overflow-hidden bg-black pt-[calc(var(--header-offset)+var(--spacing-title-gap))] pb-0",
         media && "relative",
         className,
       )}
@@ -41,13 +41,13 @@ export function PageHeroDetail({
               {backLink.label}
             </Link>
           ) : null}
-          <div className="text-center mb-16 mx-auto max-w-3xl">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
+          <div className="mx-auto max-w-3xl text-center">
+            <Heading as="h1" size="hero" className="text-white">
               {title}
             </Heading>
-            {subtitle ? <p className="mx-auto mt-6 max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
+            {subtitle ? <p className="mx-auto mt-[var(--gap-heading-to-text)] max-w-2xl type-body-lg text-white/60">{subtitle}</p> : null}
           </div>
-          {detail}
+          {detail ? <div className="mt-[var(--spacing-title-gap)]">{detail}</div> : null}
         </div>
       </Container>
     </Section>

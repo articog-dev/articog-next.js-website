@@ -19,7 +19,7 @@ type WorkFilter = "Video" | "Product" | "Social" | "Industries";
 
 const projects: PortfolioProject[] = [
   {
-    title: "Product Film — Footwear",
+    title: "Product Film: Footwear",
     category: "AI product visualization · Cinematic product film · Post-production",
     filters: ["Video", "Product"],
     description: "Cinematic product storytelling shaped for premium positioning and campaign use.",

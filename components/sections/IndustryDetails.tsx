@@ -267,7 +267,7 @@ export function IndustryDetails() {
   };
 
   return (
-    <Section size="lg" className="border-t border-white/10 text-left">
+    <Section size="md" className="border-t border-white/10 text-left">
       <Container>
         <div className="grid gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
           <div

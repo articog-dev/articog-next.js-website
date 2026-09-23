@@ -48,12 +48,12 @@ export default function DataHandlingPage() {
     <div className="bg-black min-h-screen">
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/trust" }, { label: "Data Handling & Retention" }]} />
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Trust", href: "/why-articog#trust" }, { label: "Data Handling & Retention" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
               Data Handling & Retention
             </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "#ffffff" }}>
               How we manage, store, and protect your brand's data and creative materials throughout our partnership.
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function DataHandlingPage() {
                   {section.icon}
                 </div>
                 <h3 className="text-lg font-display font-semibold text-white mb-4">{section.title}</h3>
-                <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
+                <p className="type-small leading-relaxed" style={{ color: "#ffffff" }}>
                   {section.description}
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function DataHandlingPage() {
           </div>
 
           <div className="max-w-4xl mx-auto p-10 rounded-2xl border border-white/[0.08] mb-24 text-center">
-            <p className="type-small leading-relaxed mb-0" style={{ color: "rgba(255,255,255,0.40)" }}>
+                <p className="type-small leading-relaxed mb-0" style={{ color: "#ffffff" }}>
               Note: Specific data handling terms, retention schedules, and security protocols are detailed in each client's master service agreement (MSA).
             </p>
           </div>

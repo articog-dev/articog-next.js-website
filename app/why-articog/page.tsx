@@ -7,11 +7,12 @@ export const metadata: Metadata = {
 };
 import { ArrowRight } from "lucide-react";
 import { BarChart3, Clock, Zap } from "lucide-react";
-import { Container, Section, Heading, Button, Card, CardContent } from "@/components/ui";
+import { Container, Section, Heading, Button, Card, CardContent, PageHero } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Comparison } from "@/components/sections/Comparison";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Pipeline } from "@/components/sections/Pipeline";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function WhyArticogPage() {
   const comparisonRows = [
@@ -87,18 +88,12 @@ export default function WhyArticogPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Section id="overview" size="lg" className="pt-32 md:pt-40 pb-0">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
-              More output. Less production cost. Faster production.
-            </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Articog uses AI-native production to reduce traditional shoots, production time and budget—helping brands create more content around every product without losing the story or brand direction.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        id="overview"
+        breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Why Articog" }]} />}
+        title="More output. Less production cost. Faster production."
+        subtitle="Articog uses AI-native production to reduce traditional shoots, production time and budget, helping brands create more content around every product without losing the story or brand direction."
+      />
 
       <nav aria-label="Why Articog sections" className="border-y border-white/[0.08]">
         <Container className="flex flex-wrap justify-center gap-x-6 gap-y-3 py-4 text-center">
@@ -108,20 +103,20 @@ export default function WhyArticogPage() {
         </Container>
       </nav>
 
-      <Comparison rows={comparisonRows} />
+      <Comparison rows={comparisonRows} size="md" />
 
-      <Section size="md" className="pt-0">
+      <Section size="md">
         <Container>
-          <div className="grid gap-6 md:grid-cols-2 mb-24">
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
             <Link
               href="/compare/vs-traditional-production"
               className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20"
             >
-              <Heading as="h3" size="card" className="mb-4 flex items-center justify-between text-white">
+              <Heading as="h2" size="card" className="flex items-center justify-between text-white">
                 Articog vs Traditional Production
                 <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </Heading>
-              <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
+              <p className="type-small leading-relaxed" style={{ color: "#ffffff" }}>
                 AI-native workflows vs. traditional production.
               </p>
             </Link>
@@ -129,51 +124,51 @@ export default function WhyArticogPage() {
               href="/compare/vs-ai-tools"
               className="group rounded-2xl p-10 border border-white/[0.08] transition-all hover:border-white/20"
             >
-              <Heading as="h3" size="card" className="mb-4 flex items-center justify-between text-white">
+              <Heading as="h2" size="card" className="flex items-center justify-between text-white">
                 Articog vs AI Tools Only
                 <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </Heading>
-              <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
+              <p className="type-small leading-relaxed" style={{ color: "#ffffff" }}>
                 Why tools alone aren't enough.
               </p>
             </Link>
           </div>
 
-          <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
         </Container>
       </Section>
 
-      <Section id="production-economics" size="lg" className="border-t border-white/[0.08]">
+      <Section id="production-economics" size="md" className="scroll-mt-[calc(var(--header-offset)+1rem)] border-t border-white/[0.08]">
         <Container>
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <Heading as="h2" size="section" className="mb-6 text-white">Production Cost &amp; ROI Guide</Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <div className="mx-auto mb-[var(--gap-header-to-content)] max-w-3xl text-center">
+            <Heading as="h2" size="section" className="text-white">Production Cost &amp; ROI Guide</Heading>
+            <p className="mx-auto mt-[var(--gap-heading-to-text)] max-w-2xl type-body md:text-lg leading-relaxed" style={{ color: "#ffffff" }}>
               Understanding the potential cost and time considerations of AI-native production. Any engagement model depends on scope, cadence, and deliverables.
             </p>
           </div>
 
-          <div className="mb-24 grid gap-12 md:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
             {economics.map((item) => (
-              <div key={item.title} className="flex flex-col">
+              <div key={item.title} className="flex flex-col items-center text-center">
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03]">{item.icon}</div>
-                <Heading as="h3" size="card" className="mb-4 text-white">{item.title}</Heading>
+                <Heading as="h3" size="card" className="mb-2 text-white">{item.title}</Heading>
                 <p className="type-small leading-relaxed text-white/50">{item.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="mx-auto mb-24 max-w-4xl rounded-2xl border border-white/[0.08] p-10">
-            <h3 className="mb-4 font-display text-lg font-semibold italic text-white">A Note on Performance</h3>
+          <div className="mx-auto mt-[var(--gap-header-to-content)] max-w-4xl rounded-2xl border border-white/[0.08] p-10">
+            <h3 className="font-display text-lg font-semibold italic text-white">A Note on Performance</h3>
             <p className="type-small text-white/40">Results vary by project scope and complexity.</p>
           </div>
         </Container>
       </Section>
 
-      <Section id="how-it-works" size="lg" className="border-t border-white/[0.08] p-0">
-        <Pipeline steps={pipelineSteps} />
-        <Container className="py-16 md:py-24">
-          <div className="mb-10 text-center">
-            <Heading as="h3" size="section" className="mb-4 text-white">Getting started and delivery</Heading>
+      <div id="how-it-works" className="scroll-mt-[calc(var(--header-offset)+1rem)] border-t border-white/[0.08]">
+        <Pipeline steps={pipelineSteps} align="center" />
+        <Section size="md">
+          <Container>
+          <div className="mx-auto mb-[var(--gap-header-to-content)] max-w-3xl text-center">
+            <Heading as="h2" size="section" className="text-white">Getting started and delivery</Heading>
           </div>
           <div className="mx-auto grid max-w-6xl gap-3 md:grid-cols-2">
             {[
@@ -194,26 +189,27 @@ export default function WhyArticogPage() {
               </div>
             ))}
           </div>
-          <div className="mx-auto mt-16 max-w-2xl text-center">
-            <Heading as="h3" size="section" className="mb-6 text-white">Human oversight, every step</Heading>
+          <div className="mx-auto mt-[var(--spacing-title-gap)] max-w-3xl text-center">
+            <Heading as="h2" size="section" className="text-white">Human oversight, every step</Heading>
             <p className="type-body leading-relaxed text-white/60">A Creative Director reviews every project for brand safety, legal compliance, and quality.</p>
           </div>
-          <Link href="/how-it-works/ai-creative-pipeline" className="group mx-auto mt-16 block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-all hover:border-white/20">
+          <Link href="/how-it-works/ai-creative-pipeline" className="group mx-auto mt-[var(--spacing-title-gap)] block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-all hover:border-white/20">
             <h3 className="mb-2 flex items-center justify-center gap-2 type-h3 text-white">
               AI Creative Pipeline
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
             </h3>
             <p className="type-small text-white/50">Take a deeper technical look at our internal creative engine.</p>
           </Link>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      </div>
 
-      <Section id="trust" size="lg" className="border-t border-white/[0.08]">
+      <Section id="trust" size="md" className="scroll-mt-[calc(var(--header-offset)+1rem)] border-t border-white/[0.08]">
         <Container>
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <Heading as="h2" size="section" className="mb-6 text-white">Built on trust and transparency</Heading>
+          <div className="mx-auto mb-[var(--gap-header-to-content)] max-w-3xl text-center">
+            <Heading as="h2" size="section" className="text-white">Built on trust and transparency</Heading>
           </div>
-          <div className="mb-12 grid gap-3 md:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
             {trustLinks.map((item) => (
               <Link key={item.href} href={item.href} className="group block">
                 <Card className="flex-row items-center justify-between rounded-xl border-white/[0.08] bg-transparent p-0 transition-colors group-hover:border-white/20">
@@ -225,7 +221,7 @@ export default function WhyArticogPage() {
               </Link>
             ))}
           </div>
-          <div className="mb-24 flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5 text-center">
+          <div className="mx-auto mt-[var(--gap-header-to-content)] flex max-w-6xl flex-wrap justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5 text-center">
             <Link href="/trust/ai-and-ip" className="type-small text-white/45 transition-colors hover:text-white">Responsible AI</Link>
             <Link href="/contact" className="type-small text-white/45 transition-colors hover:text-white">Vendor &amp; Tool Review</Link>
           </div>
@@ -235,6 +231,8 @@ export default function WhyArticogPage() {
           </div>
         </Container>
       </Section>
+
+      <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
     </div>
   );
 }

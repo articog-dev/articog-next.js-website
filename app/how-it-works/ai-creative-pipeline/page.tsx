@@ -49,7 +49,7 @@ export default function AICreativePipelinePage() {
       {/* Hero Section */}
       <Section size="lg" className="pt-32 md:pt-40">
         <Container>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "How It Works", href: "/how-it-works" }, { label: "The AI Creative Pipeline" }]} />
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "How It Works", href: "/why-articog#how-it-works" }, { label: "The AI Creative Pipeline" }]} />
           <div className="text-center mb-16">
             <Heading as="h1" size="hero" className="mb-6 text-white">
               The AI Creative Pipeline
@@ -104,7 +104,7 @@ export default function AICreativePipelinePage() {
           <div className="mt-12 p-6 rounded-xl border border-white/10 flex items-start gap-4 max-w-2xl mx-auto">
             <Info className="w-5 h-5 text-white/40 mt-0.5 flex-shrink-0" />
             <p className="type-small text-white/50 italic leading-relaxed">
-              Learn more about our broader <Link href="/trust" className="text-white underline hover:text-white/80 transition-colors">Trust & Safety</Link> practices.
+              Learn more about our broader <Link href="/why-articog#trust" className="text-white underline hover:text-white/80 transition-colors">Trust & Safety</Link> practices.
             </p>
           </div>
         </Container>

@@ -29,7 +29,7 @@ export default function ThankYouDemoPage() {
           </div>
           <p
             className="mx-auto mb-10 max-w-md type-body md:text-lg"
-            style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}
+            style={{ color: "#ffffff", lineHeight: 1.65 }}
           >
             Our team will follow up within 1 business day to schedule your demo.
           </p>

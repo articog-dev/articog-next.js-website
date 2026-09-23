@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Monthly Creative Subscription | Articog",
   description: "Steady, predictable creative delivered every month. Video, social, and visuals without the overhead of a full in-house team or agency retainer.",
 };
-import { Container, Section, Heading } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Layers, Calendar, UserCheck, ArrowRight } from "lucide-react";
@@ -33,29 +33,22 @@ export default function MonthlySubscriptionPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Hero Section */}
-      <Section size="lg" className="pt-32 md:pt-40">
-        <Container>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Monthly Creative Subscription" }]} />
-          <div className="text-center mb-16">
-            <Heading as="h1" size="hero" className="mb-6 text-white">
-              Your monthly AI-native production partner.
-            </Heading>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        breadcrumbs={<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "Monthly Creative Subscription" }]} />}
+        title="Your monthly AI-native production partner."
+      />
 
       {/* How It Works Section */}
       <Section size="md" className="bg-white/[0.02]">
         <Container>
-          <div className="mb-12">
-            <Heading as="h2" size="section" className="mb-4 text-white">How It Works</Heading>
+          <div className="mb-[var(--gap-header-to-content)]">
+            <Heading as="h2" size="section" className="text-white">How It Works</Heading>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {steps.map((item) => (
               <div 
                 key={item.title} 
-                className="p-8 rounded-2xl border border-white/10"
+                className="rounded-2xl border border-white/10 p-6 md:p-8"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6">
                   <item.icon className="w-5 h-5" />

@@ -190,7 +190,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="firstName"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     First Name <span className="text-accent">*</span>
                   </label>
@@ -214,7 +214,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="lastName"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     Last Name <span className="text-accent">*</span>
                   </label>
@@ -237,7 +237,7 @@ export default function BookADemoPage() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="projectContext" className="type-nav text-white/70">
+                <label htmlFor="projectContext" className="type-nav text-white">
                   Tell us what your brand needs every month.
                 </label>
                 <Textarea
@@ -254,8 +254,8 @@ export default function BookADemoPage() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="referenceUrl" className="type-nav text-white/70">
-                  Reference / Website URL <span className="text-white/40">(optional)</span>
+                <label htmlFor="referenceUrl" className="type-nav text-white">
+                  Reference / Website URL <span className="text-white">(optional)</span>
                 </label>
                 <Input
                   type="url"
@@ -277,7 +277,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="email"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     Work Email <span className="text-accent">*</span>
                   </label>
@@ -301,7 +301,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="company"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     Company Name <span className="text-accent">*</span>
                   </label>
@@ -327,7 +327,7 @@ export default function BookADemoPage() {
               <div className="flex flex-col gap-2.5">
                 <label
                   htmlFor="role"
-                  className="type-nav text-white/70"
+                  className="type-nav text-white"
                 >
                   Your Role
                 </label>
@@ -349,7 +349,7 @@ export default function BookADemoPage() {
 
               {/* Service Interest */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="type-nav text-white/70">
+                <legend className="type-nav text-white">
                   Service Interest
                 </legend>
 
@@ -374,7 +374,7 @@ export default function BookADemoPage() {
                         />
                       </div>
 
-                      <span className="type-small text-white/60 transition-colors group-hover:text-white">
+                      <span className="type-small text-white transition-colors group-hover:text-white">
                         {option}
                       </span>
                     </label>
@@ -387,7 +387,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="budget"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     Budget Range
                   </label>
@@ -406,7 +406,7 @@ export default function BookADemoPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="timeline"
-                    className="type-nav text-white/70"
+                    className="type-nav text-white"
                   >
                     Timeline
                   </label>
@@ -446,7 +446,7 @@ export default function BookADemoPage() {
               <div
                 className="text-center font-sans text-[12px] leading-relaxed"
                 style={{
-                  color: "rgba(255,255,255,0.35)",
+                  color: "#ffffff",
                 }}
               >
                 <label className="mb-2 flex items-start justify-center gap-2 text-left">
@@ -456,7 +456,7 @@ export default function BookADemoPage() {
                 See our{" "}
                 <Link
                   href="/privacy-policy"
-                  className="text-white/50 underline underline-offset-2 transition-colors hover:text-white"
+                  className="text-white underline underline-offset-2 transition-colors hover:text-white"
                 >
                   Privacy Policy
                 </Link>

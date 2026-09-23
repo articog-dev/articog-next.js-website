@@ -24,7 +24,7 @@ export default function ContactThankYouPage() {
               Message received
             </Heading>
           </div>
-          <p className="mx-auto mb-10 max-w-md type-body md:text-lg" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>
+          <p className="mx-auto mb-10 max-w-md type-body md:text-lg" style={{ color: "#ffffff", lineHeight: 1.65 }}>
             Thanks for reaching out. We&apos;ll follow up within 1 business day.
           </p>
           <Button asChild variant="primary" size="lg">

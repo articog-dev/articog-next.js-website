@@ -22,7 +22,7 @@ export function Capabilities({ capabilities }: CapabilitiesProps) {
             <Link
               key={cap.title}
               href={cap.href}
-              className="group grid grid-gap-card border-b border-white/[0.14] py-7 transition-colors duration-200 hover:border-white/30 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] md:items-start md:grid-gap-section md:py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]"
+              className="group grid gap-6 border-b border-white/[0.14] py-7 transition-colors duration-200 hover:border-white/30 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] md:items-start md:grid-gap-section md:py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]"
             >
               <div className="flex min-w-0 items-center gap-3 md:gap-5">
                 <span className="w-7 shrink-0 font-sans text-xs tabular-nums text-white/35 md:w-9 md:text-sm">
