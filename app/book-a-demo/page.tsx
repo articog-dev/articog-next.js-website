@@ -8,8 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { isTrustedCalendlyEvent } from "@/lib/calendly";
 
-const CALENDLY_URL = "https://calendly.com/articog-media-01/articog-demo-call";
-
+const CALENDLY_URL = "https://calendly.com/articog-media/30min";
 declare global {
   interface Window {
     Calendly?: {
