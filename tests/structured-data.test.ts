@@ -80,7 +80,7 @@ describe("structured data and canonical metadata", () => {
       const source = read(...file);
       const canonicals = source.match(/canonical:\s*"([^"]+)"/g) ?? [];
       expect(canonicals).toHaveLength(1);
-      expect(canonicals[0]).toMatch(/https:\/\/articog\.com\//);
+      expect(canonicals[0]).toMatch(/https:\/\/www\.articog\.com\//);
     }
   });
 
