@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { trackCTAClick, trackContentView, trackPageView } from "@/lib/analytics";
 import { hasGlobalPrivacyControl, readCookieConsentSnapshot, saveCookieConsent, subscribeCookieConsent } from "@/lib/cookie-consent";
 
-const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-H852FSP2V2";
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
