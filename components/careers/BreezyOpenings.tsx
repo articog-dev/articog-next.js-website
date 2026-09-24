@@ -26,8 +26,8 @@ export function BreezyOpenings() {
         ))}
       </ul>
 
-      <div className="mt-12 border-t border-white/10 pt-8 text-left">
-        <p className="font-sans text-[clamp(1.7rem,3vw,2.5rem)] font-medium leading-tight tracking-[-0.05em] text-white">
+      <div className="mt-10 border-t border-white/10 pt-8 text-left">
+        <p className="font-sans text-[clamp(1.45rem,2.2vw,2.1rem)] font-medium leading-tight tracking-[-0.04em] text-white">
           Interested in joining Articog?
         </p>
 
