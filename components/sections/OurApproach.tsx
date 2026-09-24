@@ -46,33 +46,17 @@ export function OurApproach() {
     return () => observer.disconnect();
   }, []);
 
+  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
 
     const src = "/videos/our-approach.mp4";
     const nextSrc = new URL(src, window.location.href).toString();
-
-    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) {
-      void video.play().catch(() => undefined);
-      return;
-    }
-
-    const handlePlaybackReady = () => {
-      void video.play().catch(() => undefined);
-    };
-
+    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
     video.setAttribute("src", src);
-    video.addEventListener("loadeddata", handlePlaybackReady, { once: true });
-    video.addEventListener("canplay", handlePlaybackReady, { once: true });
-
-    return () => {
-      video.removeEventListener("loadeddata", handlePlaybackReady);
-      video.removeEventListener("canplay", handlePlaybackReady);
-    };
   }, [shouldLoad]);
-
-  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
 
   return (
     <Section size="md" className="border-t border-white/[0.05]">

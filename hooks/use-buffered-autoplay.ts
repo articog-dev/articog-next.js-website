@@ -27,11 +27,15 @@ export function useBufferedAutoplay(
     video.setAttribute("muted", "");
 
     let started = false;
+    let playPromise: Promise<void> | null = null;
     let fallbackTimer: number | undefined;
     let stallTimer: number | undefined;
 
     const play = () => {
-      void video.play().catch(() => undefined);
+      if (!video.paused || playPromise) return;
+      playPromise = video.play().catch(() => undefined).finally(() => {
+        playPromise = null;
+      });
     };
 
     const start = () => {
@@ -64,6 +68,8 @@ export function useBufferedAutoplay(
       if (keepPlaying && started && document.visibilityState === "visible") play();
     };
 
+    const handlePlaybackReady = () => play();
+
     if (!waitForBuffer || video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
       start();
     } else {
@@ -71,6 +77,9 @@ export function useBufferedAutoplay(
       fallbackTimer = window.setTimeout(start, FALLBACK_START_MS);
     }
 
+      video.addEventListener("loadedmetadata", handlePlaybackReady);
+      video.addEventListener("loadeddata", handlePlaybackReady);
+      video.addEventListener("canplay", handlePlaybackReady);
     video.addEventListener("pause", handlePause);
     video.addEventListener("waiting", handleStall);
     video.addEventListener("stalled", handleStall);
@@ -81,6 +90,9 @@ export function useBufferedAutoplay(
       window.clearTimeout(fallbackTimer);
       clearStallTimer();
       video.removeEventListener("canplay", start);
+      video.removeEventListener("loadedmetadata", handlePlaybackReady);
+      video.removeEventListener("loadeddata", handlePlaybackReady);
+      video.removeEventListener("canplay", handlePlaybackReady);
       video.removeEventListener("pause", handlePause);
       video.removeEventListener("waiting", handleStall);
       video.removeEventListener("stalled", handleStall);

@@ -35,6 +35,11 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
     return () => observer.disconnect();
   }, []);
 
+  useBufferedAutoplay(videoRef, {
+    enabled: shouldLoad,
+    waitForBuffer: false,
+  });
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
@@ -44,11 +49,6 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
     if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
     video.setAttribute("src", src);
   }, [shouldLoad]);
-
-  useBufferedAutoplay(videoRef, {
-    enabled: shouldLoad,
-    waitForBuffer: false,
-  });
 
   return (
     <Section id="pipeline" className="relative flex min-h-[min(100svh,56.25vw)] items-center overflow-hidden" style={{ padding: 0 }}>
