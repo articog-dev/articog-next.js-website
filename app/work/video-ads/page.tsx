@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   description: "High-volume video ads for every platform, developed for structured creative testing.",
   alternates: { canonical: "https://www.articog.com/work/video-ads" },
 };
-import { Link } from "@/components/ui/Link";
 import { Container, Heading, Section } from '@/components/ui';
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed";
@@ -62,9 +61,6 @@ export default function VideoAdsGalleryPage() {
             <Section className="mt-20 border-t border-white/[0.08] py-12 text-center">
               <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
               <p className="type-small mb-8 italic text-white/40">All displayed work is used with appropriate permissions.</p>
-              <Link to="/book-a-demo" className="text-sm font-medium leading-5 text-white hover:underline underline-offset-4">
-                Book a Demo →
-              </Link>
             </Section>
           </div>
         </Container>

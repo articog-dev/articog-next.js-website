@@ -7,8 +7,7 @@ export const metadata: Metadata = {
 };
 import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
-import { Layers, Calendar, UserCheck, ArrowRight } from "lucide-react";
+import { Layers, Calendar, UserCheck } from "lucide-react";
 import { SolutionDetails } from "@/components/sections/SolutionDetails";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
@@ -62,22 +61,6 @@ export default function MonthlySubscriptionPage() {
       </Section>
 
       <SolutionDetails category="monthly" />
-
-      {/* CTA Section */}
-      <Section size="md" className="border-t border-white/5">
-        <Container>
-          <Link 
-            href="/book-a-demo"
-            className="group flex items-center justify-between p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300 max-w-2xl"
-          >
-            <div>
-              <h3 className="type-h3 text-white mb-2">Plan your next creative cycle</h3>
-              <p className="font-sans text-white/50">Talk with our team about the scope, speed, and delivery model that fits your goals.</p>
-            </div>
-            <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </Container>
-      </Section>
 
       {/* CTA Section */}
       <Section size="lg" className="bg-white/[0.02]">
