@@ -83,7 +83,7 @@ export default function WhyArticogPage() {
               ["/compare/vs-traditional-production", "Articog vs Traditional Production", "AI-native workflows vs. traditional production."],
               ["/compare/vs-ai-tools", "Articog vs AI Tools Only", "Why tools alone aren't enough."],
             ].map(([href, title, description]) => (
-              <ScrollReveal key={href} yOffset={12}>
+              <ScrollReveal key={href}>
                 <Link href={href} className="group block rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white md:p-8">
                   <div className="flex items-center justify-between gap-4">
                     <Heading as="h2" size="card" className="text-white">{title}</Heading>
@@ -102,7 +102,7 @@ export default function WhyArticogPage() {
           <SectionHeader eyebrow="Production Economics" title="Production Cost &amp; ROI Guide" lead="Understanding the potential cost and time considerations of AI-native production. Any engagement model depends on scope, cadence, and deliverables." />
           <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
             {economics.map((item) => (
-              <ScrollReveal key={item.title} yOffset={12}>
+              <ScrollReveal key={item.title}>
                 <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.04] md:p-8">
                   <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80"><item.icon size={20} /></div>
                   <Heading as="h3" size="card" className="text-white">{item.title}</Heading>
@@ -125,7 +125,7 @@ export default function WhyArticogPage() {
             <SectionHeader title="Getting started and delivery" />
             <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
               {deliveryGroups.map((group, groupIndex) => (
-                <ScrollReveal key={groupIndex} yOffset={12}>
+                <ScrollReveal key={groupIndex}>
                   <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
                     <h3 className="mb-5 type-h4 text-white">{groupIndex === 0 ? "Getting started" : "Delivery"}</h3>
                     <div className="divide-y divide-white/[0.08]">
@@ -140,13 +140,13 @@ export default function WhyArticogPage() {
                 </ScrollReveal>
               ))}
             </div>
-            <ScrollReveal yOffset={12}>
+            <ScrollReveal>
               <div className="mx-auto mt-[var(--spacing-section-sm)] flex max-w-6xl flex-col items-center gap-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 text-center md:flex-row md:items-start md:text-left">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80"><ShieldCheck size={20} /></div>
                 <div><h3 className="type-h3 text-white">Human oversight, every step</h3><p className="mt-2 type-body leading-relaxed text-white/70">A Creative Director reviews every project for brand safety, legal compliance, and quality.</p></div>
               </div>
             </ScrollReveal>
-            <ScrollReveal yOffset={12}>
+            <ScrollReveal>
               <Link href="/how-it-works/ai-creative-pipeline" className="group mx-auto mt-[var(--spacing-section-sm)] flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white md:p-8">
                 <div><h3 className="type-h3 text-white">AI Creative Pipeline</h3><p className="mt-2 type-small text-white/55">Take a deeper technical look at our internal creative engine.</p></div>
                 <ArrowRight size={20} className="shrink-0 text-white/60 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white" />
@@ -161,7 +161,7 @@ export default function WhyArticogPage() {
           <SectionHeader eyebrow="Trust &amp; Security" title="Built on trust and transparency" />
           <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
             {trustLinks.map((item) => (
-              <ScrollReveal key={item.href} yOffset={12}>
+              <ScrollReveal key={item.href}>
                 <Link href={item.href} className="group flex items-center justify-between gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white md:p-8">
                   <div className="flex items-center gap-4"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80"><item.icon size={20} /></div><Heading as="h3" size="card" className="text-white">{item.title}</Heading></div>
                   <ArrowRight size={20} className="shrink-0 text-white/55 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white" />

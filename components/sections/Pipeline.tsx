@@ -62,7 +62,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
 
       <Container className="relative z-20 py-16 md:py-24">
         {/* Header */}
-        <ScrollReveal yOffset={12}>
+        <ScrollReveal>
           <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-lg"}>
             <Heading
               as="h2"
@@ -84,10 +84,11 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
               key={step.step}
               className={showDetails ? "group relative flex min-h-64 cursor-default flex-col justify-start gap-4 border-b p-6 text-left transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0" : "group relative flex cursor-default flex-col items-center justify-center gap-4 border-b p-7 text-center transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"}
             >
-              <ScrollReveal delay={index * 0.1} yOffset={12}>
+              <ScrollReveal delay={index * 0.1}>
                 <div className={showDetails ? "flex h-full flex-col gap-4" : "flex flex-col items-center justify-center gap-4"}>
                   <div
-                    className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100"
+                    className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                    style={{ background: "#ffffff" }}
                   />
                   {!showDetails ? <div className="absolute bottom-[-1.5rem] left-[2.15rem] top-14 w-px bg-white/[0.18] last:hidden sm:hidden" aria-hidden="true" /> : null}
                   <div

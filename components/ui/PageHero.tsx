@@ -46,12 +46,12 @@ export function PageHero({
       <Container className="relative z-10 text-center">
         {breadcrumbs}
         <div className="mx-auto max-w-3xl text-center">
-          {eyebrow ? <div className="motion-load mb-4 type-label text-white/50" style={{ "--i": 0 } as React.CSSProperties}>{eyebrow}</div> : null}
-          <Heading as="h1" size="hero" className={cn("motion-load text-white", titleClassName)} style={{ "--i": 1 } as React.CSSProperties}>
+          {eyebrow ? <div className="mb-4 type-label text-white/50">{eyebrow}</div> : null}
+          <Heading as="h1" size="hero" className={cn("text-white", titleClassName)}>
             {title}
           </Heading>
-          {subtitle ? <p className="motion-load mx-auto mt-[var(--gap-heading-to-text)] max-w-2xl type-body-lg text-white/70" style={{ "--i": 2 } as React.CSSProperties}>{subtitle}</p> : null}
-          {actions ? <div className="motion-load mt-[var(--gap-heading-to-text)] flex flex-wrap justify-center gap-component-gap" style={{ "--i": 3 } as React.CSSProperties}>{actions}</div> : null}
+          {subtitle ? <p className="mx-auto mt-[var(--gap-heading-to-text)] max-w-2xl type-body-lg text-white/70">{subtitle}</p> : null}
+          {actions ? <div className="mt-[var(--gap-heading-to-text)] flex flex-wrap justify-center gap-component-gap">{actions}</div> : null}
         </div>
         {children ? <div className="mt-[var(--spacing-title-gap)]">{children}</div> : null}
         {showcase ? <div className="mt-[var(--spacing-title-gap)]">{showcase}</div> : null}

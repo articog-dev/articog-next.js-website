@@ -145,7 +145,7 @@ export function BlogFilterList({ posts }: { posts: BlogEntry[] }) {
                 aria-pressed={isActive}
                 onClick={() => setActiveFilter(option.id)}
                 className={[
-                  "relative inline-flex shrink-0 items-center justify-center rounded-full px-4 py-2 text-sm font-sans font-medium transition-[background-color,color] duration-200",
+                  "relative inline-flex shrink-0 items-center justify-center rounded-full px-4 py-2 text-sm font-sans font-medium transition-all duration-200",
                   "min-w-[92px]",
                   isActive
                     ? "bg-white text-black shadow-sm"

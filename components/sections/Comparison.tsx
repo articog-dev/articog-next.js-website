@@ -12,8 +12,8 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
   return (
     <Section id="why-articog" size={size} className="relative overflow-hidden border-t border-white/[0.08] pt-[var(--spacing-section-sm)]">
       <Container className="relative z-10">
-        <ScrollReveal yOffset={12}>
-          <div className="overflow-hidden rounded-2xl border border-white/[0.08] transition-colors duration-200 hover:border-white/20">
+        <ScrollReveal>
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <div className="hidden overflow-x-auto sm:block">
             <div>
               <div className="grid grid-cols-[1.1fr_1.2fr_1.2fr] border-b border-white/[0.08]">
@@ -26,7 +26,7 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
               {rows.map((row, i) => (
                 <div
                   key={row.attribute}
-                  className={`grid grid-cols-[1.1fr_1.2fr_1.2fr] transition-colors hover:bg-white/[0.02] ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
+                  className={`grid grid-cols-[1.1fr_1.2fr_1.2fr] ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
                 >
                   <div className="flex items-center p-5">
                     <p className="type-small font-medium text-white/70">{row.attribute}</p>

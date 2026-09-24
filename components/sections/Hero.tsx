@@ -77,7 +77,7 @@ export function Hero({ content }: HeroProps) {
             {content.eyebrow}
           </p>
           {/* Headline */}
-          <Heading as="h1" size="hero" className="motion-load hero-heading text-white" style={{ "--i": 0 } as React.CSSProperties}>
+          <Heading as="h1" size="hero" className="hero-heading text-white">
             {content.headline.split("\n").map((line, i, lines) => (
               <span key={i} className="block">
                 {line}{i < lines.length - 1 ? " " : ""}

@@ -31,19 +31,19 @@ export function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 h-12 type-small text-black transition-[background-color,transform] hover:bg-white/90 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 h-12 type-small text-black transition-all hover:bg-white/90 active:scale-95"
           >
             Back to Home
           </Link>
           <Link
             href="/work"
-            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 h-12 type-small text-white transition-[background-color,transform] hover:bg-white/10 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 h-12 type-small text-white transition-all hover:bg-white/10 active:scale-95"
           >
             See Our Work
           </Link>
             <Link
               href="/book-a-demo"
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 h-12 type-small text-black transition-[background-color,transform] hover:bg-white/90 active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 h-12 type-small text-black transition-all hover:bg-white/90 active:scale-95"
           >
             Book a Demo
           </Link>

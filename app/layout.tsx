@@ -7,7 +7,6 @@ import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { MotionProvider } from "@/components/motion/MotionProvider";
 import { siteEntitySchema } from "@/lib/structured-data";
 import "./globals.css";
 
@@ -67,17 +66,15 @@ export default function RootLayout({
       <head>
       </head>
       <body className="min-h-full flex flex-col">
-        <MotionProvider>
-          <GoogleAnalytics />
-          <AnnouncementBar />
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <CookieBanner />
-          <JsonLd data={siteEntitySchema} />
-        </MotionProvider>
+        <GoogleAnalytics />
+        <AnnouncementBar />
+        <Header />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <CookieBanner />
+        <JsonLd data={siteEntitySchema} />
       </body>
     </html>
   );
