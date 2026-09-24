@@ -12,57 +12,76 @@ interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   sources?: LazyVideoSource[];
 }
 
-export function LazyVideo({ sources, src, preload = "none", ...props }: LazyVideoProps) {
+export function LazyVideo({
+  sources,
+  src,
+  preload = "metadata",
+  onError,
+  ...props
+}: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasFailed) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
       },
-      { rootMargin: "200px" },
+      { rootMargin: "180px 0px", threshold: 0.01 },
     );
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [hasFailed]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !shouldLoad) return;
+    if (!video || !shouldLoad || hasFailed) return;
 
     const playVideo = () => {
+      if (!video.paused) return;
       void video.play().catch(() => undefined);
     };
 
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") playVideo();
+      if (document.visibilityState === "visible") {
+        void video.play().catch(() => undefined);
+      }
     };
 
-    playVideo();
+    if (video.readyState >= 2) {
+      playVideo();
+    }
+
     video.addEventListener("canplay", playVideo, { once: true });
     document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       video.removeEventListener("canplay", playVideo);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [shouldLoad]);
+  }, [shouldLoad, hasFailed]);
+
+  const handleError: React.ReactEventHandler<HTMLVideoElement> = (event) => {
+    setHasFailed(true);
+    onError?.(event);
+  };
 
   return (
     <video
       ref={videoRef}
       {...props}
       preload={shouldLoad ? preload : "none"}
-      src={shouldLoad ? src : undefined}
+      src={shouldLoad && !hasFailed ? src : undefined}
+      onError={handleError}
     >
-      {shouldLoad
+      {shouldLoad && !hasFailed
         ? sources?.map((source) => <source key={`${source.src}-${source.media ?? "default"}`} {...source} />)
         : null}
     </video>

@@ -287,8 +287,9 @@ export function CreativeDocument() {
                   alt={project.alt}
                   fill
                   sizes="(max-width: 640px) 88vw, (max-width: 1024px) 72vw, 58vw"
-                  priority={isActive}
-                  quality={75}
+                  priority={index === activeIndex}
+                  quality={isActive ? 72 : 60}
+                  loading={isActive ? "eager" : "lazy"}
                   className={styles.image}
                 />
               </button>
@@ -315,12 +316,12 @@ export function CreativeDocument() {
           </button>
           <div className={styles.modalFrame}>
             <Image
-                src={selectedProject.src}
+              src={selectedProject.src}
               alt={selectedProject.alt}
               fill
               sizes="(max-width: 768px) 90vw, 70vw"
               quality={80}
-              loading="lazy"
+              loading="eager"
               className={styles.modalImage}
               onClick={(event) => event.stopPropagation()}
             />
