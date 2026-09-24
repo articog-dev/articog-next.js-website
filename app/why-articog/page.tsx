@@ -123,19 +123,12 @@ export default function WhyArticogPage() {
         <Section>
           <Container>
             <SectionHeader title="Getting started and delivery" />
-            <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
-              {deliveryGroups.map((group, groupIndex) => (
-                <ScrollReveal key={groupIndex}>
-                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
-                    <h3 className="mb-5 type-h4 text-white">{groupIndex === 0 ? "Getting started" : "Delivery"}</h3>
-                    <div className="divide-y divide-white/[0.08]">
-                      {group.map(([title, description], index) => (
-                        <div key={title} className="grid gap-2 py-4 first:pt-0 last:pb-0 sm:grid-cols-[2.5rem_minmax(0,1fr)]">
-                          <span className="font-mono text-sm tabular-nums text-white/55">{String(index + 1).padStart(2, "0")}</span>
-                          <div><h4 className="type-h4 text-white">{title}</h4><p className="mt-2 type-small leading-relaxed text-white/65">{description}</p></div>
-                        </div>
-                      ))}
-                    </div>
+            <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
+              {deliveryGroups.flat().map(([title, description]) => (
+                <ScrollReveal key={title}>
+                  <div className="h-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
+                    <h3 className="type-h4 text-white">{title}</h3>
+                    <p className="mt-2 type-small leading-relaxed text-white/65">{description}</p>
                   </div>
                 </ScrollReveal>
               ))}
