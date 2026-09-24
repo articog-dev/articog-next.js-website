@@ -6,7 +6,6 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteEntitySchema } from "@/lib/structured-data";
 import "./globals.css";
@@ -73,7 +72,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />
         <AnnouncementBar />
-        <ScrollProgress />
         <Header />
         <main className="flex-1">
           {children}
