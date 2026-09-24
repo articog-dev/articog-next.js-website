@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Product Launch Campaigns | Articog",
   description: "Full creative support for your product launch, from strategy and timeline to every channel-specific asset.",
 };
-import { Container, Section, Heading, Button, PageHero } from "@/components/ui";
+import { Container, Section, Heading, PageHero } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Calendar, Layout, CheckCircle2, Globe, Share2, Info } from "lucide-react";
@@ -85,11 +85,6 @@ export default function ProductLaunchSolutionPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
           </div>
         </Container>
       </Section>

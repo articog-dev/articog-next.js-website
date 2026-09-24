@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   title: "Security & Confidentiality | Articog",
   description: "NDA, access control, and data handling practices at Articog.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Lock, ShieldCheck, Key } from "lucide-react";
 
@@ -80,11 +79,6 @@ export default function SecurityPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
           </div>
         </Container>
       </Section>

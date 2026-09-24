@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   title: "AI & Intellectual Property | Articog",
   description: "How Articog handles AI tool use, ownership, and client intellectual property.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { ShieldCheck, Scale, FileText, UserCheck, Eye, AlertCircle } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
@@ -135,11 +134,6 @@ export default function AIIPPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
           </div>
         </Container>
       </Section>

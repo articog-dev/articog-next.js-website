@@ -5,9 +5,8 @@ export const metadata: Metadata = {
   description: "On-brand product visuals at scale. Product photography, campaign posters, and print-ready assets delivered in days.",
   alternates: { canonical: "https://www.articog.com/work/product-visuals" },
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Link } from "@/components/ui/Link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export default function ProductVisualsPage() {
@@ -88,11 +87,6 @@ export default function ProductVisualsPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
               <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
           </div>
         </Container>
       </Section>

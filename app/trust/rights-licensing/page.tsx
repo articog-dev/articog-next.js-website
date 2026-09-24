@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Rights, Licensing & Ownership | Articog",
   description: "Commercial usage rights for AI, stock, music, and voice.",
 };
-import { Container, Section, Heading, Button } from "@/components/ui";
+import { Container, Section, Heading } from "@/components/ui";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Link } from "@/components/ui/Link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -96,11 +96,6 @@ export default function RightsLicensingPage() {
         <Container>
           <div className="text-center max-w-2xl mx-auto">
             <FinalCTA content={{ ctaHref: "/book-a-demo", ctaLabel: "Book a Demo" }} />
-            <Link href="/book-a-demo">
-              <Button size="lg" className="rounded-full px-8 h-14">
-                Book a Demo
-              </Button>
-            </Link>
           </div>
         </Container>
       </Section>
