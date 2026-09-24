@@ -18,12 +18,6 @@ export default function PrivacyRequestPage() {
     const form = e.currentTarget;
     const data = new FormData(form);
     try {
-      const attribution = Object.fromEntries(
-        Array.from(data.entries()).filter(([key]) =>
-          ['source', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landingPage'].includes(String(key)),
-        ).map(([key, value]) => [key, String(value)]),
-      );
-
       const response = await fetch('/api/privacy-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,7 +26,6 @@ export default function PrivacyRequestPage() {
           email: data.get('email'),
           requestType: data.get('type'),
           details: data.get('details'),
-          attribution,
         }),
       });
       const result = (await response.json()) as { success?: boolean; message?: string; error?: string };

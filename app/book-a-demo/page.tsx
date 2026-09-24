@@ -8,7 +8,6 @@ import { Container, Section, Button, Heading, Input, Textarea, Checkbox, Select,
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { isTrustedCalendlyEvent } from "@/lib/calendly";
-import { buildAttributionObject } from "@/lib/utm";
 
 const CALENDLY_URL = "https://calendly.com/articog-media/30min";
 declare global {
@@ -79,8 +78,6 @@ export default function BookADemoPage() {
       email,
     }).toString()}`;
 
-    const attribution = buildAttributionObject(window.location.search, document.referrer);
-
     try {
       const response = await fetch("/api/demo", {
         method: "POST",
@@ -99,7 +96,6 @@ export default function BookADemoPage() {
           referenceUrl,
           website,
           consent,
-          attribution,
         }),
       });
 

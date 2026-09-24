@@ -261,7 +261,6 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuImagePreload, setMenuImagePreload] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [dropdownAnchor, setDropdownAnchor] = useState<HTMLElement | null>(null);
@@ -273,8 +272,6 @@ export function Header() {
   useEffect(() => {
     const onScroll = () => {
       const safeScrollY = window.scrollY || 0;
-
-      setScrolled(safeScrollY > 32);
       setShowBackToTop(safeScrollY > 400);
     };
 
@@ -396,23 +393,9 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
+        className={`relative z-[1000] transition-all duration-300 ${
           mobileOpen ? "hidden lg:block" : ""
         }`}
-        style={{
-          background: scrolled
-            ? "rgba(0,0,0,0.90)"
-            : "transparent",
-          backdropFilter: scrolled
-            ? "blur(16px)"
-            : "none",
-          WebkitBackdropFilter: scrolled
-            ? "blur(16px)"
-            : "none",
-          borderBottom: scrolled
-            ? "1px solid rgba(255,255,255,0.07)"
-            : "1px solid transparent",
-        }}
       >
         <Container className="relative flex h-16 items-center justify-between">
 

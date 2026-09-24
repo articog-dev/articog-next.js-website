@@ -17,7 +17,6 @@ import {
   FinalCTA,
   HomeVisualShowcase,
   OurApproach,
-  FAQ,
 } from "@/components/sections";
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
@@ -137,7 +136,6 @@ export default function HomePage() {
       <Pipeline steps={homepage.pipeline} />
       <Comparison rows={homepage.comparison} />
       <CaseStudies />
-      <FAQ />
       <FinalCTA content={homepage.cta} />
     </div>
   );
