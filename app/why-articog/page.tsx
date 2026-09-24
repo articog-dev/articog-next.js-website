@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, BarChart3, Clock, Database, FileText, Info, Lock, ShieldCheck, Zap } from "lucide-react";
-import { Container, Section, Heading, Button, PageHero, SectionHeader } from "@/components/ui";
+import { Container, Section, Heading, PageHero, SectionHeader } from "@/components/ui";
 import { Link } from "@/components/ui/Link";
 import { Comparison } from "@/components/sections/Comparison";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -171,10 +171,6 @@ export default function WhyArticogPage() {
           </div>
           <div className="mt-[var(--spacing-section-sm)] flex items-center justify-center gap-3 text-center">
             <Link href="/trust/ai-and-ip" className="type-small text-white/60 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Responsible AI</Link><span className="text-white/55" aria-hidden="true">·</span><Link href="/contact" className="type-small text-white/60 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Vendor &amp; Tool Review</Link>
-          </div>
-          <div className="mt-[var(--spacing-section-sm)] border-t border-white/[0.08] pt-[var(--spacing-section-sm)] text-center">
-            <p className="type-body mb-6 text-white/70">Have a question not covered here?</p>
-            <Button asChild variant="primary" size="lg"><Link href="/contact">Contact Us</Link></Button>
           </div>
         </Container>
       </Section>
