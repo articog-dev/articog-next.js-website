@@ -1,199 +1,56 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
-const BREEZY_SCRIPT_URL = "https://articog.breezy.hr/embed/js?inline=true&group_by=none";
+const roles = [
+  "AI Business Development Analyst",
+  "AI Visual Designer",
+  "AI Filmmaker",
+  "AI Video Editor & Generator",
+];
 
 export function BreezyOpenings() {
-  const scriptLoadedRef = useRef(false);
-
-  useEffect(() => {
-    if (scriptLoadedRef.current) {
-      return;
-    }
-
-    const container = document.getElementById("bzOpeningsContainer");
-    if (!container) {
-      return;
-    }
-
-    const existingScript = document.querySelector(
-      `script[src="${BREEZY_SCRIPT_URL}"]`,
-    );
-
-    if (existingScript) {
-      scriptLoadedRef.current = true;
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = BREEZY_SCRIPT_URL;
-    script.async = true;
-    script.defer = true;
-    script.id = "breezy-openings-script";
-    script.setAttribute("data-breezy-openings", "true");
-
-    document.body.appendChild(script);
-    scriptLoadedRef.current = true;
-  }, []);
-
   return (
-    <>
-      <style>{`
-        #bzOpeningsContainer {
-          width: 100%;
-          min-width: 0;
-        }
+    <div className="min-w-0">
+      <p className="mb-6 text-base leading-7 text-white/75 md:text-lg">
+        We&apos;re currently looking for creative and driven talent to join us across the following roles:
+      </p>
+      <ul className="grid list-none gap-4 md:grid-cols-2" aria-label="Open roles">
+        {roles.map((role) => (
+          <li key={role} className="min-w-0 list-none">
+            <div className="flex min-h-[11.5rem] w-full flex-col justify-between border border-white/10 bg-white/[0.02] px-5 py-5 text-left transition-colors duration-200 md:px-6 md:py-6">
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-violet-300/80">
+                Open role
+              </span>
+              <h3 className="mt-5 text-balance font-sans text-[clamp(1.35rem,2vw,2rem)] font-medium leading-tight tracking-[-0.04em] text-white">
+                {role}
+              </h3>
+            </div>
+          </li>
+        ))}
+      </ul>
 
-        #bzOpeningsContainer > ul,
-        #bzOpeningsContainer ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
+      <div className="mt-12 border-t border-white/10 pt-8 text-left">
+        <p className="font-sans text-[clamp(1.7rem,3vw,2.5rem)] font-medium leading-tight tracking-[-0.05em] text-white">
+          Interested in joining Articog?
+        </p>
 
-        #bzOpeningsContainer > ul {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 1.5rem;
-        }
+        <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 md:text-lg">
+          If you’re interested in any of these opportunities, send your resume/CV along with relevant portfolio or work samples to
+          {" "}
+          <a
+            href="mailto:info@articog.com"
+            className="font-medium text-white underline decoration-white/40 underline-offset-4 transition-colors duration-200 hover:text-violet-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
+          >
+            info@articog.com
+          </a>
+          .
+        </p>
 
-        #bzOpeningsContainer > ul > li,
-        #bzOpeningsContainer li {
-          list-style: none;
-        }
+        <p className="mt-4 text-base leading-7 text-white/75 md:text-lg">
+          Please mention the role you’re applying for in the subject line.
+        </p>
 
-        #bzOpeningsContainer > ul > li {
-          display: flex;
-          min-width: 0;
-        }
-
-        #bzOpeningsContainer a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        #bzOpeningsContainer > ul > li > a,
-        #bzOpeningsContainer li > a {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-          flex: 1;
-          min-height: 19rem;
-          background: #ffffff;
-          border: 1px solid rgba(15, 23, 42, 0.1);
-          border-radius: 1.25rem;
-          padding: 1.75rem 2rem;
-          color: #101828;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-          box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
-        }
-
-        #bzOpeningsContainer > ul > li > a:hover,
-        #bzOpeningsContainer li > a:hover {
-          transform: translateY(-2px);
-          border-color: rgba(15, 23, 42, 0.12);
-          box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-        }
-
-        #bzOpeningsContainer h2,
-        #bzOpeningsContainer h3 {
-          order: 1;
-          margin: 0;
-          color: #101828;
-          font-size: clamp(1.45rem, 2vw, 1.9rem);
-          line-height: 1.1;
-          font-weight: 700;
-          letter-spacing: -0.03em;
-        }
-
-        #bzOpeningsContainer ul ul {
-          order: 2;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 0.45rem 0.9rem;
-          margin-top: 0.85rem;
-          color: rgba(16, 24, 40, 0.78);
-          font-size: 0.97rem;
-          line-height: 1.5;
-        }
-
-        #bzOpeningsContainer ul ul li {
-          display: inline-flex;
-          align-items: center;
-          color: rgba(16, 24, 40, 0.8);
-        }
-
-        #bzOpeningsContainer button,
-        #bzOpeningsContainer .bz-button,
-        #bzOpeningsContainer [role="button"] {
-          order: 3;
-          appearance: none;
-          margin-top: auto;
-          border: 1px solid #101828;
-          border-radius: 999px;
-          background: #101828;
-          padding: 0.7rem 1.05rem;
-          color: #ffffff;
-          font-size: 0;
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          width: fit-content;
-        }
-
-        #bzOpeningsContainer button::before,
-        #bzOpeningsContainer .bz-button::before,
-        #bzOpeningsContainer [role="button"]::before {
-          content: "Apply Now →";
-          font-size: 0.95rem;
-          line-height: 1;
-        }
-
-        #bzOpeningsContainer button:hover,
-        #bzOpeningsContainer .bz-button:hover,
-        #bzOpeningsContainer [role="button"]:hover {
-          background: #1f2937;
-          border-color: #1f2937;
-        }
-
-        @media (max-width: 767px) {
-          #bzOpeningsContainer > ul {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 640px) {
-          #bzOpeningsContainer > ul {
-            gap: 1rem;
-          }
-
-          #bzOpeningsContainer > ul > li > a,
-          #bzOpeningsContainer li > a {
-            min-height: 17rem;
-            padding: 1.5rem 1.25rem;
-            border-radius: 1rem;
-          }
-
-          #bzOpeningsContainer h2,
-          #bzOpeningsContainer h3 {
-            font-size: clamp(1.35rem, 7vw, 1.7rem);
-          }
-
-          #bzOpeningsContainer ul ul {
-            font-size: 0.88rem;
-          }
-        }
-      `}</style>
-
-      <div className="min-w-0 overflow-visible">
-        <div id="bzOpeningsContainer" className="min-w-0" />
+        <p className="mt-4 font-sans text-sm uppercase tracking-[0.16em] text-white/60 md:text-base">
+          Subject: Application – [Role Name]
+        </p>
       </div>
-    </>
+    </div>
   );
 }
