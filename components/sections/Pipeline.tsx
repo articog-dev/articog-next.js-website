@@ -51,7 +51,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
   });
 
   return (
-    <Section id="pipeline" className="relative min-h-[min(100svh,56.25vw)] overflow-hidden" style={{ padding: 0 }}>
+    <Section id="pipeline" className="relative flex min-h-[min(100svh,56.25vw)] items-center overflow-hidden" style={{ padding: 0 }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
@@ -70,7 +70,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
         <div className="absolute inset-0 z-10 bg-black/6" />
       </div>
 
-      <Container className="relative z-20 py-16 md:py-24">
+      <Container className="relative z-20 w-full py-16 md:py-24">
         {/* Header */}
         <ScrollReveal>
           <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-lg"}>
