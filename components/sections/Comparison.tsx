@@ -18,8 +18,8 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
             <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]">
               <div className="grid grid-cols-[1.1fr_1.2fr_1.2fr] border-b border-white/[0.08]">
                 <div aria-label="Comparison categories" className="p-5" />
-                <div className="border-r border-white/[0.08] p-5"><p className="type-h4 text-white/55">The old way</p></div>
-                <div className="bg-white/[0.02] p-5"><p className="type-h4 text-white">Articog</p></div>
+                <div className="border-r border-white/[0.08] p-5"><p className="type-h4 text-left text-white/55">The old way</p></div>
+                <div className="flex items-center justify-center bg-white/[0.02] p-5"><p className="type-h4 text-white">Articog</p></div>
               </div>
 
               {/* Rows */}
