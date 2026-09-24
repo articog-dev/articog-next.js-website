@@ -80,7 +80,7 @@ export function OurApproach() {
           playsInline
           loop
           controls={false}
-          preload={shouldLoad ? "auto" : "none"}
+          preload="none"
           poster="/our-approach-poster.jpg"
           src={shouldLoad ? "/videos/our-approach.mp4" : undefined}
           className="absolute inset-0 h-full w-full object-cover object-center"

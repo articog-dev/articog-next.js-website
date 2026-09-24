@@ -113,8 +113,8 @@ export function Footer() {
               <Image
                 src="/articog-logo-white.png"
                 alt="Articog logo"
-                width={2000}
-                height={2000}
+                width={80}
+                height={80}
                 sizes="80px"
                 className="absolute left-0 top-[-30px] h-20 w-20 max-w-none"
               />

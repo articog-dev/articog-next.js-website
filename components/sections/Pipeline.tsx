@@ -49,7 +49,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
           playsInline
           loop
           controls={false}
-          preload={shouldLoad ? "auto" : "none"}
+          preload="none"
           poster="/pipeline-poster.jpg"
           src={shouldLoad ? "/videos/pipeline.mp4" : undefined}
           className="h-full w-full object-cover"

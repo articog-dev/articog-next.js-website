@@ -9,6 +9,7 @@ import {
 import { Button, Container } from "@/components/ui";
 import { MobileMenu } from "./MobileMenu";
 import { ServiceMenuDesktop } from "./ServiceMenuCards";
+import { MenuImagePreload } from "./MenuImagePreload";
 import { topLevelServiceLinks } from "@/lib/service-navigation";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
@@ -255,6 +256,7 @@ function ServicesContent({
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuImagePreload, setMenuImagePreload] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [dropdownAnchor, setDropdownAnchor] = useState<HTMLElement | null>(null);
@@ -431,6 +433,8 @@ export function Header() {
                   <Link
                     href={groupHubHrefs[group.label]}
                     onClick={closeDropdown}
+                    onPointerEnter={group.label === "What We Do" ? () => setMenuImagePreload(true) : undefined}
+                    onFocus={group.label === "What We Do" ? () => setMenuImagePreload(true) : undefined}
                     className={`type-nav transition-colors duration-150 ${activeGroup === group.label ? "text-white" : "text-white/55"}`}
                   >
                     {group.label === "What We Do" ? "Services" : group.label}
@@ -516,6 +520,7 @@ export function Header() {
         isOpen={mobileOpen}
         onClose={closeMobileMenu}
       />
+      <MenuImagePreload preload={menuImagePreload} />
     </>
   );
 }

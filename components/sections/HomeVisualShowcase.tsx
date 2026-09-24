@@ -189,6 +189,7 @@ export function HomeVisualShowcase() {
             <div ref={scrollRef} className="showcase-track" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerEnd} onPointerCancel={handlePointerEnd}>
               {visuals.map((visual, index) => {
                 const isActive = index === activeIndex;
+                const isNearStart = Math.abs(index - START_INDEX) <= 2;
                 return (
                   <div key={visual.alt} ref={(slot) => { slotRefs.current[index] = slot; }} className="showcase-slot">
                     <button
@@ -204,7 +205,7 @@ export function HomeVisualShowcase() {
                         setSelectedVisual(visual);
                       }}
                     >
-                      <NextImage src={visual.src} sizes="(max-width: 640px) min(66vw, 15rem), (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={1600} height={2133} quality={80} loading="lazy" decoding="async" draggable={false} />
+                      <NextImage src={visual.src} sizes="(max-width: 640px) min(66vw, 15rem), (max-width: 1400px) 24vw, 336px" alt={visual.alt} width={900} height={1200} quality={80} loading={isNearStart ? "eager" : "lazy"} fetchPriority={isNearStart ? "low" : "auto"} decoding="async" draggable={false} />
                     </button>
                   </div>
                 );

@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.56.1"],
   images: {
+    formats: ["image/webp"],
+    minimumCacheTTL: 31536000,
+    qualities: [60, 75, 80],
     remotePatterns: [
       { protocol: "https", hostname: "media.articog.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
@@ -40,6 +43,19 @@ const nextConfig: NextConfig = {
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
         ],
       },
+      // Rename a file when its content changes because it is cached for a year.
+      ...[
+        "/videos/:path*",
+        "/services/:path*",
+        "/hero-poster.jpg",
+        "/our-approach-poster.jpg",
+        "/pipeline-poster.jpg",
+        "/articog-logo-white.png",
+        "/articog-logo-black.png",
+      ].map((source) => ({
+        source,
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      })),
     ];
   },
   async redirects() {

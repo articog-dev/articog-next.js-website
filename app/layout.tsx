@@ -13,6 +13,8 @@ import "./globals.css";
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -64,6 +66,7 @@ export default function RootLayout({
       className={`${sora.variable} h-full antialiased`}
     >
       <head>
+        <link rel="preconnect" href="https://media.articog.com" crossOrigin="" />
       </head>
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />

@@ -2,6 +2,7 @@
 
 import type { HeroContent } from "@/types";
 import { useRef } from "react";
+import ReactDOM from "react-dom";
 import { Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 
@@ -11,6 +12,7 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  ReactDOM.preload("/hero-poster.jpg", { as: "image", fetchPriority: "high" });
 
   useBufferedAutoplay(videoRef, {
     keepPlaying: true,
