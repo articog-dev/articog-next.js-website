@@ -119,7 +119,7 @@ export default function WhyArticogPage() {
       </Section>
 
       <div id="how-it-works" className="scroll-mt-[calc(var(--header-offset)+var(--subnav-height)+1.5rem)] border-t border-white/[0.08]">
-        <Pipeline steps={pipelineSteps} align="center" showDetails />
+        <Pipeline steps={pipelineSteps} />
         <Section>
           <Container>
             <SectionHeader title="Getting started and delivery" />
