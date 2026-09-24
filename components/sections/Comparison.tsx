@@ -16,8 +16,7 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
           <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <div className="hidden overflow-x-auto sm:block">
             <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]">
-              <div className="grid grid-cols-[1.1fr_1.2fr_1.2fr] border-b border-white/[0.08]">
-                <div aria-label="Comparison categories" className="p-5" />
+              <div className="grid grid-cols-2 border-b border-white/[0.08]">
                 <div className="border-r border-white/[0.08] p-5"><p className="type-h4 text-left text-white/55">The old way</p></div>
                 <div className="flex items-center justify-center bg-white/[0.02] p-5"><p className="type-h4 text-white">Articog</p></div>
               </div>
@@ -26,13 +25,10 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
               {rows.map((row, i) => (
                 <div
                   key={row.attribute}
-                  className={`grid grid-cols-[1.1fr_1.2fr_1.2fr] ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
+                  className={`grid grid-cols-2 ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
                 >
                   <div className="flex items-center p-5">
-                    <p className="type-small font-medium text-white/70">{row.attribute}</p>
-                  </div>
-                  <div className="flex items-center justify-center border-r border-white/[0.08] p-5" aria-hidden="true">
-                    <span className="block h-1.5 w-1.5 rounded-full bg-white/[0.08]" />
+                    <p className="type-small text-left font-medium text-white/70">{row.attribute}</p>
                   </div>
                   <div className="flex items-center justify-center bg-white/[0.02] p-5 text-center">
                     <p className="type-small text-white">{row.articog}</p>
