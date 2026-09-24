@@ -31,11 +31,10 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
                   <div className="flex items-center p-5">
                     <p className="type-small font-medium text-white/70">{row.attribute}</p>
                   </div>
-                  <div className="flex flex-col justify-center gap-2 border-r border-white/[0.08] p-5">
-                    <p className="type-small text-white/60">{row.agency}</p>
-                    <p className="type-small text-white/60">{row.inhouse}</p>
+                  <div className="flex items-center justify-center border-r border-white/[0.08] p-5" aria-hidden="true">
+                    <span className="block h-1.5 w-1.5 rounded-full bg-white/[0.08]" />
                   </div>
-                  <div className="flex items-center bg-white/[0.02] p-5">
+                  <div className="flex items-center justify-center bg-white/[0.02] p-5 text-center">
                     <p className="type-small text-white">{row.articog}</p>
                   </div>
                 </div>
