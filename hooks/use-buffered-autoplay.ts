@@ -7,11 +7,12 @@ interface Options {
   enabled?: boolean;
   keepPlaying?: boolean;
   waitForBuffer?: boolean;
+  src?: string;
 }
 
 export function useBufferedAutoplay(
   videoRef: RefObject<HTMLVideoElement | null>,
-  { enabled = true, keepPlaying = false, waitForBuffer = true }: Options = {},
+  { enabled = true, keepPlaying = false, waitForBuffer = true, src }: Options = {},
 ) {
   useEffect(() => {
     const video = videoRef.current;
@@ -70,21 +71,28 @@ export function useBufferedAutoplay(
 
     const handlePlaybackReady = () => play();
 
+    video.addEventListener("loadedmetadata", handlePlaybackReady);
+    video.addEventListener("loadeddata", handlePlaybackReady);
+    video.addEventListener("canplay", handlePlaybackReady);
+    video.addEventListener("pause", handlePause);
+    video.addEventListener("waiting", handleStall);
+    video.addEventListener("stalled", handleStall);
+    video.addEventListener("playing", clearStallTimer);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    if (src) {
+      const nextSrc = new URL(src, window.location.href).toString();
+      if (video.currentSrc !== nextSrc && video.getAttribute("src") !== src) {
+        video.setAttribute("src", src);
+      }
+    }
+
     if (!waitForBuffer || video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
       start();
     } else {
       video.addEventListener("canplay", start, { once: true });
       fallbackTimer = window.setTimeout(start, FALLBACK_START_MS);
     }
-
-      video.addEventListener("loadedmetadata", handlePlaybackReady);
-      video.addEventListener("loadeddata", handlePlaybackReady);
-      video.addEventListener("canplay", handlePlaybackReady);
-    video.addEventListener("pause", handlePause);
-    video.addEventListener("waiting", handleStall);
-    video.addEventListener("stalled", handleStall);
-    video.addEventListener("playing", clearStallTimer);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.clearTimeout(fallbackTimer);
@@ -99,5 +107,5 @@ export function useBufferedAutoplay(
       video.removeEventListener("playing", clearStallTimer);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [videoRef, enabled, keepPlaying, waitForBuffer]);
+  }, [videoRef, enabled, keepPlaying, waitForBuffer, src]);
 }

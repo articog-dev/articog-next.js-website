@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { ScrollReveal } from "@/components/animations";
 import type { PipelineStep } from "@/types";
@@ -37,18 +37,9 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
 
   useBufferedAutoplay(videoRef, {
     enabled: shouldLoad,
+    src: "/videos/pipeline.mp4",
     waitForBuffer: false,
   });
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !shouldLoad) return;
-
-    const src = "/videos/pipeline.mp4";
-    const nextSrc = new URL(src, window.location.href).toString();
-    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
-    video.setAttribute("src", src);
-  }, [shouldLoad]);
 
   return (
     <Section id="pipeline" className="relative flex min-h-[min(100svh,56.25vw)] items-center overflow-hidden" style={{ padding: 0 }}>

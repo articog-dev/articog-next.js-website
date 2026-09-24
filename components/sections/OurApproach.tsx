@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { ScrollReveal } from "@/components/animations";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
@@ -46,17 +46,10 @@ export function OurApproach() {
     return () => observer.disconnect();
   }, []);
 
-  useBufferedAutoplay(videoRef, { enabled: shouldLoad });
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !shouldLoad) return;
-
-    const src = "/videos/our-approach.mp4";
-    const nextSrc = new URL(src, window.location.href).toString();
-    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
-    video.setAttribute("src", src);
-  }, [shouldLoad]);
+  useBufferedAutoplay(videoRef, {
+    enabled: shouldLoad,
+    src: "/videos/our-approach.mp4",
+  });
 
   return (
     <Section size="md" className="border-t border-white/[0.05]">
