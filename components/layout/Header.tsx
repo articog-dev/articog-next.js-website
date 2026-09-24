@@ -393,7 +393,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`relative z-[1000] transition-all duration-300 ${
+        className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
           mobileOpen ? "hidden lg:block" : ""
         }`}
       >
