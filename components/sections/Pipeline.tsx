@@ -51,7 +51,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
   });
 
   return (
-    <Section id="pipeline" className="relative overflow-hidden" style={{ padding: 0 }}>
+    <Section id="pipeline" className="relative min-h-[min(100svh,56.25vw)] overflow-hidden" style={{ padding: 0 }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
