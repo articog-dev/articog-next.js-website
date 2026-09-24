@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { ScrollReveal } from "@/components/animations";
 import type { PipelineStep } from "@/types";
@@ -15,17 +15,18 @@ interface PipelineProps {
 export function Pipeline({ steps, align = "left", showDetails = false }: PipelineProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const hasLoadedRef = useRef(false);
 
   useLayoutEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasLoadedRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting || hasLoadedRef.current) return;
+        hasLoadedRef.current = true;
+        setShouldLoad(true);
+        observer.disconnect();
       },
       { rootMargin: "300px" },
     );
@@ -33,6 +34,16 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad) return;
+
+    const src = "/videos/pipeline.mp4";
+    const nextSrc = new URL(src, window.location.href).toString();
+    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
+    video.setAttribute("src", src);
+  }, [shouldLoad]);
 
   useBufferedAutoplay(videoRef, {
     enabled: shouldLoad,
@@ -49,9 +60,8 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
           playsInline
           loop
           controls={false}
-          preload={shouldLoad ? "metadata" : "none"}
-          poster="/pipeline-poster.jpg"
-          src={shouldLoad ? "/videos/pipeline.mp4" : undefined}
+          preload="none"
+          poster={shouldLoad ? "/pipeline-poster.jpg" : undefined}
           className="h-full w-full object-cover"
           aria-hidden="true"
         />

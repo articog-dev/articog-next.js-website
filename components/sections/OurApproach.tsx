@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container, Section, Heading } from "@/components/ui";
 import { ScrollReveal } from "@/components/animations";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
@@ -26,17 +26,18 @@ const approachItems = [
 export function OurApproach() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const hasLoadedRef = useRef(false);
 
   useLayoutEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasLoadedRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting || hasLoadedRef.current) return;
+        hasLoadedRef.current = true;
+        setShouldLoad(true);
+        observer.disconnect();
       },
       { rootMargin: "300px" },
     );
@@ -44,6 +45,16 @@ export function OurApproach() {
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad) return;
+
+    const src = "/videos/our-approach.mp4";
+    const nextSrc = new URL(src, window.location.href).toString();
+    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
+    video.setAttribute("src", src);
+  }, [shouldLoad]);
 
   useBufferedAutoplay(videoRef, { enabled: shouldLoad });
 
@@ -80,9 +91,8 @@ export function OurApproach() {
           playsInline
           loop
           controls={false}
-          preload={shouldLoad ? "metadata" : "none"}
-          poster="/our-approach-poster.jpg"
-          src={shouldLoad ? "/videos/our-approach.mp4" : undefined}
+          preload="none"
+          poster={shouldLoad ? "/our-approach-poster.jpg" : undefined}
           className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden="true"
         />

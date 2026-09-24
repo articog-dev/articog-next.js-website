@@ -1,7 +1,7 @@
 "use client";
 
 import type { HeroContent } from "@/types";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { Heading } from "@/components/ui";
 import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
@@ -12,9 +12,30 @@ interface HeroProps {
 
 export function Hero({ content }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
   ReactDOM.preload("/hero-poster.jpg", { as: "image", fetchPriority: "high" });
 
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setShouldLoadVideo(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoadVideo) return;
+
+    const src = "/videos/hero.mp4";
+    const nextSrc = new URL(src, window.location.href).toString();
+    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
+    video.setAttribute("src", src);
+  }, [shouldLoadVideo]);
+
   useBufferedAutoplay(videoRef, {
+    enabled: shouldLoadVideo,
     keepPlaying: true,
     waitForBuffer: false,
   });
@@ -40,9 +61,8 @@ export function Hero({ content }: HeroProps) {
           playsInline
           loop
           controls={false}
-          preload="auto"
+          preload="none"
           poster="/hero-poster.jpg"
-          src="/videos/hero.mp4"
           className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden="true"
         />
