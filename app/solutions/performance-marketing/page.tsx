@@ -71,7 +71,7 @@ export default function PerformanceMarketingPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <Link 
               href="/services/ad-creative"
-              className="group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+              className="group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300"
             >
               <div className="flex justify-between items-start mb-4">
                 <h3 className="type-h3 text-white">Performance Video Ads</h3>
@@ -82,7 +82,7 @@ export default function PerformanceMarketingPage() {
 
             <Link 
               href="/services/ad-creative"
-              className="group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+              className="group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300"
             >
               <div className="flex justify-between items-start mb-4">
                 <h3 className="type-h3 text-white">Static & Display Creative</h3>

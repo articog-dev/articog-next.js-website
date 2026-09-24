@@ -107,7 +107,7 @@ export default function AboutPage() {
             </Heading>
             <p
               className="type-body md:text-lg leading-relaxed"
-              style={{ color: "#ffffff" }}
+              style={{ color: "rgba(255,255,255,0.65)" }}
             >
               AI expands what can be produced and how quickly it can move. Human creative direction decides what should be made, how it should feel, and whether it is right for the brand. Every project combines both.
             </p>
@@ -139,7 +139,7 @@ function ApproachItem({ title, description }: { title: string; description: stri
   return (
     <div className="space-y-4 rounded-xl border border-white/[0.05] p-6">
       <Heading as="h3" size="card" className="text-white">{title}</Heading>
-              <p className="type-small leading-relaxed" style={{ color: "#ffffff" }}>
+              <p className="type-small leading-relaxed" style={{ color: "rgba(255,255,255,0.50)" }}>
         {description}
       </p>
     </div>

@@ -24,10 +24,7 @@ export function FinalCTA({ content }: FinalCTAProps) {
             </Button>
           </div>
 
-          <p
-            className="mt-8 font-sans text-xs"
-            style={{ color: "rgba(255,255,255,0.28)" }}
-          >
+          <p className="mt-8 font-sans text-xs text-white/55">
             No commitment. Free first conversation.
           </p>
         </div>

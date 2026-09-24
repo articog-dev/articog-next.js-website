@@ -15,7 +15,7 @@ const SelectTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
-    className={cn("flex h-10 w-full items-center justify-between radius-sm border border-border bg-surface px-3 py-2 type-body text-white [&_[data-placeholder]]:text-white [&_[data-placeholder]]:opacity-100 outline-none focus:ring-2 focus:ring-accent/30 disabled:cursor-not-allowed disabled:opacity-50", className)}
+    className={cn("flex h-10 w-full items-center justify-between radius-sm border border-border bg-surface px-3 py-2 type-body text-[var(--color-field-text)] [&_[data-placeholder]]:text-[var(--color-field-placeholder)] [&_[data-placeholder]]:opacity-100 outline-none focus:ring-2 focus:ring-accent/30 disabled:cursor-not-allowed disabled:opacity-50", className)}
     {...props}
   >
     {children}
@@ -29,7 +29,7 @@ const SelectContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
 >(({ className, children, position = "popper", ...props }, ref) => (
   <SelectPrimitive.Portal>
-    <SelectPrimitive.Content ref={ref} className={cn("relative z-50 max-h-96 min-w-[8rem] overflow-hidden radius-sm border border-border bg-black text-white shadow-md", position === "popper" && "translate-y-1", className)} position={position} {...props}>
+    <SelectPrimitive.Content ref={ref} className={cn("relative z-50 max-h-96 min-w-[8rem] overflow-hidden radius-sm border border-border bg-black text-[var(--color-field-text)] shadow-md", position === "popper" && "translate-y-1", className)} position={position} {...props}>
       <SelectPrimitive.ScrollUpButton className="flex h-6 items-center justify-center"><ChevronUp className="h-4 w-4" /></SelectPrimitive.ScrollUpButton>
       <SelectPrimitive.Viewport className="p-1">{children}</SelectPrimitive.Viewport>
       <SelectPrimitive.ScrollDownButton className="flex h-6 items-center justify-center"><ChevronDown className="h-4 w-4" /></SelectPrimitive.ScrollDownButton>
@@ -42,7 +42,7 @@ const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item ref={ref} className={cn("relative flex w-full cursor-default select-none items-center radius-sm py-1.5 pl-8 pr-2 type-small text-white outline-none focus:bg-surface-hover data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className)} {...props}>
+  <SelectPrimitive.Item ref={ref} className={cn("relative flex w-full cursor-default select-none items-center radius-sm py-1.5 pl-8 pr-2 type-small text-[var(--color-field-text)] outline-none focus:bg-surface-hover data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className)} {...props}>
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"><SelectPrimitive.ItemIndicator><Check className="h-4 w-4" /></SelectPrimitive.ItemIndicator></span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
@@ -52,7 +52,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => <SelectPrimitive.Label ref={ref} className={cn("px-2 py-1.5 type-label text-white", className)} {...props} />);
+>(({ className, ...props }, ref) => <SelectPrimitive.Label ref={ref} className={cn("px-2 py-1.5 type-label text-muted", className)} {...props} />);
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 export { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectItem, SelectLabel };

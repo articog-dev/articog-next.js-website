@@ -36,7 +36,7 @@ export default function AccessibilityPage() {
             </Heading>
             <p
               className="type-small mb-16"
-              style={{ color: "#ffffff" }}
+              style={{ color: "rgba(255,255,255,0.40)" }}
             >
               Last updated: August 19, 2026
             </p>
@@ -49,7 +49,7 @@ export default function AccessibilityPage() {
                   </Heading>
                   <p
                     className="type-body leading-relaxed"
-                    style={{ color: "#ffffff" }}
+                    style={{ color: "rgba(255,255,255,0.65)" }}
                   >
                     {section.content}
                   </p>

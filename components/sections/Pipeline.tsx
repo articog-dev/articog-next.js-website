@@ -9,9 +9,10 @@ import { useBufferedAutoplay } from "@/hooks/use-buffered-autoplay";
 interface PipelineProps {
   steps: PipelineStep[];
   align?: "left" | "center";
+  showDetails?: boolean;
 }
 
-export function Pipeline({ steps, align = "left" }: PipelineProps) {
+export function Pipeline({ steps, align = "left", showDetails = false }: PipelineProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -61,7 +62,7 @@ export function Pipeline({ steps, align = "left" }: PipelineProps) {
 
       <Container className="relative z-20 py-16 md:py-24">
         {/* Header */}
-        <ScrollReveal>
+        <ScrollReveal yOffset={12}>
           <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-lg"}>
             <Heading
               as="h2"
@@ -81,37 +82,39 @@ export function Pipeline({ steps, align = "left" }: PipelineProps) {
           {steps.map((step, index) => (
             <div
               key={step.step}
-              className="group relative flex cursor-default flex-col items-center justify-center gap-4 border-b p-7 text-center transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"
+              className={showDetails ? "group relative flex min-h-64 cursor-default flex-col justify-start gap-4 border-b p-6 text-left transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0" : "group relative flex cursor-default flex-col items-center justify-center gap-4 border-b p-7 text-center transition-colors duration-200 last:border-b-0 hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:last:border-r-0 lg:border-r lg:last:border-r-0"}
             >
-              <ScrollReveal delay={index * 0.1}>
-                <div className="flex flex-col items-center justify-center gap-4">
+              <ScrollReveal delay={index * 0.1} yOffset={12}>
+                <div className={showDetails ? "flex h-full flex-col gap-4" : "flex flex-col items-center justify-center gap-4"}>
                   <div
-                    className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-                    style={{ background: "#ffffff" }}
+                    className="absolute left-0 right-0 top-0 h-px origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100"
                   />
-                  <div className="absolute bottom-[-1.5rem] left-[2.15rem] top-14 w-px bg-white/[0.18] last:hidden sm:hidden" aria-hidden="true" />
+                  {!showDetails ? <div className="absolute bottom-[-1.5rem] left-[2.15rem] top-14 w-px bg-white/[0.18] last:hidden sm:hidden" aria-hidden="true" /> : null}
                   <div
-                    className="flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold"
+                    className={showDetails ? "flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] font-display text-sm font-bold text-white/80" : "flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold"}
                     style={{
-                      border: "1px solid rgba(255,255,255,0.20)",
-                      color: "rgba(255,255,255,0.95)",
+                      border: showDetails ? undefined : "1px solid rgba(255,255,255,0.20)",
+                      color: showDetails ? undefined : "rgba(255,255,255,0.95)",
                       textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {step.step}
                   </div>
+                  {showDetails && step.tag ? <span className="w-fit rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 type-label text-white/55">{step.tag}</span> : null}
                   <Heading
                     as="h3"
                     size="card"
-                    className="text-base font-bold text-white"
+                    className={showDetails ? "text-base font-bold text-white" : "text-base font-bold text-white"}
                     style={{
                       textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {step.title}
                   </Heading>
+                  {showDetails ? <p className="type-small leading-relaxed text-white/75" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>{step.description}</p> : null}
                 </div>
               </ScrollReveal>
+              {showDetails && index < steps.length - 1 ? <div className="absolute right-[-1px] top-1/2 hidden h-px w-2 bg-white/20 lg:block" aria-hidden="true" /> : null}
             </div>
           ))}
         </div>

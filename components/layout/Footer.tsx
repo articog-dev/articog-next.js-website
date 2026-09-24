@@ -120,7 +120,7 @@ export function Footer() {
               />
             </Link>
 
-            <p className="type-small leading-relaxed max-w-xs text-white/60">
+            <p className="type-small leading-relaxed max-w-xs text-white/75">
               AI-native film and creative production for brands and modern marketing teams.
             </p>
 
@@ -148,11 +148,11 @@ export function Footer() {
           className="mt-16 grid gap-6 border-t border-white/[0.08] pt-8 text-center md:grid-cols-[minmax(0,1fr)_auto_minmax(10rem,1fr)] md:items-center md:text-left"
         >
           <div className="flex flex-col gap-1">
-            <p className="font-sans text-xs text-white/60">
+            <p className="font-sans text-xs text-white/75">
               &copy; {new Date().getFullYear()} Articog Tech LLP. All rights reserved.
             </p>
 
-            <p className="type-small mb-2 text-white/55 uppercase tracking-widest">
+            <p className="type-small mb-2 text-white/70 uppercase tracking-widest">
               AI Native Film & Production Company
             </p>
           </div>
@@ -160,35 +160,35 @@ export function Footer() {
           <div className="mt-4 flex flex-wrap justify-center gap-x-2 gap-y-2 md:col-start-3 md:row-start-1 md:mt-0 md:justify-end">
             <Link
               href="/legal/terms-of-service"
-              className="text-[9px] sm:type-small text-white/40 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
+              className="text-[9px] sm:type-small text-white/65 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
             >
               Terms
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="text-[9px] sm:type-small text-white/40 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
+              className="text-[9px] sm:type-small text-white/65 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
             >
               Privacy
             </Link>
 
             <Link
               href="/legal/accessibility"
-              className="text-[9px] sm:type-small text-white/40 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
+              className="text-[9px] sm:type-small text-white/65 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
             >
               Accessibility
             </Link>
 
             <Link
               href="/copyright"
-              className="text-[9px] sm:type-small text-white/40 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
+              className="text-[9px] sm:type-small text-white/65 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
             >
               Copyright
             </Link>
 
             <Link
               href="/legal/cookie-policy"
-              className="text-[9px] sm:type-small text-white/40 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
+              className="text-[9px] sm:type-small text-white/65 hover:text-white transition-colors uppercase tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-sm md:tracking-wide"
             >
               Cookie Policy
             </Link>

@@ -46,6 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         ref={ref}
+        data-motion-button
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       />

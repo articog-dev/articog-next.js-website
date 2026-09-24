@@ -5,6 +5,7 @@ export { Heading } from "./Heading";
 export { Text } from "./Text";
 export { PageHero } from "./PageHero";
 export { PageHeroDetail } from "./PageHeroDetail";
+export { SectionHeader } from "./SectionHeader";
 export { Grid } from "./Grid";
 export { MediaFrame } from "./MediaFrame";
 export { MediaOverlay } from "./MediaOverlay";

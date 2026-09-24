@@ -68,7 +68,7 @@ export default function AudioPage() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300">
               <div className="flex items-center justify-between mb-8">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
                   <Mic2 className="w-6 h-6" />
@@ -80,7 +80,7 @@ export default function AudioPage() {
               <Heading as="h3" size="section" className="mb-2 text-white">AI Voiceover</Heading>
             </div>
 
-            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300">
+            <div className="group p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300">
               <div className="flex items-center justify-between mb-8">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
                   <AudioLines className="w-6 h-6" />

@@ -67,7 +67,7 @@ export default function AIVideoProductionPage() {
           </div>
           <Grid variant="standard" columns="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => {
-              const cardClassName = "group flex h-full w-full items-center radius-lg border border-white/10 bg-surface p-6 text-foreground transition-all duration-300 hover:border-white/20";
+              const cardClassName = "group flex h-full w-full items-center radius-lg border border-white/10 bg-surface p-6 text-foreground transition-[border-color] duration-300 hover:border-white/20";
               const cardContent = (
                 <div className="flex h-full w-full flex-col justify-between gap-4">
                   <div>

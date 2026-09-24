@@ -100,7 +100,7 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="name"
-                    className="type-nav text-white"
+                    className="type-nav text-white/70"
                   >
                     Name <span className="text-accent">*</span>
                   </label>
@@ -114,7 +114,6 @@ export default function ContactPage() {
                     className="h-12 rounded-lg px-4"
                     style={{
                       border: "1px solid rgba(255,255,255,0.08)",
-                      color: "white",
                       backgroundColor: "rgba(255,255,255,0.04)",
                     }}
                   />
@@ -124,7 +123,7 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-2.5">
                   <label
                     htmlFor="email"
-                    className="type-nav text-white"
+                    className="type-nav text-white/70"
                   >
                     Email <span className="text-accent">*</span>
                   </label>
@@ -138,7 +137,6 @@ export default function ContactPage() {
                     className="h-12 rounded-lg px-4"
                     style={{
                       border: "1px solid rgba(255,255,255,0.08)",
-                      color: "white",
                       backgroundColor: "rgba(255,255,255,0.04)",
                     }}
                   />
@@ -146,7 +144,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="company" className="type-nav text-white">
+                <label htmlFor="company" className="type-nav text-white/70">
                   Company <span className="text-accent">*</span>
                 </label>
                 <Input
@@ -159,15 +157,14 @@ export default function ContactPage() {
                   className="h-14 rounded-lg px-4 text-base"
                   style={{
                     border: "1px solid rgba(255,255,255,0.08)",
-                    color: "white",
                     backgroundColor: "rgba(255,255,255,0.04)",
                   }}
                 />
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="companyWebsite" className="type-nav text-white">
-                  Company Website <span className="text-white">(optional)</span>
+                <label htmlFor="companyWebsite" className="type-nav text-white/70">
+                  Company Website <span className="text-white/40">(optional)</span>
                 </label>
                 <Input
                   type="url"
@@ -178,7 +175,6 @@ export default function ContactPage() {
                   className="h-14 rounded-lg px-4 text-base"
                   style={{
                     border: "1px solid rgba(255,255,255,0.08)",
-                    color: "white",
                     backgroundColor: "rgba(255,255,255,0.04)",
                   }}
                 />
@@ -188,7 +184,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-2.5">
                 <label
                   htmlFor="inquiryType"
-                  className="type-nav text-white"
+                  className="type-nav text-white/70"
                 >
                   Inquiry Type <span className="text-accent">*</span>
                 </label>
@@ -208,7 +204,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-2.5">
                 <label
                   htmlFor="message"
-                  className="type-nav text-white"
+                  className="type-nav text-white/70"
                 >
                   Message <span className="text-accent">*</span>
                 </label>
@@ -221,7 +217,6 @@ export default function ContactPage() {
                   className="min-h-[160px] resize-none rounded-lg p-4 text-base"
                   style={{
                     border: "1px solid rgba(255,255,255,0.08)",
-                    color: "white",
                     backgroundColor: "rgba(255,255,255,0.04)",
                   }}
                 />
@@ -251,14 +246,14 @@ export default function ContactPage() {
               <p
                 className="text-center font-sans text-[12px] leading-relaxed"
                 style={{
-                  color: "#ffffff",
+                  color: "rgba(255,255,255,0.35)",
                 }}
               >
                 By submitting, you agree to be contacted about your inquiry.
                 See our{" "}
                 <Link
                   href="/privacy-policy"
-                  className="text-white underline underline-offset-2 hover:text-white transition-colors"
+                  className="text-white/50 underline underline-offset-2 hover:text-white transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -277,7 +272,7 @@ export default function ContactPage() {
 
               <a
                 href="mailto:info@articog.com"
-                className="flex items-center gap-3 text-white hover:text-accent transition-colors mb-4 group"
+                className="flex items-center gap-3 text-white/60 hover:text-accent transition-colors mb-4 group"
               >
                 <Mail
                   size={18}
@@ -289,7 +284,7 @@ export default function ContactPage() {
                 </span>
               </a>
 
-              <p className="font-sans text-xs text-white">
+              <p className="font-sans text-xs text-muted-safe">
                 We typically respond within 1 business day.
               </p>
             </div>

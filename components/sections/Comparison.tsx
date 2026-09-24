@@ -10,34 +10,34 @@ interface ComparisonProps {
 
 export function Comparison({ rows, size = "lg" }: ComparisonProps) {
   return (
-    <Section id="why-articog" size={size} className="relative overflow-hidden" style={{ background: "#000000" }}>
-      {/* Background Video removed as requested */}
-
-
+    <Section id="why-articog" size={size} className="relative overflow-hidden border-t border-white/[0.08] pt-[var(--spacing-section-sm)]">
       <Container className="relative z-10">
-        {/* Heading removed from comparison section to avoid duplication with hero */}
-
-
-        <ScrollReveal>
-          <div className="overflow-hidden rounded-2xl border border-white/[0.08] transition-transform duration-200 hover:-translate-y-1">
+        <ScrollReveal yOffset={12}>
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08] transition-colors duration-200 hover:border-white/20">
           <div className="hidden overflow-x-auto sm:block">
             <div>
-              <div className="grid grid-cols-1 border-b border-white/[0.08] sm:grid-cols-2">
-                <div className="p-5"><p className="type-h4 text-white/40">The old way</p></div>
-                <div className="border-l border-white/20 bg-white/[0.06] p-5 text-center"><p className="type-h4 text-white">Articog</p></div>
+              <div className="grid grid-cols-[1.1fr_1.2fr_1.2fr] border-b border-white/[0.08]">
+                <div aria-label="Comparison categories" className="p-5" />
+                <div className="p-5"><p className="type-h4 text-white/55">The old way</p></div>
+                <div className="border-x border-white/20 bg-white/[0.06] p-5"><p className="type-h4 text-white">Articog</p></div>
               </div>
 
               {/* Rows */}
               {rows.map((row, i) => (
                 <div
                   key={row.attribute}
-                  className={`grid grid-cols-1 sm:grid-cols-2 ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
+                  className={`grid grid-cols-[1.1fr_1.2fr_1.2fr] transition-colors hover:bg-white/[0.02] ${i < rows.length - 1 ? "border-b border-white/[0.08]" : ""}`}
                 >
                   <div className="flex items-center p-5">
-                    <p className="type-small text-white/55">{row.attribute}</p>
+                    <p className="type-small font-medium text-white/70">{row.attribute}</p>
                   </div>
-                  <div className="flex items-center justify-center gap-2 border-l border-white/20 bg-white/[0.04] p-5">
-                    <p className="type-small text-white text-center">{row.articog}</p>
+                  <div className="flex flex-col justify-center gap-2 p-5">
+                    <p className="type-small text-white/60"><span className="mr-2 inline-block h-1 w-1 rounded-full bg-white/60 align-middle" />{row.agency}</p>
+                    <p className="type-small text-white/60"><span className="mr-2 inline-block h-1 w-1 rounded-full bg-white/60 align-middle" />{row.inhouse}</p>
+                  </div>
+                  <div className="flex items-center gap-2 border-x border-white/20 bg-white/[0.06] p-5">
+                    <Check size={14} className="shrink-0 text-white" />
+                    <p className="type-small text-white">{row.articog}</p>
                   </div>
                 </div>
               ))}
@@ -51,11 +51,11 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
 
                 <div className="mb-4 flex items-start gap-3">
                   <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20">
-                    <X size={11} className="text-white/40" />
+                    <X size={11} className="text-white/55" />
                   </div>
                   <div>
-                    <p className="type-small mb-1 uppercase tracking-wide text-white/35">The Old Way</p>
-                    <p className="type-body text-white/55">{row.agency} / {row.inhouse}</p>
+                    <p className="type-small mb-1 uppercase tracking-wide text-white/55">The Old Way</p>
+                    <p className="type-body text-white/60">{row.agency}<br />{row.inhouse}</p>
                   </div>
                 </div>
 
@@ -74,7 +74,7 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
           </div>
         </ScrollReveal>
 
-        <p className="mt-5 text-center font-sans text-xs text-muted-safe">
+        <p className="mt-5 text-center font-sans text-xs text-white/55">
           Engagement fit depends on scope, formats, and delivery requirements.
         </p>
       </Container>

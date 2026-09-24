@@ -111,7 +111,7 @@ export default function PostProductionPage() {
                   )}
                 </>
               );
-              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all";
+              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-[border-color]";
 
               return page.href ? (
                 <Link key={page.title} href={page.href} className={className}>

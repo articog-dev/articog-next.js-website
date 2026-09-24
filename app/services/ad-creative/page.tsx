@@ -98,7 +98,7 @@ export default function AdCreativePage() {
                   )}
                 </div>
               );
-              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between";
+              const className = "group p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-[border-color] duration-300 flex flex-col justify-between";
 
               return service.href ? (
                 <Link key={service.title} href={service.href} className={className}>

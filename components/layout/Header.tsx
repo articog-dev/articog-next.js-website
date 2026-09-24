@@ -262,10 +262,15 @@ export function Header() {
   const headerRef = useRef<HTMLElement | null>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollFrame = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 32);
+      if (scrollFrame.current !== null) return;
+      scrollFrame.current = window.requestAnimationFrame(() => {
+        scrollFrame.current = null;
+        setScrolled(window.scrollY > 20);
+      });
     };
 
     window.addEventListener("scroll", onScroll, {
@@ -274,6 +279,7 @@ export function Header() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      if (scrollFrame.current !== null) window.cancelAnimationFrame(scrollFrame.current);
 
       if (closeTimer.current) {
         clearTimeout(closeTimer.current);
@@ -371,7 +377,8 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
+        data-scrolled={scrolled ? "true" : undefined}
+        className={`fixed left-0 right-0 top-9 z-[1000] transition-[background-color,border-color,backdrop-filter] duration-300 ${
           mobileOpen ? "hidden lg:block" : ""
         }`}
         style={{

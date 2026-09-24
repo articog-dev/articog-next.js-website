@@ -63,7 +63,7 @@ export default function HowItWorksPage() {
             <Heading as="h1" size="hero" className="mb-6 text-white">
               From brief to live in days
             </Heading>
-            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "#ffffff" }}>
+            <p className="mx-auto max-w-2xl type-body md:text-lg leading-relaxed mb-12" style={{ color: "rgba(255,255,255,0.65)" }}>
               We replace rigid timelines and overhead with a high velocity engine powered by AI and directed by humans.
             </p>
           </div>
@@ -77,13 +77,13 @@ export default function HowItWorksPage() {
         <Container>
           <Link
             href="/how-it-works/ai-creative-pipeline"
-            className="group mx-auto block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-all hover:border-white/20"
+            className="group mx-auto block max-w-2xl rounded-2xl border border-white/[0.08] p-6 text-center transition-[border-color] hover:border-white/20"
           >
             <h3 className="mb-2 flex items-center justify-center gap-2 type-h3 text-white">
               AI Creative Pipeline
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
             </h3>
-            <p className="type-small" style={{ color: "#ffffff" }}>
+            <p className="type-small" style={{ color: "rgba(255,255,255,0.50)" }}>
               Take a deeper technical look at our internal creative engine.
             </p>
           </Link>
@@ -112,7 +112,7 @@ export default function HowItWorksPage() {
             <Heading as="h2" size="section" className="mb-6">
               Human oversight, every step
             </Heading>
-            <p className="type-body leading-relaxed mb-8" style={{ color: "#ffffff" }}>
+            <p className="type-body leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.60)" }}>
               A Creative Director reviews every project for brand safety, legal compliance, and quality.
             </p>
           </div>

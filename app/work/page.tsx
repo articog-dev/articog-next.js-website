@@ -51,11 +51,11 @@ export default function WorkPage() {
               <Link
                 key={cat.title}
                 href={cat.href}
-                className="group rounded-2xl p-8 border border-white/[0.08] transition-all hover:border-white/20"
+                className="group rounded-2xl p-8 border border-white/[0.08] transition-[border-color] hover:border-white/20"
               >
                 <Heading as="h2" size="card" className="mb-2 flex items-center justify-between text-white">
                   {cat.title}
-                  <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  <ArrowRight size={20} className="opacity-0 -translate-x-2 transition-[opacity,transform] group-hover:opacity-100 group-hover:translate-x-0" />
                 </Heading>
               </Link>
             ))}
