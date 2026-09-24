@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Services",
+    "href": "/services",
+    "description": "AI-native production and marketing services for growth-stage teams.",
+    "keywords": ["services", "production", "creative", "brand", "video", "content", "strategy"]
+  },
+  {
+    "title": "Work",
+    "href": "/work",
+    "description": "Recent client work and campaign stories from across the portfolio.",
+    "keywords": ["work", "portfolio", "case studies", "campaigns", "creative work"]
+  },
+  {
+    "title": "Industries",
+    "href": "/industries",
+    "description": "Industry-specific production and growth strategies for modern brands.",
+    "keywords": ["industries", "saas", "dtc", "ecommerce", "automotive", "fashion", "real estate"]
+  },
+  {
+    "title": "Monthly Creative Subscription",
+    "href": "/solutions/monthly-creative-subscription",
+    "description": "Ongoing creative production and multi-channel campaign support.",
+    "keywords": ["subscription", "monthly", "creative", "retainer", "content"]
+  },
+  {
+    "title": "Performance Marketing",
+    "href": "/solutions/performance-marketing",
+    "description": "Creative systems that scale paid media with measurable conversion lift.",
+    "keywords": ["performance marketing", "paid media", "growth", "creative testing", "campaigns"]
+  },
+  {
+    "title": "Enterprise Solutions",
+    "href": "/solutions/enterprise",
+    "description": "Scaled production and brand systems for larger organizations.",
+    "keywords": ["enterprise", "solutions", "brand systems", "production scale"]
+  },
+  {
+    "title": "Product Launch",
+    "href": "/solutions/product-launch",
+    "description": "Launch creative and rollout support from strategy to content execution.",
+    "keywords": ["product launch", "launch", "reveal", "campaign", "marketing"]
+  },
+  {
+    "title": "Creative Team Extension",
+    "href": "/solutions/creative-team-overflow",
+    "description": "Flexible creative partnership for marketing teams under pressure.",
+    "keywords": ["creative team extension", "team overflow", "creative support", "outsourced team"]
+  },
+  {
+    "title": "Why Articog",
+    "href": "/why-articog",
+    "description": "Learn how our AI-native workflow helps teams move faster without sacrificing quality.",
+    "keywords": ["why articog", "workflow", "ai native", "production", "creative process"]
+  },
+  {
+    "title": "Blog",
+    "href": "/blog",
+    "description": "Insights on AI, media, production, marketing, and growth strategy.",
+    "keywords": ["blog", "insights", "articles", "content strategy", "ai", "media"]
+  },
+  {
+    "title": "About",
+    "href": "/about",
+    "description": "Meet the team and the philosophy behind Articog.",
+    "keywords": ["about", "team", "company", "founder", "brand"]
+  },
+  {
+    "title": "Careers",
+    "href": "/careers",
+    "description": "Join the future of production and creative operations.",
+    "keywords": ["careers", "jobs", "team", "hire", "creative roles"]
+  },
+  {
+    "title": "Contact",
+    "href": "/contact",
+    "description": "Start a conversation about your next brand, product, or campaign initiative.",
+    "keywords": ["contact", "sales", "support", "book demo", "inquiry"]
+  },
+  {
+    "title": "Book a Demo",
+    "href": "/book-a-demo",
+    "description": "Share goals and learn how Articog can support your production pipeline.",
+    "keywords": ["book a demo", "demo", "call", "schedule", "consultation"]
+  },
+  {
+    "title": "Privacy Policy",
+    "href": "/privacy-policy",
+    "description": "Read our policy and understand how we handle data and cookies.",
+    "keywords": ["privacy", "policy", "data", "cookies", "rights"]
+  },
+  {
+    "title": "Privacy Choices",
+    "href": "/privacy-choices",
+    "description": "Adjust your analytics preferences and privacy settings.",
+    "keywords": ["privacy choices", "analytics", "consent", "preferences"]
+  },
+  {
+    "title": "Community",
+    "href": "/community",
+    "description": "A place for product updates, events, and brand conversations.",
+    "keywords": ["community", "events", "networking", "brand community"]
+  },
+  {
+    "title": "Help Center",
+    "href": "/help",
+    "description": "Quick answers and resources for working with Articog.",
+    "keywords": ["help", "support", "faq", "resources"]
+  },
+  {
+    "title": "Accessibility",
+    "href": "/accessibility",
+    "description": "Our commitment to accessible experiences and inclusive design.",
+    "keywords": ["accessibility", "inclusive", "design", "a11y"]
+  },
+  {
+    "title": "Trust",
+    "href": "/trust",
+    "description": "Learn more about our process, quality standards, and trust signals.",
+    "keywords": ["trust", "quality", "process", "agency", "proof"]
+  }
+]

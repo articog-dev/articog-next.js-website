@@ -7,4 +7,5 @@ export { CaseStudies } from "./CaseStudies";
 export { FinalCTA } from "./FinalCTA";
 export { HomeVisualShowcase } from "./HomeVisualShowcase";
 export { OurApproach } from "./OurApproach";
+export { FAQ } from "./FAQ";
 

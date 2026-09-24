@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { trackContactSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { buildContactPayload } from "@/lib/contact-payload";
+import { attachHiddenUTMFields } from "@/lib/utm";
 import {
   ArrowRight,
   Mail,
@@ -15,6 +17,13 @@ export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  useEffect(() => {
+    if (formRef.current) {
+      attachHiddenUTMFields(formRef.current);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,17 +56,19 @@ export default function ContactPage() {
         );
       }
 
+      toast.success("Thanks — your message was sent successfully.");
       trackFormSuccess("contact");
       router.push("/thank-you");
     } catch (err) {
       console.error("Contact form error:", err);
       trackFormError("contact", "request_failed");
 
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again."
-      );
+      const message = err instanceof Error
+        ? err.message
+        : "Something went wrong. Please try again.";
+
+      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -86,6 +97,7 @@ export default function ContactPage() {
             }}
           >
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               className="flex flex-col gap-8"
             >

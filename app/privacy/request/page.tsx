@@ -2,12 +2,20 @@
 
 import { Link } from "@/components/ui/Link";
 import { Button, Container, Heading, Input, Textarea, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
+import { attachHiddenUTMFields } from '@/lib/utm';
 
 export default function PrivacyRequestPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  useEffect(() => {
+    if (formRef.current) {
+      attachHiddenUTMFields(formRef.current);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,6 +25,12 @@ export default function PrivacyRequestPage() {
     const form = e.currentTarget;
     const data = new FormData(form);
     try {
+      const attribution = Object.fromEntries(
+        Array.from(data.entries()).filter(([key]) =>
+          ['source', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landingPage'].includes(String(key)),
+        ).map(([key, value]) => [key, String(value)]),
+      );
+
       const response = await fetch('/api/privacy-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -25,6 +39,7 @@ export default function PrivacyRequestPage() {
           email: data.get('email'),
           requestType: data.get('type'),
           details: data.get('details'),
+          attribution,
         }),
       });
       const result = (await response.json()) as { success?: boolean; message?: string; error?: string };
@@ -54,7 +69,7 @@ export default function PrivacyRequestPage() {
             Submit a request to know, delete, or correct your personal information.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-white/60">Full Name</Label>
               <Input

@@ -43,6 +43,14 @@ async function handlePrivacyRequest(request: Request, requestId: string, idempot
     return withRequestId(requestId, { success: false, error: body.error }, { status: 400 });
   }
 
+  const attribution = typeof body.value.attribution === "object" && body.value.attribution !== null
+    ? Object.fromEntries(
+        Object.entries(body.value.attribution as Record<string, unknown>)
+          .filter(([, value]) => typeof value === "string" && value.trim().length > 0)
+          .map(([key, value]) => [key, String(value).trim()]),
+      )
+    : {};
+
   const name = validateString(body.value.name, { required: true, maxLength: 160 });
   const email = validateEmail(body.value.email);
   const requestType = validateEnum(body.value.requestType, ["know", "delete", "correct", "opt-out"] as const, { required: true, maxLength: 16 });
@@ -107,6 +115,7 @@ async function handlePrivacyRequest(request: Request, requestId: string, idempot
       email: email.value,
       requestType: requestType.value,
       details: details.value || "",
+      ...(Object.keys(attribution).length ? { attribution } : {}),
     },
   }, { requestId });
   if (!durableResult.ok) {

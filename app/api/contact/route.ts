@@ -83,6 +83,14 @@ export async function POST(request: Request) {
       return withRequestId(requestId, { success: true, message: "Message submitted successfully." });
     }
 
+    const attribution = typeof body.value.attribution === "object" && body.value.attribution !== null
+      ? Object.fromEntries(
+          Object.entries(body.value.attribution as Record<string, unknown>)
+            .filter(([, value]) => typeof value === "string" && value.trim().length > 0)
+            .map(([key, value]) => [key, String(value).trim()]),
+        )
+      : {};
+
     const name = validateString(body.value.name, { required: true, maxLength: 160 });
     const email = validateEmail(body.value.email);
     const company = validateString(body.value.company, { required: true, maxLength: 160 });
@@ -137,6 +145,7 @@ export async function POST(request: Request) {
         companyWebsite: companyWebsite.value || "",
         inquiryType: inquiryType.value,
         message: message.value,
+        ...(Object.keys(attribution).length ? { attribution } : {}),
       },
     };
 

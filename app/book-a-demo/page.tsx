@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { toast } from "sonner";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Input, Textarea, Checkbox, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { isTrustedCalendlyEvent } from "@/lib/calendly";
+import { attachHiddenUTMFields, buildAttributionObject } from "@/lib/utm";
 
 const CALENDLY_URL = "https://calendly.com/articog-media/30min";
 declare global {
@@ -28,8 +30,13 @@ export default function BookADemoPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [hasTrackedFormStart, setHasTrackedFormStart] = useState(false);
   const hasTrackedCalendlySchedule = useRef(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
+    if (formRef.current) {
+      attachHiddenUTMFields(formRef.current);
+    }
+
     const handleCalendlyMessage = (event: MessageEvent) => {
       if (isTrustedCalendlyEvent(event) && !hasTrackedCalendlySchedule.current) {
         hasTrackedCalendlySchedule.current = true;
@@ -76,15 +83,7 @@ export default function BookADemoPage() {
       email,
     }).toString()}`;
 
-    const searchParams = new URLSearchParams(window.location.search);
-    const attribution = {
-      source: searchParams.get("source") || searchParams.get("utm_source") || "",
-      medium: searchParams.get("utm_medium") || "",
-      campaign: searchParams.get("utm_campaign") || "",
-      content: searchParams.get("utm_content") || "",
-      term: searchParams.get("utm_term") || "",
-      referrer: document.referrer,
-    };
+    const attribution = buildAttributionObject(window.location.search, document.referrer);
 
     try {
       const response = await fetch("/api/demo", {
@@ -112,9 +111,12 @@ export default function BookADemoPage() {
       if (!response.ok || !result.success) {
         const message = result.error || "We could not save your request. Please try again.";
         setErrorMessage(message);
+        toast.error(message);
         trackFormError("demo", message);
         return;
       }
+
+      toast.success("Thanks — we’ll reach out and open a scheduling link next.");
 
       try {
         if (window.Calendly) {
@@ -130,12 +132,14 @@ export default function BookADemoPage() {
       } catch {
         const message = "We could not open scheduling. Please try again.";
         setErrorMessage(message);
+        toast.error(message);
         trackFormError("demo", message);
       }
       trackFormSuccess("demo");
     } catch {
       const message = "We could not save your request. Please try again.";
       setErrorMessage(message);
+      toast.error(message);
       trackFormError("demo", message);
     } finally {
       setIsLoading(false);
@@ -168,6 +172,7 @@ export default function BookADemoPage() {
             }}
           >
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               onFocus={() => {
                 if (!hasTrackedFormStart) {

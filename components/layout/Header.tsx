@@ -1,16 +1,25 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Link } from "@/components/ui/Link";
 import {
+  ArrowUp,
   ChevronDown,
   Menu,
+  MessageSquareText,
+  MonitorSmartphone,
+  MoonStar,
+  SunMedium,
 } from "lucide-react";
 import { Button, Container } from "@/components/ui";
+import { SearchCommand } from "@/components/search/SearchCommand";
 import { MobileMenu } from "./MobileMenu";
 import { ServiceMenuDesktop } from "./ServiceMenuCards";
 import { MenuImagePreload } from "./MenuImagePreload";
 import { topLevelServiceLinks } from "@/lib/service-navigation";
+import { applyTheme, getStoredTheme, type ThemePreference } from "@/lib/theme";
+import { captureFirstTouchUTM } from "@/lib/utm";
 
 // ─── Navigation Data ─────────────────────────────────────────────────────────
 
@@ -255,21 +264,56 @@ function ServicesContent({
 // ─── Header ───────────────────────────────────────────────────────────────────
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuImagePreload, setMenuImagePreload] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showFloatingContact, setShowFloatingContact] = useState(false);
+  const [showProgressBar, setShowProgressBar] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [dropdownAnchor, setDropdownAnchor] = useState<HTMLElement | null>(null);
+  const [theme, setTheme] = useState<ThemePreference>(() => getStoredTheme());
 
   const headerRef = useRef<HTMLElement | null>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const themeOptions: Array<{
+    value: ThemePreference;
+    label: string;
+    Icon: typeof SunMedium;
+  }> = [
+    { value: "light", label: "Light theme", Icon: SunMedium },
+    { value: "system", label: "System theme", Icon: MonitorSmartphone },
+    { value: "dark", label: "Dark theme", Icon: MoonStar },
+  ];
+
+  useEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    captureFirstTouchUTM();
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 32);
+      const safeScrollY = window.scrollY || 0;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const nextProgress = maxScroll > 0 ? Math.min(safeScrollY / maxScroll, 1) : 0;
+
+      setScrolled(safeScrollY > 32);
+      setShowBackToTop(safeScrollY > 400);
+      setShowFloatingContact(
+        safeScrollY > 240 && pathname !== "/book-a-demo" && pathname !== "/thank-you",
+      );
+      setShowProgressBar(maxScroll > window.innerHeight + 24);
+      setScrollProgress(nextProgress);
     };
 
+    onScroll();
     window.addEventListener("scroll", onScroll, {
       passive: true,
     });
@@ -281,7 +325,7 @@ export function Header() {
         clearTimeout(closeTimer.current);
       }
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -369,8 +413,47 @@ export function Header() {
     requestAnimationFrame(() => mobileMenuButtonRef.current?.focus());
   };
 
+  const updateTheme = (nextTheme: ThemePreference) => {
+    setTheme(nextTheme);
+    applyTheme(nextTheme);
+
+    try {
+      window.localStorage.setItem("articog-theme-preference", nextTheme);
+    } catch {
+      // Ignore storage failures gracefully.
+    }
+  };
+
+  const handleBackToTop = () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const focusTarget = document.getElementById("main-content");
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+
+    if (focusTarget) {
+      focusTarget.focus();
+    }
+  };
+
   return (
     <>
+      {showProgressBar ? (
+        <div className="pointer-events-none fixed left-0 right-0 top-0 z-[1200] h-0.5 overflow-hidden bg-transparent" aria-hidden={!showProgressBar}>
+          <div
+            role="progressbar"
+            aria-label="Reading progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(scrollProgress * 100)}
+            className="h-full origin-left bg-[var(--brand-accent)]"
+            style={{ transform: `scaleX(${scrollProgress})` }}
+          />
+        </div>
+      ) : null}
+
       <header
         ref={headerRef}
         className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
@@ -481,7 +564,26 @@ export function Header() {
 
           {/* CTA */}
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-black/20 p-1 backdrop-blur-sm sm:flex">
+              {themeOptions.map(({ value, label, Icon }) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-label={label}
+                  aria-pressed={theme === value}
+                  onClick={() => updateTheme(value)}
+                  className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+                    theme === value ? "bg-white text-black" : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  <Icon size={14} />
+                </button>
+              ))}
+            </div>
+
+            <SearchCommand />
+
             <Button
               asChild
               variant="primary"
@@ -515,6 +617,28 @@ export function Header() {
           </div>
         </Container>
       </header>
+
+      {showBackToTop ? (
+        <button
+          type="button"
+          onClick={handleBackToTop}
+          className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[1040] flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/80 text-white shadow-lg shadow-black/30 backdrop-blur-md transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          aria-label="Back to top"
+        >
+          <ArrowUp size={16} />
+        </button>
+      ) : null}
+
+      {showFloatingContact ? (
+        <Link
+          href="/book-a-demo"
+          className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-[1040] flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-medium text-black shadow-lg shadow-black/25 transition-opacity hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          aria-label="Book a demo"
+        >
+          <MessageSquareText size={15} />
+          <span>Book a demo</span>
+        </Link>
+      ) : null}
 
       <MobileMenu
         isOpen={mobileOpen}
