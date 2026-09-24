@@ -2,20 +2,13 @@
 
 import { Link } from "@/components/ui/Link";
 import { Button, Container, Heading, Input, Textarea, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { attachHiddenUTMFields } from '@/lib/utm';
 
 export default function PrivacyRequestPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const formRef = useRef<HTMLFormElement | null>(null);
-
-  useEffect(() => {
-    if (formRef.current) {
-      attachHiddenUTMFields(formRef.current);
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

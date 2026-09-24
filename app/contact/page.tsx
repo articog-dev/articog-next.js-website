@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Link } from "@/components/ui/Link";
 import { Container, Section, Button, Heading, Input, Textarea, Alert, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { trackContactSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { buildContactPayload } from "@/lib/contact-payload";
-import { attachHiddenUTMFields } from "@/lib/utm";
 import {
   ArrowRight,
   Mail,
@@ -18,12 +17,6 @@ export default function ContactPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const formRef = useRef<HTMLFormElement | null>(null);
-
-  useEffect(() => {
-    if (formRef.current) {
-      attachHiddenUTMFields(formRef.current);
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

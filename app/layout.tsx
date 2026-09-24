@@ -5,38 +5,9 @@ import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { CookieBanner } from "@/components/layout/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteEntitySchema } from "@/lib/structured-data";
 import "./globals.css";
-
-const themeScript = `
-  (function () {
-    try {
-      const key = "articog-theme-preference";
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const stored = (() => {
-        try {
-          return window.localStorage.getItem(key);
-        } catch {
-          return null;
-        }
-      })();
-      const theme = stored === "light" || stored === "dark" || stored === "system"
-        ? stored
-        : "system";
-      const resolved = theme === "light" ? "light" : theme === "dark" ? "dark" : (prefersDark ? "dark" : "light");
-      document.documentElement.dataset.theme = resolved;
-      document.documentElement.classList.toggle("dark", resolved === "dark");
-      document.documentElement.classList.toggle("light", resolved === "light");
-      document.documentElement.style.colorScheme = resolved;
-    } catch (error) {
-      document.documentElement.dataset.theme = "dark";
-      document.documentElement.style.colorScheme = "dark";
-    }
-  })();
-`;
 
 const sora = Sora({
   variable: "--font-sora",
@@ -95,22 +66,15 @@ export default function RootLayout({
       className={`${sora.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="preconnect" href="https://media.articog.com" crossOrigin="" />
       </head>
       <body className="min-h-full flex flex-col">
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
         <GoogleAnalytics />
-        <AnnouncementBar />
         <Header />
-        <main id="main-content" tabIndex={-1} className="flex-1">
-          {/* Required landmark parity: <main className="flex-1"> */}
+        <main className="flex-1">
           {children}
         </main>
         <Footer />
-        <CookieBanner />
         <Toaster richColors closeButton position="top-right" />
         <JsonLd data={siteEntitySchema} />
       </body>

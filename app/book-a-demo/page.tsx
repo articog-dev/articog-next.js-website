@@ -8,7 +8,7 @@ import { Container, Section, Button, Heading, Input, Textarea, Checkbox, Select,
 import { ArrowRight } from "lucide-react";
 import { trackCalendlyEventScheduled, trackCalendlyOpen, trackDemoFormStart, trackDemoFormSubmit, trackFormError, trackFormSubmit, trackFormSuccess } from "@/lib/analytics";
 import { isTrustedCalendlyEvent } from "@/lib/calendly";
-import { attachHiddenUTMFields, buildAttributionObject } from "@/lib/utm";
+import { buildAttributionObject } from "@/lib/utm";
 
 const CALENDLY_URL = "https://calendly.com/articog-media/30min";
 declare global {
@@ -33,10 +33,6 @@ export default function BookADemoPage() {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
-    if (formRef.current) {
-      attachHiddenUTMFields(formRef.current);
-    }
-
     const handleCalendlyMessage = (event: MessageEvent) => {
       if (isTrustedCalendlyEvent(event) && !hasTrackedCalendlySchedule.current) {
         hasTrackedCalendlySchedule.current = true;
