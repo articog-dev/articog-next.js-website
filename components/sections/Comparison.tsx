@@ -15,11 +15,11 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
         <ScrollReveal>
           <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <div className="hidden overflow-x-auto sm:block">
-            <div>
+            <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]">
               <div className="grid grid-cols-[1.1fr_1.2fr_1.2fr] border-b border-white/[0.08]">
                 <div aria-label="Comparison categories" className="p-5" />
-                <div className="p-5"><p className="type-h4 text-white/55">The old way</p></div>
-                <div className="border-x border-white/20 bg-white/[0.06] p-5"><p className="type-h4 text-white">Articog</p></div>
+                <div className="border-r border-white/[0.08] p-5"><p className="type-h4 text-white/55">The old way</p></div>
+                <div className="bg-white/[0.02] p-5"><p className="type-h4 text-white">Articog</p></div>
               </div>
 
               {/* Rows */}
@@ -31,12 +31,11 @@ export function Comparison({ rows, size = "lg" }: ComparisonProps) {
                   <div className="flex items-center p-5">
                     <p className="type-small font-medium text-white/70">{row.attribute}</p>
                   </div>
-                  <div className="flex flex-col justify-center gap-2 p-5">
-                    <p className="type-small text-white/60"><span className="mr-2 inline-block h-1 w-1 rounded-full bg-white/60 align-middle" />{row.agency}</p>
-                    <p className="type-small text-white/60"><span className="mr-2 inline-block h-1 w-1 rounded-full bg-white/60 align-middle" />{row.inhouse}</p>
+                  <div className="flex flex-col justify-center gap-2 border-r border-white/[0.08] p-5">
+                    <p className="type-small text-white/60">{row.agency}</p>
+                    <p className="type-small text-white/60">{row.inhouse}</p>
                   </div>
-                  <div className="flex items-center gap-2 border-x border-white/20 bg-white/[0.06] p-5">
-                    <Check size={14} className="shrink-0 text-white" />
+                  <div className="flex items-center bg-white/[0.02] p-5">
                     <p className="type-small text-white">{row.articog}</p>
                   </div>
                 </div>
