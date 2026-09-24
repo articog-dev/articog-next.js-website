@@ -205,7 +205,11 @@ export function CreativeDocument() {
     if (!gallery) return;
 
     const handlePointerDown = (event: PointerEvent) => {
-      if (!event.isPrimary) return;
+      const target = event.target as HTMLElement | null;
+      if (!event.isPrimary || target?.closest("button, a, [role='button']")) {
+        return;
+      }
+
       startDragAt(event.clientX, event.clientY);
       activePointerId.current = event.pointerId;
     };
@@ -265,12 +269,14 @@ export function CreativeDocument() {
                 transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), ${depth}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
                 opacity,
                 zIndex: isActive ? 30 : isNeighbor ? 22 : 10,
+                pointerEvents: "auto",
               }}
               aria-current={isActive ? "true" : undefined}
             >
               <button
                 type="button"
                 className={styles.imageButton}
+                style={{ pointerEvents: "auto" }}
                 onClick={(event) => {
                   if (didDrag.current) {
                     event.preventDefault();
