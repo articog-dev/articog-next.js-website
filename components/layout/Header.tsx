@@ -261,7 +261,9 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuImagePreload, setMenuImagePreload] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [dropdownAnchor, setDropdownAnchor] = useState<HTMLElement | null>(null);
 
@@ -272,16 +274,33 @@ export function Header() {
   useEffect(() => {
     const onScroll = () => {
       const safeScrollY = window.scrollY || 0;
+      setScrolled(safeScrollY > 32);
       setShowBackToTop(safeScrollY > 400);
     };
 
+    const syncCookieBannerState = () => {
+      const cookieBanner = document.querySelector('aside[aria-label="Cookie consent"]');
+      setCookieBannerVisible(Boolean(cookieBanner && cookieBanner.getBoundingClientRect().height > 0));
+    };
+
     onScroll();
+    syncCookieBannerState();
+
     window.addEventListener("scroll", onScroll, {
       passive: true,
+    });
+    window.addEventListener("resize", syncCookieBannerState);
+
+    const mutationObserver = new MutationObserver(syncCookieBannerState);
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", syncCookieBannerState);
+      mutationObserver.disconnect();
 
       if (closeTimer.current) {
         clearTimeout(closeTimer.current);
@@ -396,6 +415,12 @@ export function Header() {
         className={`fixed left-0 right-0 top-9 z-[1000] transition-all duration-300 ${
           mobileOpen ? "hidden lg:block" : ""
         }`}
+        style={{
+          background: scrolled ? "rgba(0,0,0,0.90)" : "transparent",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "1px solid transparent",
+        }}
       >
         <Container className="relative flex h-16 items-center justify-between">
 
@@ -528,7 +553,12 @@ export function Header() {
         <button
           type="button"
           onClick={handleBackToTop}
-          className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[1040] flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/80 text-white shadow-lg shadow-black/30 backdrop-blur-md transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="fixed right-4 z-[1040] flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/80 text-white shadow-lg shadow-black/30 backdrop-blur-md transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          style={{
+            bottom: cookieBannerVisible
+              ? "calc(1rem + env(safe-area-inset-bottom) + 5.5rem)"
+              : "calc(1rem + env(safe-area-inset-bottom))",
+          }}
           aria-label="Back to top"
         >
           <ArrowUp size={16} />
