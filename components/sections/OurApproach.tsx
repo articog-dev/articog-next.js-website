@@ -52,8 +52,24 @@ export function OurApproach() {
 
     const src = "/videos/our-approach.mp4";
     const nextSrc = new URL(src, window.location.href).toString();
-    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
+
+    if (video.currentSrc === nextSrc || video.getAttribute("src") === src) {
+      void video.play().catch(() => undefined);
+      return;
+    }
+
+    const handlePlaybackReady = () => {
+      void video.play().catch(() => undefined);
+    };
+
     video.setAttribute("src", src);
+    video.addEventListener("loadeddata", handlePlaybackReady, { once: true });
+    video.addEventListener("canplay", handlePlaybackReady, { once: true });
+
+    return () => {
+      video.removeEventListener("loadeddata", handlePlaybackReady);
+      video.removeEventListener("canplay", handlePlaybackReady);
+    };
   }, [shouldLoad]);
 
   useBufferedAutoplay(videoRef, { enabled: shouldLoad });
@@ -78,7 +94,7 @@ export function OurApproach() {
       </Container>
 
       {/* Edge-to-edge video: full width, no rounded corners, no border */}
-      <div className="relative mb-16 h-[70vh] w-full overflow-hidden bg-black sm:h-[min(100svh,56.25vw)]">
+      <div className="relative mb-16 h-[min(100svh,56.25vw)] w-full overflow-hidden bg-black">
         <video
           ref={(video) => {
             videoRef.current = video;
