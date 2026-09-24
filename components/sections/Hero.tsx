@@ -24,12 +24,6 @@ export function Hero({ content }: HeroProps) {
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  useBufferedAutoplay(videoRef, {
-    enabled: shouldLoadVideo,
-    keepPlaying: true,
-    waitForBuffer: false,
-  });
-
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !shouldLoadVideo) return;
@@ -39,6 +33,12 @@ export function Hero({ content }: HeroProps) {
     if (video.currentSrc === nextSrc || video.getAttribute("src") === src) return;
     video.setAttribute("src", src);
   }, [shouldLoadVideo]);
+
+  useBufferedAutoplay(videoRef, {
+    enabled: shouldLoadVideo,
+    keepPlaying: true,
+    waitForBuffer: false,
+  });
 
   return (
     <section
