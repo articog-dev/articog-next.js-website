@@ -14,7 +14,7 @@ export function BreezyOpenings() {
       <ul className="grid list-none gap-4 md:grid-cols-2" aria-label="Open roles">
         {roles.map((role) => (
           <li key={role} className="min-w-0 list-none">
-            <div className="flex min-h-[11.5rem] w-full flex-col justify-between border border-white/10 bg-white/[0.02] px-5 py-5 text-left transition-colors duration-200 md:px-6 md:py-6">
+            <div className="flex min-h-[11.5rem] w-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-5 text-left transition-colors duration-200 md:px-6 md:py-6">
               <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-violet-300/80">
                 Open role
               </span>
@@ -26,7 +26,7 @@ export function BreezyOpenings() {
         ))}
       </ul>
 
-      <div className="mt-10 border-t border-white/10 pt-8 text-left">
+      <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-left md:p-8">
         <p className="font-sans text-[clamp(1.45rem,2.2vw,2.1rem)] font-medium leading-tight tracking-[-0.04em] text-white">
           Interested in joining Articog?
         </p>
