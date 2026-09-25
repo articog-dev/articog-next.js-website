@@ -14,11 +14,8 @@ export function BreezyOpenings() {
       <ul className="grid list-none gap-4 md:grid-cols-2" aria-label="Open roles">
         {roles.map((role) => (
           <li key={role} className="min-w-0 list-none">
-            <div className="flex min-h-[11.5rem] w-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-5 text-left transition-colors duration-200 md:px-6 md:py-6">
-              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-violet-300/80">
-                Open role
-              </span>
-              <h3 className="mt-5 text-balance font-sans text-[clamp(1.35rem,2vw,2rem)] font-medium leading-tight tracking-[-0.04em] text-white">
+            <div className="flex min-h-40 w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.02] p-6 text-center transition-colors duration-200">
+              <h3 className="text-balance font-sans text-[clamp(1.35rem,2vw,2rem)] font-medium leading-tight tracking-[-0.04em] text-white">
                 {role}
               </h3>
             </div>
