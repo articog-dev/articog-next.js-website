@@ -16,7 +16,7 @@ export default function CareersPage() {
       <Section className="pt-0">
         <Container>
 
-          <div className="mx-auto mb-24 mt-0 max-w-4xl">
+          <div className="mx-auto mb-24 mt-4 max-w-4xl">
             <Heading as="h2" size="section" className="mb-5 text-[clamp(2rem,1.8vw,2.8rem)] leading-[1.08] tracking-[-0.05em] text-white">Open Roles</Heading>
 
             <BreezyOpenings />

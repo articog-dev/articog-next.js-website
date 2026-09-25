@@ -79,7 +79,7 @@ export function Pipeline({ steps, align = "left", showDetails = false }: Pipelin
         </ScrollReveal>
 
         {/* Steps */}
-        <div className="-mt-6 grid grid-cols-1 overflow-hidden rounded-2xl border border-white/[0.12] bg-transparent backdrop-blur-[2px] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-4 grid grid-cols-1 overflow-hidden rounded-2xl border border-white/[0.12] bg-transparent backdrop-blur-[2px] sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <div
               key={step.step}
