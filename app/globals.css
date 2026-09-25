@@ -659,3 +659,15 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+body:has(#book-a-demo) > footer [class~="text-white/75"] {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+body:has(#book-a-demo) > footer [class~="text-white/70"] {
+  color: rgba(255, 255, 255, 0.77);
+}
+
+body:has(#book-a-demo) > footer [class~="text-white/65"] {
+  color: rgba(255, 255, 255, 0.72);
+}

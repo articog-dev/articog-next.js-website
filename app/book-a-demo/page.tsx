@@ -140,6 +140,7 @@ export default function BookADemoPage() {
 
   return (
     <Section
+      id="book-a-demo"
       size="lg"
       className="pt-32 md:pt-40 bg-black min-h-screen"
     >
@@ -172,7 +173,7 @@ export default function BookADemoPage() {
                   trackDemoFormStart();
                 }
               }}
-              className="flex flex-col gap-5 md:gap-8"
+              className="flex flex-col gap-5 md:gap-8 [--color-field-text:rgba(255,255,255,0.78)] [--color-field-placeholder:rgba(255,255,255,0.5)]"
             >
               <input
                 type="text"
