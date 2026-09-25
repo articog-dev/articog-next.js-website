@@ -261,15 +261,15 @@ const organizedServices = topLevelServiceLinks.map((serviceLink, index) => {
   const [primaryService, ...relatedServices] = group.items;
   const images: Record<string, { src: string; alt: string }> = {
     "/services/ai-video-production": {
-      src: "/services/articog-service-01-brand-films.jpg",
+      src: "https://media.articog.com/images/services/hf_20260824_090509_2e0e972f-465c-435c-8144-b01b1133427b.png",
       alt: "Brand films and commercial production",
     },
     "/services/ad-creative": {
-      src: "/services/articog-service-03-performance-creative.jpg",
+      src: "https://media.articog.com/images/services/hf_20260820_165439_f355b7b5-fc30-4852-9c69-cb8433145326.png",
       alt: "Performance creative production",
     },
     "/services/social-creative": {
-      src: "/services/articog-service-02-creator-social.jpg",
+      src: "https://media.articog.com/images/services/hf_20260821_215506_41068c08-3be5-4f02-bb81-9d5da0895c98.png",
       alt: "Creator-style social content production",
     },
   };
